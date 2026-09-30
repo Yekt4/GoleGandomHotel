@@ -1,26 +1,102 @@
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/estedad-font@v5.0.0/dist/font-face.css');
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+  --font-sans: 'Estedad', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Estedad', system-ui, -apple-system, sans-serif;
+  
+  --color-primary: #0096f7;
+  --color-primary-foreground: #ffffff;
+  
+  --color-secondary: #fafaf8;
+  --color-secondary-foreground: #000000;
+  
+  --color-muted: #f7f7f5;
+  --color-muted-foreground: #333333;
+  
+  --color-accent: #e6f5fe;
+  --color-accent-foreground: #0096f7;
+  
+  --color-destructive: #ff4000;
+  --color-destructive-foreground: #ffffff;
+  
+  --color-border: #e0ded4;
+  --color-input: #e0ded4;
+  --color-ring: #0096f7;
+  
+  --radius-lg: 12px;
+  --radius-md: 10px;
+  --radius-sm: 6px;
+}
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+  --primary: #0096f7;
+  --primary-foreground: #ffffff;
+  --secondary: #fafaf8;
+  --secondary-foreground: #000000;
+  --muted: #f7f7f5;
+  --muted-foreground: #333333;
+  --accent: #e6f5fe;
+  --accent-foreground: #0096f7;
+  --destructive: #ff4000;
+  --destructive-foreground: #ffffff;
+  --border: #e0ded4;
+  --input: #e0ded4;
+  --ring: #0096f7;
+  --radius: 12px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    direction: rtl;
+    text-align: right;
+    scroll-behavior: smooth;
+    font-family: 'Estedad', system-ui, sans-serif;
   }
-}
+  
+  body {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: 'Estedad', system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: 400;
+  }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  h1, .hero-title {
+    font-size: 42px;
+    line-height: 48px;
+    letter-spacing: -1px;
+    font-weight: 400;
+  }
+
+  h2, .section-title {
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+  }
+
+  h3, .subheading {
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: 400;
+  }
 }
