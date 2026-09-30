@@ -2,154 +2,175 @@
 
 import React from "react";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
+import { Coffee, Moon, Compass, Sparkles, ArrowLeft, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BookingDialog } from "./BookingDialog";
-import { Sparkles, Compass, ShieldCheck, Phone } from "lucide-react";
 
 export function ArchitecturePhilosophy() {
   return (
-    <section id="story" className="py-20 md:py-32 bg-[#f8fafc] border-b border-[#e2e8f0]">
+    <section id="story" className="py-24 md:py-36 bg-[#fbfaf7] text-[#172554] border-b border-[#e9e5dc]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Section Header */}
-        <div className="max-w-3xl mb-14 sm:mb-20">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#172554]"></span>
-            <span className="text-xs sm:text-sm font-bold tracking-wider text-[#172554] uppercase">
-              معماری و پیشینه تاریخی
-            </span>
+        {/* Sensorial Editorial Invitation - Inspired by NILS am See */}
+        <div className="max-w-4xl mx-auto text-center mb-20 sm:mb-28">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#172554]/5 border border-[#172554]/10 text-xs sm:text-sm font-semibold text-[#172554] mb-6">
+            <Sparkles className="w-3.5 h-3.5 text-[#2563eb]" />
+            <span>تجربه زیستن در عمارت تاریخی فرهادی</span>
           </div>
-          <h2 className="text-[34px] sm:text-[46px] font-bold leading-[44px] sm:leading-[58px] tracking-[-1px] text-[#172554] mb-4">
-            روایتی از هندسه زرین و اصالت معماری ایرانی در قلب شیراز
+
+          <h2 className="text-[34px] sm:text-[48px] lg:text-[56px] font-bold leading-[46px] sm:leading-[64px] lg:leading-[72px] tracking-[-1.5px] text-[#172554] mb-8">
+            عمارت کهن فرهادی در قلب شیراز؛
+            <br className="hidden sm:inline" />
+            <span className="text-[#2563eb]"> جایی برای رهایی از شتاب و لمس آرامش اصیل</span>
           </h2>
-          <p className="text-base sm:text-xl leading-8 sm:leading-9 text-[#475569]">
-            همانند هندسه نسبت طلایی که در طاق قوسی و نشان عمارت فرهادی تجلی یافته، کل معماری این بنا بر پایه تقارن، نور طبیعی، هوای معتدل حیاط مرکزی و احترام به حریم آرامش مهمان طراحی شده است.
-          </p>
+
+          <div className="relative p-6 sm:p-10 rounded-[28px] bg-white border border-[#e8e4db] shadow-xs max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl lg:text-[22px] leading-8 sm:leading-10 text-[#475569] font-light italic">
+              «آن دمِ بی‌دغدغه را مجسم کنید: نشستن در سایه‌سار درخت نارنج، استکانی چای با عطر هل و گلاب، و انوار رنگارنگ آفتاب که از ارسی‌های قاجار بر فرش دستباف فرود می‌آید. صدای زمزمه آب در حوض فیروزه‌ای، بوی خوش خشت و خاک... در عمارت فرهادی شیراز، زندگی اندکی آرام‌تر، دلنشین‌تر و اصیل‌تر جریان دارد.»
+            </p>
+          </div>
         </div>
 
-        {/* Samara-Style Massive Asymmetric Visual Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-16">
-          {/* Main Huge Visual */}
-          <div className="lg:col-span-8">
-            <div className="relative h-[420px] sm:h-[560px] lg:h-[620px] rounded-[24px] overflow-hidden border border-[#e2e8f0] shadow-md group">
+        {/* 3 Pillars of The Experience (Inspired by NILS am See Pillars) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 sm:mb-28">
+          {/* Pillar 1: Culinary & Cafe */}
+          <div className="bg-white rounded-[24px] border border-[#e8e4db] overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+            <div className="relative h-64 overflow-hidden">
               <Image
-                src="/images/courtyard.jpg"
-                alt="حیاط مرکزی باصفا با حوض آب فیروزه‌ای و درختان نارنج بوتیک هتل فرهادی شیراز"
+                src="/images/cafe.jpg"
+                alt="چای‌خانه و سفره‌خانه سنتی عمارت فرهادی شیراز"
                 fill
-                sizes="(max-width: 1024px) 100vw, 70vw"
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/90 via-[#0f172a]/20 to-transparent" />
-              <div className="absolute bottom-8 right-8 left-8 text-white">
-                <span className="text-xs uppercase tracking-wider text-[#60a5fa] block mb-2 font-bold">
-                  قلب تپنده عمارت فرهادی
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-4 right-4 text-white">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#93c5fd] block mb-1">
+                  طعم و ضیافت شیرازی
                 </span>
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">
-                  حیاط مرکزی، حوض فیروزه‌ای و شب‌های خنک شیراز
-                </h3>
-                <p className="text-sm sm:text-base text-white/80 max-w-xl font-light">
-                  عطر شکوفه‌های بهارنارنج و ترنم فواره در حوض هشت‌ضلعی کاشی‌کاری‌شده در کنار بادگیرهای کهن.
+                <span className="text-xl font-bold">سفره‌خانه و دمنوش‌های حیاط</span>
+              </div>
+            </div>
+            <div className="p-7 flex flex-col justify-between flex-1">
+              <div>
+                <p className="text-sm leading-7 text-[#475569] mb-4">
+                  عطر نان تازه سنگک و سرشیر صبحگاهی در ایوان، استکان چای لیمو و گل‌گاوزبان هنگام عصر، و فالوده اعلای شیرازی دست‌ساز زیر طاق‌های قاجاری.
                 </p>
               </div>
+              <div className="pt-4 border-t border-[#f1efe9] flex items-center justify-between">
+                <span className="text-xs font-bold text-[#172554]">پذیرایی روزانه با عرقیات اصیل</span>
+                <Coffee className="w-4 h-4 text-[#2563eb]" />
+              </div>
             </div>
           </div>
 
-          {/* Secondary Stacked Visuals */}
-          <div className="lg:col-span-4 flex flex-col gap-8">
-            <div className="relative h-[290px] rounded-[20px] overflow-hidden border border-[#e2e8f0] shadow-sm group">
+          {/* Pillar 2: Courtyard & Poolside Calm */}
+          <div className="bg-white rounded-[24px] border border-[#e8e4db] overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+            <div className="relative h-64 overflow-hidden">
               <Image
-                src="/images/detail-orsi.jpg"
-                alt="جزئیات پنجره‌های ارسی چوبی و تابش نور رنگی خورشید بر دیوارهای خشتی"
+                src="/images/courtyard.jpg"
+                alt="حیاط مرکزی با حوض فیروزه‌ای و شب‌های خنک عمارت فرهادی"
                 fill
-                sizes="(max-width: 1024px) 100vw, 30vw"
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/80 via-transparent to-transparent" />
-              <div className="absolute bottom-5 right-5 text-white">
-                <span className="text-xs text-[#60a5fa] block font-bold">هنر دست استادکاران</span>
-                <span className="text-base sm:text-lg font-bold">ارسی‌های گره‌چینی و شیشه‌های هفت‌رنگ</span>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-4 right-4 text-white">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#93c5fd] block mb-1">
+                  خلوت و سکون
+                </span>
+                <span className="text-xl font-bold">حوض فیروزه‌ای و تخت‌های چوبی</span>
               </div>
             </div>
+            <div className="p-7 flex flex-col justify-between flex-1">
+              <div>
+                <p className="text-sm leading-7 text-[#475569] mb-4">
+                  فرصتی کم‌نظیر برای لمیدن بر تخت‌های چوبی حیاط، تماشای فواره آب زلال، مطالعه کتاب در سایه‌سار بادگیر و تماشای ستارگان در شب‌های باصفای شیراز.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-[#f1efe9] flex items-center justify-between">
+                <span className="text-xs font-bold text-[#172554]">فضای استراحت و مدیتیشن</span>
+                <Moon className="w-4 h-4 text-[#2563eb]" />
+              </div>
+            </div>
+          </div>
 
-            <div className="relative h-[290px] rounded-[20px] overflow-hidden border border-[#e2e8f0] shadow-sm group">
+          {/* Pillar 3: Historic Shiraz Discovery */}
+          <div className="bg-white rounded-[24px] border border-[#e8e4db] overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+            <div className="relative h-64 overflow-hidden">
               <Image
                 src="/images/rooftop.jpg"
-                alt="بام سنتی هتل فرهادی با چشم‌انداز گنبد شاهچراغ در شب"
+                alt="چشم‌انداز ۳۶۰ درجه تاریخی بام عمارت فرهادی به گنبد شاهچراغ"
                 fill
-                sizes="(max-width: 1024px) 100vw, 30vw"
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/80 via-transparent to-transparent" />
-              <div className="absolute bottom-5 right-5 text-white">
-                <span className="text-xs text-[#60a5fa] block font-bold">دید ۳۶۰ درجه تاریخی</span>
-                <span className="text-base sm:text-lg font-bold">بام مشرف به گنبد طلایی شاهچراغ (ع)</span>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-4 right-4 text-white">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#93c5fd] block mb-1">
+                  کشف بافت کهن
+                </span>
+                <span className="text-xl font-bold">شیرازگردی در ۴ دقیقه‌ای شاهچراغ</span>
+              </div>
+            </div>
+            <div className="p-7 flex flex-col justify-between flex-1">
+              <div>
+                <p className="text-sm leading-7 text-[#475569] mb-4">
+                  قدم زدن پیاده در بافت سنگ‌فرش کهن؛ دسترسی ۴ دقیقه‌ای به بارگاه شاهچراغ (ع)، مسجد نصیرالملک (مسجد صورتی)، حمام و بازار وکیل و باغ‌های نامدار.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-[#f1efe9] flex items-center justify-between">
+                <span className="text-xs font-bold text-[#172554]">راهنمای اختصاصی شیرازگردی</span>
+                <Compass className="w-4 h-4 text-[#2563eb]" />
               </div>
             </div>
           </div>
         </div>
 
-        {/* Full-Bleed Image Break (Samara Style) */}
-        <div className="relative w-full h-[320px] sm:h-[420px] rounded-[24px] overflow-hidden border border-[#e2e8f0] mb-16 shadow-sm group">
-          <Image
-            src="/images/cafe.jpg"
-            alt="چای‌خانه و کافه سنتی عمارت تاریخی فرهادی شیراز"
-            fill
-            sizes="100vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#172554]/90 via-[#172554]/60 to-transparent" />
-          <div className="absolute inset-0 flex flex-col justify-center p-8 sm:p-14 text-white max-w-2xl">
-            <span className="text-xs text-[#93c5fd] font-bold tracking-wider uppercase mb-2">
-              پذیرایی اصیل شیرازی
-            </span>
-            <h3 className="text-2xl sm:text-4xl font-bold leading-tight mb-4">
-              چای‌خانه و کافه سنتی عمارت فرهادی
-            </h3>
-            <p className="text-sm sm:text-base text-white/90 leading-7 font-light mb-6">
-              سرو فالوده شیرازی اعلا، دمنوش‌های گیاهی کوهستان‌های فارس و چای سماور برنجی در فضای دنج عمارت.
-            </p>
-            <div>
-              <BookingDialog
-                trigger={
-                  <Button className="bg-white hover:bg-slate-100 text-[#172554] rounded-[12px] h-12 px-6 font-bold shadow-md cursor-pointer">
-                    رزرو تجربه اقامت در عمارت
-                  </Button>
-                }
+        {/* Full-Bleed Architectural Craft Break (Samara & NILS am See Fusion) */}
+        <div className="relative rounded-[32px] overflow-hidden bg-[#172554] text-white p-8 sm:p-14 lg:p-18 shadow-xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#93c5fd] bg-white/10 px-3.5 py-1.5 rounded-full border border-white/15">
+                اصالت معماری قاجار و پهلوی
+              </span>
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight">
+                مرمت وفادارانه با دست استادکاران سنتی شیراز
+              </h3>
+              <p className="text-base sm:text-lg text-white/80 leading-8 font-light max-w-xl">
+                تمام ارسی‌ها با تکنیک اصیل گره‌چینی چوب گردو بدون چسب یا میخ بازآفرینی شده‌اند. آینه‌کاری‌های مقرنس تالار شاه‌نشین توسط هنرمندان پیشکسوت شیرازی احیا گشته تا هویت یک قرن پیش با شکوه تام پیش چشمان شما جلوه‌گر باشد.
+              </p>
+              <div className="pt-2 flex flex-wrap items-center gap-4">
+                <BookingDialog
+                  trigger={
+                    <Button className="h-12 px-7 rounded-full bg-white text-[#172554] hover:bg-slate-100 font-bold text-sm sm:text-base shadow-lg cursor-pointer">
+                      رزرو مستقیم عمارت
+                    </Button>
+                  }
+                />
+                <a
+                  href="#rooms"
+                  className="h-12 px-6 rounded-full bg-white/10 hover:bg-white/20 text-white font-medium text-sm sm:text-base border border-white/20 flex items-center gap-2"
+                >
+                  <span>مشاهده اتاق‌های عمارت</span>
+                  <ArrowLeft className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 relative h-80 sm:h-96 rounded-[24px] overflow-hidden border border-white/20 shadow-2xl">
+              <Image
+                src="/images/detail-orsi.jpg"
+                alt="ارسی‌های گره‌چینی و شیشه‌های رنگی قاجار در عمارت فرهادی شیراز"
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-5 right-5 left-5 text-white">
+                <span className="text-xs font-bold text-[#93c5fd] block mb-1">هنر دست استادکاران</span>
+                <span className="text-base font-bold">ارسی‌های پنج‌دری و شیشه‌های دست‌ساز هفت‌رنگ</span>
+              </div>
             </div>
-          </div>
-        </div>
-
-        {/* 3 Pillars of Experience */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white p-8 rounded-[20px] border border-[#e2e8f0] shadow-xs">
-            <div className="w-13 h-13 rounded-[14px] bg-[#eff6ff] text-[#172554] flex items-center justify-center mb-6">
-              <Compass className="w-7 h-7 text-[#2563eb]" />
-            </div>
-            <h3 className="text-xl font-bold text-[#172554] mb-3">هندسه طلایی و اقلیم پایدار</h3>
-            <p className="text-sm leading-7 text-[#475569]">
-              طراحی طاق‌ها، ایوان‌ها و ارتفاع سقف‌ها متناسب با زاویه تابش خورشید شیراز بوده تا در تمامی فصول، فضایی معتدل، مطبوع و پرنور مهیا باشد.
-            </p>
-          </div>
-
-          <div className="bg-white p-8 rounded-[20px] border border-[#e2e8f0] shadow-xs">
-            <div className="w-13 h-13 rounded-[14px] bg-[#eff6ff] text-[#172554] flex items-center justify-center mb-6">
-              <Sparkles className="w-7 h-7 text-[#2563eb]" />
-            </div>
-            <h3 className="text-xl font-bold text-[#172554] mb-3">آینه‌کاری و چوب‌تراشی قاجار</h3>
-            <p className="text-sm leading-7 text-[#475569]">
-              هزاران قطعه آینه دست‌تراش با نقوش اسلیمی و درب‌های چوبی اصیل با کلون‌های کهن، تجربه‌ای تکرارنشدنی از زندگی در عمارتی اشرافی را بازآفرینی می‌کنند.
-            </p>
-          </div>
-
-          <div className="bg-white p-8 rounded-[20px] border border-[#e2e8f0] shadow-xs">
-            <div className="w-13 h-13 rounded-[14px] bg-[#eff6ff] text-[#172554] flex items-center justify-center mb-6">
-              <ShieldCheck className="w-7 h-7 text-[#2563eb]" />
-            </div>
-            <h3 className="text-xl font-bold text-[#172554] mb-3">امکانات استاندارد هتلی</h3>
-            <p className="text-sm leading-7 text-[#475569]">
-              علیرغم حفظ کامل بافت سنتی، تمامی اتاق‌ها مجهز به سیستم‌های سرمایش/گرمایش مدرن، سرویس بهداشتی و حمام استاندارد، و عایق‌های باکیفیت صوتی هستند.
-            </p>
           </div>
         </div>
       </div>
