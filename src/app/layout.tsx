@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -24,8 +25,9 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/estedad-font@v5.0.0/dist/font-face.css" />
       </head>
-      <body className="min-h-full flex flex-col bg-white text-black antialiased selection:bg-[#e6f5fe] selection:text-[#0096f7]">
+      <body className="min-h-full flex flex-col bg-white text-slate-900 antialiased selection:bg-[#eff6ff] selection:text-[#172554]">
         {children}
+        <Toaster dir="rtl" richColors position="top-center" />
       </body>
     </html>
   );

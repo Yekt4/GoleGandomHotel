@@ -57,6 +57,11 @@
   --input: #cbd5e1;
   --ring: #172554;
   --radius: 12px;
+
+  /* Emil Kowalski custom animation curves */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 @layer base {
@@ -74,6 +79,15 @@
     font-size: 18px;
     line-height: 32px;
     font-weight: 400;
+  }
+
+  /* Micro-interactions: Emil Kowalski button press feedback */
+  button, .btn {
+    transition: transform 160ms var(--ease-out), background-color 160ms var(--ease-out), color 160ms var(--ease-out);
+  }
+
+  button:active, .btn:active {
+    transform: scale(0.97);
   }
 
   h1, .hero-title {

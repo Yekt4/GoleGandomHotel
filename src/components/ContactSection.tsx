@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Phone, MessageCircle, Mail, MapPin } from "lucide-react";
+import { Phone, MessageCircle, Mail, MapPin, Copy } from "lucide-react";
+import { toast } from "sonner";
 import { BookingDialog } from "./BookingDialog";
 
 export function ContactSection() {
@@ -21,7 +22,16 @@ export function ContactSection() {
       `شماره تماس: ${encodeURIComponent(phone)}%0A` +
       `متن پیام: ${encodeURIComponent(message)}`;
 
+    toast.success("پیام شما ثبت شد و در حال اتصال به واتس‌اپ هستید.");
     window.open(`https://wa.me/989170000000?text=${text}`, "_blank");
+    setName("");
+    setPhone("");
+    setMessage("");
+  };
+
+  const copyToClipboard = (text: string, label: string) => {
+    navigator.clipboard.writeText(text);
+    toast.success(`${label} کپی شد: ${text}`);
   };
 
   return (
@@ -45,33 +55,33 @@ export function ContactSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Direct Contact Cards */}
           <div className="lg:col-span-6 flex flex-col gap-4">
-            <a
-              href="tel:07132220000"
-              className="p-6 rounded-[16px] border border-[#e2e8f0] bg-[#f8fafc] hover:border-[#172554] hover:bg-white transition-all flex items-center gap-5 group shadow-xs"
+            <div
+              onClick={() => copyToClipboard("07132220000", "شماره تلفن هتل")}
+              className="p-6 rounded-[16px] border border-[#e2e8f0] bg-[#f8fafc] hover:border-[#172554] hover:bg-white transition-all flex items-center gap-5 group shadow-xs cursor-pointer"
             >
               <div className="w-14 h-14 rounded-[14px] bg-[#eff6ff] text-[#172554] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                 <Phone className="w-7 h-7 text-[#2563eb]" />
               </div>
               <div className="flex-1">
-                <span className="block text-xs text-[#64748b] mb-1 font-medium">تلفن ثابت رزرو هتل</span>
+                <span className="block text-xs text-[#64748b] mb-1 font-medium">تلفن ثابت رزرو هتل (کلیک برای کپی)</span>
                 <span className="text-xl font-extrabold text-[#172554]">۰۷۱-۳۲۲۲۰۰۰۰</span>
               </div>
-              <span className="text-xs text-[#2563eb] font-bold hidden sm:inline-block">تماس سریع &larr;</span>
-            </a>
+              <span className="text-xs text-[#2563eb] font-bold hidden sm:inline-block">تماس مستقیم &larr;</span>
+            </div>
 
-            <a
-              href="tel:09170000000"
-              className="p-6 rounded-[16px] border border-[#e2e8f0] bg-[#f8fafc] hover:border-[#172554] hover:bg-white transition-all flex items-center gap-5 group shadow-xs"
+            <div
+              onClick={() => copyToClipboard("09170000000", "شماره همراه پذیرش")}
+              className="p-6 rounded-[16px] border border-[#e2e8f0] bg-[#f8fafc] hover:border-[#172554] hover:bg-white transition-all flex items-center gap-5 group shadow-xs cursor-pointer"
             >
               <div className="w-14 h-14 rounded-[14px] bg-[#eff6ff] text-[#172554] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                 <Phone className="w-7 h-7 text-[#2563eb]" />
               </div>
               <div className="flex-1">
-                <span className="block text-xs text-[#64748b] mb-1 font-medium">شماره همراه پذیرش و مدیریت</span>
+                <span className="block text-xs text-[#64748b] mb-1 font-medium">شماره همراه پذیرش (کلیک برای کپی)</span>
                 <span className="text-xl font-extrabold text-[#172554]">۰۹۱۷-۰۰۰-۰۰۰۰</span>
               </div>
-              <span className="text-xs text-[#2563eb] font-bold hidden sm:inline-block">تماس سریع &larr;</span>
-            </a>
+              <span className="text-xs text-[#2563eb] font-bold hidden sm:inline-block">تماس مستقیم &larr;</span>
+            </div>
 
             <a
               href="https://wa.me/989170000000"
