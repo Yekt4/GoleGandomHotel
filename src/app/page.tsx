@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { QuickBookingBar } from "@/components/QuickBookingBar";
 import { ArchitecturePhilosophy } from "@/components/ArchitecturePhilosophy";
 import { RoomsSection } from "@/components/RoomsSection";
 import { GallerySection } from "@/components/GallerySection";
@@ -16,12 +15,10 @@ export default function Home() {
       {/* Navigation Header */}
       <Navbar />
 
+
       <main className="flex-1">
         {/* Cinematic Hero */}
         <Hero />
-
-        {/* Quick Booking Inquiry Bar */}
-        <QuickBookingBar />
 
         {/* Architecture & Heritage Philosophy (Samara Style) */}
         <ArchitecturePhilosophy />

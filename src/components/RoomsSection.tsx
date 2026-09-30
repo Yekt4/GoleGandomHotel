@@ -141,7 +141,7 @@ export function RoomsSection() {
             <BookingDialog
               trigger={
                 <Button className="bg-[#172554] hover:bg-[#0f172a] text-white rounded-[12px] h-13 px-7 text-base font-bold shadow-md cursor-pointer">
-                  استعلام ظرفیت و رزرو اتاق‌ها
+                  رزرو مستقیم اتاق‌ها
                 </Button>
               }
             />

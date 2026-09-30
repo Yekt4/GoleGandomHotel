@@ -131,7 +131,7 @@ export function Hero() {
               <span className="text-3xl font-extrabold text-[#60a5fa]">۲۴/۷</span>
               <div className="text-right">
                 <strong className="block text-sm font-semibold">پذیرش شبانه‌روزی</strong>
-                <span className="text-xs text-white/70">استعلام و پاسخگویی سریع</span>
+                <span className="text-xs text-white/70">پاسخگویی سریع و میزبانی ۲۴ ساعته</span>
               </div>
             </div>
           </div>

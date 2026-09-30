@@ -8,9 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Phone, MessageCircle } from "lucide-react";
+import { Phone, MessageCircle, Clock, Coffee, ShieldCheck, Copy, Check } from "lucide-react";
 import { toast } from "sonner";
 
 interface BookingDialogProps {
@@ -21,36 +19,27 @@ interface BookingDialogProps {
 }
 
 export function BookingDialog({
-  initialRoom = "اتاق تالار آینه قاجاری",
+  initialRoom = "عمارت تاریخی فرهادی",
   trigger,
   isOpen,
   onOpenChange,
 }: BookingDialogProps) {
   const [internalOpen, setInternalOpen] = useState(false);
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [checkin, setCheckin] = useState("");
-  const [checkout, setCheckout] = useState("");
-  const [room, setRoom] = useState(initialRoom);
-  const [guests, setGuests] = useState("2");
+  const [copied, setCopied] = useState<string | null>(null);
 
   const openState = isOpen !== undefined ? isOpen : internalOpen;
   const setOpen = onOpenChange !== undefined ? onOpenChange : setInternalOpen;
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const text = `سلام، درخواست رزرو در بوتیک هتل فرهادی شیراز:%0A` +
-      `نام: ${encodeURIComponent(name || "مهمان گرامی")}%0A` +
-      `شماره همراه: ${encodeURIComponent(phone)}%0A` +
-      `اتاق انتخابی: ${encodeURIComponent(room)}%0A` +
-      `تاریخ ورود: ${encodeURIComponent(checkin)}%0A` +
-      `تاریخ خروج: ${encodeURIComponent(checkout)}%0A` +
-      `تعداد مهمانان: ${encodeURIComponent(guests)} نفر`;
-
-    toast.success("درخواست رزرو شما ثبت شد و در حال اتصال به واتس‌اپ هتل هستید.");
-    window.open(`https://wa.me/989170000000?text=${text}`, "_blank");
-    setOpen(false);
+  const copyNumber = (number: string, label: string) => {
+    navigator.clipboard.writeText(number);
+    setCopied(label);
+    toast.success(`${label} کپی شد: ${number}`);
+    setTimeout(() => setCopied(null), 2000);
   };
+
+  const whatsappMessage = encodeURIComponent(
+    `سلام و درود، جهت رزرو مستقیم و اقامت در ${initialRoom} بوتیک هتل فرهادی شیراز پیام می‌دهم.`
+  );
 
   const renderedTrigger = trigger && React.isValidElement(trigger)
     ? React.cloneElement(trigger as React.ReactElement<{ onClick?: () => void }>, {
@@ -66,118 +55,120 @@ export function BookingDialog({
     <>
       {renderedTrigger}
       <Dialog open={openState} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-[500px] p-6 text-right bg-white rounded-[16px] border border-[#e2e8f0] shadow-2xl">
-          <DialogHeader className="text-right">
-            <DialogTitle className="text-xl font-bold text-[#172554]">
-              درخواست رزرو و استعلام ظرفیت
+        <DialogContent className="sm:max-w-[480px] p-6 sm:p-7 text-right bg-white rounded-[24px] border border-slate-200 shadow-2xl">
+          <DialogHeader className="text-right pb-2 border-b border-slate-100">
+            <div className="inline-flex items-center gap-2 mb-1">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#172554]" />
+              <span className="text-xs font-bold text-[#172554] tracking-wide">
+                رزرو مستقیم و بدون واسطه
+              </span>
+            </div>
+            <DialogTitle className="text-xl sm:text-2xl font-bold text-[#172554]">
+              پذیرش بوتیک هتل فرهادی
             </DialogTitle>
+            {initialRoom && initialRoom !== "عمارت تاریخی فرهادی" && (
+              <p className="text-xs sm:text-sm font-semibold text-[#2563eb] mt-1">
+                واحد انتخابی: {initialRoom}
+              </p>
+            )}
           </DialogHeader>
 
-          <p className="text-sm text-[#475569] mb-3">
-            اطلاعات اقامت خود را وارد نمایید تا پذیرش هتل سریعاً از طریق واتس‌اپ پاسخگوی شما باشد:
+          <p className="text-xs sm:text-sm leading-6 text-slate-600 mt-3 mb-5">
+            جهت هماهنگی اقامت، آگاهی از موجودی اتاق‌ها و تجربه میزبانی اختصاصی در شیراز، با کارشناسان پذیرش ما به صورت ۲۴ ساعته تماس بگیرید یا در واتس‌اپ پیام ارسال فرمایید:
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-1">
-              <Label htmlFor="b-name" className="text-xs sm:text-sm font-semibold text-[#172554]">نام و نام خانوادگی</Label>
-              <Input
-                id="b-name"
-                placeholder="مثال: سهراب حسینی"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="rounded-[8px] border-[#cbd5e1] focus:border-[#172554] h-10"
-                required
-              />
-            </div>
-
-            <div className="space-y-1">
-              <Label htmlFor="b-phone" className="text-xs sm:text-sm font-semibold text-[#172554]">شماره تماس همراه</Label>
-              <Input
-                id="b-phone"
-                type="tel"
-                placeholder="۰۹۱۲۳۴۵۶۷۸۹"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="rounded-[8px] border-[#cbd5e1] focus:border-[#172554] h-10"
-                required
-              />
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <div className="space-y-1">
-                <Label htmlFor="b-checkin" className="text-xs sm:text-sm font-semibold text-[#172554]">تاریخ ورود</Label>
-                <Input
-                  id="b-checkin"
-                  type="date"
-                  value={checkin}
-                  onChange={(e) => setCheckin(e.target.value)}
-                  className="rounded-[8px] border-[#cbd5e1] focus:border-[#172554] h-10"
-                  required
-                />
+          {/* Direct Action Channels - Zero Form */}
+          <div className="space-y-3">
+            {/* WhatsApp Direct */}
+            <a
+              href={`https://wa.me/989170000000?text=${whatsappMessage}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between p-4 rounded-[16px] bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/30 text-[#172554] transition-all group shadow-xs"
+            >
+              <div className="flex items-center gap-3.5">
+                <div className="w-12 h-12 rounded-[12px] bg-[#25D366] text-white flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                  <MessageCircle className="w-6 h-6" />
+                </div>
+                <div>
+                  <span className="block text-xs font-bold text-[#16a34a]">پاسخگویی آنی</span>
+                  <span className="text-base font-extrabold text-[#0f172a]">گفتگو در واتس‌اپ</span>
+                </div>
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="b-checkout" className="text-xs sm:text-sm font-semibold text-[#172554]">تاریخ خروج</Label>
-                <Input
-                  id="b-checkout"
-                  type="date"
-                  value={checkout}
-                  onChange={(e) => setCheckout(e.target.value)}
-                  className="rounded-[8px] border-[#cbd5e1] focus:border-[#172554] h-10"
-                  required
-                />
-              </div>
-            </div>
+              <span className="text-xs font-bold text-[#16a34a] bg-white px-3 py-1.5 rounded-full border border-[#25D366]/30">
+                ارسال پیام &larr;
+              </span>
+            </a>
 
-            <div className="grid grid-cols-2 gap-3">
-              <div className="space-y-1">
-                <Label htmlFor="b-room" className="text-xs sm:text-sm font-semibold text-[#172554]">نوع اتاق</Label>
-                <select
-                  id="b-room"
-                  value={room}
-                  onChange={(e) => setRoom(e.target.value)}
-                  className="w-full h-10 px-3 bg-white border border-[#cbd5e1] rounded-[8px] text-xs sm:text-sm focus:outline-none focus:border-[#172554]"
-                >
-                  <option value="اتاق تالار آینه قاجاری">اتاق تالار آینه قاجاری</option>
-                  <option value="سوئیت رویال شاه‌نشین">سوئیت رویال شاه‌نشین</option>
-                  <option value="اتاق پنج‌دری رو به آفتاب">اتاق پنج‌دری رو به آفتاب</option>
-                  <option value="اتاق دبل سنتی با طاق خشتی">اتاق دبل سنتی با طاق خشتی</option>
-                  <option value="اتاق ارسی سه‌دری مشرف به مهتابی">اتاق ارسی سه‌دری مشرف به مهتابی</option>
-                </select>
-              </div>
-
-              <div className="space-y-1">
-                <Label htmlFor="b-guests" className="text-xs sm:text-sm font-semibold text-[#172554]">تعداد نفرات</Label>
-                <select
-                  id="b-guests"
-                  value={guests}
-                  onChange={(e) => setGuests(e.target.value)}
-                  className="w-full h-10 px-3 bg-white border border-[#cbd5e1] rounded-[8px] text-xs sm:text-sm focus:outline-none focus:border-[#172554]"
-                >
-                  <option value="1">۱ نفر</option>
-                  <option value="2">۲ نفر</option>
-                  <option value="3">۳ نفر</option>
-                  <option value="4">۴ نفر یا بیشتر</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="pt-2 flex flex-col gap-2">
-              <Button
-                type="submit"
-                className="w-full h-11 bg-[#172554] hover:bg-[#0f172a] text-white rounded-[12px] font-bold text-base gap-2 cursor-pointer shadow-md"
-              >
-                <MessageCircle className="w-5 h-5 text-[#25D366]" />
-                ارسال درخواست به واتس‌اپ هتل
-              </Button>
+            {/* Landline Reception */}
+            <div className="flex items-center justify-between p-4 rounded-[16px] bg-[#f8fafc] hover:bg-[#eff6ff] border border-slate-200 hover:border-[#172554] transition-all">
               <a
                 href="tel:07132220000"
-                className="w-full h-11 border border-[#cbd5e1] hover:border-[#172554] hover:bg-[#eff6ff] text-[#172554] rounded-[12px] flex items-center justify-center gap-2 text-sm font-medium transition-colors"
+                className="flex items-center gap-3.5 flex-1"
               >
-                <Phone className="w-4 h-4 text-[#172554]" />
-                یا تماس تلفنی مستقیم: ۰۷۱-۳۲۲۲۰۰۰۰
+                <div className="w-12 h-12 rounded-[12px] bg-[#eff6ff] text-[#172554] flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-6 h-6 text-[#2563eb]" />
+                </div>
+                <div>
+                  <span className="block text-xs text-slate-500 font-medium">تلفن ثابت پذیرش ۲۴ ساعته</span>
+                  <span className="text-lg font-extrabold text-[#172554]">۰۷۱-۳۲۲۲۰۰۰۰</span>
+                </div>
               </a>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => copyNumber("07132220000", "تلفن ثابت")}
+                className="h-9 px-2.5 text-xs text-slate-500 hover:text-[#172554]"
+                title="کپی شماره"
+              >
+                {copied === "تلفن ثابت" ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4" />}
+              </Button>
             </div>
-          </form>
+
+            {/* Mobile Reception */}
+            <div className="flex items-center justify-between p-4 rounded-[16px] bg-[#f8fafc] hover:bg-[#eff6ff] border border-slate-200 hover:border-[#172554] transition-all">
+              <a
+                href="tel:09170000000"
+                className="flex items-center gap-3.5 flex-1"
+              >
+                <div className="w-12 h-12 rounded-[12px] bg-[#eff6ff] text-[#172554] flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-6 h-6 text-[#2563eb]" />
+                </div>
+                <div>
+                  <span className="block text-xs text-slate-500 font-medium">همراه مدیریت و پذیرش هتل</span>
+                  <span className="text-lg font-extrabold text-[#172554]">۰۹۱۷-۰۰۰-۰۰۰۰</span>
+                </div>
+              </a>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => copyNumber("09170000000", "همراه پذیرش")}
+                className="h-9 px-2.5 text-xs text-slate-500 hover:text-[#172554]"
+                title="کپی شماره"
+              >
+                {copied === "همراه پذیرش" ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4" />}
+              </Button>
+            </div>
+          </div>
+
+          {/* Quick Perks / Info Badge */}
+          <div className="mt-5 pt-4 border-t border-slate-100 grid grid-cols-3 gap-2 text-center text-slate-600">
+            <div className="p-2 bg-slate-50 rounded-[10px]">
+              <Clock className="w-4 h-4 mx-auto mb-1 text-[#2563eb]" />
+              <span className="block text-[11px] font-bold text-slate-700">پذیرش ۲۴ ساعته</span>
+              <span className="text-[10px] text-slate-500">ورود ۱۴ / خروج ۱۲</span>
+            </div>
+            <div className="p-2 bg-slate-50 rounded-[10px]">
+              <Coffee className="w-4 h-4 mx-auto mb-1 text-[#2563eb]" />
+              <span className="block text-[11px] font-bold text-slate-700">صبحانه اصیل</span>
+              <span className="text-[10px] text-slate-500">سلف‌سرویس رایگان</span>
+            </div>
+            <div className="p-2 bg-slate-50 rounded-[10px]">
+              <ShieldCheck className="w-4 h-4 mx-auto mb-1 text-[#2563eb]" />
+              <span className="block text-[11px] font-bold text-slate-700">بهترین نرخ</span>
+              <span className="text-[10px] text-slate-500">رزرو مستقیم</span>
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
     </>
