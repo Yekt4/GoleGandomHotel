@@ -120,6 +120,12 @@ export function Navbar() {
               تصاویر
             </a>
             <a
+              href="#reels"
+              className="text-xs sm:text-sm font-medium text-[#172554] hover:text-[#2563eb] transition-colors"
+            >
+              ریلزها
+            </a>
+            <a
               href="#amenities"
               className="text-xs sm:text-sm font-medium text-[#172554] hover:text-[#2563eb] transition-colors"
             >
@@ -197,6 +203,13 @@ export function Navbar() {
               className="py-1 text-sm font-medium text-[#172554] hover:text-[#2563eb]"
             >
               گالری تصاویر عمارت
+            </a>
+            <a
+              href="#reels"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-1 text-sm font-medium text-[#172554] hover:text-[#2563eb]"
+            >
+              ریلزهای اینستاگرام
             </a>
             <a
               href="#amenities"

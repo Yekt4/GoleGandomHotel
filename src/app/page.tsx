@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { ArchitecturePhilosophy } from "@/components/ArchitecturePhilosophy";
 import { RoomsSection } from "@/components/RoomsSection";
 import { GallerySection } from "@/components/GallerySection";
+import { ReelsSection } from "@/components/ReelsSection";
 import { AmenitiesSection } from "@/components/AmenitiesSection";
 import { LocationSection } from "@/components/LocationSection";
 import { ContactSection } from "@/components/ContactSection";
@@ -28,6 +29,9 @@ export default function Home() {
 
         {/* Photo-Centric Categorized Gallery */}
         <GallerySection />
+
+        {/* Dynamic Instagram Reels Showcase */}
+        <ReelsSection />
 
         {/* Hotel Amenities */}
         <AmenitiesSection />
