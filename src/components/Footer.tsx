@@ -19,6 +19,7 @@ export function Footer() {
                   src="/images/logo.jpg"
                   alt="لوگوی عمارت بوتیک هتل فرهادی شیراز"
                   fill
+                  sizes="48px"
                   className="object-contain p-0.5"
                 />
               </div>
@@ -113,7 +114,7 @@ export function Footer() {
             <div className="pt-2">
               <BookingDialog
                 trigger={
-                  <Button className="w-full bg-[#0096f7] hover:bg-[#0084dc] text-white rounded-[12px] h-10 text-xs sm:text-sm font-medium">
+                  <Button className="w-full bg-[#0096f7] hover:bg-[#0084dc] text-white rounded-[12px] h-10 text-xs sm:text-sm font-medium cursor-pointer">
                     ثبت درخواست رزرو
                   </Button>
                 }

@@ -62,6 +62,7 @@ export function Navbar() {
                 src="/images/logo.jpg"
                 alt="لوگوی عمارت بوتیک هتل فرهادی شیراز"
                 fill
+                sizes="56px"
                 className="object-contain p-0.5"
                 priority
               />
@@ -113,7 +114,7 @@ export function Navbar() {
 
             <BookingDialog
               trigger={
-                <Button className="bg-[#0096f7] hover:bg-[#0084dc] text-white rounded-[12px] px-5 py-2 text-sm font-medium transition-all shadow-xs">
+                <Button className="bg-[#0096f7] hover:bg-[#0084dc] text-white rounded-[12px] px-5 py-2 text-sm font-medium transition-all shadow-xs cursor-pointer">
                   تماس برای رزرو
                 </Button>
               }

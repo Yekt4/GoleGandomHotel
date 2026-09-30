@@ -47,6 +47,7 @@ export function Hero() {
                 src="/images/logo.jpg"
                 alt="نشان اصالت عمارت فرهادی"
                 fill
+                sizes="48px"
                 className="object-contain"
               />
             </div>
@@ -71,7 +72,7 @@ export function Hero() {
             <div className="flex flex-wrap items-center gap-3">
               <BookingDialog
                 trigger={
-                  <Button className="bg-[#0096f7] hover:bg-[#0084dc] text-white rounded-[12px] h-12 px-6 text-sm sm:text-base font-medium gap-2 shadow-lg transition-transform hover:-translate-y-0.5">
+                  <Button className="bg-[#0096f7] hover:bg-[#0084dc] text-white rounded-[12px] h-12 px-6 text-sm sm:text-base font-medium gap-2 shadow-lg transition-transform hover:-translate-y-0.5 cursor-pointer">
                     <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
                     تماس برای رزرو عمارت
                   </Button>
