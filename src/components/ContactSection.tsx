@@ -25,17 +25,20 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-white">
+    <section id="contact" className="py-20 md:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <Badge className="bg-[#fcfbf7] text-[#1e2952] border border-[#e0ded4] rounded-[12px] px-3.5 py-1 text-xs mb-3">
-            ارتباط مستقیم و رزرو
-          </Badge>
-          <h2 className="text-[30px] sm:text-[36px] font-normal leading-[42px] tracking-[-0.5px] text-[#1e2952] mb-3">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 mb-3">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#172554]"></span>
+            <span className="text-xs sm:text-sm font-bold tracking-wider text-[#172554] uppercase">
+              ارتباط مستقیم و رزرو
+            </span>
+          </div>
+          <h2 className="text-[34px] sm:text-[46px] font-bold leading-[44px] sm:leading-[58px] tracking-[-1px] text-[#172554] mb-3">
             پذیرش ۲۴ ساعته عمارت فرهادی
           </h2>
-          <p className="text-base leading-7 text-[#555555]">
-            جهت رزرو مستقیم بدون واسطه، اطلاع از ظرفیت خالی و هماهنگی ترانسفر، کارشناسان ما همواره پاسخگوی شما هستند.
+          <p className="text-base sm:text-lg leading-8 text-[#475569]">
+            جهت رزرو مستقیم بدون واسطه، اطلاع از ظرفیت خالی اتاق‌ها و هماهنگی ترانسفر، کارشناسان ما همواره پاسخگوی شما هستند.
           </p>
         </div>
 
@@ -44,102 +47,102 @@ export function ContactSection() {
           <div className="lg:col-span-6 flex flex-col gap-4">
             <a
               href="tel:07132220000"
-              className="p-5 rounded-[14px] border border-[#e0ded4] bg-[#fcfbf7] hover:border-[#0096f7] hover:bg-white transition-all flex items-center gap-4 group"
+              className="p-6 rounded-[16px] border border-[#e2e8f0] bg-[#f8fafc] hover:border-[#172554] hover:bg-white transition-all flex items-center gap-5 group shadow-xs"
             >
-              <div className="w-12 h-12 rounded-[12px] bg-[#e6f5fe] text-[#0096f7] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                <Phone className="w-6 h-6" />
+              <div className="w-14 h-14 rounded-[14px] bg-[#eff6ff] text-[#172554] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <Phone className="w-7 h-7 text-[#2563eb]" />
               </div>
               <div className="flex-1">
-                <span className="block text-xs text-[#777777] mb-1">تلفن ثابت رزرو هتل</span>
-                <span className="text-lg font-bold text-[#1e2952]">۰۷۱-۳۲۲۲۰۰۰۰</span>
+                <span className="block text-xs text-[#64748b] mb-1 font-medium">تلفن ثابت رزرو هتل</span>
+                <span className="text-xl font-extrabold text-[#172554]">۰۷۱-۳۲۲۲۰۰۰۰</span>
               </div>
-              <span className="text-xs text-[#0096f7] font-medium hidden sm:inline-block">تماس سریع &larr;</span>
+              <span className="text-xs text-[#2563eb] font-bold hidden sm:inline-block">تماس سریع &larr;</span>
             </a>
 
             <a
               href="tel:09170000000"
-              className="p-5 rounded-[14px] border border-[#e0ded4] bg-[#fcfbf7] hover:border-[#0096f7] hover:bg-white transition-all flex items-center gap-4 group"
+              className="p-6 rounded-[16px] border border-[#e2e8f0] bg-[#f8fafc] hover:border-[#172554] hover:bg-white transition-all flex items-center gap-5 group shadow-xs"
             >
-              <div className="w-12 h-12 rounded-[12px] bg-[#e6f5fe] text-[#0096f7] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                <Phone className="w-6 h-6" />
+              <div className="w-14 h-14 rounded-[14px] bg-[#eff6ff] text-[#172554] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <Phone className="w-7 h-7 text-[#2563eb]" />
               </div>
               <div className="flex-1">
-                <span className="block text-xs text-[#777777] mb-1">شماره همراه پذیرش و مدیریت</span>
-                <span className="text-lg font-bold text-[#1e2952]">۰۹۱۷-۰۰۰-۰۰۰۰</span>
+                <span className="block text-xs text-[#64748b] mb-1 font-medium">شماره همراه پذیرش و مدیریت</span>
+                <span className="text-xl font-extrabold text-[#172554]">۰۹۱۷-۰۰۰-۰۰۰۰</span>
               </div>
-              <span className="text-xs text-[#0096f7] font-medium hidden sm:inline-block">تماس سریع &larr;</span>
+              <span className="text-xs text-[#2563eb] font-bold hidden sm:inline-block">تماس سریع &larr;</span>
             </a>
 
             <a
               href="https://wa.me/989170000000"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-5 rounded-[14px] border border-[#25D366]/30 bg-[#25D366]/5 hover:bg-[#25D366]/10 transition-all flex items-center gap-4 group"
+              className="p-6 rounded-[16px] border border-[#25D366]/30 bg-[#25D366]/5 hover:bg-[#25D366]/10 transition-all flex items-center gap-5 group shadow-xs"
             >
-              <div className="w-12 h-12 rounded-[12px] bg-[#25D366] text-white flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                <MessageCircle className="w-6 h-6" />
+              <div className="w-14 h-14 rounded-[14px] bg-[#25D366] text-white flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <MessageCircle className="w-7 h-7" />
               </div>
               <div className="flex-1">
-                <span className="block text-xs text-[#20ba59] font-medium mb-1">گفتگوی آنلاین در واتس‌اپ</span>
-                <span className="text-base sm:text-lg font-bold text-[#1e2952]">ارسال پیام به کارشناس پذیرش</span>
+                <span className="block text-xs text-[#20ba59] font-bold mb-1">گفتگوی مستقیم در واتس‌اپ</span>
+                <span className="text-lg sm:text-xl font-extrabold text-[#172554]">ارسال پیام به پذیرش</span>
               </div>
-              <span className="text-xs text-[#20ba59] font-medium hidden sm:inline-block">شروع گفتگو &larr;</span>
+              <span className="text-xs text-[#20ba59] font-bold hidden sm:inline-block">شروع گفتگو &larr;</span>
             </a>
 
-            <div className="p-5 rounded-[14px] border border-[#e0ded4] bg-[#fcfbf7] flex items-center gap-4">
-              <div className="w-12 h-12 rounded-[12px] bg-white border border-[#e0ded4] text-[#1e2952] flex items-center justify-center flex-shrink-0">
-                <Mail className="w-6 h-6" />
+            <div className="p-6 rounded-[16px] border border-[#e2e8f0] bg-[#f8fafc] flex items-center gap-5">
+              <div className="w-14 h-14 rounded-[14px] bg-white border border-[#e2e8f0] text-[#172554] flex items-center justify-center flex-shrink-0">
+                <Mail className="w-7 h-7 text-[#172554]" />
               </div>
               <div>
-                <span className="block text-xs text-[#777777] mb-1">پست الکترونیک رسمی</span>
-                <span className="text-sm font-medium text-[#1e2952]">info@farhadihotel.com</span>
+                <span className="block text-xs text-[#64748b] mb-1 font-medium">پست الکترونیک رسمی</span>
+                <span className="text-base font-bold text-[#172554]">info@farhadihotel.com</span>
               </div>
             </div>
           </div>
 
           {/* Inquiry Form */}
-          <div className="lg:col-span-6 bg-[#fcfbf7] p-6 sm:p-8 rounded-[16px] border border-[#e0ded4]">
-            <h3 className="text-xl font-medium text-[#1e2952] mb-2">
-              فرم استعلام یا درخواست مشاوره
+          <div className="lg:col-span-6 bg-[#f8fafc] p-8 sm:p-10 rounded-[20px] border border-[#e2e8f0] shadow-sm">
+            <h3 className="text-2xl font-bold text-[#172554] mb-2">
+              فرم استعلام آنلاین یا مشاوره
             </h3>
-            <p className="text-xs sm:text-sm text-[#555555] mb-5">
-              مشخصات خود را وارد نمایید تا کارشناسان اقامتی ما هماهنگی‌های لازم را انجام دهند.
+            <p className="text-xs sm:text-sm text-[#64748b] mb-6">
+              مشخصات خود را وارد نمایید تا کارشناسان اقامتی ما در کمترین زمان هماهنگی‌های لازم را انجام دهند.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-1">
-                <Label htmlFor="c-name" className="text-xs sm:text-sm text-[#444444]">نام و نام خانوادگی</Label>
+              <div className="space-y-1.5">
+                <Label htmlFor="c-name" className="text-xs sm:text-sm font-bold text-[#172554]">نام و نام خانوادگی</Label>
                 <Input
                   id="c-name"
                   placeholder="مثال: رامین حسینی"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="rounded-[6px] border-[#e0ded4] bg-white focus:border-[#0096f7] h-10"
+                  className="rounded-[8px] border-[#cbd5e1] bg-white focus:border-[#172554] h-11"
                   required
                 />
               </div>
 
-              <div className="space-y-1">
-                <Label htmlFor="c-phone" className="text-xs sm:text-sm text-[#444444]">شماره همراه</Label>
+              <div className="space-y-1.5">
+                <Label htmlFor="c-phone" className="text-xs sm:text-sm font-bold text-[#172554]">شماره همراه</Label>
                 <Input
                   id="c-phone"
                   type="tel"
                   placeholder="۰۹۱۲۳۴۵۶۷۸۹"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="rounded-[6px] border-[#e0ded4] bg-white focus:border-[#0096f7] h-10"
+                  className="rounded-[8px] border-[#cbd5e1] bg-white focus:border-[#172554] h-11"
                   required
                 />
               </div>
 
-              <div className="space-y-1">
-                <Label htmlFor="c-msg" className="text-xs sm:text-sm text-[#444444]">پیام یا تاریخ مدنظر شما</Label>
+              <div className="space-y-1.5">
+                <Label htmlFor="c-msg" className="text-xs sm:text-sm font-bold text-[#172554]">پیام یا تاریخ مدنظر شما</Label>
                 <Textarea
                   id="c-msg"
                   placeholder="تاریخ ورود و خروج مدنظر، تعداد نفرات یا سوالات خود را بنویسید..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="rounded-[6px] border-[#e0ded4] bg-white focus:border-[#0096f7] min-h-[100px]"
+                  className="rounded-[8px] border-[#cbd5e1] bg-white focus:border-[#172554] min-h-[110px]"
                   required
                 />
               </div>
@@ -147,9 +150,9 @@ export function ContactSection() {
               <div className="pt-2">
                 <Button
                   type="submit"
-                  className="w-full h-11 bg-[#0096f7] hover:bg-[#0084dc] text-white rounded-[12px] font-medium text-sm gap-2"
+                  className="w-full h-12 bg-[#172554] hover:bg-[#0f172a] text-white rounded-[12px] font-bold text-base gap-2 cursor-pointer shadow-md"
                 >
-                  <MessageCircle className="w-4 h-4" />
+                  <MessageCircle className="w-5 h-5 text-[#25D366]" />
                   ارسال پیام به واتس‌اپ هتل
                 </Button>
               </div>

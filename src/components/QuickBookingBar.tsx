@@ -14,59 +14,59 @@ export function QuickBookingBar() {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 -mt-6 sm:-mt-10">
-      <div className="bg-white rounded-[12px] border border-[#e0ded4] p-5 sm:p-7 shadow-sm">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 relative z-20 -mt-10 sm:-mt-14">
+      <div className="bg-white rounded-[20px] border border-[#e2e8f0] p-6 sm:p-8 shadow-xl">
         <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
-          <div className="space-y-1">
-            <label htmlFor="q-checkin" className="text-xs sm:text-sm font-medium text-[#333333]">
+          <div className="space-y-1.5">
+            <label htmlFor="q-checkin" className="text-xs sm:text-sm font-bold text-[#172554]">
               تاریخ ورود
             </label>
             <input
               id="q-checkin"
               type="date"
-              className="w-full h-11 px-3 bg-white border border-[#e0ded4] rounded-[6px] text-sm focus:outline-none focus:border-[#0096f7] transition-colors"
+              className="w-full h-12 px-3 bg-[#f8fafc] border border-[#cbd5e1] rounded-[8px] text-sm focus:outline-none focus:border-[#172554] focus:bg-white transition-colors"
               required
             />
           </div>
 
-          <div className="space-y-1">
-            <label htmlFor="q-checkout" className="text-xs sm:text-sm font-medium text-[#333333]">
+          <div className="space-y-1.5">
+            <label htmlFor="q-checkout" className="text-xs sm:text-sm font-bold text-[#172554]">
               تاریخ خروج
             </label>
             <input
               id="q-checkout"
               type="date"
-              className="w-full h-11 px-3 bg-white border border-[#e0ded4] rounded-[6px] text-sm focus:outline-none focus:border-[#0096f7] transition-colors"
+              className="w-full h-12 px-3 bg-[#f8fafc] border border-[#cbd5e1] rounded-[8px] text-sm focus:outline-none focus:border-[#172554] focus:bg-white transition-colors"
               required
             />
           </div>
 
-          <div className="space-y-1">
-            <label htmlFor="q-room" className="text-xs sm:text-sm font-medium text-[#333333]">
+          <div className="space-y-1.5">
+            <label htmlFor="q-room" className="text-xs sm:text-sm font-bold text-[#172554]">
               نوع اقامتگاه
             </label>
             <select
               id="q-room"
               value={selectedRoom}
               onChange={(e) => setSelectedRoom(e.target.value)}
-              className="w-full h-11 px-3 bg-white border border-[#e0ded4] rounded-[6px] text-sm focus:outline-none focus:border-[#0096f7]"
+              className="w-full h-12 px-3 bg-[#f8fafc] border border-[#cbd5e1] rounded-[8px] text-sm focus:outline-none focus:border-[#172554] focus:bg-white"
             >
-              <option value="همه اتاق‌ها">انتخاب نوع اتاق (همه)</option>
-              <option value="اتاق تالار آینه">اتاق تالار آینه</option>
-              <option value="سوئیت سلطنتی شاه‌نشین">سوئیت سلطنتی شاه‌نشین</option>
-              <option value="اتاق پنج‌دری قاجاری">اتاق پنج‌دری قاجاری</option>
-              <option value="اتاق دبل سنتی">اتاق دبل سنتی</option>
-              <option value="اتاق ارسی سنتی">اتاق ارسی سنتی</option>
+              <option value="همه اتاق‌ها">انتخاب اتاق (همه واحدهای عمارت)</option>
+              <option value="اتاق تالار آینه قاجاری">اتاق تالار آینه قاجاری</option>
+              <option value="سوئیت رویال شاه‌نشین">سوئیت رویال شاه‌نشین</option>
+              <option value="اتاق پنج‌دری رو به آفتاب">اتاق پنج‌دری رو به آفتاب</option>
+              <option value="اتاق دبل سنتی با طاق خشتی">اتاق دبل سنتی با طاق خشتی</option>
+              <option value="اتاق ارسی سه‌دری مشرف به مهتابی">اتاق ارسی سه‌دری مشرف به مهتابی</option>
             </select>
           </div>
 
-          <div className="space-y-1">
-            <label htmlFor="q-guests" className="text-xs sm:text-sm font-medium text-[#333333]">
+          <div className="space-y-1.5">
+            <label htmlFor="q-guests" className="text-xs sm:text-sm font-bold text-[#172554]">
               تعداد مهمانان
             </label>
             <select
               id="q-guests"
-              className="w-full h-11 px-3 bg-white border border-[#e0ded4] rounded-[6px] text-sm focus:outline-none focus:border-[#0096f7]"
+              className="w-full h-12 px-3 bg-[#f8fafc] border border-[#cbd5e1] rounded-[8px] text-sm focus:outline-none focus:border-[#172554] focus:bg-white"
             >
               <option value="1">۱ نفر</option>
               <option value="2" defaultValue="2">۲ نفر</option>
@@ -78,15 +78,15 @@ export function QuickBookingBar() {
           <div>
             <Button
               type="submit"
-              className="w-full h-11 bg-[#0096f7] hover:bg-[#0084dc] text-white rounded-[12px] font-medium text-sm transition-all"
+              className="w-full h-12 bg-[#172554] hover:bg-[#0f172a] text-white rounded-[12px] font-bold text-sm sm:text-base transition-all shadow-md cursor-pointer"
             >
-              استعلام ظرفیت و رزرو
+              استعلام ظرفیت و نرخ
             </Button>
           </div>
         </form>
 
         <BookingDialog
-          initialRoom={selectedRoom === "همه اتاق‌ها" ? "اتاق تالار آینه" : selectedRoom}
+          initialRoom={selectedRoom === "همه اتاق‌ها" ? "اتاق تالار آینه قاجاری" : selectedRoom}
           isOpen={isDialogOpen}
           onOpenChange={setIsDialogOpen}
         />

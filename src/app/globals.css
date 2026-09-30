@@ -7,28 +7,29 @@
 
 @theme inline {
   --color-background: #ffffff;
-  --color-foreground: #000000;
+  --color-foreground: #0f172a;
   --font-sans: 'Estedad', system-ui, -apple-system, sans-serif;
   --font-heading: 'Estedad', system-ui, -apple-system, sans-serif;
   
-  --color-primary: #0096f7;
+  /* Primary Navy Color */
+  --color-primary: #172554;
   --color-primary-foreground: #ffffff;
   
-  --color-secondary: #fafaf8;
-  --color-secondary-foreground: #000000;
+  --color-secondary: #f8fafc;
+  --color-secondary-foreground: #172554;
   
-  --color-muted: #f7f7f5;
-  --color-muted-foreground: #333333;
+  --color-muted: #f1f5f9;
+  --color-muted-foreground: #475569;
   
-  --color-accent: #e6f5fe;
-  --color-accent-foreground: #0096f7;
+  --color-accent: #eff6ff;
+  --color-accent-foreground: #172554;
   
-  --color-destructive: #ff4000;
+  --color-destructive: #dc2626;
   --color-destructive-foreground: #ffffff;
   
-  --color-border: #e0ded4;
-  --color-input: #e0ded4;
-  --color-ring: #0096f7;
+  --color-border: #e2e8f0;
+  --color-input: #cbd5e1;
+  --color-ring: #172554;
   
   --radius-lg: 12px;
   --radius-md: 10px;
@@ -37,24 +38,24 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #000000;
+  --foreground: #0f172a;
   --card: #ffffff;
-  --card-foreground: #000000;
+  --card-foreground: #0f172a;
   --popover: #ffffff;
-  --popover-foreground: #000000;
-  --primary: #0096f7;
+  --popover-foreground: #0f172a;
+  --primary: #172554;
   --primary-foreground: #ffffff;
-  --secondary: #fafaf8;
-  --secondary-foreground: #000000;
-  --muted: #f7f7f5;
-  --muted-foreground: #333333;
-  --accent: #e6f5fe;
-  --accent-foreground: #0096f7;
-  --destructive: #ff4000;
+  --secondary: #f8fafc;
+  --secondary-foreground: #172554;
+  --muted: #f1f5f9;
+  --muted-foreground: #475569;
+  --accent: #eff6ff;
+  --accent-foreground: #172554;
+  --destructive: #dc2626;
   --destructive-foreground: #ffffff;
-  --border: #e0ded4;
-  --input: #e0ded4;
-  --ring: #0096f7;
+  --border: #e2e8f0;
+  --input: #cbd5e1;
+  --ring: #172554;
   --radius: 12px;
 }
 
@@ -68,35 +69,36 @@
   
   body {
     background-color: #ffffff;
-    color: #000000;
+    color: #0f172a;
     font-family: 'Estedad', system-ui, sans-serif;
     font-size: 18px;
-    line-height: 30px;
+    line-height: 32px;
     font-weight: 400;
   }
 
   h1, .hero-title {
-    font-size: 42px;
-    line-height: 48px;
+    font-size: 46px;
+    line-height: 56px;
     letter-spacing: -1px;
-    font-weight: 400;
+    font-weight: 600;
   }
 
   h2, .section-title {
-    font-size: 32px;
-    line-height: 40px;
-    font-weight: 400;
+    font-size: 36px;
+    line-height: 48px;
+    font-weight: 600;
     letter-spacing: -0.5px;
   }
 
   h3, .subheading {
-    font-size: 18px;
-    font-weight: 400;
+    font-size: 22px;
+    line-height: 32px;
+    font-weight: 600;
   }
 
   p {
     font-size: 18px;
-    line-height: 30px;
+    line-height: 32px;
     font-weight: 400;
   }
 }
