@@ -157,29 +157,13 @@ export function GallerySection() {
   }, [lightboxIndex, showNext, showPrev]);
 
   return (
-    <section id="gallery" className="py-20 md:py-32 bg-[#faf9f5] border-y border-[#e8e4db] relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#172554]/5 border border-[#172554]/10 text-xs sm:text-sm font-semibold text-[#172554] mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-[#2563eb]" />
-            <span>آلبوم تصویری عمارت</span>
-          </div>
-
-          <h2 className="text-[32px] sm:text-[44px] font-bold leading-[44px] sm:leading-[56px] tracking-[-1px] text-[#172554] mb-3">
-            روایت نور، آینه و خشت‌های کهن
-          </h2>
-
-          <p className="text-sm sm:text-base leading-7 sm:leading-8 text-[#475569] font-light">
-            مجموعه‌ای منتخب از شکوه معماری قاجار، رقص نور ارسی‌ها و شب‌های آرامش‌بخش عمارت تاریخی فرهادی.
-          </p>
-        </div>
-
-        {/* Filter Tablist with ARIA Accessibility */}
+    <section id="gallery" className="pt-10 pb-0 bg-[#faf9f5] border-t border-[#e8e4db] relative">
+      {/* Filter Tabs Only - Clean, Minimal & Centered */}
+      <div className="max-w-7xl mx-auto px-4 mb-8">
         <div
           role="tablist"
           aria-label="دسته‌بندی تصاویر گالری"
-          className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12 sm:mb-16"
+          className="flex flex-wrap items-center justify-center gap-2 sm:gap-3"
         >
           {CATEGORIES.map((tab) => {
             const isActive = filter === tab.id;
@@ -194,7 +178,7 @@ export function GallerySection() {
                 className={`h-10 px-5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#172554] focus-visible:outline-offset-2 ${
                   isActive
                     ? "bg-[#172554] text-white shadow-md scale-102"
-                    : "bg-white/80 hover:bg-white text-[#475569] hover:text-[#172554] border border-[#e2dacb]"
+                    : "bg-white text-[#475569] hover:text-[#172554] hover:bg-slate-50 border border-[#e2dacb]"
                 }`}
               >
                 {tab.label}
@@ -202,47 +186,48 @@ export function GallerySection() {
             );
           })}
         </div>
+      </div>
 
-        {/* Accessible Photo Grid */}
-        <div
-          id="gallery-grid"
-          role="region"
-          aria-label="تصاویر عمارت"
-          className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6"
-        >
-          {filteredItems.map((item, idx) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => openLightbox(idx)}
-              aria-label={`مشاهده با کیفیت بالا: ${item.title}`}
-              className={`relative rounded-[22px] overflow-hidden border border-[#e2dacb] cursor-pointer group shadow-xs hover:shadow-xl transition-all duration-300 text-right focus-visible:outline-3 focus-visible:outline-[#172554] focus-visible:outline-offset-2 ${item.aspect}`}
-            >
-              <Image
-                src={item.src}
-                alt={item.title}
-                fill
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
+      {/* Seamless Edge-to-Edge Photo Grid - Zero Whitespace */}
+      <div
+        id="gallery-grid"
+        role="region"
+        aria-label="تصاویر عمارت"
+        className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-0 overflow-hidden"
+      >
+        {filteredItems.map((item, idx) => (
+          <button
+            key={item.id}
+            type="button"
+            onClick={() => openLightbox(idx)}
+            aria-label={`مشاهده با کیفیت بالا: ${item.title}`}
+            className="relative w-full aspect-[4/3] overflow-hidden cursor-pointer group text-right focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-white"
+          >
+            <Image
+              src={item.src}
+              alt={item.title}
+              fill
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            />
 
-              {/* Refined Gradient Hover Scrim */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white pointer-events-none">
-                <span className="text-xs text-[#93c5fd] font-semibold mb-1">
-                  {item.categoryName}
-                </span>
-                <p className="text-sm sm:text-base font-medium leading-snug text-white/95">
-                  {item.title}
-                </p>
+            {/* Seamless Vignette Overlay on Hover */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white pointer-events-none z-10">
+              <span className="text-[11px] text-[#93c5fd] font-semibold mb-1">
+                {item.categoryName}
+              </span>
+              <p className="text-xs sm:text-sm font-medium leading-snug text-white/95 line-clamp-2">
+                {item.title}
+              </p>
 
-                {/* Floating Enlarge Indicator */}
-                <div className="absolute top-4 left-4 w-9 h-9 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
-                  <Maximize2 className="w-4 h-4" />
-                </div>
+              {/* Floating Enlarge Indicator */}
+              <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white">
+                <Maximize2 className="w-3.5 h-3.5" />
               </div>
-            </button>
-          ))}
-        </div>
+            </div>
+          </button>
+        ))}
+      </div>
 
         {/* Accessible Lightbox Modal */}
         {lightboxIndex !== null && (
@@ -327,7 +312,6 @@ export function GallerySection() {
             </DialogContent>
           </Dialog>
         )}
-      </div>
     </section>
   );
 }
