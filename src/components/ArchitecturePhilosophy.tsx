@@ -30,6 +30,30 @@ export function ArchitecturePhilosophy() {
           </div>
         </div>
 
+        {/* Key Mansion Metrics (Warm Editorial Ribbon) */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto mb-20 sm:mb-28 text-center">
+          <div className="p-4 rounded-[18px] bg-white border border-[#e8e4db] shadow-xs">
+            <span className="block text-2xl sm:text-3xl font-extrabold text-[#172554] mb-1">۱۴</span>
+            <span className="block text-xs font-semibold text-[#172554]">اتاق و سوئیت قاجاری</span>
+            <span className="text-[11px] text-[#64748b]">با چیدمان اصیل سنتی</span>
+          </div>
+          <div className="p-4 rounded-[18px] bg-white border border-[#e8e4db] shadow-xs">
+            <span className="block text-2xl sm:text-3xl font-extrabold text-[#172554] mb-1">۴</span>
+            <span className="block text-xs font-semibold text-[#172554]">دقیقه پیاده‌روی</span>
+            <span className="text-[11px] text-[#64748b]">تا بارگاه شاهچراغ (ع)</span>
+          </div>
+          <div className="p-4 rounded-[18px] bg-white border border-[#e8e4db] shadow-xs">
+            <span className="block text-2xl sm:text-3xl font-extrabold text-[#172554] mb-1">۱</span>
+            <span className="block text-xs font-semibold text-[#172554]">تالار آینه نفیس</span>
+            <span className="text-[11px] text-[#64748b]">با ارسی‌های هفت‌رنگ</span>
+          </div>
+          <div className="p-4 rounded-[18px] bg-white border border-[#e8e4db] shadow-xs">
+            <span className="block text-2xl sm:text-3xl font-extrabold text-[#172554] mb-1">۲۴/۷</span>
+            <span className="block text-xs font-semibold text-[#172554]">پذیرش شبانه‌روزی</span>
+            <span className="text-[11px] text-[#64748b]">پاسخگویی و میزبانی</span>
+          </div>
+        </div>
+
         {/* 3 Pillars of The Experience (Inspired by NILS am See Pillars) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 sm:mb-28">
           {/* Pillar 1: Culinary & Cafe */}
