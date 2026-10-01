@@ -2,56 +2,52 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { Play, Pause, Volume2, VolumeX, Maximize2, ChevronRight, ChevronLeft, X, Sparkles, Film } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Play, Pause, Volume2, VolumeX, ChevronRight, ChevronLeft, X, Film } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 export interface VideoStoryItem {
   id: string;
-  title: string;
-  description: string;
+  caption: string;
   poster: string;
-  videoSrc: string; // Path in public/videos/ e.g. "/videos/reel-1.mp4"
-  duration: string;
-  tag: string;
+  videoSrc: string;
 }
 
 const VIDEO_STORIES: VideoStoryItem[] = [
   {
     id: "story-1",
-    title: "رقص نور صبحگاهی در ارسی‌های هفت‌رنگ",
-    description: "لحظه ورود پرتوهای خورشید صبح شیراز از میان شیشه‌های رنگارنگ قاجاری به شاه‌نشین عمارت.",
+    caption: "رقص نور صبحگاهی در ارسی‌های هفت‌رنگ شاه‌نشین",
     poster: "/images/reel-orsi.jpg",
     videoSrc: "/videos/reel-1.mp4",
-    duration: "۰:۳۵",
-    tag: "شاه‌نشین و ارسی",
   },
   {
     id: "story-2",
-    title: "آرامش عصرگاهی و بازتاب مهتاب در حوض فیروزه‌ای",
-    description: "نوای آب، روشنایی ملایم فانوس‌ها و نسیم خنک شبانه در حیاط باصفای عمارت فرهادی.",
+    caption: "آرامش عصرگاهی و نوای آب در حوض فیروزه‌ای حیاط",
     poster: "/images/reel-courtyard.jpg",
     videoSrc: "/videos/reel-2.mp4",
-    duration: "۰:۴۲",
-    tag: "حیاط مرکزی",
   },
   {
     id: "story-3",
-    title: "عصرانه و چای بر بام مشرف به شاهچراغ",
-    description: "چشم‌انداز ۳۶۰ درجه بافت کهن شیراز و گنبد زرین شاهچراغ در ساعت طلایی غروب آفتاب.",
+    caption: "عصرانه و چای بر بام اختصاصی مشرف به شاهچراغ",
     poster: "/images/reel-rooftop.jpg",
     videoSrc: "/videos/reel-3.mp4",
-    duration: "۰:۳۰",
-    tag: "بام اختصاصی",
   },
   {
     id: "story-4",
-    title: "عطر نان تازه و سفره صبحانه شیرازی",
-    description: "سرو صبحانه سنتی دست‌چین شده با سرشیر محلی، پنیر شیرازی و عرق بهارنارنج در ایوان.",
+    caption: "عطر نان تازه و سفره صبحانه اصیل شیرازی",
     poster: "/images/breakfast.jpg",
     videoSrc: "/videos/reel-4.mp4",
-    duration: "۰:۳۸",
-    tag: "میزبانی سنتی",
+  },
+  {
+    id: "story-5",
+    caption: "شکوه آینه‌کاری‌های قاجاری در تالار شاه‌نشین",
+    poster: "/images/room-mirror-hall.jpg",
+    videoSrc: "/videos/reel-5.mp4",
+  },
+  {
+    id: "story-6",
+    caption: "طعم چای دارچین و فالوده در کافه عمارت",
+    poster: "/images/cafe.jpg",
+    videoSrc: "/videos/reel-6.mp4",
   },
 ];
 
@@ -62,6 +58,7 @@ export function ReelsSection() {
   const [progress, setProgress] = useState(0);
   const [videoError, setVideoError] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const carouselRef = useRef<HTMLDivElement | null>(null);
 
   const activeStory = activeStoryIndex !== null ? VIDEO_STORIES[activeStoryIndex] : null;
 
@@ -107,100 +104,81 @@ export function ReelsSection() {
     setActiveStoryIndex((activeStoryIndex - 1 + VIDEO_STORIES.length) % VIDEO_STORIES.length);
   };
 
+  const scrollCarousel = (direction: "left" | "right") => {
+    if (!carouselRef.current) return;
+    const cardWidth = 300;
+    // In RTL direction: scrolling right or left
+    const offset = direction === "left" ? -cardWidth : cardWidth;
+    carouselRef.current.scrollBy({ left: offset, behavior: "smooth" });
+  };
+
   return (
-    <section id="reels" className="py-20 md:py-32 bg-[#090f1d] text-white relative overflow-hidden">
-      {/* Subtle ambient lighting */}
-      <div className="absolute top-1/3 -right-40 w-96 h-96 bg-[#1e3a8a]/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 -left-40 w-96 h-96 bg-[#0284c7]/15 rounded-full blur-[120px] pointer-events-none" />
+    <section id="reels" className="py-12 md:py-16 bg-[#090f1d] text-white relative overflow-hidden">
+      {/* Subtle ambient glow */}
+      <div className="absolute top-1/2 -right-40 w-96 h-96 bg-[#1e3a8a]/20 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 -left-40 w-96 h-96 bg-[#0284c7]/15 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
-          <div className="max-w-2xl text-right">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs sm:text-sm font-medium text-[#93c5fd] mb-4">
-              <Film className="w-3.5 h-3.5 text-[#60a5fa]" />
-              <span>روایت‌های کوتاه ویدیویی (عمودی ۹:۱۶)</span>
-            </div>
+      {/* Pure Carousel Container with navigation controls */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
+        {/* Carousel Navigation Arrows */}
+        <button
+          onClick={() => scrollCarousel("right")}
+          aria-label="اسلاید قبلی"
+          className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md border border-white/20 items-center justify-center transition-all duration-200 hover:scale-110 shadow-xl"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
 
-            <h2 className="text-[32px] sm:text-[44px] lg:text-[50px] font-bold leading-[44px] sm:leading-[58px] tracking-[-1px] text-white mb-3">
-              تماشای حال و هوای زنده عمارت
-            </h2>
+        <button
+          onClick={() => scrollCarousel("left")}
+          aria-label="اسلاید بعدی"
+          className="hidden md:flex absolute -left-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md border border-white/20 items-center justify-center transition-all duration-200 hover:scale-110 shadow-xl"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
 
-            <p className="text-sm sm:text-lg leading-7 sm:leading-8 text-white/70">
-              چند ثانیه تماشای آرامش جاری در حیاط، رقص آفتاب روی ارسی‌ها و شب‌های دلنشین شیراز؛ روی هر ویدیو کلیک کنید تا با کیفیت بالا پخش شود.
-            </p>
-          </div>
-
-          <div className="hidden sm:flex items-center gap-2 text-xs text-white/60 bg-white/5 px-4 py-2.5 rounded-full border border-white/10">
-            <Sparkles className="w-4 h-4 text-[#60a5fa]" />
-            <span>پخش مستقیم روی تمام دستگاه‌ها بدون نیاز به فیلترشکن</span>
-          </div>
-        </div>
-
-        {/* 9:16 Video Story Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+        {/* Video Stories Horizontal Carousel */}
+        <div
+          ref={carouselRef}
+          className="flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth py-2 px-1 scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none]"
+        >
           {VIDEO_STORIES.map((story, index) => (
             <div
               key={story.id}
               onClick={() => setActiveStoryIndex(index)}
-              className="group relative aspect-[9/16] rounded-[24px] overflow-hidden bg-slate-900 border border-white/10 hover:border-white/30 shadow-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1.5"
+              className="group relative flex-shrink-0 w-[240px] sm:w-[270px] lg:w-[290px] aspect-[9/16] rounded-[24px] overflow-hidden bg-slate-900 border border-white/10 hover:border-white/30 shadow-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1.5 snap-start"
             >
               {/* Poster Image */}
               <Image
                 src={story.poster}
-                alt={story.title}
+                alt={story.caption}
                 fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                sizes="(max-width: 640px) 240px, (max-width: 1024px) 270px, 290px"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
 
-              {/* Scrim Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-black/40 group-hover:from-black/95 transition-all" />
+              {/* Bottom Scrim for Caption Readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent transition-opacity group-hover:from-black/90" />
 
-              {/* Top Tag & Duration */}
-              <div className="absolute top-4 inset-x-4 flex items-center justify-between z-10">
-                <span className="px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/25 text-[11px] font-semibold text-white">
-                  {story.tag}
-                </span>
-
-                <span className="px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-md text-[10px] font-mono text-white/90 border border-white/10">
-                  {story.duration}
-                </span>
-              </div>
-
-              {/* Center Play Button Overlay */}
-              <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-                <div className="w-14 h-14 rounded-full bg-white/25 backdrop-blur-md border border-white/40 flex items-center justify-center text-white shadow-2xl transition-all duration-300 group-hover:scale-115 group-hover:bg-white group-hover:text-[#172554]">
-                  <Play className="w-6 h-6 fill-current translate-x-[-1px]" />
-                </div>
-              </div>
-
-              {/* Bottom Caption */}
-              <div className="absolute bottom-0 inset-x-0 p-5 z-10 text-right flex flex-col justify-end">
-                <h3 className="text-base sm:text-lg font-bold text-white leading-snug line-clamp-2 mb-1.5 group-hover:text-[#93c5fd] transition-colors">
-                  {story.title}
-                </h3>
-                <p className="text-xs text-white/70 line-clamp-2 leading-5">
-                  {story.description}
+              {/* Only Caption on Video */}
+              <div className="absolute bottom-0 inset-x-0 p-5 z-10 text-right">
+                <p className="text-sm sm:text-base font-medium text-white drop-shadow-md leading-relaxed line-clamp-2 group-hover:text-[#93c5fd] transition-colors">
+                  {story.caption}
                 </p>
-                <div className="mt-3 flex items-center gap-1.5 text-[11px] text-[#60a5fa] font-bold">
-                  <span>پخش ویدیو</span>
-                  <span>&larr;</span>
-                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Full-Screen Vertical Story/Reel Video Player Modal */}
+      {/* Full-Screen Vertical Video Player Modal */}
       {activeStory && (
         <Dialog open={activeStoryIndex !== null} onOpenChange={(open) => !open && setActiveStoryIndex(null)}>
           <DialogContent
             className="sm:max-w-[430px] w-[95vw] h-[85vh] max-h-[780px] p-0 bg-black border border-white/20 text-white rounded-[28px] overflow-hidden shadow-2xl flex flex-col justify-between"
             aria-describedby={undefined}
           >
-            <DialogTitle className="sr-only">{activeStory.title}</DialogTitle>
+            <DialogTitle className="sr-only">{activeStory.caption}</DialogTitle>
 
             {/* Video Container */}
             <div className="relative w-full h-full flex items-center justify-center bg-black overflow-hidden select-none">
@@ -219,32 +197,29 @@ export function ReelsSection() {
                 className="w-full h-full object-cover cursor-pointer"
               />
 
-              {/* If Video file is not yet placed in public/videos/, show graceful interactive fallback */}
+              {/* Interactive Fallback if local MP4 is pending */}
               {videoError && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-black/75 backdrop-blur-sm z-20">
-                  <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-4">
-                    <Film className="w-8 h-8 text-[#60a5fa]" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-black/80 backdrop-blur-sm z-20">
+                  <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mb-3">
+                    <Film className="w-7 h-7 text-[#60a5fa]" />
                   </div>
-                  <h4 className="text-lg font-bold text-white mb-2">{activeStory.title}</h4>
-                  <p className="text-xs sm:text-sm text-white/70 mb-4 max-w-xs leading-6">
-                    فایل ویدیوی این بخش با فرمت MP4 در مسیر زیر قرار می‌گیرد:
+                  <h4 className="text-base font-bold text-white mb-2 max-w-xs">{activeStory.caption}</h4>
+                  <p className="text-xs text-white/70 mb-3 max-w-xs leading-5">
+                    فایل ویدیو در مسیر زیر قرار می‌گیرد:
                   </p>
-                  <code className="bg-white/10 text-[#93c5fd] px-3 py-1.5 rounded-lg text-xs font-mono mb-4 text-ltr" dir="ltr">
+                  <code className="bg-white/10 text-[#93c5fd] px-3 py-1 rounded-lg text-xs font-mono mb-3 text-ltr" dir="ltr">
                     public{activeStory.videoSrc}
                   </code>
-                  <p className="text-[11px] text-white/50">
-                    به محض قرار دادن فایل، ویدیو به صورت خودکار و زنده پخش خواهد شد.
-                  </p>
                 </div>
               )}
 
-              {/* Gradient Scrims for Top & Bottom Controls */}
-              <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none z-10" />
-              <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none z-10" />
+              {/* Top & Bottom Ambient Gradients */}
+              <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/80 via-black/30 to-transparent pointer-events-none z-10" />
+              <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none z-10" />
 
-              {/* Top Bar: Progress Indicator & Controls */}
+              {/* Top Controls Bar */}
               <div className="absolute top-0 inset-x-0 p-4 z-30 flex flex-col gap-3">
-                {/* Story Timeline Progress Bar */}
+                {/* Timeline Progress */}
                 <div className="w-full h-1 bg-white/25 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-white transition-all duration-150 ease-linear rounded-full"
@@ -278,14 +253,14 @@ export function ReelsSection() {
                 </div>
               </div>
 
-              {/* Previous / Next Side Tap Zones */}
+              {/* Prev / Next Buttons */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   prevStory();
                 }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/30 hover:bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all z-20"
-                title="ویدیوی قبلی"
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all z-20"
+                title="قبلی"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
@@ -295,13 +270,13 @@ export function ReelsSection() {
                   e.stopPropagation();
                   nextStory();
                 }}
-                className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/30 hover:bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all z-20"
-                title="ویدیوی بعدی"
+                className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all z-20"
+                title="بعدی"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
 
-              {/* Play / Pause Center Overlay Toggle when paused */}
+              {/* Center Play Icon when paused */}
               {!isPlaying && !videoError && (
                 <div
                   onClick={togglePlay}
@@ -313,16 +288,10 @@ export function ReelsSection() {
                 </div>
               )}
 
-              {/* Bottom Caption & Controls */}
+              {/* Bottom Caption in Modal */}
               <div className="absolute bottom-0 inset-x-0 p-5 z-30 text-right space-y-2 pointer-events-auto">
-                <span className="inline-block text-[11px] px-2.5 py-0.5 rounded-full bg-white/20 text-white backdrop-blur-md font-medium">
-                  {activeStory.tag}
-                </span>
-                <h4 className="text-base sm:text-lg font-bold text-white drop-shadow">
-                  {activeStory.title}
-                </h4>
-                <p className="text-xs text-white/80 leading-5 drop-shadow">
-                  {activeStory.description}
+                <p className="text-base font-bold text-white drop-shadow leading-relaxed">
+                  {activeStory.caption}
                 </p>
 
                 <div className="pt-2 flex items-center justify-between text-xs text-white/60 border-t border-white/15">
@@ -331,7 +300,7 @@ export function ReelsSection() {
                     className="flex items-center gap-1.5 text-white/90 hover:text-white"
                   >
                     {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-current" />}
-                    <span>{isPlaying ? "توقف پخش" : "ادامه پخش"}</span>
+                    <span>{isPlaying ? "توقف" : "پخش"}</span>
                   </button>
 
                   <span className="text-[11px] text-white/50">
@@ -346,3 +315,4 @@ export function ReelsSection() {
     </section>
   );
 }
+
