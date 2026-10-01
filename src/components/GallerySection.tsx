@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
   DialogContent,
+  DialogTitle,
 } from "@/components/ui/dialog";
-import { ChevronLeft, ChevronRight, X, Maximize2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, Maximize2, Sparkles, Filter } from "lucide-react";
 
 interface GalleryItem {
   id: number;
@@ -32,7 +32,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     category: "rooms",
     src: "/images/room-mirror-hall.jpg",
     title: "تالار آینه با انعکاس نور پنجره‌های ارسی قاجاری",
-    categoryName: "اتاق‌ها و سوئیت‌ها",
+    categoryName: "اتاق‌ها و ارسی‌ها",
     aspect: "col-span-1 aspect-[4/3]",
   },
   {
@@ -48,7 +48,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     category: "rooms",
     src: "/images/detail-orsi.jpg",
     title: "رقص نورهای هفت‌رنگ شیشه‌های ارسی بر دیوارهای خشتی",
-    categoryName: "اتاق‌ها و سوئیت‌ها",
+    categoryName: "اتاق‌ها و ارسی‌ها",
     aspect: "col-span-1 aspect-[4/3]",
   },
   {
@@ -56,7 +56,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     category: "rooms",
     src: "/images/room-royal-suite.jpg",
     title: "سوئیت رویال شاه‌نشین با گچ‌بری و سقف مقرنس",
-    categoryName: "اتاق‌ها و سوئیت‌ها",
+    categoryName: "اتاق‌ها و ارسی‌ها",
     aspect: "col-span-1 aspect-[4/3]",
   },
   {
@@ -80,7 +80,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     category: "rooms",
     src: "/images/room-pandari.jpg",
     title: "اتاق پنج‌دری قاجاری با شیشه‌های رنگین و فرش دستباف",
-    categoryName: "اتاق‌ها و سوئیت‌ها",
+    categoryName: "اتاق‌ها و ارسی‌ها",
     aspect: "col-span-1 aspect-[4/3]",
   },
   {
@@ -96,9 +96,17 @@ const GALLERY_ITEMS: GalleryItem[] = [
     category: "rooms",
     src: "/images/room-double.jpg",
     title: "اتاق دبل دو تخته با سقف طاق ضربی خشتی و نورپردازی آرامش‌بخش",
-    categoryName: "اتاق‌ها و سوئیت‌ها",
+    categoryName: "اتاق‌ها و ارسی‌ها",
     aspect: "col-span-1 aspect-[4/3]",
   },
+];
+
+const CATEGORIES = [
+  { id: "all", label: "همه تصاویر" },
+  { id: "courtyard", label: "حیاط و معماری" },
+  { id: "rooms", label: "اتاق‌ها و ارسی‌ها" },
+  { id: "dining", label: "کافه و پذیرایی" },
+  { id: "rooftop", label: "بام شاهچراغ" },
 ];
 
 export function GallerySection() {
@@ -117,137 +125,203 @@ export function GallerySection() {
     setLightboxIndex(null);
   };
 
-  // In RTL: Next moves left (index + 1), Previous moves right (index - 1)
-  const showNext = () => {
+  // RTL navigation: Next moves forward (leftwards in RTL), Prev moves backward (rightwards in RTL)
+  const showNext = useCallback(() => {
     if (lightboxIndex === null) return;
     setLightboxIndex((lightboxIndex + 1) % filteredItems.length);
-  };
+  }, [lightboxIndex, filteredItems.length]);
 
-  const showPrev = () => {
+  const showPrev = useCallback(() => {
     if (lightboxIndex === null) return;
     setLightboxIndex((lightboxIndex - 1 + filteredItems.length) % filteredItems.length);
-  };
+  }, [lightboxIndex, filteredItems.length]);
+
+  // Keyboard accessibility: Left Arrow (Next in RTL), Right Arrow (Prev in RTL), Escape (Close)
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        showNext();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        showPrev();
+      } else if (e.key === "Escape") {
+        closeLightbox();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightboxIndex, showNext, showPrev]);
 
   return (
-    <section id="gallery" className="py-16 md:py-24 bg-[#fcfbf7] border-y border-[#e0ded4]">
+    <section id="gallery" className="py-20 md:py-32 bg-[#faf9f5] border-y border-[#e8e4db] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-10">
-          <Badge className="bg-white text-[#1e2952] border border-[#e0ded4] rounded-[12px] px-3.5 py-1 text-xs mb-3">
-            آلبوم تصویری عمارت
-          </Badge>
-          <h2 className="text-[30px] sm:text-[36px] font-normal leading-[42px] tracking-[-0.5px] text-[#1e2952] mb-3">
-            جلوه‌های چشم‌نواز از شکوه، نور و آرامش
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#172554]/5 border border-[#172554]/10 text-xs sm:text-sm font-semibold text-[#172554] mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-[#2563eb]" />
+            <span>آلبوم تصویری عمارت</span>
+          </div>
+
+          <h2 className="text-[32px] sm:text-[44px] font-bold leading-[44px] sm:leading-[56px] tracking-[-1px] text-[#172554] mb-3">
+            روایت نور، آینه و خشت‌های کهن
           </h2>
-          <p className="text-base leading-7 text-[#555555]">
-            گوشه‌هایی از زیبایی‌های دست‌ساز معماری ایرانی، رنگ‌های زنده ارسی‌ها و شب‌های مهتابی شیراز.
+
+          <p className="text-sm sm:text-base leading-7 sm:leading-8 text-[#475569] font-light">
+            مجموعه‌ای منتخب از شکوه معماری قاجار، رقص نور ارسی‌ها و شب‌های آرامش‌بخش عمارت تاریخی فرهادی.
           </p>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
-          {[
-            { id: "all", label: "همه تصاویر" },
-            { id: "courtyard", label: "حیاط و معماری" },
-            { id: "rooms", label: "اتاق‌ها و ارسی‌ها" },
-            { id: "dining", label: "کافه و صبحانه" },
-            { id: "rooftop", label: "بام شاهچراغ" },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setFilter(tab.id)}
-              className={`px-4 py-2 rounded-[12px] text-sm transition-all ${
-                filter === tab.id
-                  ? "bg-[#0096f7] text-white shadow-xs font-medium"
-                  : "bg-white text-black hover:border-[#0096f7] border border-[#e0ded4]"
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
+        {/* Filter Tablist with ARIA Accessibility */}
+        <div
+          role="tablist"
+          aria-label="دسته‌بندی تصاویر گالری"
+          className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12 sm:mb-16"
+        >
+          {CATEGORIES.map((tab) => {
+            const isActive = filter === tab.id;
+            return (
+              <button
+                key={tab.id}
+                role="tab"
+                id={`tab-${tab.id}`}
+                aria-selected={isActive}
+                aria-controls="gallery-grid"
+                onClick={() => setFilter(tab.id)}
+                className={`h-10 px-5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#172554] focus-visible:outline-offset-2 ${
+                  isActive
+                    ? "bg-[#172554] text-white shadow-md scale-102"
+                    : "bg-white/80 hover:bg-white text-[#475569] hover:text-[#172554] border border-[#e2dacb]"
+                }`}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Photo Grid - Masonry style */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {/* Accessible Photo Grid */}
+        <div
+          id="gallery-grid"
+          role="region"
+          aria-label="تصاویر عمارت"
+          className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6"
+        >
           {filteredItems.map((item, idx) => (
-            <div
+            <button
               key={item.id}
+              type="button"
               onClick={() => openLightbox(idx)}
-              className={`relative rounded-[16px] overflow-hidden border border-[#e0ded4] cursor-pointer group shadow-xs ${item.aspect}`}
+              aria-label={`مشاهده با کیفیت بالا: ${item.title}`}
+              className={`relative rounded-[22px] overflow-hidden border border-[#e2dacb] cursor-pointer group shadow-xs hover:shadow-xl transition-all duration-300 text-right focus-visible:outline-3 focus-visible:outline-[#172554] focus-visible:outline-offset-2 ${item.aspect}`}
             >
               <Image
                 src={item.src}
                 alt={item.title}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
 
-              {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white">
-                <span className="text-xs text-[#33abf9] mb-1 font-medium">
+              {/* Refined Gradient Hover Scrim */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white pointer-events-none">
+                <span className="text-xs text-[#93c5fd] font-semibold mb-1">
                   {item.categoryName}
                 </span>
-                <p className="text-sm sm:text-base font-normal leading-snug text-white">
+                <p className="text-sm sm:text-base font-medium leading-snug text-white/95">
                   {item.title}
                 </p>
-                <div className="absolute top-4 left-4 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white">
+
+                {/* Floating Enlarge Indicator */}
+                <div className="absolute top-4 left-4 w-9 h-9 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
                   <Maximize2 className="w-4 h-4" />
                 </div>
               </div>
-            </div>
+            </button>
           ))}
         </div>
 
-        {/* Lightbox Modal */}
+        {/* Accessible Lightbox Modal */}
         {lightboxIndex !== null && (
           <Dialog open={true} onOpenChange={() => closeLightbox()}>
-            <DialogContent className="max-w-4xl p-2 bg-black/95 border-none text-white overflow-hidden rounded-[16px]">
-              <div className="relative flex flex-col items-center">
-                {/* Close Button on the LEFT for RTL */}
-                <button
-                  onClick={closeLightbox}
-                  className="absolute top-2 left-2 z-20 w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-colors"
-                  aria-label="بستن"
-                >
-                  <X className="w-6 h-6" />
-                </button>
+            <DialogContent
+              className="max-w-5xl w-[96vw] max-h-[92vh] p-4 sm:p-6 bg-[#0a1120]/95 backdrop-blur-2xl border border-white/15 text-white overflow-hidden rounded-[28px] shadow-2xl flex flex-col justify-between"
+              aria-describedby={undefined}
+            >
+              <DialogTitle className="sr-only">
+                {filteredItems[lightboxIndex].title}
+              </DialogTitle>
 
-                {/* Main Lightbox Image */}
-                <div className="relative w-full h-[65vh] sm:h-[75vh] mt-6">
-                  <Image
-                    src={filteredItems[lightboxIndex].src}
-                    alt={filteredItems[lightboxIndex].title}
-                    fill
-                    className="object-contain"
-                  />
+              {/* Lightbox Header Bar */}
+              <div className="flex items-center justify-between z-20 pb-3 border-b border-white/10">
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-semibold px-3 py-1 rounded-full bg-white/10 text-[#93c5fd] border border-white/15">
+                    {filteredItems[lightboxIndex].categoryName}
+                  </span>
+                  <span className="text-xs text-white/60 font-mono">
+                    {lightboxIndex + 1} از {filteredItems.length}
+                  </span>
                 </div>
 
-                {/* RTL Chevrons: Next moves left, Prev moves right */}
+                {/* Close Button */}
                 <button
+                  type="button"
+                  onClick={closeLightbox}
+                  className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-white"
+                  aria-label="بستن گالری (Esc)"
+                  title="بستن (Esc)"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Main Image Stage */}
+              <div className="relative w-full h-[55vh] sm:h-[65vh] my-auto flex items-center justify-center select-none">
+                <Image
+                  src={filteredItems[lightboxIndex].src}
+                  alt={filteredItems[lightboxIndex].title}
+                  fill
+                  priority
+                  className="object-contain"
+                  sizes="100vw"
+                />
+
+                {/* Previous Image Button (Right arrow in RTL moves backward) */}
+                <button
+                  type="button"
                   onClick={showPrev}
-                  className="absolute top-1/2 -translate-y-1/2 right-3 w-11 h-11 rounded-full bg-white/20 hover:bg-[#0096f7] text-white flex items-center justify-center transition-colors z-20"
-                  aria-label="تصویر قبلی"
+                  className="absolute top-1/2 -translate-y-1/2 right-2 sm:right-4 w-12 h-12 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all z-20 cursor-pointer shadow-lg hover:scale-105 focus-visible:outline-2 focus-visible:outline-white"
+                  aria-label="تصویر قبلی (کلید جهت‌نما راست)"
+                  title="قبلی (کلید راست)"
                 >
                   <ChevronRight className="w-6 h-6" />
                 </button>
 
+                {/* Next Image Button (Left arrow in RTL moves forward) */}
                 <button
+                  type="button"
                   onClick={showNext}
-                  className="absolute top-1/2 -translate-y-1/2 left-3 w-11 h-11 rounded-full bg-white/20 hover:bg-[#0096f7] text-white flex items-center justify-center transition-colors z-20"
-                  aria-label="تصویر بعدی"
+                  className="absolute top-1/2 -translate-y-1/2 left-2 sm:left-4 w-12 h-12 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all z-20 cursor-pointer shadow-lg hover:scale-105 focus-visible:outline-2 focus-visible:outline-white"
+                  aria-label="تصویر بعدی (کلید جهت‌نما چپ)"
+                  title="بعدی (کلید چپ)"
                 >
                   <ChevronLeft className="w-6 h-6" />
                 </button>
+              </div>
 
-                {/* Caption */}
-                <div className="w-full text-center py-3 px-4">
-                  <p className="text-sm sm:text-base text-white/90">
-                    {filteredItems[lightboxIndex].title}
-                  </p>
-                  <span className="text-xs text-[#33abf9] mt-1 block">
-                    {filteredItems[lightboxIndex].categoryName} ({lightboxIndex + 1} از {filteredItems.length})
-                  </span>
+              {/* Caption and Keyboard Shortcuts Hint */}
+              <div className="pt-3 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-right">
+                <p className="text-xs sm:text-sm font-medium text-white/90">
+                  {filteredItems[lightboxIndex].title}
+                </p>
+
+                <div className="hidden sm:flex items-center gap-3 text-[11px] text-white/50">
+                  <span>کلیدهای جهت‌نما برای جابجایی</span>
+                  <span>·</span>
+                  <span>Esc برای بستن</span>
                 </div>
               </div>
             </DialogContent>
