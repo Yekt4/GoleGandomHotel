@@ -1,70 +1,77 @@
 "use client";
 
 import React from "react";
-import { Badge } from "@/components/ui/badge";
-import { Wifi, Coffee, Car, Flame, CarTaxiFront, Compass } from "lucide-react";
+
+interface Amenity {
+  title: string;
+  desc: string;
+  detail: string;
+}
+
+const AMENITIES: Amenity[] = [
+  {
+    title: "صبحانه اصیل در حیاط مرکزی",
+    desc: "سرو روزانه نان تازه محلی، سرشیر شیرازی، پنیر سنتی، مرباهای خانگی و عرقیات بهارنارنج در کنار حوض فیروزه‌ای.",
+    detail: "سلف‌سرویس · ۸:۰۰ تا ۱۰:۳۰",
+  },
+  {
+    title: "چای‌خانه و کافه سنتی عمارت",
+    desc: "پذیرایی عصرگاهی با فالوده شیرازی، چای دمی در استکان‌های قاجاری، دمنوش‌های گیاهی و شیرینی‌های سنتی در مهتابی.",
+    detail: "همه روزه تا نیمه‌شب",
+  },
+  {
+    title: "کانسیرج و راهنمای بافت کهن",
+    desc: "راهنمایی تخصصی جهت پیاده‌گردی در کوچه‌های آرام سنگ‌سیاه، دسترسی به بازار وکیل و روایت‌های ناشنیده شیراز تاریخی.",
+    detail: "پذیرش شبانه‌روزی",
+  },
+  {
+    title: "اینترنت پرسرعت فیبر نوری",
+    desc: "پوشش سراسری و نامحدود در تمام اتاق‌ها، شاه‌نشین، حیاط مرکزی و بام اختصاصی عمارت بدون قطعی.",
+    detail: "Wi-Fi رایگان",
+  },
+  {
+    title: "پارکینگ اختصاصی و نگهبانی",
+    desc: "هماهنگی فضای پارک اختصاصی، امن و مسقف در چندقدمی عمارت با نگهبانی ۲۴ ساعته برای خودروهای مهمانان.",
+    detail: "امن و در مجاورت هتل",
+  },
+  {
+    title: "ترانسفر و گشت‌های اختصاصی",
+    desc: "استقبال مستقیم از فرودگاه بین‌المللی شیراز و هماهنگی گشت‌های روزانه به تخت‌جمشید، نقش‌رستم و پاسارگاد.",
+    detail: "با هماهنگی قبلی",
+  },
+];
 
 export function AmenitiesSection() {
-  const amenities = [
-    {
-      icon: <Wifi className="w-6 h-6 text-[#0096f7]" />,
-      title: "اینترنت پرسرعت رایگان (Wi-Fi)",
-      desc: "دسترسی نامحدود و پرسرعت در تمام اتاق‌ها، حیاط مرکزی، کافه و بام عمارت.",
-    },
-    {
-      icon: <Coffee className="w-6 h-6 text-[#0096f7]" />,
-      title: "صبحانه رایگان ایرانی",
-      desc: "سرو بوفه سرد و گرم شامل نان داغ، مرباهای خانگی، عرقیات شیراز و پنیر و گردو محلی.",
-    },
-    {
-      icon: <Car className="w-6 h-6 text-[#0096f7]" />,
-      title: "پارکینگ اختصاصی نزدیک هتل",
-      desc: "هماهنگی پارکینگ امن و مسقف در چندقدمی عمارت با نگهبانی ۲۴ ساعته.",
-    },
-    {
-      icon: <Flame className="w-6 h-6 text-[#0096f7]" />,
-      title: "چای‌خانه و کافه سنتی",
-      desc: "پذیرایی با فالوده اصیل شیرازی، چای سماور ذغالی و دمنوش‌های گیاهی در ایوان.",
-    },
-    {
-      icon: <CarTaxiFront className="w-6 h-6 text-[#0096f7]" />,
-      title: "ترانسفر فرودگاهی و گشت‌ها",
-      desc: "استقبال اختصاصی از فرودگاه بین‌المللی شیراز و برنامه‌ریزی گشت‌های تخت‌جمشید و پاسارگاد.",
-    },
-    {
-      icon: <Compass className="w-6 h-6 text-[#0096f7]" />,
-      title: "کانسیرج و راهنمای محلی",
-      desc: "راهنمایی تخصصی جهت بازدید از زوایای پنهان بازار وکیل، باغ ارم، حافظیه و سعدیه.",
-    },
-  ];
-
   return (
-    <section id="amenities" className="py-16 md:py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <Badge className="bg-[#fcfbf7] text-[#1e2952] border border-[#e0ded4] rounded-[12px] px-3.5 py-1 text-xs mb-3">
-            خدمات و امکانات رفاهی
-          </Badge>
-          <h2 className="text-[30px] sm:text-[36px] font-normal leading-[42px] tracking-[-0.5px] text-[#1e2952] mb-3">
-            میزبانی گرم شیرازی همراه با استانداردهای مدرن
+    <section id="amenities" className="py-20 md:py-28 bg-[#faf8f5] border-t border-[#e8e4db]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        {/* Section Header - Editorial, Confident, No Eyebrow Pill */}
+        <div className="max-w-2xl mb-14 md:mb-18 text-right">
+          <h2 className="text-[30px] sm:text-[40px] font-bold text-[#172554] tracking-tight leading-tight mb-3">
+            میزبانی و خدمات عمارت
           </h2>
-          <p className="text-base leading-7 text-[#555555]">
-            تلاش ما فراهم آوردن اقامتی بی‌دغدغه، آرام و سرشار از آسایش برای مهمانان گرامی است.
+          <p className="text-base sm:text-lg text-[#555f6d] leading-relaxed font-light">
+            آرامش خانه‌ای قاجاری با کیفیتی بی‌تکلف؛ فراهم آوردن هرآنچه برای اقامتی آسوده در شیراز نیاز دارید.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {amenities.map((item, index) => (
+        {/* Editorial Grid: Clean separators, elegant typography, zero cartoonish icon boxes */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12 text-right">
+          {AMENITIES.map((item, index) => (
             <div
               key={index}
-              className="p-6 rounded-[14px] border border-[#e0ded4] bg-[#fcfbf7] hover:border-[#0096f7] hover:bg-white transition-all duration-200 flex items-start gap-4 group"
+              className="pt-5 border-t border-[#dfd9cc] flex flex-col justify-between"
             >
-              <div className="w-12 h-12 rounded-[12px] bg-[#e6f5fe] group-hover:bg-[#0096f7]/10 flex items-center justify-center flex-shrink-0 transition-colors">
-                {item.icon}
-              </div>
               <div>
-                <h3 className="text-base font-medium text-[#1e2952] mb-1.5">{item.title}</h3>
-                <p className="text-sm leading-6 text-[#555555]">{item.desc}</p>
+                <span className="text-xs text-[#8c7b64] font-medium block mb-2">
+                  {item.detail}
+                </span>
+                <h3 className="text-lg font-bold text-[#172554] mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-sm leading-7 text-[#555f6d] font-light">
+                  {item.desc}
+                </p>
               </div>
             </div>
           ))}
@@ -73,3 +80,4 @@ export function AmenitiesSection() {
     </section>
   );
 }
+

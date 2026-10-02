@@ -33,43 +33,48 @@ export function Footer() {
               عمارتی با بیش از یک قرن پیشینه در بافت فرهنگی-تاریخی شیراز. حیاط مرکزی باصفا با حوض فیروزه، پنجره‌های ارسی با شیشه‌های رنگین، عطر بهارنارنج و میزبانی اصیل شیرازی.
             </p>
 
-            <div className="flex items-center gap-2 text-xs text-[#555555]">
-              <MapPin className="w-4 h-4 text-[#0096f7] flex-shrink-0" />
+            <div className="flex items-center gap-2 text-xs text-[#555f6d]">
+              <MapPin className="w-4 h-4 text-[#8c7b64] flex-shrink-0" />
               <span>شیراز، سه‌راه نمازی، خیابان شهید دستغیب، کوچه ۶</span>
             </div>
           </div>
 
           {/* Quick Navigation */}
           <div className="lg:col-span-2 flex flex-col gap-3">
-            <h4 className="text-base font-medium text-[#1e2952] mb-1">دسترسی سریع</h4>
-            <ul className="flex flex-col gap-2 text-sm text-[#555555]">
+            <h4 className="text-base font-medium text-[#172554] mb-1">دسترسی سریع</h4>
+            <ul className="flex flex-col gap-2 text-sm text-[#555f6d]">
               <li>
-                <a href="#home" className="hover:text-[#0096f7] transition-colors">
+                <a href="#home" className="hover:text-[#172554] transition-colors">
                   صفحه اصلی
                 </a>
               </li>
               <li>
-                <a href="#story" className="hover:text-[#0096f7] transition-colors">
+                <a href="#story" className="hover:text-[#172554] transition-colors">
                   داستان عمارت
                 </a>
               </li>
               <li>
-                <a href="#rooms" className="hover:text-[#0096f7] transition-colors">
+                <a href="#rooms" className="hover:text-[#172554] transition-colors">
                   اتاق‌ها و سوئیت‌ها
                 </a>
               </li>
               <li>
-                <a href="#gallery" className="hover:text-[#0096f7] transition-colors">
+                <a href="#gallery" className="hover:text-[#172554] transition-colors">
                   گالری تصاویر
                 </a>
               </li>
               <li>
-                <a href="#amenities" className="hover:text-[#0096f7] transition-colors">
-                  امکانات هتل
+                <a href="#reels" className="hover:text-[#172554] transition-colors">
+                  روایت‌های ویدیویی
                 </a>
               </li>
               <li>
-                <a href="#location" className="hover:text-[#0096f7] transition-colors">
+                <a href="#amenities" className="hover:text-[#172554] transition-colors">
+                  میزبانی و خدمات
+                </a>
+              </li>
+              <li>
+                <a href="#location" className="hover:text-[#172554] transition-colors">
                   موقعیت و نقشه
                 </a>
               </li>
@@ -78,44 +83,45 @@ export function Footer() {
 
           {/* Rooms */}
           <div className="lg:col-span-2 flex flex-col gap-3">
-            <h4 className="text-base font-medium text-[#1e2952] mb-1">اتاق‌های عمارت</h4>
-            <ul className="flex flex-col gap-2 text-sm text-[#555555]">
-              <li><a href="#rooms" className="hover:text-[#0096f7]">اتاق تالار آینه</a></li>
-              <li><a href="#rooms" className="hover:text-[#0096f7]">سوئیت رویال شاه‌نشین</a></li>
-              <li><a href="#rooms" className="hover:text-[#0096f7]">اتاق پنج‌دری قاجاری</a></li>
-              <li><a href="#rooms" className="hover:text-[#0096f7]">اتاق دبل / تویین سنتی</a></li>
-              <li><a href="#rooms" className="hover:text-[#0096f7]">اتاق ارسی سه‌دری</a></li>
-              <li><a href="#rooms" className="hover:text-[#0096f7]">سوئیت خانوادگی عمارت</a></li>
+            <h4 className="text-base font-medium text-[#172554] mb-1">اتاق‌های عمارت</h4>
+            <ul className="flex flex-col gap-2 text-sm text-[#555f6d]">
+              <li><a href="#rooms" className="hover:text-[#172554]">اتاق تالار آینه</a></li>
+              <li><a href="#rooms" className="hover:text-[#172554]">سوئیت رویال شاه‌نشین</a></li>
+              <li><a href="#rooms" className="hover:text-[#172554]">اتاق پنج‌دری قاجاری</a></li>
+              <li><a href="#rooms" className="hover:text-[#172554]">اتاق دبل سنتی</a></li>
+              <li><a href="#rooms" className="hover:text-[#172554]">اتاق ارسی سه‌دری</a></li>
             </ul>
           </div>
 
           {/* Contact Direct */}
           <div className="lg:col-span-3 flex flex-col gap-3">
-            <h4 className="text-base font-medium text-[#1e2952] mb-1">رزرو مستقیم هتل</h4>
-            <p className="text-xs text-[#555555] leading-5">
-              جهت رزرو مستقیم بدون واسطه با تخفیف ویژه هم‌اکنون با پذیرش تماس بگیرید:
+            <h4 className="text-base font-medium text-[#172554] mb-1">رزرو مستقیم هتل</h4>
+            <p className="text-xs text-[#555f6d] leading-relaxed font-light">
+              پذیرش شبانه‌روزی عمارت تاریخی فرهادی:
             </p>
             <div className="flex flex-col gap-2 mt-1">
               <a
                 href="tel:07132220000"
-                className="text-base font-bold text-[#0096f7] flex items-center gap-1.5"
+                className="text-base font-bold text-[#172554] flex items-center gap-1.5"
+                dir="ltr"
               >
-                <Phone className="w-4 h-4" />
+                <Phone className="w-4 h-4 text-[#8c7b64]" />
                 ۰۷۱-۳۲۲۲۰۰۰۰
               </a>
               <a
                 href="tel:09170000000"
-                className="text-base font-bold text-[#0096f7] flex items-center gap-1.5"
+                className="text-base font-bold text-[#172554] flex items-center gap-1.5"
+                dir="ltr"
               >
-                <Phone className="w-4 h-4" />
+                <Phone className="w-4 h-4 text-[#8c7b64]" />
                 ۰۹۱۷-۰۰۰-۰۰۰۰
               </a>
             </div>
             <div className="pt-2">
               <BookingDialog
                 trigger={
-                  <Button className="w-full bg-[#0096f7] hover:bg-[#0084dc] text-white rounded-[12px] h-10 text-xs sm:text-sm font-medium cursor-pointer">
-                    ثبت درخواست رزرو
+                  <Button className="w-full bg-[#172554] hover:bg-[#0f172a] text-white rounded-full h-10 text-xs sm:text-sm font-medium cursor-pointer">
+                    ارتباط با پذیرش
                   </Button>
                 }
               />
@@ -124,12 +130,12 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[#e0ded4] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#777777]">
+        <div className="pt-8 border-t border-[#dfd9cc] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8c7b64]">
           <span>
-            تمامی حقوق مادی و معنوی متعلق به بوتیک هتل فرهادی شیراز می‌باشد.
+            بوتیک هتل عمارت تاریخی فرهادی شیراز
           </span>
           <span>
-            طراحی اختصاصی با فونت استعداد (Estad) بر پایه استانداردهای معماری ایرانی.
+            شیراز · بافت کهن زندیه و قاجار
           </span>
         </div>
       </div>

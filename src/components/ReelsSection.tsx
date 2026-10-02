@@ -113,11 +113,7 @@ export function ReelsSection() {
   };
 
   return (
-    <section id="reels" className="py-12 md:py-16 bg-[#090f1d] text-white relative overflow-hidden">
-      {/* Subtle ambient glow */}
-      <div className="absolute top-1/2 -right-40 w-96 h-96 bg-[#1e3a8a]/20 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/2 -left-40 w-96 h-96 bg-[#0284c7]/15 rounded-full blur-[140px] pointer-events-none" />
-
+    <section id="reels" className="py-12 md:py-16 bg-[#0a1120] text-white relative overflow-hidden">
       {/* Pure Carousel Container with navigation controls */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         {/* Carousel Navigation Arrows */}

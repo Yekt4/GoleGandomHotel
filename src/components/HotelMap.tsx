@@ -14,11 +14,8 @@ export default function HotelMap() {
 
     import("leaflet").then((L) => {
       if (!isMounted || !mapRef.current) return;
-
-      // Prevent duplicate init
       if (mapInstanceRef.current) return;
 
-      // Shiraz Farhadi Boutique Hotel coords: 3-rah Namazi, Dastgheib St, Alley 6
       const hotelCoords: [number, number] = [29.6112, 52.5442];
 
       const map = L.map(mapRef.current, {
@@ -37,18 +34,17 @@ export default function HotelMap() {
       const hotelIcon = L.divIcon({
         className: "custom-hotel-pin",
         html: `
-          <div style="background-color: #1e2952; color: #ffffff; padding: 6px 12px; border-radius: 12px; font-weight: bold; font-family: Estedad, sans-serif; font-size: 13px; box-shadow: 0 4px 14px rgba(30,41,82,0.4); display: flex; align-items: center; gap: 6px; border: 2px solid #0096f7;">
-            <span style="font-size: 15px;">🏛️</span>
-            <span>عمارت بوتیک هتل فرهادی</span>
+          <div style="background-color: #172554; color: #ffffff; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-family: Estedad, sans-serif; font-size: 13px; box-shadow: 0 4px 16px rgba(23,37,84,0.35); display: flex; align-items: center; gap: 6px; border: 1.5px solid #ffffff;">
+            <span>عمارت تاریخی فرهادی</span>
           </div>
         `,
-        iconSize: [170, 36],
-        iconAnchor: [85, 18],
+        iconSize: [160, 36],
+        iconAnchor: [80, 18],
       });
 
       L.marker(hotelCoords, { icon: hotelIcon })
         .addTo(map)
-        .bindPopup("<div style='font-family: Estedad, sans-serif; text-align: right; direction: rtl;'><b>بوتیک هتل فرهادی شیراز</b><br>سه‌راه نمازی، خیابان شهید دستغیب، کوچه ۶</div>")
+        .bindPopup("<div style='font-family: Estedad, sans-serif; text-align: right; direction: rtl;'><b>بوتیک هتل عمارت فرهادی</b><br>شیراز، سه‌راه نمازی، خیابان دستغیب، کوچه ۶</div>")
         .openPopup();
 
       // Nearby Attractions
@@ -64,7 +60,7 @@ export default function HotelMap() {
           dist: "۸ دقیقه پیاده",
         },
         {
-          name: "مسجد نصیرالملک (مسجد صورتی)",
+          name: "مسجد نصیرالملک",
           coords: [29.6085, 52.5510],
           dist: "۱۲ دقیقه پیاده",
         },
@@ -74,12 +70,12 @@ export default function HotelMap() {
         const attIcon = L.divIcon({
           className: "attraction-pin",
           html: `
-            <div style="background: #ffffff; color: #1e2952; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-family: Estedad, sans-serif; border: 1px solid #e0ded4; box-shadow: 0 2px 8px rgba(0,0,0,0.1); white-space: nowrap; font-weight: 500;">
-              📍 ${att.name}
+            <div style="background: #ffffff; color: #172554; padding: 4px 10px; border-radius: 14px; font-size: 11px; font-family: Estedad, sans-serif; border: 1px solid #dfd9cc; box-shadow: 0 2px 8px rgba(0,0,0,0.08); white-space: nowrap; font-weight: 500;">
+              ${att.name}
             </div>
           `,
-          iconSize: [140, 26],
-          iconAnchor: [70, 13],
+          iconSize: [130, 26],
+          iconAnchor: [65, 13],
         });
 
         L.marker(att.coords, { icon: attIcon })
@@ -97,5 +93,6 @@ export default function HotelMap() {
     };
   }, []);
 
-  return <div ref={mapRef} className="w-full h-full min-h-[420px] rounded-[12px] z-10" />;
+  return <div ref={mapRef} className="w-full h-full min-h-[420px] rounded-[24px] z-10" />;
 }
+

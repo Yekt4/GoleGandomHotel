@@ -2,51 +2,39 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { ArrowLeft, Sparkles } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BookingDialog } from "./BookingDialog";
 
 interface ParallaxScene {
   id: string;
-  tag: string;
   title: string;
   caption: string;
   image: string;
   alt: string;
-  statNumber: string;
-  statLabel: string;
 }
 
 const SCENES: ParallaxScene[] = [
   {
     id: "courtyard",
-    tag: "هسته مرکزی عمارت",
     title: "حوض فیروزه‌ای و ترنم آب",
-    caption: "آرامش برگرفته از معماری درون‌گرای قاجار؛ خلوت دلنشین حیاط در سایه‌سار درختان نارنج.",
+    caption: "آرامش برگرفته از معماری درون‌گرای قاجار؛ خلوت دلنشین حیاط در سایه‌سار درختان نارنج و نوای فواره که هیاهوی شهر را پشت دیوارهای خشتی خاموش می‌کند.",
     image: "/images/courtyard.jpg",
     alt: "حیاط باصفای عمارت تاریخی فرهادی شیراز با حوض فیروزه‌ای",
-    statNumber: "۱ قرن",
-    statLabel: "قدمت و اصالت تاریخی",
   },
   {
     id: "orsi",
-    tag: "هنر گره‌چینی و نور",
-    title: "رقص نور هفت‌رنگ ارسی‌ها",
-    caption: "صبح‌ها با تابش آفتاب از شیشه‌های لاجوردی و یاقوتی، عمارت غرق رنگ و موسیقی نور می‌شود.",
+    title: "رقص آفتاب بر شیشه‌های هفت‌رنگ ارسی",
+    caption: "شاهکار گره‌چینی استادکاران شیراز؛ صبح‌ها با تابش نخستین پرتوهای خورشید از میان شیشه‌های رنگین، تالار شاه‌نشین غرق نقش و رنگ‌های گرم می‌شود.",
     image: "/images/detail-orsi.jpg",
     alt: "شیشه‌های ارسی و گره‌چینی سنتی شیراز در عمارت فرهادی",
-    statNumber: "۷ رنگ",
-    statLabel: "شیشه‌های دست‌ساز ارسی",
   },
   {
     id: "rooftop",
-    tag: "چشم‌انداز اختصاصی بام",
-    title: "غروب شیراز و گنبد شاهچراغ",
-    caption: "نوشیدن چای بهارنارنج در ساعت طلایی غروب، با دید ۳۶۰ درجه به بافت تاریخی و گنبد زرین.",
+    title: "چشم‌انداز غروب بر بام کهن",
+    caption: "عصرانه و چای بهارنارنج در ساعت طلایی، با چشم‌انداز ۳۶۰ درجه به بادگیرهای قدیمی بافت تاریخی و گنبد زرین بارگاه شاهچراغ.",
     image: "/images/rooftop.jpg",
     alt: "بام سنتی بوتیک هتل فرهادی مشرف به حرم شاهچراغ",
-    statNumber: "۴ دقیقه",
-    statLabel: "فاصله پیاده تا شاهچراغ",
   },
 ];
 
@@ -60,7 +48,6 @@ export function ArchitecturePhilosophy() {
     const handleScroll = () => {
       if (!sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
-      // Relative scroll progress inside this section
       const offset = -rect.top;
       setScrollY(offset);
     };
@@ -83,17 +70,17 @@ export function ArchitecturePhilosophy() {
     <section
       ref={sectionRef}
       id="story"
-      className="relative py-20 md:py-32 bg-[#faf8f5] text-[#172554] border-b border-[#e8e4db] overflow-hidden"
+      className="relative py-24 md:py-36 bg-[#faf8f5] text-[#172554] border-b border-[#e8e4db] overflow-hidden"
     >
-      {/* Parallax Background: Persian Geometric Gereh-Chini Vector Grid */}
+      {/* Persian Geometric Gereh-Chini Vector Pattern */}
       <div
         className="absolute inset-0 pointer-events-none z-0 transition-transform duration-75 ease-out"
         style={{
-          transform: `translate3d(0, ${scrollY * 0.08}px, 0)`,
+          transform: `translate3d(0, ${scrollY * 0.06}px, 0)`,
         }}
       >
         <svg
-          className="absolute inset-0 w-full h-[140%] opacity-[0.05] text-[#172554]"
+          className="absolute inset-0 w-full h-[140%] opacity-[0.04] text-[#172554]"
           xmlns="http://www.w3.org/2000/svg"
           width="100%"
           height="100%"
@@ -117,66 +104,38 @@ export function ArchitecturePhilosophy() {
           </defs>
           <rect width="100%" height="100%" fill="url(#persian-tile-pattern)" />
         </svg>
-
-        {/* Floating Persian Grand Shamseh (Top-Right Parallax) */}
-        <div
-          className="absolute top-10 -right-24 w-[480px] h-[480px] opacity-[0.06] text-[#172554]"
-          style={{
-            transform: `translate3d(0, ${scrollY * -0.05}px, 0)`,
-          }}
-        >
-          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" className="w-full h-full">
-            <circle cx="100" cy="100" r="95" strokeWidth="1" strokeDasharray="3 3" />
-            <circle cx="100" cy="100" r="80" strokeWidth="1.5" />
-            <circle cx="100" cy="100" r="50" strokeWidth="1.5" />
-            <circle cx="100" cy="100" r="24" strokeWidth="1" />
-            {[...Array(16)].map((_, i) => (
-              <path
-                key={i}
-                d="M 100 20 L 105 50 L 100 70 L 95 50 Z"
-                transform={`rotate(${i * 22.5} 100 100)`}
-                strokeWidth="1"
-                fill="currentColor"
-                fillOpacity="0.06"
-              />
-            ))}
-          </svg>
-        </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Crisp, Minimal Section Intro */}
-        <div className="max-w-2xl mx-auto text-center mb-16 sm:mb-24">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#172554]/5 border border-[#172554]/10 text-xs font-semibold text-[#172554] mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-[#2563eb]" />
-            <span>روایت زیستن در عمارت</span>
-          </div>
-
-          <h2 className="text-[32px] sm:text-[44px] lg:text-[50px] font-bold leading-[42px] sm:leading-[56px] tracking-[-1px] text-[#172554]">
-            سه پرده از آرامش شیراز کهن
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Section Heading - Dignified & Natural */}
+        <div className="max-w-2xl mb-20 sm:mb-28 text-right">
+          <h2 className="text-[32px] sm:text-[44px] lg:text-[48px] font-bold leading-[44px] sm:leading-[58px] tracking-tight text-[#172554] mb-4">
+            روایت عمارت و شیراز کهن
           </h2>
+          <p className="text-base sm:text-lg text-[#555f6d] leading-relaxed font-light">
+            خانه‌ای با پیشینه یک سده در قلب شیراز؛ تلفیق آینه‌کاری دست‌تراش، گره‌چینی چوب گردو و خلوت دلنشین حیاط مرکزی.
+          </p>
         </div>
 
         {/* Parallax Cinematic Story Stream */}
-        <div className="flex flex-col gap-24 sm:gap-36">
+        <div className="flex flex-col gap-28 sm:gap-40">
           {SCENES.map((scene, index) => {
             const isEven = index % 2 === 0;
-            // Differentiated parallax translation factor per card
-            const imgParallaxFactor = isEven ? 0.06 : -0.06;
+            const imgParallaxFactor = isEven ? 0.05 : -0.05;
 
             return (
               <div
                 key={scene.id}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center"
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center"
               >
-                {/* Visual Frame with Parallax Floating Effect */}
+                {/* Visual Frame */}
                 <div
                   className={`lg:col-span-7 relative ${
                     isEven ? "lg:order-1" : "lg:order-2"
                   }`}
                 >
                   <div
-                    className="relative h-[360px] sm:h-[480px] lg:h-[540px] rounded-[28px] overflow-hidden border border-[#e2dacb] shadow-xl group"
+                    className="relative h-[360px] sm:h-[460px] lg:h-[500px] rounded-[24px] overflow-hidden border border-[#dfd9cc] shadow-lg group"
                     style={{
                       transform: `translate3d(0, ${scrollY * imgParallaxFactor}px, 0)`,
                       transition: "transform 100ms ease-out",
@@ -189,79 +148,50 @@ export function ArchitecturePhilosophy() {
                       sizes="(max-width: 1024px) 100vw, 60vw"
                       className="object-cover transition-transform duration-1000 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
-
-                    {/* On-Image Floating Badge */}
-                    <div className="absolute bottom-6 right-6 left-6 text-white flex items-end justify-between">
-                      <span className="text-xs font-semibold text-white/90 bg-black/40 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
-                        {scene.tag}
-                      </span>
-                    </div>
                   </div>
                 </div>
 
-                {/* Concise Punchy Text Content */}
+                {/* Narrative Text */}
                 <div
-                  className={`lg:col-span-5 text-right space-y-5 ${
+                  className={`lg:col-span-5 text-right space-y-4 ${
                     isEven ? "lg:order-2" : "lg:order-1"
                   }`}
                 >
-                  <div className="inline-flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#2563eb]" />
-                    <span className="text-xs font-bold text-[#2563eb] tracking-wider uppercase">
-                      {scene.tag}
-                    </span>
-                  </div>
-
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#172554] tracking-tight leading-tight">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-[#172554] tracking-tight leading-snug">
                     {scene.title}
                   </h3>
 
-                  <p className="text-sm sm:text-base leading-7 sm:leading-8 text-[#475569] font-light">
+                  <p className="text-base sm:text-lg leading-8 text-[#555f6d] font-light">
                     {scene.caption}
                   </p>
-
-                  {/* Refined Metric Pill */}
-                  <div className="pt-2 flex items-center gap-4">
-                    <div className="px-5 py-3 rounded-[16px] bg-white border border-[#e2dacb] shadow-2xs inline-flex items-center gap-3">
-                      <span className="text-2xl font-black text-[#172554]">{scene.statNumber}</span>
-                      <span className="text-xs text-[#64748b] font-medium">{scene.statLabel}</span>
-                    </div>
-                  </div>
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Bottom Lightweight Craft Callout - Replaces repetitive heavy essay */}
-        <div className="mt-28 sm:mt-36 p-8 sm:p-12 rounded-[28px] bg-[#172554] text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden">
-          {/* Subtle Persian tile background shimmer */}
-          <div className="absolute -left-20 -bottom-20 w-72 h-72 rounded-full bg-[#0284c7]/20 blur-3xl pointer-events-none" />
-
-          <div className="space-y-2 text-right relative z-10 max-w-xl">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#93c5fd]">
+        {/* Quiet Editorial Reservation Note */}
+        <div className="mt-28 sm:mt-36 pt-10 border-t border-[#dfd9cc] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="text-right max-w-xl">
+            <h3 className="text-xl sm:text-2xl font-bold text-[#172554] mb-2">
               اقامت در یک اثر تاریخی
-            </span>
-            <h3 className="text-xl sm:text-2xl font-bold">
-              چهارده اتاق اختصاصی با هویت ناب قاجار و پهلوی
             </h3>
-            <p className="text-xs sm:text-sm text-white/75 font-light">
-              امکان رزرو مستقیم هریک از واحدها با پذیرش شبانه‌روزی هتل بدون واسطه.
+            <p className="text-sm text-[#555f6d] font-light leading-relaxed">
+              اتاق‌ها و سوئیت‌های عمارت با حفظ اصالت معماری قاجار و آرامش ناب شیراز میزبان شما هستند.
             </p>
           </div>
 
-          <div className="flex-shrink-0 relative z-10 flex items-center gap-3">
+          <div className="flex items-center gap-3">
             <BookingDialog
               trigger={
-                <Button className="h-11 px-7 rounded-full bg-white text-[#172554] hover:bg-slate-100 font-bold text-sm shadow-md cursor-pointer">
+                <Button className="h-11 px-6 rounded-full bg-[#172554] text-white hover:bg-[#0f172a] font-semibold text-sm cursor-pointer shadow-sm">
                   رزرو مستقیم
                 </Button>
               }
             />
             <a
               href="#rooms"
-              className="h-11 px-5 rounded-full bg-white/10 hover:bg-white/20 text-white font-medium text-xs sm:text-sm border border-white/20 flex items-center gap-1.5"
+              className="h-11 px-5 rounded-full text-[#172554] hover:bg-[#172554]/5 font-medium text-sm border border-[#dfd9cc] flex items-center gap-1.5 transition-colors"
             >
               <span>مشاهده اتاق‌ها</span>
               <ArrowLeft className="w-3.5 h-3.5" />
@@ -272,3 +202,4 @@ export function ArchitecturePhilosophy() {
     </section>
   );
 }
+
