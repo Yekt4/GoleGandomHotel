@@ -4,54 +4,14 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Play, Pause, Volume2, VolumeX, ChevronRight, ChevronLeft, X, Film } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-
-export interface VideoStoryItem {
-  id: string;
-  caption: string;
-  poster: string;
-  videoSrc: string;
-}
-
-const VIDEO_STORIES: VideoStoryItem[] = [
-  {
-    id: "story-1",
-    caption: "رقص نور صبحگاهی در ارسی‌های هفت‌رنگ شاه‌نشین",
-    poster: "/images/reel-orsi.jpg",
-    videoSrc: "/videos/reel-1.mp4",
-  },
-  {
-    id: "story-2",
-    caption: "آرامش عصرگاهی و نوای آب در حوض فیروزه‌ای حیاط",
-    poster: "/images/reel-courtyard.jpg",
-    videoSrc: "/videos/reel-2.mp4",
-  },
-  {
-    id: "story-3",
-    caption: "عصرانه و چای بر بام اختصاصی مشرف به شاهچراغ",
-    poster: "/images/reel-rooftop.jpg",
-    videoSrc: "/videos/reel-3.mp4",
-  },
-  {
-    id: "story-4",
-    caption: "عطر نان تازه و سفره صبحانه اصیل شیرازی",
-    poster: "/images/breakfast.jpg",
-    videoSrc: "/videos/reel-4.mp4",
-  },
-  {
-    id: "story-5",
-    caption: "شکوه آینه‌کاری‌های قاجاری در تالار شاه‌نشین",
-    poster: "/images/room-mirror-hall.jpg",
-    videoSrc: "/videos/reel-5.mp4",
-  },
-  {
-    id: "story-6",
-    caption: "طعم چای دارچین و فالوده در کافه عمارت",
-    poster: "/images/cafe.jpg",
-    videoSrc: "/videos/reel-6.mp4",
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 export function ReelsSection() {
+  const { language } = useLanguage();
+  const t = translations[language];
+  const isEn = language === "en";
+
   const [activeStoryIndex, setActiveStoryIndex] = useState<number | null>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
@@ -60,7 +20,8 @@ export function ReelsSection() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const carouselRef = useRef<HTMLDivElement | null>(null);
 
-  const activeStory = activeStoryIndex !== null ? VIDEO_STORIES[activeStoryIndex] : null;
+  const stories = t.reels.items;
+  const activeStory = activeStoryIndex !== null ? stories[activeStoryIndex] : null;
 
   useEffect(() => {
     setIsPlaying(true);
@@ -96,18 +57,17 @@ export function ReelsSection() {
 
   const nextStory = () => {
     if (activeStoryIndex === null) return;
-    setActiveStoryIndex((activeStoryIndex + 1) % VIDEO_STORIES.length);
+    setActiveStoryIndex((activeStoryIndex + 1) % stories.length);
   };
 
   const prevStory = () => {
     if (activeStoryIndex === null) return;
-    setActiveStoryIndex((activeStoryIndex - 1 + VIDEO_STORIES.length) % VIDEO_STORIES.length);
+    setActiveStoryIndex((activeStoryIndex - 1 + stories.length) % stories.length);
   };
 
   const scrollCarousel = (direction: "left" | "right") => {
     if (!carouselRef.current) return;
     const cardWidth = 300;
-    // In RTL direction: scrolling right or left
     const offset = direction === "left" ? -cardWidth : cardWidth;
     carouselRef.current.scrollBy({ left: offset, behavior: "smooth" });
   };
@@ -118,16 +78,16 @@ export function ReelsSection() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         {/* Carousel Navigation Arrows */}
         <button
-          onClick={() => scrollCarousel("right")}
-          aria-label="اسلاید قبلی"
+          onClick={() => scrollCarousel(isEn ? "left" : "right")}
+          aria-label={t.reels.prev}
           className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md border border-white/20 items-center justify-center transition-all duration-200 hover:scale-110 shadow-xl"
         >
           <ChevronRight className="w-6 h-6" />
         </button>
 
         <button
-          onClick={() => scrollCarousel("left")}
-          aria-label="اسلاید بعدی"
+          onClick={() => scrollCarousel(isEn ? "right" : "left")}
+          aria-label={t.reels.next}
           className="hidden md:flex absolute -left-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md border border-white/20 items-center justify-center transition-all duration-200 hover:scale-110 shadow-xl"
         >
           <ChevronLeft className="w-6 h-6" />
@@ -138,7 +98,7 @@ export function ReelsSection() {
           ref={carouselRef}
           className="flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth py-2 px-1 scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none]"
         >
-          {VIDEO_STORIES.map((story, index) => (
+          {stories.map((story, index) => (
             <div
               key={story.id}
               onClick={() => setActiveStoryIndex(index)}
@@ -157,7 +117,7 @@ export function ReelsSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent transition-opacity group-hover:from-black/90" />
 
               {/* Only Caption on Video */}
-              <div className="absolute bottom-0 inset-x-0 p-5 z-10 text-right">
+              <div className={`absolute bottom-0 inset-x-0 p-5 z-10 ${isEn ? "text-left" : "text-right"}`}>
                 <p className="text-sm sm:text-base font-medium text-white drop-shadow-md leading-relaxed line-clamp-2 group-hover:text-[#93c5fd] transition-colors">
                   {story.caption}
                 </p>
@@ -201,7 +161,7 @@ export function ReelsSection() {
                   </div>
                   <h4 className="text-base font-bold text-white mb-2 max-w-xs">{activeStory.caption}</h4>
                   <p className="text-xs text-white/70 mb-3 max-w-xs leading-5">
-                    فایل ویدیو در مسیر زیر قرار می‌گیرد:
+                    {t.reels.videoPending}
                   </p>
                   <code className="bg-white/10 text-[#93c5fd] px-3 py-1 rounded-lg text-xs font-mono mb-3 text-ltr" dir="ltr">
                     public{activeStory.videoSrc}
@@ -226,16 +186,16 @@ export function ReelsSection() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="w-7 h-7 rounded-full overflow-hidden bg-white relative border border-white/30">
-                      <Image src="/images/logo.jpg" alt="لوگو" fill sizes="28px" className="object-contain" />
+                      <Image src="/images/logo.jpg" alt="Logo" fill sizes="28px" className="object-contain" />
                     </div>
-                    <span className="text-xs font-bold text-white drop-shadow">عمارت تاریخی فرهادی</span>
+                    <span className="text-xs font-bold text-white drop-shadow">{t.reels.hotelTitle}</span>
                   </div>
 
                   <div className="flex items-center gap-2">
                     <button
                       onClick={toggleMute}
                       className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-black/60 transition-colors"
-                      title={isMuted ? "وصل صدا" : "قطع صدا"}
+                      title={isMuted ? t.reels.unmute : t.reels.mute}
                     >
                       {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4" />}
                     </button>
@@ -253,10 +213,10 @@ export function ReelsSection() {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  prevStory();
+                  isEn ? prevStory() : prevStory();
                 }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all z-20"
-                title="قبلی"
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all z-20 cursor-pointer"
+                title={t.reels.prev}
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
@@ -264,10 +224,10 @@ export function ReelsSection() {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  nextStory();
+                  isEn ? nextStory() : nextStory();
                 }}
-                className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all z-20"
-                title="بعدی"
+                className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all z-20 cursor-pointer"
+                title={t.reels.next}
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
@@ -285,7 +245,7 @@ export function ReelsSection() {
               )}
 
               {/* Bottom Caption in Modal */}
-              <div className="absolute bottom-0 inset-x-0 p-5 z-30 text-right space-y-2 pointer-events-auto">
+              <div className={`absolute bottom-0 inset-x-0 p-5 z-30 space-y-2 pointer-events-auto ${isEn ? "text-left" : "text-right"}`}>
                 <p className="text-base font-bold text-white drop-shadow leading-relaxed">
                   {activeStory.caption}
                 </p>
@@ -293,14 +253,14 @@ export function ReelsSection() {
                 <div className="pt-2 flex items-center justify-between text-xs text-white/60 border-t border-white/15">
                   <button
                     onClick={togglePlay}
-                    className="flex items-center gap-1.5 text-white/90 hover:text-white"
+                    className="flex items-center gap-1.5 text-white/90 hover:text-white cursor-pointer"
                   >
                     {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-current" />}
-                    <span>{isPlaying ? "توقف" : "پخش"}</span>
+                    <span>{isPlaying ? t.reels.pause : t.reels.play}</span>
                   </button>
 
                   <span className="text-[11px] text-white/50">
-                    {(activeStoryIndex ?? 0) + 1} از {VIDEO_STORIES.length}
+                    {(activeStoryIndex ?? 0) + 1} {t.reels.of} {stories.length}
                   </span>
                 </div>
               </div>

@@ -8,6 +8,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Phone, MessageCircle } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 interface BookingDialogProps {
   initialRoom?: string;
@@ -17,18 +19,27 @@ interface BookingDialogProps {
 }
 
 export function BookingDialog({
-  initialRoom = "عمارت تاریخی فرهادی",
+  initialRoom,
   trigger,
   isOpen,
   onOpenChange,
 }: BookingDialogProps) {
+  const { language } = useLanguage();
+  const t = translations[language];
+  const isEn = language === "en";
+
   const [internalOpen, setInternalOpen] = useState(false);
 
   const openState = isOpen !== undefined ? isOpen : internalOpen;
   const setOpen = onOpenChange !== undefined ? onOpenChange : setInternalOpen;
 
+  const defaultRoomName = isEn ? "Farhadi Boutique Hotel" : "عمارت تاریخی فرهادی";
+  const currentRoom = initialRoom || defaultRoomName;
+
   const whatsappMessage = encodeURIComponent(
-    `سلام و درود، جهت استعلام و هماهنگی اقامت در ${initialRoom} بوتیک هتل فرهادی شیراز پیام می‌دهم.`
+    isEn
+      ? `Hello, I would like to inquire about booking ${currentRoom} at Farhadi Boutique Hotel Shiraz.`
+      : `سلام و درود، جهت استعلام و هماهنگی اقامت در ${currentRoom} بوتیک هتل فرهادی شیراز پیام می‌دهم.`
   );
 
   const renderedTrigger = trigger && React.isValidElement(trigger)
@@ -45,20 +56,20 @@ export function BookingDialog({
     <>
       {renderedTrigger}
       <Dialog open={openState} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-[440px] p-6 sm:p-8 text-right bg-white rounded-[24px] border border-[#dfd9cc] shadow-xl">
-          <DialogHeader className="text-right pb-3 border-b border-[#dfd9cc]">
+        <DialogContent className={`sm:max-w-[440px] p-6 sm:p-8 bg-white rounded-[24px] border border-[#dfd9cc] shadow-xl ${isEn ? "text-left" : "text-right"}`}>
+          <DialogHeader className={`pb-3 border-b border-[#dfd9cc] ${isEn ? "text-left" : "text-right"}`}>
             <DialogTitle className="text-xl sm:text-2xl font-bold text-[#172554]">
-              پذیرش عمارت فرهادی
+              {t.booking.title}
             </DialogTitle>
-            {initialRoom && initialRoom !== "عمارت تاریخی فرهادی" && (
+            {initialRoom && initialRoom !== defaultRoomName && (
               <p className="text-xs sm:text-sm text-[#8c7b64] font-medium mt-1">
-                واحد انتخابی: {initialRoom}
+                {t.booking.selectedRoomPrefix} {initialRoom}
               </p>
             )}
           </DialogHeader>
 
           <p className="text-xs sm:text-sm leading-6 text-[#555f6d] mt-2 mb-6 font-light">
-            جهت آگاهی از ظرفیت خالی اتاق‌ها و هماهنگی اقامت در شیراز، با پذیرش عمارت تماس بگیرید یا در واتس‌اپ پیام ارسال فرمایید:
+            {t.booking.desc}
           </p>
 
           <div className="space-y-3">
@@ -71,33 +82,35 @@ export function BookingDialog({
             >
               <div className="flex items-center gap-3">
                 <MessageCircle className="w-5 h-5" />
-                <span className="text-sm font-semibold">ارسال پیام در واتس‌اپ</span>
+                <span className="text-sm font-semibold">{t.booking.whatsappText}</span>
               </div>
-              <span className="text-xs font-light text-white/90">پاسخگویی سریع ←</span>
+              <span className="text-xs font-light text-white/90">
+                {t.booking.whatsappQuick}
+              </span>
             </a>
 
             {/* Landline */}
             <a
-              href="tel:07132220000"
+              href={`tel:${isEn ? "+987132220000" : "07132220000"}`}
               className="flex items-center justify-between p-4 rounded-[16px] bg-[#faf8f5] hover:bg-[#f3efe6] border border-[#dfd9cc] text-[#172554] transition-colors"
             >
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-[#8c7b64]" />
-                <span className="text-sm font-semibold">تلفن ثابت هتل</span>
+                <span className="text-sm font-semibold">{t.booking.landlineText}</span>
               </div>
-              <span className="text-base font-bold font-mono" dir="ltr">۰۷۱-۳۲۲۲۰۰۰۰</span>
+              <span className="text-base font-bold font-mono" dir="ltr">{t.nav.phone}</span>
             </a>
 
             {/* Mobile */}
             <a
-              href="tel:09170000000"
+              href={`tel:${isEn ? "+989170000000" : "09170000000"}`}
               className="flex items-center justify-between p-4 rounded-[16px] bg-[#faf8f5] hover:bg-[#f3efe6] border border-[#dfd9cc] text-[#172554] transition-colors"
             >
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-[#8c7b64]" />
-                <span className="text-sm font-semibold">همراه پذیرش ۲۴ ساعته</span>
+                <span className="text-sm font-semibold">{t.booking.mobileText}</span>
               </div>
-              <span className="text-base font-bold font-mono" dir="ltr">۰۹۱۷-۰۰۰-۰۰۰۰</span>
+              <span className="text-base font-bold font-mono" dir="ltr">{t.nav.mobile}</span>
             </a>
           </div>
         </DialogContent>

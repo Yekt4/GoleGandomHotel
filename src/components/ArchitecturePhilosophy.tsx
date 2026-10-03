@@ -2,43 +2,17 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BookingDialog } from "./BookingDialog";
-
-interface ParallaxScene {
-  id: string;
-  title: string;
-  caption: string;
-  image: string;
-  alt: string;
-}
-
-const SCENES: ParallaxScene[] = [
-  {
-    id: "courtyard",
-    title: "حوض فیروزه‌ای و ترنم آب",
-    caption: "آرامش برگرفته از معماری درون‌گرای قاجار؛ خلوت دلنشین حیاط در سایه‌سار درختان نارنج و نوای فواره که هیاهوی شهر را پشت دیوارهای خشتی خاموش می‌کند.",
-    image: "/images/courtyard.jpg",
-    alt: "حیاط باصفای عمارت تاریخی فرهادی شیراز با حوض فیروزه‌ای",
-  },
-  {
-    id: "orsi",
-    title: "رقص آفتاب بر شیشه‌های هفت‌رنگ ارسی",
-    caption: "شاهکار گره‌چینی استادکاران شیراز؛ صبح‌ها با تابش نخستین پرتوهای خورشید از میان شیشه‌های رنگین، تالار شاه‌نشین غرق نقش و رنگ‌های گرم می‌شود.",
-    image: "/images/detail-orsi.jpg",
-    alt: "شیشه‌های ارسی و گره‌چینی سنتی شیراز در عمارت فرهادی",
-  },
-  {
-    id: "rooftop",
-    title: "چشم‌انداز غروب بر بام کهن",
-    caption: "عصرانه و چای بهارنارنج در ساعت طلایی، با چشم‌انداز ۳۶۰ درجه به بادگیرهای قدیمی بافت تاریخی و گنبد زرین بارگاه شاهچراغ.",
-    image: "/images/rooftop.jpg",
-    alt: "بام سنتی بوتیک هتل فرهادی مشرف به حرم شاهچراغ",
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 export function ArchitecturePhilosophy() {
+  const { language } = useLanguage();
+  const t = translations[language];
+  const isEn = language === "en";
+
   const sectionRef = useRef<HTMLElement | null>(null);
   const [scrollY, setScrollY] = useState(0);
 
@@ -108,18 +82,18 @@ export function ArchitecturePhilosophy() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Heading - Dignified & Natural */}
-        <div className="max-w-2xl mb-20 sm:mb-28 text-right">
+        <div className={`max-w-2xl mb-20 sm:mb-28 ${isEn ? "text-left" : "text-right"}`}>
           <h2 className="text-[32px] sm:text-[44px] lg:text-[48px] font-bold leading-[44px] sm:leading-[58px] tracking-tight text-[#172554] mb-4">
-            روایت عمارت و شیراز کهن
+            {t.story.heading}
           </h2>
           <p className="text-base sm:text-lg text-[#555f6d] leading-relaxed font-light">
-            خانه‌ای با پیشینه یک سده در قلب شیراز؛ تلفیق آینه‌کاری دست‌تراش، گره‌چینی چوب گردو و خلوت دلنشین حیاط مرکزی.
+            {t.story.desc}
           </p>
         </div>
 
         {/* Parallax Cinematic Story Stream */}
         <div className="flex flex-col gap-28 sm:gap-40">
-          {SCENES.map((scene, index) => {
+          {t.story.scenes.map((scene, index) => {
             const isEven = index % 2 === 0;
             const imgParallaxFactor = isEven ? 0.05 : -0.05;
 
@@ -153,9 +127,9 @@ export function ArchitecturePhilosophy() {
 
                 {/* Narrative Text */}
                 <div
-                  className={`lg:col-span-5 text-right space-y-4 ${
-                    isEven ? "lg:order-2" : "lg:order-1"
-                  }`}
+                  className={`lg:col-span-5 space-y-4 ${
+                    isEn ? "text-left" : "text-right"
+                  } ${isEven ? "lg:order-2" : "lg:order-1"}`}
                 >
                   <h3 className="text-2xl sm:text-3xl font-bold text-[#172554] tracking-tight leading-snug">
                     {scene.title}
@@ -172,12 +146,12 @@ export function ArchitecturePhilosophy() {
 
         {/* Quiet Editorial Reservation Note */}
         <div className="mt-28 sm:mt-36 pt-10 border-t border-[#dfd9cc] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <div className="text-right max-w-xl">
+          <div className={`max-w-xl ${isEn ? "text-left" : "text-right"}`}>
             <h3 className="text-xl sm:text-2xl font-bold text-[#172554] mb-2">
-              اقامت در یک اثر تاریخی
+              {t.story.calloutTitle}
             </h3>
             <p className="text-sm text-[#555f6d] font-light leading-relaxed">
-              اتاق‌ها و سوئیت‌های عمارت با حفظ اصالت معماری قاجار و آرامش ناب شیراز میزبان شما هستند.
+              {t.story.calloutDesc}
             </p>
           </div>
 
@@ -185,7 +159,7 @@ export function ArchitecturePhilosophy() {
             <BookingDialog
               trigger={
                 <Button className="h-11 px-6 rounded-full bg-[#172554] text-white hover:bg-[#0f172a] font-semibold text-sm cursor-pointer shadow-sm">
-                  رزرو مستقیم
+                  {t.story.reserveDirect}
                 </Button>
               }
             />
@@ -193,8 +167,12 @@ export function ArchitecturePhilosophy() {
               href="#rooms"
               className="h-11 px-5 rounded-full text-[#172554] hover:bg-[#172554]/5 font-medium text-sm border border-[#dfd9cc] flex items-center gap-1.5 transition-colors"
             >
-              <span>مشاهده اتاق‌ها</span>
-              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>{t.story.viewRooms}</span>
+              {isEn ? (
+                <ArrowRight className="w-3.5 h-3.5" />
+              ) : (
+                <ArrowLeft className="w-3.5 h-3.5" />
+              )}
             </a>
           </div>
         </div>

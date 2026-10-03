@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Toaster } from "sonner";
+import { LanguageProvider } from "@/context/LanguageContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -32,9 +33,12 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-white text-slate-900 antialiased selection:bg-[#eff6ff] selection:text-[#172554]">
-        {children}
-        <Toaster dir="rtl" richColors position="top-center" />
+        <LanguageProvider>
+          {children}
+          <Toaster richColors position="top-center" />
+        </LanguageProvider>
       </body>
     </html>
   );
 }
+

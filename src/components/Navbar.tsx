@@ -2,13 +2,17 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Phone, Menu, X, MessageCircle } from "lucide-react";
+import { Phone, Menu, X, MessageCircle, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BookingDialog } from "./BookingDialog";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language, toggleLanguage, isEn } = useLanguage();
+  const t = translations[language];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,7 +32,7 @@ export function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <span className="truncate font-light text-white/90">شیراز، سه‌راه نمازی، خیابان شهید دستغیب، کوچه ۶</span>
+            <span className="truncate font-light text-white/90">{t.nav.address}</span>
           </div>
           <div className="flex items-center gap-5">
             <a
@@ -36,7 +40,7 @@ export function Navbar() {
               className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
             >
               <Phone className="w-3 h-3 text-[#c59b27]" />
-              <span className="font-semibold" dir="ltr">۰۷۱-۳۲۲۲۰۰۰۰</span>
+              <span className="font-semibold" dir="ltr">{t.nav.phone}</span>
             </a>
             <a
               href="https://wa.me/989170000000"
@@ -45,7 +49,7 @@ export function Navbar() {
               className="hidden sm:inline-flex items-center gap-1.5 hover:text-[#25D366] transition-colors"
             >
               <MessageCircle className="w-3 h-3 text-[#25D366]" />
-              <span dir="ltr">۰۹۱۷-۰۰۰-۰۰۰۰</span>
+              <span dir="ltr">{t.nav.mobile}</span>
             </a>
           </div>
         </div>
@@ -69,24 +73,24 @@ export function Navbar() {
             >
               <Image
                 src="/images/logo.jpg"
-                alt="لوگوی عمارت بوتیک هتل فرهادی شیراز"
+                alt={t.brand.title}
                 fill
                 sizes="44px"
                 className="object-contain p-0.5"
                 priority
               />
             </div>
-            <div className="flex flex-col text-right">
+            <div className={`flex flex-col ${isEn ? "text-left" : "text-right"}`}>
               <span
                 className={`font-black tracking-tight text-[#172554] transition-all ${
                   scrolled ? "text-base sm:text-lg" : "text-lg sm:text-xl"
                 }`}
               >
-                عمارت فرهادی
+                {t.brand.name}
               </span>
               {!scrolled && (
                 <span className="hidden sm:block text-[10px] text-[#8c7b64]">
-                  بوتیک هتل سنتی شیراز
+                  {t.brand.subtitle}
                 </span>
               )}
             </div>
@@ -98,54 +102,66 @@ export function Navbar() {
               href="#home"
               className="text-xs sm:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors"
             >
-              خانه
+              {t.nav.home}
             </a>
             <a
               href="#story"
               className="text-xs sm:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors"
             >
-              داستان عمارت
+              {t.nav.story}
             </a>
             <a
               href="#rooms"
               className="text-xs sm:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors"
             >
-              اتاق‌ها
+              {t.nav.rooms}
             </a>
             <a
               href="#gallery"
               className="text-xs sm:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors"
             >
-              تصاویر
+              {t.nav.gallery}
             </a>
             <a
               href="#reels"
               className="text-xs sm:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors"
             >
-              ویدیوها
+              {t.nav.reels}
             </a>
             <a
               href="#amenities"
               className="text-xs sm:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors"
             >
-              خدمات
+              {t.nav.amenities}
             </a>
             <a
               href="#location"
               className="text-xs sm:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors"
             >
-              موقعیت
+              {t.nav.location}
             </a>
             <a
               href="#contact"
               className="text-xs sm:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors"
             >
-              تماس
+              {t.nav.contact}
             </a>
           </nav>
 
-          {/* Actions & CTA */}
+          {/* Actions: Language Switcher & CTA */}
           <div className="flex items-center gap-2 flex-shrink-0">
+            {/* Language Switcher Pill */}
+            <button
+              type="button"
+              onClick={toggleLanguage}
+              className="h-9 px-3 rounded-full border border-[#dfd9cc] bg-white hover:bg-[#faf8f5] text-[#172554] text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
+              title={isEn ? "تغییر زبان به فارسی" : "Switch language to English"}
+              aria-label="Language switcher"
+            >
+              <Globe className="w-3.5 h-3.5 text-[#8c7b64]" />
+              <span className="font-bold">{isEn ? "فارسی" : "EN"}</span>
+            </button>
+
             <BookingDialog
               trigger={
                 <Button
@@ -155,8 +171,8 @@ export function Navbar() {
                       : "rounded-full px-5 py-2 h-10 text-sm"
                   }`}
                 >
-                  <Phone className="w-3.5 h-3.5 text-white/80 ml-1.5" />
-                  <span>پذیرش هتل</span>
+                  <Phone className="w-3.5 h-3.5 text-white/80" />
+                  <span>{t.nav.bookBtn}</span>
                 </Button>
               }
             />
@@ -174,79 +190,95 @@ export function Navbar() {
 
         {/* Mobile dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-3 pt-3 border-t border-slate-100 bg-white/95 rounded-2xl p-4 shadow-lg flex flex-col gap-2.5">
+          <div className="md:hidden mt-3 pt-3 border-t border-[#dfd9cc] bg-white/95 rounded-2xl p-4 shadow-lg flex flex-col gap-2.5">
             <a
               href="#home"
               onClick={() => setMobileMenuOpen(false)}
               className="py-1 text-sm font-medium text-[#172554] hover:text-[#8c7b64]"
             >
-              صفحه اصلی
+              {t.nav.home}
             </a>
             <a
               href="#story"
               onClick={() => setMobileMenuOpen(false)}
               className="py-1 text-sm font-medium text-[#172554] hover:text-[#8c7b64]"
             >
-              داستان عمارت
+              {t.nav.story}
             </a>
             <a
               href="#rooms"
               onClick={() => setMobileMenuOpen(false)}
               className="py-1 text-sm font-medium text-[#172554] hover:text-[#8c7b64]"
             >
-              اتاق‌ها و سوئیت‌ها
+              {t.nav.rooms}
             </a>
             <a
               href="#gallery"
               onClick={() => setMobileMenuOpen(false)}
               className="py-1 text-sm font-medium text-[#172554] hover:text-[#8c7b64]"
             >
-              گالری تصاویر
+              {t.nav.gallery}
             </a>
             <a
               href="#reels"
               onClick={() => setMobileMenuOpen(false)}
               className="py-1 text-sm font-medium text-[#172554] hover:text-[#8c7b64]"
             >
-              روایت‌های ویدیویی
+              {t.nav.reels}
             </a>
             <a
               href="#amenities"
               onClick={() => setMobileMenuOpen(false)}
               className="py-1 text-sm font-medium text-[#172554] hover:text-[#8c7b64]"
             >
-              میزبانی و خدمات
+              {t.nav.amenities}
             </a>
             <a
               href="#location"
               onClick={() => setMobileMenuOpen(false)}
               className="py-1 text-sm font-medium text-[#172554] hover:text-[#8c7b64]"
             >
-              موقعیت و نقشه
+              {t.nav.location}
             </a>
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
               className="py-1 text-sm font-medium text-[#172554] hover:text-[#8c7b64]"
             >
-              ارتباط و پذیرش
+              {t.nav.contact}
             </a>
-            <div className="pt-2 border-t border-slate-100 flex flex-col gap-1.5">
+            <div className="pt-2 border-t border-[#dfd9cc] flex flex-col gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  toggleLanguage();
+                  setMobileMenuOpen(false);
+                }}
+                className="py-1.5 text-xs text-[#172554] flex items-center justify-between font-bold"
+              >
+                <span className="flex items-center gap-2">
+                  <Globe className="w-4 h-4 text-[#8c7b64]" />
+                  <span>زبان / Language</span>
+                </span>
+                <span className="px-2.5 py-0.5 rounded-full bg-[#faf8f5] border border-[#dfd9cc]">
+                  {isEn ? "فارسی" : "English"}
+                </span>
+              </button>
               <a
                 href="tel:07132220000"
-                className="py-1.5 text-xs text-[#172554] flex items-center gap-2 font-bold"
+                className="py-1 text-xs text-[#172554] flex items-center gap-2 font-bold"
               >
                 <Phone className="w-3.5 h-3.5 text-[#172554]" />
-                تلفن: ۰۷۱-۳۲۲۲۰۰۰۰
+                <span dir="ltr">۰۷۱-۳۲۲۲۰۰۰۰</span>
               </a>
               <a
                 href="https://wa.me/989170000000"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-1.5 text-xs text-[#25D366] flex items-center gap-2 font-bold"
+                className="py-1 text-xs text-[#25D366] flex items-center gap-2 font-bold"
               >
                 <MessageCircle className="w-3.5 h-3.5" />
-                واتس‌اپ: ۰۹۱۷۰۰۰۰۰۰۰
+                <span dir="ltr">۰۹۱۷-۰۰۰-۰۰۰۰</span>
               </a>
             </div>
           </div>
@@ -255,3 +287,4 @@ export function Navbar() {
     </>
   );
 }
+
