@@ -169,6 +169,8 @@ export const translations = {
       ],
     },
     gallery: {
+      heading: "آلبوم تصویری عمارت",
+      desc: "روایتی بصری از بازی نور در پنجره‌های ارسی، آرامش حیاط فیروزه‌ای و شکوه هنر دوره قاجار.",
       categories: [
         { id: "all", label: "همه تصاویر" },
         { id: "courtyard", label: "حیاط و معماری" },
@@ -594,6 +596,8 @@ export const translations = {
       ],
     },
     gallery: {
+      heading: "Visual Journal & Gallery",
+      desc: "A visual journey through stained glass light, courtyard stillness, and Qajar architectural craftsmanship.",
       categories: [
         { id: "all", label: "All Photos" },
         { id: "courtyard", label: "Courtyard & Architecture" },
