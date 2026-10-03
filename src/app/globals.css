@@ -133,3 +133,30 @@
     font-weight: 400;
   }
 }
+
+/* Animated diagonal path on hotel map */
+@keyframes diagonal-dash-flow {
+  to {
+    stroke-dashoffset: -32;
+  }
+}
+.animated-diagonal-path {
+  stroke-dasharray: 8 8;
+  animation: diagonal-dash-flow 1.2s linear infinite;
+  filter: drop-shadow(0 2px 6px rgba(197, 155, 39, 0.6));
+}
+
+.leaflet-container {
+  font-family: inherit !important;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 16px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15) !important;
+  padding: 4px !important;
+}
+
+.leaflet-popup-content {
+  margin: 12px 14px !important;
+  line-height: 1.6 !important;
+}

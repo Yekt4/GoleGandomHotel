@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Play, Pause, Volume2, VolumeX, ChevronRight, ChevronLeft, X, Film } from "lucide-react";
+import { InstagramIcon } from "@/components/ui/icons";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
@@ -73,14 +74,31 @@ export function ReelsSection() {
   };
 
   return (
-    <section id="reels" className="py-12 md:py-16 bg-[#0a1120] text-white relative overflow-hidden">
+    <section id="reels" className="py-10 md:py-14 relative overflow-hidden">
       {/* Pure Carousel Container with navigation controls */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
+        {/* Header row with Instagram channel link */}
+        <div className="flex items-center justify-between mb-4 px-1">
+          <span className="text-xs sm:text-sm font-bold text-[#172554] tracking-tight">
+            {isEn ? "Farhadi Video Stories" : "استوری‌ها و ویدیوهای عمارت"}
+          </span>
+
+          <a
+            href="https://www.instagram.com/farhadi.boutique.hotel/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 hover:bg-white text-[#172554] hover:text-[#E1306C] border border-[#dfd9cc] text-xs font-semibold shadow-2xs transition-all hover:scale-105 cursor-pointer"
+          >
+            <InstagramIcon className="w-3.5 h-3.5 text-[#E1306C]" />
+            <span dir="ltr">@farhadi.boutique.hotel</span>
+          </a>
+        </div>
+
         {/* Carousel Navigation Arrows */}
         <button
           onClick={() => scrollCarousel(isEn ? "left" : "right")}
           aria-label={t.reels.prev}
-          className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md border border-white/20 items-center justify-center transition-all duration-200 hover:scale-110 shadow-xl"
+          className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/95 hover:bg-white text-[#172554] backdrop-blur-md border border-[#dfd9cc] items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg hover:shadow-xl cursor-pointer"
         >
           <ChevronRight className="w-6 h-6" />
         </button>
@@ -88,7 +106,7 @@ export function ReelsSection() {
         <button
           onClick={() => scrollCarousel(isEn ? "right" : "left")}
           aria-label={t.reels.next}
-          className="hidden md:flex absolute -left-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md border border-white/20 items-center justify-center transition-all duration-200 hover:scale-110 shadow-xl"
+          className="hidden md:flex absolute -left-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/95 hover:bg-white text-[#172554] backdrop-blur-md border border-[#dfd9cc] items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg hover:shadow-xl cursor-pointer"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
@@ -102,7 +120,7 @@ export function ReelsSection() {
             <div
               key={story.id}
               onClick={() => setActiveStoryIndex(index)}
-              className="group relative flex-shrink-0 w-[240px] sm:w-[270px] lg:w-[290px] aspect-[9/16] rounded-[24px] overflow-hidden bg-slate-900 border border-white/10 hover:border-white/30 shadow-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1.5 snap-start"
+              className="group relative flex-shrink-0 w-[240px] sm:w-[270px] lg:w-[290px] aspect-[9/16] rounded-[24px] overflow-hidden bg-[#172554] border border-[#dfd9cc]/70 hover:border-[#8c7b64] shadow-lg hover:shadow-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1.5 snap-start"
             >
               {/* Poster Image */}
               <Image
@@ -115,6 +133,13 @@ export function ReelsSection() {
 
               {/* Bottom Scrim for Caption Readability */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent transition-opacity group-hover:from-black/90" />
+
+              {/* Center Play Button Indicator */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+                <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-black/40 backdrop-blur-md border border-white/40 text-white flex items-center justify-center shadow-xl transition-all duration-300 group-hover:scale-110 group-hover:bg-[#172554]/90 group-hover:border-white">
+                  <Play className="w-6 h-6 text-white fill-white translate-x-0.5" />
+                </div>
+              </div>
 
               {/* Only Caption on Video */}
               <div className={`absolute bottom-0 inset-x-0 p-5 z-10 ${isEn ? "text-left" : "text-right"}`}>
@@ -184,12 +209,21 @@ export function ReelsSection() {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
+                  <a
+                    href="https://www.instagram.com/farhadi.boutique.hotel/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 hover:opacity-85 transition-opacity group cursor-pointer"
+                    title="Instagram: @farhadi.boutique.hotel"
+                  >
                     <div className="w-7 h-7 rounded-full overflow-hidden bg-white relative border border-white/30">
                       <Image src="/images/logo.jpg" alt="Logo" fill sizes="28px" className="object-contain" />
                     </div>
-                    <span className="text-xs font-bold text-white drop-shadow">{t.reels.hotelTitle}</span>
-                  </div>
+                    <div className="flex flex-col text-right">
+                      <span className="text-xs font-bold text-white drop-shadow leading-tight">{t.reels.hotelTitle}</span>
+                      <span className="text-[10px] text-white/70 group-hover:underline leading-tight" dir="ltr">@farhadi.boutique.hotel</span>
+                    </div>
+                  </a>
 
                   <div className="flex items-center gap-2">
                     <button

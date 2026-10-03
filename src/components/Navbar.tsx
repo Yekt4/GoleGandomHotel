@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Phone, Menu, X, MessageCircle, Globe } from "lucide-react";
+import { InstagramIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
 import { BookingDialog } from "./BookingDialog";
 import { useLanguage } from "@/context/LanguageContext";
@@ -36,14 +37,14 @@ export function Navbar() {
           </div>
           <div className="flex items-center gap-5">
             <a
-              href="tel:07132220000"
+              href="tel:07132222294"
               className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
             >
               <Phone className="w-3 h-3 text-[#c59b27]" />
               <span className="font-semibold" dir="ltr">{t.nav.phone}</span>
             </a>
             <a
-              href="https://wa.me/989170000000"
+              href="https://wa.me/989173029002"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center gap-1.5 hover:text-[#25D366] transition-colors"
@@ -107,6 +108,12 @@ export function Navbar() {
               {t.nav.home}
             </a>
             <a
+              href="#reels"
+              className="text-xs xl:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors whitespace-nowrap py-1"
+            >
+              {t.nav.reels}
+            </a>
+            <a
               href="#story"
               className="text-xs xl:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors whitespace-nowrap py-1"
             >
@@ -123,12 +130,6 @@ export function Navbar() {
               className="text-xs xl:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors whitespace-nowrap py-1"
             >
               {t.nav.gallery}
-            </a>
-            <a
-              href="#reels"
-              className="text-xs xl:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors whitespace-nowrap py-1"
-            >
-              {t.nav.reels}
             </a>
             <a
               href="#amenities"
@@ -150,8 +151,20 @@ export function Navbar() {
             </a>
           </nav>
 
-          {/* Actions: Language Switcher & CTA */}
+          {/* Actions: Language Switcher, Instagram & CTA */}
           <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0 whitespace-nowrap">
+            {/* Instagram Icon Link */}
+            <a
+              href="https://www.instagram.com/farhadi.boutique.hotel/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="h-8 sm:h-9 w-8 sm:w-9 rounded-full border border-[#dfd9cc] bg-white hover:bg-[#faf8f5] text-[#172554] hover:text-[#E1306C] flex items-center justify-center transition-all cursor-pointer shadow-2xs flex-shrink-0 hover:scale-105"
+              title="اینستاگرام بوتیک هتل فرهادی"
+              aria-label="Instagram: @farhadi.boutique.hotel"
+            >
+              <InstagramIcon className="w-3.5 h-3.5" />
+            </a>
+
             {/* Language Switcher Pill */}
             <button
               type="button"
@@ -201,6 +214,13 @@ export function Navbar() {
               {t.nav.home}
             </a>
             <a
+              href="#reels"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-1 text-sm font-medium text-[#172554] hover:text-[#8c7b64]"
+            >
+              {t.nav.reels}
+            </a>
+            <a
               href="#story"
               onClick={() => setMobileMenuOpen(false)}
               className="py-1 text-sm font-medium text-[#172554] hover:text-[#8c7b64]"
@@ -220,13 +240,6 @@ export function Navbar() {
               className="py-1 text-sm font-medium text-[#172554] hover:text-[#8c7b64]"
             >
               {t.nav.gallery}
-            </a>
-            <a
-              href="#reels"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-1 text-sm font-medium text-[#172554] hover:text-[#8c7b64]"
-            >
-              {t.nav.reels}
             </a>
             <a
               href="#amenities"
@@ -267,20 +280,29 @@ export function Navbar() {
                 </span>
               </button>
               <a
-                href="tel:07132220000"
+                href="tel:07132222294"
                 className="py-1 text-xs text-[#172554] flex items-center gap-2 font-bold"
               >
                 <Phone className="w-3.5 h-3.5 text-[#172554]" />
                 <span dir="ltr">{t.nav.phone}</span>
               </a>
               <a
-                href="https://wa.me/989170000000"
+                href="https://wa.me/989173029002"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="py-1 text-xs text-[#25D366] flex items-center gap-2 font-bold"
               >
                 <MessageCircle className="w-3.5 h-3.5" />
                 <span dir="ltr">{t.nav.mobile}</span>
+              </a>
+              <a
+                href="https://www.instagram.com/farhadi.boutique.hotel/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-1 text-xs text-[#E1306C] flex items-center gap-2 font-bold"
+              >
+                <InstagramIcon className="w-3.5 h-3.5" />
+                <span dir="ltr">@farhadi.boutique.hotel</span>
               </a>
             </div>
           </div>

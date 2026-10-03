@@ -1,17 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
-import { MapPin, Navigation, ExternalLink } from "lucide-react";
+import {
+  MapPin,
+  Navigation,
+  ExternalLink,
+  ArrowUpRight,
+  Compass,
+  RotateCcw,
+} from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
+import { ATTRACTIONS_DATA } from "./HotelMap";
 
 // Dynamic import of Leaflet map to prevent SSR issues
 const HotelMap = dynamic(() => import("./HotelMap"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full min-h-[420px] bg-[#faf8f5] rounded-[16px] flex items-center justify-center text-[#555f6d] text-sm font-light">
-      Loading map...
+    <div className="w-full h-full min-h-[500px] bg-[#f0ece1]/50 rounded-[28px] flex items-center justify-center text-[#555f6d] text-sm font-medium animate-pulse">
+      در حال بارگذاری نقشه تعاملی شیراز...
     </div>
   ),
 });
@@ -21,107 +29,251 @@ export function LocationSection() {
   const t = translations[language];
   const isEn = language === "en";
 
+  const [activeAttractionIndex, setActiveAttractionIndex] = useState<number | null>(null);
+
   return (
-    <section id="location" className="py-24 md:py-36 bg-[#faf8f5] border-t border-[#e8e4db]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className={`max-w-2xl mb-14 md:mb-18 ${isEn ? "text-left" : "text-right"}`}>
-          <h2 className="text-[32px] sm:text-[44px] lg:text-[48px] font-bold leading-tight text-[#172554] tracking-tight mb-4">
-            {t.location.heading}
-          </h2>
-          <p className="text-base sm:text-lg text-[#555f6d] leading-relaxed font-light">
-            {t.location.desc}
-          </p>
+    <section id="location" className="py-20 md:py-28 bg-[#faf8f5] border-t border-[#e8e4db] overflow-hidden">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
+          <div className={`max-w-2xl ${isEn ? "text-left" : "text-right"}`}>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#172554]/5 border border-[#172554]/10 text-xs font-semibold text-[#172554] mb-3">
+              <Compass className="w-3.5 h-3.5 text-[#c59b27]" />
+              <span>{isEn ? "Strategic Heritage Location" : "موقعیت جغرافیایی و دسترسی عمارت"}</span>
+            </div>
+            <h2 className="text-[30px] sm:text-[40px] lg:text-[44px] font-bold leading-tight text-[#172554] tracking-tight mb-3">
+              {t.location.heading}
+            </h2>
+            <p className="text-sm sm:text-base text-[#555f6d] leading-relaxed font-light">
+              {t.location.desc}
+            </p>
+          </div>
+
+          {/* Direct Navigation Links */}
+          <div className="flex flex-wrap items-center gap-2">
+            <a
+              href="https://maps.google.com/?q=29.6112,52.5442"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-[#dfd9cc] bg-white hover:bg-[#faf8f5] text-xs font-semibold text-[#172554] shadow-2xs transition-all hover:scale-105"
+            >
+              <Navigation className="w-3.5 h-3.5 text-[#c59b27]" />
+              <span>{t.location.googleMaps}</span>
+            </a>
+            <a
+              href="https://neshan.org/maps/@29.6112,52.5442,16z"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-[#dfd9cc] bg-white hover:bg-[#faf8f5] text-xs font-semibold text-[#172554] shadow-2xs transition-all hover:scale-105"
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-[#8c7b64]" />
+              <span>{t.location.neshan}</span>
+            </a>
+            <a
+              href="https://balad.ir/location?latitude=29.6112&longitude=52.5442"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-[#dfd9cc] bg-white hover:bg-[#faf8f5] text-xs font-semibold text-[#172554] shadow-2xs transition-all hover:scale-105"
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-[#8c7b64]" />
+              <span>{t.location.balad}</span>
+            </a>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Info Card */}
-          <div className={`lg:col-span-5 bg-white p-7 sm:p-8 rounded-[24px] border border-[#dfd9cc] flex flex-col gap-6 shadow-sm ${isEn ? "text-left" : "text-right"}`}>
-            {/* Address Box */}
-            <div className="flex items-start gap-3.5 pb-5 border-b border-[#dfd9cc]">
-              <MapPin className="w-5 h-5 text-[#8c7b64] flex-shrink-0 mt-0.5" />
-              <div>
-                <strong className="block text-sm text-[#172554] mb-1">{t.location.addressLabel}</strong>
-                <p className="text-xs sm:text-sm text-[#555f6d] leading-relaxed font-light">
-                  {t.location.address}
-                </p>
-              </div>
-            </div>
+        {/* Main Full Map Container with Floating Landmark Selector */}
+        <div className="relative w-full h-[540px] sm:h-[620px] lg:h-[680px] rounded-[28px] sm:rounded-[32px] overflow-hidden border border-[#dfd9cc] shadow-xl bg-white">
+          {/* Interactive Leaflet Map */}
+          <div className="absolute inset-0 w-full h-full">
+            <HotelMap
+              activeAttractionIndex={activeAttractionIndex}
+              onSelectAttraction={(idx) => setActiveAttractionIndex(idx)}
+            />
+          </div>
 
-            {/* Attractions List */}
+          {/* Floating Glassmorphic Landmark & Route Control Panel (Desktop & Tablet) */}
+          <div
+            className={`hidden lg:flex absolute top-5 bottom-5 ${
+              isEn ? "left-5" : "right-5"
+            } w-[380px] xl:w-[410px] z-[400] flex-col justify-between bg-white/95 backdrop-blur-md rounded-[24px] border border-[#dfd9cc]/90 shadow-2xl p-5 overflow-hidden transition-all duration-300`}
+          >
+            {/* Panel Header */}
             <div>
-              <h3 className="text-sm font-semibold text-[#172554] mb-4">
-                {t.location.attractionsHeading}
-              </h3>
-              <div className="flex flex-col gap-3">
-                {t.location.attractions.map((att, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-center justify-between py-2 border-b border-[#f0ece1] last:border-none"
+              <div className="flex items-center justify-between pb-3 border-b border-[#dfd9cc]">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#c59b27] animate-ping" />
+                  <span className="text-xs font-bold text-[#172554]">
+                    {t.location.attractionsHeading}
+                  </span>
+                </div>
+                {activeAttractionIndex !== null && (
+                  <button
+                    onClick={() => setActiveAttractionIndex(null)}
+                    className="inline-flex items-center gap-1 text-[11px] text-[#8c7b64] hover:text-[#172554] font-medium transition-colors cursor-pointer"
+                    title={t.location.resetView}
                   >
-                    <div>
-                      <span className="block text-sm font-medium text-[#172554]">
-                        {att.name}
-                      </span>
-                      <span className="text-xs text-[#8c7b64] font-light">{att.desc}</span>
+                    <RotateCcw className="w-3 h-3" />
+                    <span>{t.location.resetView}</span>
+                  </button>
+                )}
+              </div>
+
+              {/* Interactive Helper Hint */}
+              <p className="text-[11px] text-[#8c7b64] pt-2 pb-1 font-light leading-relaxed">
+                {t.location.traceHint}
+              </p>
+            </div>
+
+            {/* Attractions List with Diagonal Connect Trigger */}
+            <div className="flex flex-col gap-2.5 my-2 overflow-y-auto pr-1 pl-1">
+              {ATTRACTIONS_DATA.map((att, idx) => {
+                const isActive = activeAttractionIndex === idx;
+                const name = isEn ? att.nameEn : att.nameFa;
+                const dist = isEn ? att.distEn : att.distFa;
+                const time = isEn ? att.timeEn : att.timeFa;
+
+                return (
+                  <button
+                    key={att.id}
+                    onClick={() =>
+                      setActiveAttractionIndex(isActive ? null : idx)
+                    }
+                    className={`group w-full text-right p-3 rounded-[16px] border transition-all duration-200 cursor-pointer flex items-center justify-between gap-2.5 ${
+                      isActive
+                        ? "bg-[#172554] border-[#172554] text-white shadow-md scale-[1.02]"
+                        : "bg-white/80 hover:bg-[#faf8f5] border-[#dfd9cc] text-[#172554] hover:border-[#c59b27]/60"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <span className="text-xl flex-shrink-0">{att.icon}</span>
+                      <div className={`min-w-0 ${isEn ? "text-left" : "text-right"}`}>
+                        <span
+                          className={`block text-xs sm:text-[13px] font-bold truncate ${
+                            isActive ? "text-white" : "text-[#172554]"
+                          }`}
+                        >
+                          {name}
+                        </span>
+                        <span
+                          className={`block text-[10px] truncate ${
+                            isActive ? "text-white/80" : "text-[#8c7b64]"
+                          }`}
+                        >
+                          {time}
+                        </span>
+                      </div>
                     </div>
-                    <span
-                      className={`text-xs px-2.5 py-1 rounded-full font-medium whitespace-nowrap ${
-                        att.highlight
-                          ? "bg-[#172554] text-white"
-                          : "bg-[#faf8f5] text-[#555f6d] border border-[#dfd9cc]"
-                      }`}
-                    >
-                      {att.time}
-                    </span>
+
+                    <div className="flex items-center gap-1.5 flex-shrink-0">
+                      <span
+                        className={`text-[11px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap ${
+                          isActive
+                            ? "bg-[#c59b27] text-white"
+                            : "bg-[#faf8f5] text-[#172554] border border-[#dfd9cc]"
+                        }`}
+                      >
+                        {dist}
+                      </span>
+                      <ArrowUpRight
+                        className={`w-4 h-4 transition-transform ${
+                          isActive
+                            ? "text-[#c59b27] translate-x-0.5 -translate-y-0.5 scale-110"
+                            : "text-[#8c7b64]/50 group-hover:text-[#172554]"
+                        }`}
+                      />
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Mansion Address Footer */}
+            <div className="pt-3 border-t border-[#dfd9cc] bg-white/40 rounded-xl p-2.5">
+              <div className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-[#c59b27] flex-shrink-0 mt-0.5" />
+                <div className={`text-[11px] ${isEn ? "text-left" : "text-right"}`}>
+                  <strong className="block font-bold text-[#172554] mb-0.5">
+                    {t.location.addressLabel}
+                  </strong>
+                  <p className="text-[#555f6d] leading-normal font-light line-clamp-2">
+                    {t.location.address}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile / Tablet Attraction Cards (< lg) */}
+        <div className="lg:hidden mt-6 flex flex-col gap-3">
+          <div className="flex items-center justify-between px-1">
+            <span className="text-xs font-bold text-[#172554]">
+              {t.location.attractionsHeading}
+            </span>
+            <span className="text-[11px] text-[#8c7b64]">
+              {t.location.traceHint}
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            {ATTRACTIONS_DATA.map((att, idx) => {
+              const isActive = activeAttractionIndex === idx;
+              const name = isEn ? att.nameEn : att.nameFa;
+              const dist = isEn ? att.distEn : att.distFa;
+              const time = isEn ? att.timeEn : att.timeFa;
+
+              return (
+                <button
+                  key={att.id}
+                  onClick={() =>
+                    setActiveAttractionIndex(isActive ? null : idx)
+                  }
+                  className={`p-3 rounded-[16px] border transition-all text-right flex items-center justify-between gap-2 cursor-pointer ${
+                    isActive
+                      ? "bg-[#172554] border-[#172554] text-white shadow-md"
+                      : "bg-white border-[#dfd9cc] text-[#172554]"
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <span className="text-lg">{att.icon}</span>
+                    <div className="min-w-0">
+                      <span className="block text-xs font-bold truncate">
+                        {name}
+                      </span>
+                      <span
+                        className={`block text-[10px] truncate ${
+                          isActive ? "text-white/80" : "text-[#8c7b64]"
+                        }`}
+                      >
+                        {time}
+                      </span>
+                    </div>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Navigation Buttons */}
-            <div className="pt-2 border-t border-[#dfd9cc]">
-              <span className="block text-xs text-[#8c7b64] font-medium mb-3">
-                {t.location.navDirect}
-              </span>
-              <div className="flex flex-wrap gap-2">
-                <a
-                  href="https://maps.google.com/?q=29.6112,52.5442"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#dfd9cc] hover:bg-[#faf8f5] text-xs font-medium text-[#172554] transition-colors"
-                >
-                  <Navigation className="w-3.5 h-3.5 text-[#8c7b64]" />
-                  {t.location.googleMaps}
-                </a>
-                <a
-                  href="https://neshan.org/maps/@29.6112,52.5442,16z"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#dfd9cc] hover:bg-[#faf8f5] text-xs font-medium text-[#172554] transition-colors"
-                >
-                  <ExternalLink className="w-3.5 h-3.5 text-[#8c7b64]" />
-                  {t.location.neshan}
-                </a>
-                <a
-                  href="https://balad.ir/location?latitude=29.6112&longitude=52.5442"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#dfd9cc] hover:bg-[#faf8f5] text-xs font-medium text-[#172554] transition-colors"
-                >
-                  <ExternalLink className="w-3.5 h-3.5 text-[#8c7b64]" />
-                  {t.location.balad}
-                </a>
-              </div>
-            </div>
+                  <span
+                    className={`text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap ${
+                      isActive
+                        ? "bg-[#c59b27] text-white"
+                        : "bg-[#faf8f5] text-[#172554] border border-[#dfd9cc]"
+                    }`}
+                  >
+                    {dist}
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
-          {/* Interactive Map */}
-          <div className="lg:col-span-7 h-[420px] sm:h-[500px] rounded-[24px] overflow-hidden border border-[#dfd9cc] shadow-sm relative">
-            <HotelMap />
-          </div>
+          {activeAttractionIndex !== null && (
+            <button
+              onClick={() => setActiveAttractionIndex(null)}
+              className="mt-1 py-2 rounded-full border border-[#dfd9cc] bg-white text-xs font-semibold text-[#172554] flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
+            >
+              <RotateCcw className="w-3.5 h-3.5 text-[#8c7b64]" />
+              <span>{t.location.resetView}</span>
+            </button>
+          )}
         </div>
       </div>
     </section>
   );
 }
-

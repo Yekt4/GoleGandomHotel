@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { Phone, MapPin, MessageCircle } from "lucide-react";
+import { InstagramIcon } from "@/components/ui/icons";
 import { BookingDialog } from "./BookingDialog";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/context/LanguageContext";
@@ -15,10 +16,10 @@ export function Footer() {
 
   const navLinks = [
     { href: "#home", label: t.nav.home },
+    { href: "#reels", label: t.nav.reels },
     { href: "#story", label: t.nav.story },
     { href: "#rooms", label: t.nav.rooms },
     { href: "#gallery", label: t.nav.gallery },
-    { href: "#reels", label: t.nav.reels },
     { href: "#amenities", label: t.nav.amenities },
     { href: "#location", label: t.nav.location },
     { href: "#contact", label: t.nav.contact },
@@ -55,63 +56,33 @@ export function Footer() {
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
-        {/* Islamic & Persian Architectural Medallion (شمسه هشت‌پر قاجاری) */}
+        {/* Boutique Hotel Logo & Brand Identity */}
         <div className="mb-5 flex flex-col items-center">
-          <div className="relative flex items-center justify-center mb-3">
-            {/* Geometric 8-Point Star (Shamseh) Vector Motif */}
-            <svg
-              width="52"
-              height="52"
-              viewBox="0 0 100 100"
-              className="text-[#8c7b64] drop-shadow-xs"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              {/* Outer decorative dashed halo */}
-              <circle
-                cx="50"
-                cy="50"
-                r="46"
-                stroke="currentColor"
-                strokeWidth="0.8"
-                strokeDasharray="3 3"
-                opacity="0.5"
-              />
-              {/* Outer square */}
-              <rect x="22" y="22" width="56" height="56" rx="2" stroke="currentColor" strokeWidth="1.2" />
-              {/* Overlapping rotated square forming 8-point Islamic star */}
-              <rect
-                x="22"
-                y="22"
-                width="56"
-                height="56"
-                rx="2"
-                stroke="currentColor"
-                strokeWidth="1.2"
-                transform="rotate(45 50 50)"
-              />
-              {/* Inner eight-point star (Khatam star) */}
-              <polygon
-                points="50,25 57,43 75,50 57,57 50,75 43,57 25,50 43,43"
-                fill="currentColor"
-                opacity="0.12"
-                stroke="currentColor"
-                strokeWidth="1.2"
-              />
-              {/* Central floral rosette ring */}
-              <circle cx="50" cy="50" r="9" stroke="currentColor" strokeWidth="1.2" fill="#faf8f5" />
-              <circle cx="50" cy="50" r="3.5" fill="currentColor" />
-            </svg>
-          </div>
+          <a
+            href="#home"
+            className="group flex flex-col items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8c7b64] rounded-2xl p-1 transition-transform"
+            aria-label={t.brand.name}
+          >
+            <div className="relative mb-3 flex items-center justify-center">
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border border-[#dfd9cc] bg-white transition-all duration-300 group-hover:scale-105 group-hover:border-[#8c7b64]">
+                <Image
+                  src="/images/logo.jpg"
+                  alt={t.brand.name}
+                  fill
+                  sizes="(max-width: 640px) 64px, 80px"
+                  className="object-contain p-1"
+                />
+              </div>
+            </div>
 
-          {/* Hotel Identity */}
-          <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[#172554] mb-1">
-            {t.brand.name}
-          </h3>
-          <span className="text-xs text-[#8c7b64] font-medium tracking-wide">
-            {t.brand.subtitle}
-          </span>
+            {/* Hotel Identity */}
+            <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[#172554] mb-1 transition-colors group-hover:text-[#8c7b64]">
+              {t.brand.name}
+            </h3>
+            <span className="text-xs text-[#8c7b64] font-medium tracking-wide">
+              {t.brand.subtitle}
+            </span>
+          </a>
         </div>
 
         {/* Short Editorial Heritage Note */}
@@ -142,7 +113,7 @@ export function Footer() {
         {/* Minimal Direct Contacts & Quick Action */}
         <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-[#555f6d] mb-8 pb-4">
           <a
-            href={`tel:${isEn ? "+987132220000" : "07132220000"}`}
+            href={`tel:${isEn ? "+987132222294" : "07132222294"}`}
             className="flex items-center gap-2 hover:text-[#172554] transition-colors font-semibold"
           >
             <Phone className="w-3.5 h-3.5 text-[#8c7b64]" />
@@ -152,13 +123,26 @@ export function Footer() {
           <span className="text-[#8c7b64]/40 select-none hidden sm:inline">·</span>
 
           <a
-            href="https://wa.me/989170000000"
+            href="https://wa.me/989173029002"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 hover:text-[#25D366] transition-colors font-semibold"
           >
             <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
             <span dir="ltr">{t.nav.mobile}</span>
+          </a>
+
+          <span className="text-[#8c7b64]/40 select-none hidden sm:inline">·</span>
+
+          <a
+            href="https://www.instagram.com/farhadi.boutique.hotel/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 hover:text-[#E1306C] transition-colors font-semibold group"
+            aria-label="Instagram: @farhadi.boutique.hotel"
+          >
+            <InstagramIcon className="w-3.5 h-3.5 text-[#E1306C] transition-transform group-hover:scale-110" />
+            <span dir="ltr">@farhadi.boutique.hotel</span>
           </a>
 
           <span className="text-[#8c7b64]/40 select-none hidden sm:inline">·</span>

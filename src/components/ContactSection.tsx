@@ -2,6 +2,7 @@
 
 import React from "react";
 import { MessageCircle } from "lucide-react";
+import { InstagramIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 
@@ -35,7 +36,7 @@ export function ContactSection() {
             <div className="py-3">
               <span className="block text-xs text-[#8c7b64] font-medium mb-1">{t.contact.landlineLabel}</span>
               <a
-                href={`tel:${isEn ? "+987132220000" : "07132220000"}`}
+                href={`tel:${isEn ? "+987132222294" : "07132222294"}`}
                 className="text-2xl sm:text-3xl font-bold text-[#172554] hover:text-[#0f172a] transition-colors inline-block"
                 dir="ltr"
               >
@@ -47,7 +48,7 @@ export function ContactSection() {
             <div className="py-3 border-t border-[#dfd9cc]">
               <span className="block text-xs text-[#8c7b64] font-medium mb-1">{t.contact.mobileLabel}</span>
               <a
-                href={`tel:${isEn ? "+989170000000" : "09170000000"}`}
+                href={`tel:${isEn ? "+989173029002" : "09173029002"}`}
                 className="text-2xl sm:text-3xl font-bold text-[#172554] hover:text-[#0f172a] transition-colors inline-block"
                 dir="ltr"
               >
@@ -55,20 +56,30 @@ export function ContactSection() {
               </a>
             </div>
 
-            {/* WhatsApp Direct Action */}
-            <div className="pt-2">
+            {/* Direct Channels: WhatsApp & Instagram */}
+            <div className="pt-2 flex flex-wrap items-center gap-3">
               <a
-                href={`https://wa.me/989170000000?text=${encodeURIComponent(
+                href={`https://wa.me/989173029002?text=${encodeURIComponent(
                   isEn
                     ? "Hello, I would like to inquire about booking at Farhadi Boutique Hotel Shiraz."
                     : "سلام، جهت رزرو اقامت در بوتیک هتل فرهادی شیراز پیام می‌دهم."
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-12 px-6 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white inline-flex items-center gap-2.5 font-semibold text-sm transition-colors shadow-sm"
+                className="h-12 px-6 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white inline-flex items-center gap-2.5 font-semibold text-sm transition-colors shadow-sm cursor-pointer"
               >
                 <MessageCircle className="w-5 h-5" />
                 <span>{t.contact.whatsappBtn}</span>
+              </a>
+
+              <a
+                href="https://www.instagram.com/farhadi.boutique.hotel/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-12 px-6 rounded-full bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] hover:opacity-90 text-white inline-flex items-center gap-2.5 font-semibold text-sm transition-all shadow-sm hover:scale-[1.02] cursor-pointer"
+              >
+                <InstagramIcon className="w-5 h-5 text-white" />
+                <span>{t.contact.instagramBtn}</span>
               </a>
             </div>
           </div>

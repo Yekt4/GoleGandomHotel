@@ -78,6 +78,19 @@ export function Hero() {
             </Button>
           }
         />
+
+        {/* Snapp Pay 4-Installment Hero Badge */}
+        <div className="mt-5 inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-black/50 hover:bg-black/65 backdrop-blur-md border border-[#0085FF]/60 text-white shadow-xl transition-all">
+          <div className="w-10 h-5 relative flex-shrink-0">
+            <Image src="/images/snapp-pay.png" alt="اسنپ پی" fill className="object-contain" />
+          </div>
+          <span className="text-[11px] sm:text-xs font-medium text-white/95">
+            {t.hero.snappPayHeroBadge}
+          </span>
+          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#0085FF] text-white whitespace-nowrap">
+            {language === "fa" ? "۴ قسطه" : "4x Pay"}
+          </span>
+        </div>
       </div>
 
       {/* Slide Progress Indicators */}
@@ -105,7 +118,7 @@ export function Hero() {
       {/* Subtle Scroll Hint */}
       <div className="relative z-10 pb-6">
         <a
-          href="#story"
+          href="#reels"
           aria-label={t.hero.scrollHint}
           className="text-white/60 hover:text-white transition-colors block p-2"
         >

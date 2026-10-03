@@ -21,6 +21,9 @@ export default function Home() {
         {/* Cinematic Hero */}
         <Hero />
 
+        {/* Dynamic Instagram Reels Showcase */}
+        <ReelsSection />
+
         {/* Architecture & Heritage Philosophy (Samara Style) */}
         <ArchitecturePhilosophy />
 
@@ -29,9 +32,6 @@ export default function Home() {
 
         {/* Photo-Centric Categorized Gallery */}
         <GallerySection />
-
-        {/* Dynamic Instagram Reels Showcase */}
-        <ReelsSection />
 
         {/* Hotel Amenities */}
         <AmenitiesSection />

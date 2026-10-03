@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { BookingDialog } from "./BookingDialog";
-import { MessageCircle, Phone } from "lucide-react";
+import { MessageCircle, Phone, Sparkles } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 
@@ -43,6 +43,42 @@ export function RoomsSection() {
                 </Button>
               }
             />
+          </div>
+        </div>
+
+        {/* Minimal Harmonious Snapp Pay 4-Installment Banner */}
+        <div className="mb-14 p-5 sm:p-6 rounded-[22px] bg-[#faf8f5] border border-[#dfd9cc] flex flex-col md:flex-row items-center justify-between gap-5">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-right">
+            <div className="w-14 h-9 sm:w-16 sm:h-10 relative bg-white rounded-xl p-1.5 border border-[#dfd9cc] flex-shrink-0 flex items-center justify-center">
+              <Image
+                src="/images/snapp-pay.png"
+                alt="اسنپ پی Snapp Pay"
+                fill
+                className="object-contain p-0.5"
+              />
+            </div>
+            <div>
+              <div className="flex items-center gap-2 justify-center sm:justify-start mb-1">
+                <span className="text-xs font-bold text-[#172554]">
+                  {t.rooms.snappPayBannerTitle}
+                </span>
+                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[#172554]/10 text-[#172554]">
+                  {t.rooms.snappPayShortTag}
+                </span>
+              </div>
+              <p className="text-xs text-[#555f6d] leading-relaxed font-light">
+                {t.rooms.snappPayBannerDesc}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex-shrink-0 w-full sm:w-auto">
+            <Button
+              onClick={() => handleOpenBooking(isEn ? "Snapp! Pay 4-Installments Booking" : "رزرو ۴ قسطه اسنپ‌پی")}
+              className="w-full sm:w-auto h-10 px-6 rounded-full bg-[#172554] hover:bg-[#0f172a] text-white text-xs font-semibold shadow-2xs transition-colors cursor-pointer"
+            >
+              <span>{t.rooms.snappPayBtn}</span>
+            </Button>
           </div>
         </div>
 
@@ -101,7 +137,7 @@ export function RoomsSection() {
                     </div>
 
                     {/* Highlights - Editorial Typography, No Checkmark Icons */}
-                    <ul className="space-y-2.5 mb-8 text-xs sm:text-sm text-[#475569] font-light">
+                    <ul className="space-y-2.5 mb-6 text-xs sm:text-sm text-[#475569] font-light">
                       {room.highlights.map((item, hIdx) => (
                         <li key={hIdx} className="flex items-start gap-2.5">
                           <span className="text-[#8c7b64] font-bold select-none">—</span>
@@ -109,6 +145,22 @@ export function RoomsSection() {
                         </li>
                       ))}
                     </ul>
+
+                    {/* Minimal Harmonious Snapp Pay Note */}
+                    <div className="mb-6 py-2 px-3.5 rounded-xl bg-[#faf8f5] border border-[#e8e4db] flex items-center justify-between gap-2 text-xs">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-6 h-4 relative flex-shrink-0">
+                          <Image src="/images/snapp-pay.png" alt="اسنپ پی" fill className="object-contain" />
+                        </div>
+                        <span className="text-[#8c7b64]/30 select-none hidden sm:inline">|</span>
+                        <span className="font-medium text-[#172554]">
+                          {isEn ? "Pay in 4 installments with Snapp! Pay" : "امکان پرداخت در ۴ قسط با اسنپ‌پی"}
+                        </span>
+                      </div>
+                      <span className="text-[11px] text-[#8c7b64] font-light whitespace-nowrap">
+                        {isEn ? "0% fee · No check" : "بدون کارمزد و ضامن"}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Actions */}
@@ -122,7 +174,7 @@ export function RoomsSection() {
                     </Button>
 
                     <a
-                      href={`https://wa.me/989170000000?text=${encodeURIComponent(
+                      href={`https://wa.me/989173029002?text=${encodeURIComponent(
                         isEn
                           ? `Hello, I would like to inquire about booking ${room.title} at Farhadi Boutique Hotel Shiraz.`
                           : `سلام، درخواست رزرو ${room.title} در بوتیک هتل فرهادی شیراز را دارم.`

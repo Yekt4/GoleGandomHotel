@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import {
   Dialog,
   DialogContent,
@@ -38,8 +39,8 @@ export function BookingDialog({
 
   const whatsappMessage = encodeURIComponent(
     isEn
-      ? `Hello, I would like to inquire about booking ${currentRoom} at Farhadi Boutique Hotel Shiraz.`
-      : `سلام و درود، جهت استعلام و هماهنگی اقامت در ${currentRoom} بوتیک هتل فرهادی شیراز پیام می‌دهم.`
+      ? `Hello, I would like to inquire about booking ${currentRoom} (including 4-installment Snapp! Pay option) at Farhadi Boutique Hotel Shiraz.`
+      : `سلام و درود، جهت استعلام و هماهنگی اقامت در ${currentRoom} بوتیک هتل فرهادی شیراز (امکان پرداخت ۴ قسطه اسنپ‌پی) پیام می‌دهم.`
   );
 
   const renderedTrigger = trigger && React.isValidElement(trigger)
@@ -68,14 +69,29 @@ export function BookingDialog({
             )}
           </DialogHeader>
 
-          <p className="text-xs sm:text-sm leading-6 text-[#555f6d] mt-2 mb-6 font-light">
+          {/* Minimal Harmonious Snapp Pay Note in Dialog */}
+          <div className="mt-4 py-2 px-3.5 rounded-xl bg-[#faf8f5] border border-[#e8e4db] flex items-center justify-between gap-2 text-xs">
+            <div className="flex items-center gap-2.5">
+              <div className="w-7 h-4 relative flex-shrink-0">
+                <Image src="/images/snapp-pay.png" alt="اسنپ پی Snapp Pay" fill className="object-contain" />
+              </div>
+              <span className="font-semibold text-[#172554]">
+                {isEn ? "Pay in 4 installments with Snapp! Pay" : "امکان پرداخت در ۴ قسط ماهانه با اسنپ‌پی"}
+              </span>
+            </div>
+            <span className="text-[11px] text-[#8c7b64] font-light whitespace-nowrap">
+              {isEn ? "0% fee · No check" : "بدون کارمزد و ضامن"}
+            </span>
+          </div>
+
+          <p className="text-xs sm:text-sm leading-6 text-[#555f6d] mt-3 mb-5 font-light">
             {t.booking.desc}
           </p>
 
           <div className="space-y-3">
             {/* WhatsApp Direct */}
             <a
-              href={`https://wa.me/989170000000?text=${whatsappMessage}`}
+              href={`https://wa.me/989173029002?text=${whatsappMessage}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-between p-4 rounded-[16px] bg-[#25D366] hover:bg-[#20ba59] text-white transition-colors shadow-sm"
@@ -91,7 +107,7 @@ export function BookingDialog({
 
             {/* Landline */}
             <a
-              href={`tel:${isEn ? "+987132220000" : "07132220000"}`}
+              href={`tel:${isEn ? "+987132222294" : "07132222294"}`}
               className="flex items-center justify-between p-4 rounded-[16px] bg-[#faf8f5] hover:bg-[#f3efe6] border border-[#dfd9cc] text-[#172554] transition-colors"
             >
               <div className="flex items-center gap-3">
@@ -103,7 +119,7 @@ export function BookingDialog({
 
             {/* Mobile */}
             <a
-              href={`tel:${isEn ? "+989170000000" : "09170000000"}`}
+              href={`tel:${isEn ? "+989173029002" : "09173029002"}`}
               className="flex items-center justify-between p-4 rounded-[16px] bg-[#faf8f5] hover:bg-[#f3efe6] border border-[#dfd9cc] text-[#172554] transition-colors"
             >
               <div className="flex items-center gap-3">
