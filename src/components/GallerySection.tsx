@@ -1,12 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import Image from "next/image";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { ChevronLeft, ChevronRight, X, Maximize2 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
@@ -18,6 +13,8 @@ export function GallerySection() {
 
   const [filter, setFilter] = useState<string>("all");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const activeThumbRef = useRef<HTMLButtonElement | null>(null);
 
   const filteredItems = useMemo(() => {
     return filter === "all"
@@ -42,6 +39,28 @@ export function GallerySection() {
     if (lightboxIndex === null) return;
     setLightboxIndex((lightboxIndex - 1 + filteredItems.length) % filteredItems.length);
   }, [lightboxIndex, filteredItems.length]);
+
+  // Lock body scroll when gallery is active
+  useEffect(() => {
+    if (lightboxIndex !== null) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [lightboxIndex]);
+
+  // Auto-scroll active thumbnail into view
+  useEffect(() => {
+    if (lightboxIndex !== null && activeThumbRef.current) {
+      activeThumbRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    }
+  }, [lightboxIndex]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -70,6 +89,29 @@ export function GallerySection() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [lightboxIndex, showNext, showPrev, isEn]);
+
+  // Touch swipe support for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart === null) return;
+    const touchEnd = e.changedTouches[0].clientX;
+    const diff = touchStart - touchEnd;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        // Swiped left
+        if (isEn) showNext();
+        else showNext();
+      } else {
+        // Swiped right
+        if (isEn) showPrev();
+        else showPrev();
+      }
+    }
+    setTouchStart(null);
+  };
 
   // Count items per category
   const getCategoryCount = (categoryId: string) => {
@@ -200,42 +242,52 @@ export function GallerySection() {
         </div>
       </div>
 
-      {/* Modern Minimalist Lightbox Modal */}
+      {/* Full-Screen Immersive Interactive Photo Gallery Viewer */}
       {lightboxIndex !== null && (
-        <Dialog open={true} onOpenChange={() => closeLightbox()}>
-          <DialogContent
-            className="max-w-5xl w-[96vw] max-h-[92vh] p-4 sm:p-6 bg-[#0a1120]/95 backdrop-blur-2xl border border-white/15 text-white overflow-hidden rounded-[28px] shadow-2xl flex flex-col justify-between"
-            aria-describedby={undefined}
-          >
-            <DialogTitle className="sr-only">
-              {filteredItems[lightboxIndex].title}
-            </DialogTitle>
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={filteredItems[lightboxIndex]?.title || "Gallery Viewer"}
+          className="fixed inset-0 z-50 bg-[#070b14]/98 backdrop-blur-2xl flex flex-col justify-between text-white select-none animate-in fade-in duration-200"
+        >
+          {/* Top Bar: Title, Counter & Close */}
+          <div className="relative z-20 w-full px-4 sm:px-8 py-4 flex items-center justify-between border-b border-white/10 bg-black/40 backdrop-blur-md">
+            <div className={`flex items-center gap-3.5 max-w-[70%] ${isEn ? "text-left" : "text-right"}`}>
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-white/15 text-[#93c5fd] border border-white/20 whitespace-nowrap">
+                {filteredItems[lightboxIndex].categoryName}
+              </span>
+              <p className="text-xs sm:text-sm font-medium text-white/90 truncate hidden sm:block">
+                {filteredItems[lightboxIndex].title}
+              </p>
+            </div>
 
-            {/* Lightbox Header Bar */}
-            <div className="flex items-center justify-between z-20 pb-3 border-b border-white/10">
-              <div className="flex items-center gap-3">
-                <span className="text-xs font-semibold px-3 py-1 rounded-full bg-white/10 text-[#93c5fd] border border-white/15">
-                  {filteredItems[lightboxIndex].categoryName}
-                </span>
-                <span className="text-xs text-white/60 font-mono">
-                  {formatNumber(lightboxIndex + 1)} {t.gallery.of} {formatNumber(filteredItems.length)}
-                </span>
-              </div>
+            <div className="flex items-center gap-3">
+              {/* Photo Counter */}
+              <span className="text-xs sm:text-sm font-mono text-white/70 bg-white/10 px-3 py-1 rounded-full border border-white/15">
+                {formatNumber(lightboxIndex + 1)} {t.gallery.of} {formatNumber(filteredItems.length)}
+              </span>
 
               {/* Close Button */}
               <button
                 type="button"
                 onClick={closeLightbox}
-                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-white"
+                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-white hover:scale-105"
                 aria-label={t.gallery.close}
                 title={t.gallery.close}
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
+          </div>
 
-            {/* Main Image Stage */}
-            <div className="relative w-full h-[55vh] sm:h-[65vh] my-auto flex items-center justify-center select-none">
+          {/* Main Stage: Large High-Fidelity Image with Next / Prev */}
+          <div
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            className="relative flex-1 w-full flex items-center justify-center p-2 sm:p-6 overflow-hidden touch-pan-y"
+          >
+            {/* Main Stage Image */}
+            <div className="relative w-full h-full max-h-[62vh] sm:max-h-[68vh] flex items-center justify-center">
               <Image
                 src={filteredItems[lightboxIndex].src}
                 alt={filteredItems[lightboxIndex].title}
@@ -244,43 +296,77 @@ export function GallerySection() {
                 className="object-contain"
                 sizes="100vw"
               />
-
-              {/* Navigation Buttons */}
-              <button
-                type="button"
-                onClick={isEn ? showPrev : showPrev}
-                className="absolute top-1/2 -translate-y-1/2 left-2 sm:left-4 w-11 h-11 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all z-20 cursor-pointer shadow-lg hover:scale-105 focus-visible:outline-2 focus-visible:outline-white"
-                aria-label={isEn ? t.gallery.prev : t.gallery.next}
-                title={isEn ? t.gallery.prev : t.gallery.next}
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-
-              <button
-                type="button"
-                onClick={isEn ? showNext : showNext}
-                className="absolute top-1/2 -translate-y-1/2 right-2 sm:right-4 w-11 h-11 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all z-20 cursor-pointer shadow-lg hover:scale-105 focus-visible:outline-2 focus-visible:outline-white"
-                aria-label={isEn ? t.gallery.next : t.gallery.prev}
-                title={isEn ? t.gallery.next : t.gallery.prev}
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
             </div>
 
-            {/* Caption and Keyboard Shortcuts Hint */}
-            <div className={`pt-3 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 ${isEn ? "text-left" : "text-right"}`}>
-              <p className="text-xs sm:text-sm font-medium text-white/90">
+            {/* Left Navigation Button */}
+            <button
+              type="button"
+              onClick={isEn ? showPrev : showNext}
+              className="absolute top-1/2 -translate-y-1/2 left-3 sm:left-6 w-12 h-12 rounded-full bg-black/50 hover:bg-black/85 backdrop-blur-md border border-white/25 text-white flex items-center justify-center transition-all z-20 cursor-pointer shadow-2xl hover:scale-110 focus-visible:outline-2 focus-visible:outline-white"
+              aria-label={isEn ? t.gallery.prev : t.gallery.next}
+              title={isEn ? t.gallery.prev : t.gallery.next}
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            {/* Right Navigation Button */}
+            <button
+              type="button"
+              onClick={isEn ? showNext : showPrev}
+              className="absolute top-1/2 -translate-y-1/2 right-3 sm:right-6 w-12 h-12 rounded-full bg-black/50 hover:bg-black/85 backdrop-blur-md border border-white/25 text-white flex items-center justify-center transition-all z-20 cursor-pointer shadow-2xl hover:scale-110 focus-visible:outline-2 focus-visible:outline-white"
+              aria-label={isEn ? t.gallery.next : t.gallery.prev}
+              title={isEn ? t.gallery.next : t.gallery.prev}
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Bottom Bar: Caption + Interactive Filmstrip Thumbnails */}
+          <div className="relative z-20 w-full bg-black/60 backdrop-blur-xl border-t border-white/10 pt-3 pb-4 px-4 sm:px-8 flex flex-col gap-3">
+            {/* Active Photo Caption Title */}
+            <div className={`w-full flex items-center justify-between ${isEn ? "text-left" : "text-right"}`}>
+              <p className="text-xs sm:text-sm font-medium text-white/95 truncate">
                 {filteredItems[lightboxIndex].title}
               </p>
-
-              <div className="hidden sm:flex items-center gap-3 text-[11px] text-white/50">
+              <div className="hidden sm:flex items-center gap-2 text-[11px] text-white/50 flex-shrink-0">
                 <span>{t.gallery.arrowsHint}</span>
                 <span>·</span>
                 <span>{t.gallery.escHint}</span>
               </div>
             </div>
-          </DialogContent>
-        </Dialog>
+
+            {/* Filmstrip / Thumbnail Row: Browse Entire Gallery Directly */}
+            <div
+              className="w-full flex items-center justify-start sm:justify-center gap-2.5 sm:gap-3 overflow-x-auto py-1 scrollbar-none [scrollbar-width:none]"
+            >
+              {filteredItems.map((thumbItem, thumbIdx) => {
+                const isCurrent = thumbIdx === lightboxIndex;
+                return (
+                  <button
+                    key={thumbItem.id}
+                    ref={isCurrent ? activeThumbRef : null}
+                    type="button"
+                    onClick={() => setLightboxIndex(thumbIdx)}
+                    aria-label={thumbItem.title}
+                    className={`relative flex-shrink-0 w-14 sm:w-18 h-10 sm:h-12 rounded-lg sm:rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${
+                      isCurrent
+                        ? "ring-2 ring-white ring-offset-2 ring-offset-[#070b14] scale-105 opacity-100 shadow-lg"
+                        : "opacity-45 hover:opacity-90 border border-white/15"
+                    }`}
+                  >
+                    <Image
+                      src={thumbItem.src}
+                      alt={thumbItem.title}
+                      fill
+                      sizes="72px"
+                      className="object-cover"
+                    />
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
       )}
     </section>
   );
