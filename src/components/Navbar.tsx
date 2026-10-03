@@ -59,16 +59,18 @@ export function Navbar() {
       <header
         className={`fixed z-50 transition-all duration-300 ease-out ${
           scrolled
-            ? "top-4 inset-x-0 mx-auto w-[92%] sm:w-[88%] max-w-4xl bg-white/95 backdrop-blur-xl rounded-full shadow-lg border border-[#dfd9cc] px-4 sm:px-6 py-2.5"
+            ? `top-3 sm:top-4 inset-x-0 mx-auto w-[calc(100%-1.5rem)] lg:w-max max-w-[96vw] bg-white/95 backdrop-blur-xl shadow-[0_10px_35px_-5px_rgba(23,37,84,0.12)] border border-[#dfd9cc] px-3.5 sm:px-5 lg:px-6 py-2 sm:py-2.5 ${
+                mobileMenuOpen ? "rounded-2xl" : "rounded-full"
+              }`
             : "top-8 inset-x-0 w-full bg-white/95 backdrop-blur-md border-b border-[#dfd9cc] px-4 sm:px-8 py-3"
         }`}
       >
-        <div className="w-full flex items-center justify-between">
+        <div className="w-full flex items-center justify-between gap-3 sm:gap-4 lg:gap-8">
           {/* Brand Logo & Name */}
-          <a href="#home" className="flex items-center gap-2.5 group flex-shrink-0">
+          <a href="#home" className="flex items-center gap-2 sm:gap-2.5 group flex-shrink-0 whitespace-nowrap">
             <div
-              className={`relative rounded-full overflow-hidden border border-[#dfd9cc] bg-white flex items-center justify-center transition-all ${
-                scrolled ? "w-9 h-9" : "w-11 h-11"
+              className={`relative rounded-full overflow-hidden border border-[#dfd9cc] bg-white flex items-center justify-center transition-all flex-shrink-0 ${
+                scrolled ? "w-8 h-8 sm:w-9 sm:h-9" : "w-10 h-10 sm:w-11 sm:h-11"
               }`}
             >
               <Image
@@ -80,16 +82,16 @@ export function Navbar() {
                 priority
               />
             </div>
-            <div className={`flex flex-col ${isEn ? "text-left" : "text-right"}`}>
+            <div className={`flex flex-col whitespace-nowrap ${isEn ? "text-left" : "text-right"}`}>
               <span
-                className={`font-black tracking-tight text-[#172554] transition-all ${
-                  scrolled ? "text-base sm:text-lg" : "text-lg sm:text-xl"
+                className={`font-bold tracking-tight text-[#172554] transition-all whitespace-nowrap ${
+                  scrolled ? "text-sm sm:text-base" : "text-base sm:text-xl font-black"
                 }`}
               >
                 {t.brand.name}
               </span>
               {!scrolled && (
-                <span className="hidden sm:block text-[10px] text-[#8c7b64]">
+                <span className="hidden sm:block text-[10px] text-[#8c7b64] whitespace-nowrap">
                   {t.brand.subtitle}
                 </span>
               )}
@@ -97,82 +99,82 @@ export function Navbar() {
           </a>
 
           {/* Desktop Nav - Clean & Centered */}
-          <nav className="hidden md:flex items-center gap-5 lg:gap-7 text-center">
+          <nav className="hidden lg:flex items-center gap-3.5 xl:gap-5 text-center flex-nowrap whitespace-nowrap">
             <a
               href="#home"
-              className="text-xs sm:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors"
+              className="text-xs xl:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors whitespace-nowrap py-1"
             >
               {t.nav.home}
             </a>
             <a
               href="#story"
-              className="text-xs sm:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors"
+              className="text-xs xl:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors whitespace-nowrap py-1"
             >
               {t.nav.story}
             </a>
             <a
               href="#rooms"
-              className="text-xs sm:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors"
+              className="text-xs xl:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors whitespace-nowrap py-1"
             >
               {t.nav.rooms}
             </a>
             <a
               href="#gallery"
-              className="text-xs sm:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors"
+              className="text-xs xl:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors whitespace-nowrap py-1"
             >
               {t.nav.gallery}
             </a>
             <a
               href="#reels"
-              className="text-xs sm:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors"
+              className="text-xs xl:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors whitespace-nowrap py-1"
             >
               {t.nav.reels}
             </a>
             <a
               href="#amenities"
-              className="text-xs sm:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors"
+              className="text-xs xl:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors whitespace-nowrap py-1"
             >
               {t.nav.amenities}
             </a>
             <a
               href="#location"
-              className="text-xs sm:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors"
+              className="text-xs xl:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors whitespace-nowrap py-1"
             >
               {t.nav.location}
             </a>
             <a
               href="#contact"
-              className="text-xs sm:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors"
+              className="text-xs xl:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors whitespace-nowrap py-1"
             >
               {t.nav.contact}
             </a>
           </nav>
 
           {/* Actions: Language Switcher & CTA */}
-          <div className="flex items-center gap-2 flex-shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0 whitespace-nowrap">
             {/* Language Switcher Pill */}
             <button
               type="button"
               onClick={toggleLanguage}
-              className="h-9 px-3 rounded-full border border-[#dfd9cc] bg-white hover:bg-[#faf8f5] text-[#172554] text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
+              className="h-8 sm:h-9 px-2.5 sm:px-3 rounded-full border border-[#dfd9cc] bg-white hover:bg-[#faf8f5] text-[#172554] text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer shadow-2xs whitespace-nowrap flex-shrink-0"
               title={isEn ? "تغییر زبان به فارسی" : "Switch language to English"}
               aria-label="Language switcher"
             >
-              <Globe className="w-3.5 h-3.5 text-[#8c7b64]" />
-              <span className="font-bold">{isEn ? "فارسی" : "EN"}</span>
+              <Globe className="w-3.5 h-3.5 text-[#8c7b64] flex-shrink-0" />
+              <span className="font-bold whitespace-nowrap">{isEn ? "فارسی" : "EN"}</span>
             </button>
 
             <BookingDialog
               trigger={
                 <Button
-                  className={`bg-[#172554] hover:bg-[#0f172a] text-white font-medium transition-all shadow-sm cursor-pointer ${
+                  className={`bg-[#172554] hover:bg-[#0f172a] text-white font-medium transition-all shadow-sm cursor-pointer whitespace-nowrap flex-shrink-0 ${
                     scrolled
-                      ? "rounded-full px-4 sm:px-5 py-1.5 h-9 text-xs sm:text-sm"
-                      : "rounded-full px-5 py-2 h-10 text-sm"
+                      ? "rounded-full px-3.5 sm:px-4.5 py-1.5 h-8 sm:h-9 text-xs sm:text-xs"
+                      : "rounded-full px-4 sm:px-5 py-2 h-9 sm:h-10 text-xs sm:text-sm"
                   }`}
                 >
-                  <Phone className="w-3.5 h-3.5 text-white/80" />
-                  <span>{t.nav.bookBtn}</span>
+                  <Phone className="w-3.5 h-3.5 text-white/80 flex-shrink-0" />
+                  <span className="whitespace-nowrap">{t.nav.bookBtn}</span>
                 </Button>
               }
             />
@@ -180,7 +182,7 @@ export function Navbar() {
             {/* Mobile menu toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-[#172554]"
+              className="lg:hidden p-1.5 sm:p-2 text-[#172554] hover:bg-slate-100 rounded-full transition-colors cursor-pointer flex-shrink-0"
               aria-label="منو"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -190,7 +192,7 @@ export function Navbar() {
 
         {/* Mobile dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-3 pt-3 border-t border-[#dfd9cc] bg-white/95 rounded-2xl p-4 shadow-lg flex flex-col gap-2.5">
+          <div className="lg:hidden mt-3 pt-3 border-t border-[#dfd9cc] bg-white/95 rounded-2xl p-4 shadow-lg flex flex-col gap-2.5">
             <a
               href="#home"
               onClick={() => setMobileMenuOpen(false)}
@@ -269,7 +271,7 @@ export function Navbar() {
                 className="py-1 text-xs text-[#172554] flex items-center gap-2 font-bold"
               >
                 <Phone className="w-3.5 h-3.5 text-[#172554]" />
-                <span dir="ltr">۰۷۱-۳۲۲۲۰۰۰۰</span>
+                <span dir="ltr">{t.nav.phone}</span>
               </a>
               <a
                 href="https://wa.me/989170000000"
@@ -278,7 +280,7 @@ export function Navbar() {
                 className="py-1 text-xs text-[#25D366] flex items-center gap-2 font-bold"
               >
                 <MessageCircle className="w-3.5 h-3.5" />
-                <span dir="ltr">۰۹۱۷-۰۰۰-۰۰۰۰</span>
+                <span dir="ltr">{t.nav.mobile}</span>
               </a>
             </div>
           </div>
