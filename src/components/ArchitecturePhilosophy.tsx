@@ -2,9 +2,6 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { BookingDialog } from "./BookingDialog";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 
@@ -144,38 +141,6 @@ export function ArchitecturePhilosophy() {
           })}
         </div>
 
-        {/* Quiet Editorial Reservation Note */}
-        <div className="mt-28 sm:mt-36 pt-10 border-t border-[#dfd9cc] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <div className={`max-w-xl ${isEn ? "text-left" : "text-right"}`}>
-            <h3 className="text-xl sm:text-2xl font-bold text-[#172554] mb-2">
-              {t.story.calloutTitle}
-            </h3>
-            <p className="text-sm text-[#555f6d] font-light leading-relaxed">
-              {t.story.calloutDesc}
-            </p>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <BookingDialog
-              trigger={
-                <Button className="h-11 px-6 rounded-full bg-[#172554] text-white hover:bg-[#0f172a] font-semibold text-sm cursor-pointer shadow-sm">
-                  {t.story.reserveDirect}
-                </Button>
-              }
-            />
-            <a
-              href="#rooms"
-              className="h-11 px-5 rounded-full text-[#172554] hover:bg-[#172554]/5 font-medium text-sm border border-[#dfd9cc] flex items-center gap-1.5 transition-colors"
-            >
-              <span>{t.story.viewRooms}</span>
-              {isEn ? (
-                <ArrowRight className="w-3.5 h-3.5" />
-              ) : (
-                <ArrowLeft className="w-3.5 h-3.5" />
-              )}
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   );

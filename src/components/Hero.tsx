@@ -24,7 +24,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative w-full h-screen min-h-[580px] flex flex-col justify-between items-center overflow-hidden bg-[#0a1120]"
+      className="relative w-full h-[100svh] min-h-[560px] flex flex-col justify-between items-center overflow-hidden bg-[#0a1120]"
     >
       {/* Cinematic Crossfading Background Images */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
@@ -80,14 +80,14 @@ export function Hero() {
         />
 
         {/* Snapp Pay 4-Installment Hero Badge */}
-        <div className="mt-5 inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-black/50 hover:bg-black/65 backdrop-blur-md border border-[#0085FF]/60 text-white shadow-xl transition-all">
-          <div className="w-10 h-5 relative flex-shrink-0">
+        <div className="mt-4 sm:mt-5 max-w-[94vw] inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-black/55 backdrop-blur-md border border-[#0085FF]/50 text-white shadow-xl transition-all">
+          <div className="w-8 sm:w-10 h-4 sm:h-5 relative flex-shrink-0">
             <Image src="/images/snapp-pay.png" alt="اسنپ پی" fill className="object-contain" />
           </div>
-          <span className="text-[11px] sm:text-xs font-medium text-white/95">
+          <span className="text-[10px] sm:text-xs font-medium text-white/95 truncate sm:whitespace-normal">
             {t.hero.snappPayHeroBadge}
           </span>
-          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#0085FF] text-white whitespace-nowrap">
+          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#0085FF] text-white whitespace-nowrap flex-shrink-0">
             {language === "fa" ? "۴ قسطه" : "4x Pay"}
           </span>
         </div>

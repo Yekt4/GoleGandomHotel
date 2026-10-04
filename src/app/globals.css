@@ -78,6 +78,8 @@
     text-align: right;
     scroll-behavior: smooth;
     font-family: 'Estedad', system-ui, -apple-system, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
   }
 
   html[dir="ltr"] {
@@ -96,6 +98,25 @@
 
   input, button, select, textarea {
     font-family: 'Estedad', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Minimum 16px font size to prevent iOS Safari auto-zoom */
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+
+  /* Eliminate 300ms tap delay & long-press callouts on controls */
+  button, a, [role="button"], input[type="button"], input[type="submit"] {
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  /* Allow natural text selection on content */
+  p, h1, h2, h3, h4, h5, h6, article, blockquote {
+    user-select: text;
+    -webkit-user-select: text;
   }
 
   /* Micro-interactions: Emil Kowalski button press feedback */
@@ -159,4 +180,27 @@
 .leaflet-popup-content {
   margin: 12px 14px !important;
   line-height: 1.6 !important;
+}
+
+/* Custom Leaflet Map Markers - Pixel-Perfect Dynamic Sizing */
+.custom-hotel-pin,
+.leaflet-marker-icon.custom-hotel-pin,
+.diagonal-midpoint-badge,
+.leaflet-marker-icon.diagonal-midpoint-badge {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.hotel-pin-inner {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: max-content !important;
+  min-width: max-content !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
 }

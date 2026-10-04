@@ -64,6 +64,43 @@ export const ATTRACTIONS_DATA = [
 
 export const HOTEL_COORDS: [number, number] = [29.6112, 52.5442];
 
+/**
+ * Calculates smooth quadratic bezier arc points between start and end coordinates.
+ * Generates an organic curve with slight elevation.
+ */
+export function getCurvedPath(
+  start: [number, number],
+  end: [number, number],
+  numPoints: number = 36,
+  curvature: number = 0.16
+): [number, number][] {
+  const [lat0, lng0] = start;
+  const [lat1, lng1] = end;
+
+  const midLat = (lat0 + lat1) / 2;
+  const midLng = (lng0 + lng1) / 2;
+
+  const dLat = lat1 - lat0;
+  const dLng = lng1 - lng0;
+
+  // Perpendicular offset vector to create an arch
+  const normLat = -dLng * curvature;
+  const normLng = dLat * curvature;
+
+  const ctrlLat = midLat + normLat;
+  const ctrlLng = midLng + normLng;
+
+  const points: [number, number][] = [];
+  for (let i = 0; i <= numPoints; i++) {
+    const t = i / numPoints;
+    const invT = 1 - t;
+    const lat = invT * invT * lat0 + 2 * invT * t * ctrlLat + t * t * lat1;
+    const lng = invT * invT * lng0 + 2 * invT * t * ctrlLng + t * t * lng1;
+    points.push([lat, lng]);
+  }
+  return points;
+}
+
 interface HotelMapProps {
   activeAttractionIndex?: number | null;
   onSelectAttraction?: (idx: number | null) => void;
@@ -126,13 +163,19 @@ export default function HotelMap({
         ? "Shiraz, Namazi 3-way, Dastgheib St, Alley 6"
         : "شیراز، سه‌راه نمازی، خیابان شهید دستغیب، کوچه ۶";
 
-      // Custom Hotel Marker with pulse indicator
+      // Custom Hotel Marker with exact pinpoint anchor and downward pointer
       const hotelIcon = L.divIcon({
         className: "custom-hotel-pin",
         html: `
-          <div style="background-color: #172554; color: #ffffff; padding: 7px 16px; border-radius: 9999px; font-weight: 800; font-family: inherit; font-size: 13px; box-shadow: 0 6px 20px rgba(23,37,84,0.45); display: flex; align-items: center; justify-content: center; gap: 8px; border: 2px solid #ffffff; white-space: nowrap; transform: translate(-50%, -50%); cursor: pointer;">
-            <span style="display: inline-block; width: 10px; height: 10px; border-radius: 9999px; background: #c59b27; box-shadow: 0 0 10px #c59b27;"></span>
-            <span>${hotelLabel}</span>
+          <div class="hotel-pin-wrapper" style="display: flex; flex-direction: column; align-items: center; transform: translate(-50%, -100%); cursor: pointer; user-select: none; direction: ${isEn ? "ltr" : "rtl"};">
+            <div class="hotel-pin-inner" style="background-color: #172554; color: #ffffff; padding: 7px 18px; border-radius: 9999px; font-weight: 800; font-family: inherit; font-size: 13px; box-shadow: 0 6px 22px rgba(23,37,84,0.45); display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 2px solid #ffffff; white-space: nowrap; width: max-content; min-width: max-content;">
+              <span style="display: inline-block; width: 8px; height: 8px; border-radius: 9999px; background: #c59b27; box-shadow: 0 0 8px #c59b27; flex-shrink: 0;"></span>
+              <span style="white-space: nowrap; display: inline-block;">${hotelLabel}</span>
+            </div>
+            <!-- Pin Pointer Arrow -->
+            <div style="width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 6px solid #172554; margin-top: -1px;"></div>
+            <!-- Pin Coordinate Anchor Dot -->
+            <div style="width: 8px; height: 8px; border-radius: 9999px; background: #c59b27; border: 2px solid #ffffff; box-shadow: 0 0 10px rgba(197,155,39,0.9); margin-top: 1px;"></div>
           </div>
         `,
         iconSize: [0, 0],
@@ -167,9 +210,9 @@ export default function HotelMap({
         const attIcon = L.divIcon({
           className: `attraction-pin-${idx}`,
           html: `
-            <div style="background: #ffffff; color: #172554; padding: 5px 12px; border-radius: 9999px; font-size: 12px; font-family: inherit; border: 1.5px solid #dfd9cc; box-shadow: 0 4px 14px rgba(0,0,0,0.12); white-space: nowrap; font-weight: 600; display: flex; align-items: center; gap: 6px; cursor: pointer; transform: translate(-50%, -50%); transition: transform 0.2s ease;">
+            <div style="background: #ffffff; color: #172554; padding: 5px 14px; border-radius: 9999px; font-size: 12px; font-family: inherit; border: 1.5px solid #dfd9cc; box-shadow: 0 4px 14px rgba(0,0,0,0.12); white-space: nowrap; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; width: max-content; min-width: max-content; cursor: pointer; transform: translate(-50%, -50%); transition: transform 0.2s ease;">
               <span>${att.icon}</span>
-              <span>${attName}</span>
+              <span style="white-space: nowrap; display: inline-block;">${attName}</span>
             </div>
           `,
           iconSize: [0, 0],
@@ -228,35 +271,36 @@ export default function HotelMap({
       const target = ATTRACTIONS_DATA[activeAttractionIndex];
       const targetCoords = target.coords;
 
-      // 1. Background Halo/Glow Line
-      const glowLine = L.polyline([HOTEL_COORDS, targetCoords], {
+      const curvedPoints = getCurvedPath(HOTEL_COORDS, targetCoords, 36, 0.16);
+
+      // 1. Background Halo/Glow Curved Line
+      const glowLine = L.polyline(curvedPoints, {
         color: "#ffffff",
         weight: 7,
         opacity: 0.9,
         lineCap: "round",
+        lineJoin: "round",
       }).addTo(map);
 
-      // 2. Animated Diagonal Polyline
-      const diagonalLine = L.polyline([HOTEL_COORDS, targetCoords], {
+      // 2. Animated Curved Polyline
+      const diagonalLine = L.polyline(curvedPoints, {
         color: "#c59b27",
         weight: 4,
         opacity: 0.95,
         className: "animated-diagonal-path",
         lineCap: "round",
+        lineJoin: "round",
       }).addTo(map);
 
-      // 3. Floating Midpoint Distance Badge
-      const midCoords: [number, number] = [
-        (HOTEL_COORDS[0] + targetCoords[0]) / 2,
-        (HOTEL_COORDS[1] + targetCoords[1]) / 2,
-      ];
+      // 3. Floating Midpoint Distance Badge positioned directly on curve
+      const midCoords = curvedPoints[Math.floor(curvedPoints.length / 2)];
 
       const midBadge = L.divIcon({
         className: "diagonal-midpoint-badge",
         html: `
-          <div style="background: #172554; color: #ffffff; padding: 5px 12px; border-radius: 9999px; font-size: 11px; font-weight: 700; border: 1.5px solid #c59b27; box-shadow: 0 4px 14px rgba(23,37,84,0.45); display: flex; align-items: center; gap: 6px; white-space: nowrap; transform: translate(-50%, -50%);">
+          <div style="background: #172554; color: #ffffff; padding: 5px 14px; border-radius: 9999px; font-size: 11px; font-weight: 700; border: 1.5px solid #c59b27; box-shadow: 0 4px 14px rgba(23,37,84,0.45); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; width: max-content; min-width: max-content; transform: translate(-50%, -50%);">
             <span style="font-size: 13px;">${target.icon}</span>
-            <span>${isEn ? target.distEn : target.distFa}</span>
+            <span style="white-space: nowrap; display: inline-block;">${isEn ? target.distEn : target.distFa}</span>
           </div>
         `,
         iconSize: [0, 0],
@@ -270,11 +314,11 @@ export default function HotelMap({
         midMarker,
       };
 
-      // 4. Smoothly Pan / Fit Bounds to encompass the diagonal route
-      const bounds = L.latLngBounds([HOTEL_COORDS, targetCoords]);
+      // 4. Smoothly Pan / Fit Bounds to encompass the curved route
+      const bounds = L.latLngBounds(curvedPoints);
       map.fitBounds(bounds, {
-        paddingTopLeft: [70, 70],
-        paddingBottomRight: [70, 70],
+        paddingTopLeft: [75, 75],
+        paddingBottomRight: [75, 75],
         maxZoom: 16,
         animate: true,
         duration: 0.8,

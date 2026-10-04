@@ -14,13 +14,54 @@ export function GallerySection() {
   const [filter, setFilter] = useState<string>("all");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [mobileCurrentIndex, setMobileCurrentIndex] = useState<number>(0);
   const activeThumbRef = useRef<HTMLButtonElement | null>(null);
+  const mobileCarouselRef = useRef<HTMLDivElement | null>(null);
 
   const filteredItems = useMemo(() => {
     return filter === "all"
       ? t.gallery.items
       : t.gallery.items.filter((item) => item.category === filter);
   }, [filter, t.gallery.items]);
+
+  const gridContainerClass = useMemo(() => {
+    if (filteredItems.length === 1) {
+      return "grid-cols-1 max-w-2xl mx-auto";
+    }
+    if (filteredItems.length === 2) {
+      return "grid-cols-1 sm:grid-cols-2 max-w-4xl mx-auto";
+    }
+    if (filteredItems.length === 4) {
+      return "grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto";
+    }
+    return "grid-cols-2 lg:grid-cols-3";
+  }, [filteredItems.length]);
+
+  const scrollMobileCarousel = (direction: "left" | "right") => {
+    if (!mobileCarouselRef.current) return;
+    const container = mobileCarouselRef.current;
+    const scrollAmount = container.clientWidth * 0.85;
+    container.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
+  const handleCarouselScroll = () => {
+    if (!mobileCarouselRef.current) return;
+    const container = mobileCarouselRef.current;
+    const slideWidth = container.clientWidth * 0.85;
+    if (slideWidth <= 0) return;
+    const index = Math.round(Math.abs(container.scrollLeft) / slideWidth);
+    setMobileCurrentIndex(Math.max(0, Math.min(filteredItems.length - 1, index)));
+  };
+
+  useEffect(() => {
+    if (mobileCarouselRef.current) {
+      mobileCarouselRef.current.scrollTo({ left: 0, behavior: "smooth" });
+      setMobileCurrentIndex(0);
+    }
+  }, [filter]);
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
@@ -179,66 +220,129 @@ export function GallerySection() {
           </div>
         </div>
 
-        {/* Modern Asymmetric Editorial Gallery Grid */}
-        <div
-          id="gallery-grid"
-          role="region"
-          aria-label="Gallery Grid"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
-        >
-          {filteredItems.map((item, idx) => {
-            // Curated rhythmic layout when viewing all photos:
-            // Item 1 (Aerial Hero) & Item 7 (Rooftop sunset) span 2 columns on desktop for editorial breathing room
-            const isFeatured = filter === "all" && (idx === 0 || idx === 6);
-
-            return (
+        {/* Mobile Gallery Carousel (< sm) */}
+        <div className="block sm:hidden">
+          <div
+            ref={mobileCarouselRef}
+            onScroll={handleCarouselScroll}
+            style={{ touchAction: "pan-y" }}
+            className="flex gap-3.5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-3 px-1 scrollbar-none [scrollbar-width:none] [-webkit-overflow-scrolling:touch]"
+          >
+            {filteredItems.map((item, idx) => (
               <button
                 key={item.id}
                 type="button"
                 onClick={() => openLightbox(idx)}
-                aria-label={item.title}
-                className={`group relative rounded-[20px] sm:rounded-[24px] overflow-hidden border border-[#dfd9cc] bg-[#f0ece1]/50 shadow-xs hover:shadow-xl transition-all duration-500 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#172554] ${
-                  isFeatured
-                    ? "sm:col-span-2 aspect-[16/10] sm:aspect-[16/9]"
-                    : "col-span-1 aspect-[4/3]"
-                } ${isEn ? "text-left" : "text-right"}`}
+                className="group relative w-[86vw] max-w-[340px] aspect-[4/3] rounded-[22px] overflow-hidden snap-center flex-shrink-0 border border-[#dfd9cc] bg-[#f0ece1]/50 shadow-md text-right focus:outline-none"
               >
-                {/* Visual Image Asset */}
                 <Image
                   src={item.src}
                   alt={item.title}
                   fill
-                  sizes={
-                    isFeatured
-                      ? "(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 66vw"
-                      : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  }
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  sizes="86vw"
+                  className="object-cover"
                 />
 
-                {/* Quiet Editorial Scrim on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 sm:p-6 text-white pointer-events-none z-10">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className="text-[11px] font-medium text-white/90 bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/20">
+                {/* Mobile Scrim with Permanent Readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent flex flex-col justify-end p-4 text-white z-10">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-[10px] font-semibold text-white/90 bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/20">
                       {item.categoryName}
                     </span>
                   </div>
-                  <p className="text-sm sm:text-base font-medium leading-snug text-white/95 drop-shadow-sm line-clamp-2">
+                  <p className="text-sm font-semibold leading-snug text-white drop-shadow-sm line-clamp-1">
                     {item.title}
                   </p>
                 </div>
 
-                {/* Floating Subtle Expand Icon */}
                 <div
-                  className={`absolute top-4 w-8.5 h-8.5 rounded-full bg-black/40 backdrop-blur-md border border-white/25 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105 z-20 ${
-                    isEn ? "right-4" : "left-4"
-                  }`}
+                  className={`absolute top-3 ${
+                    isEn ? "right-3" : "left-3"
+                  } w-7 h-7 rounded-full bg-black/40 backdrop-blur-md border border-white/25 flex items-center justify-center text-white z-20`}
                 >
                   <Maximize2 className="w-3.5 h-3.5" />
                 </div>
               </button>
-            );
-          })}
+            ))}
+          </div>
+
+          {/* Mobile Carousel Controls & Progress */}
+          <div className="mt-3 flex items-center justify-between px-2">
+            <div className="text-xs text-[#8c7b64] font-semibold flex items-center gap-1.5 bg-white px-3 py-1 rounded-full border border-[#dfd9cc] shadow-2xs">
+              <span>{formatNumber(mobileCurrentIndex + 1)}</span>
+              <span className="text-[#8c7b64]/40">/</span>
+              <span>{formatNumber(filteredItems.length)}</span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => scrollMobileCarousel(isEn ? "left" : "right")}
+                className="w-9 h-9 rounded-full bg-white border border-[#dfd9cc] text-[#172554] flex items-center justify-center shadow-2xs hover:bg-[#faf8f5] active:scale-95 transition-all cursor-pointer"
+                aria-label={isEn ? "Previous image" : "تصویر قبلی"}
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollMobileCarousel(isEn ? "right" : "left")}
+                className="w-9 h-9 rounded-full bg-white border border-[#dfd9cc] text-[#172554] flex items-center justify-center shadow-2xs hover:bg-[#faf8f5] active:scale-95 transition-all cursor-pointer"
+                aria-label={isEn ? "Next image" : "تصویر بعدی"}
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Seamless Architectural Gallery Grid (>= sm) */}
+        <div
+          id="gallery-grid"
+          role="region"
+          aria-label="Gallery Grid"
+          className={`hidden sm:grid ${gridContainerClass} gap-3 sm:gap-4 lg:gap-4.5`}
+        >
+          {filteredItems.map((item, idx) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => openLightbox(idx)}
+              aria-label={item.title}
+              className={`group relative rounded-[18px] sm:rounded-[22px] overflow-hidden border border-[#dfd9cc] bg-[#f0ece1]/50 shadow-xs hover:shadow-xl transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#172554] col-span-1 aspect-[4/3] ${
+                isEn ? "text-left" : "text-right"
+              }`}
+            >
+              {/* Visual Image Asset */}
+              <Image
+                src={item.src}
+                alt={item.title}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+              />
+
+              {/* Quiet Editorial Scrim on Hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white pointer-events-none z-10">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className="text-[11px] font-medium text-white/90 bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/20">
+                    {item.categoryName}
+                  </span>
+                </div>
+                <p className="text-sm sm:text-base font-medium leading-snug text-white/95 drop-shadow-sm line-clamp-2">
+                  {item.title}
+                </p>
+              </div>
+
+              {/* Floating Subtle Expand Icon */}
+              <div
+                className={`absolute top-4 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md border border-white/25 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105 z-20 ${
+                  isEn ? "right-4" : "left-4"
+                }`}
+              >
+                <Maximize2 className="w-3.5 h-3.5" />
+              </div>
+            </button>
+          ))}
         </div>
       </div>
 

@@ -13,8 +13,8 @@ export function FloatingCTA() {
   return (
     <aside
       aria-label={t.floatingCTA.receptionBtn}
-      className={`fixed bottom-6 z-40 flex items-center gap-2 ${
-        language === "fa" ? "left-6" : "right-6"
+      className={`fixed bottom-[max(1rem,calc(env(safe-area-inset-bottom)+0.75rem))] z-40 flex items-center gap-2 ${
+        language === "fa" ? "left-3 sm:left-6" : "right-3 sm:right-6"
       }`}
     >
       {/* WhatsApp Quiet Link */}

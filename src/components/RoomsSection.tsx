@@ -46,41 +46,6 @@ export function RoomsSection() {
           </div>
         </div>
 
-        {/* Minimal Harmonious Snapp Pay 4-Installment Banner */}
-        <div className="mb-14 p-5 sm:p-6 rounded-[22px] bg-[#faf8f5] border border-[#dfd9cc] flex flex-col md:flex-row items-center justify-between gap-5">
-          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-right">
-            <div className="w-14 h-9 sm:w-16 sm:h-10 relative bg-white rounded-xl p-1.5 border border-[#dfd9cc] flex-shrink-0 flex items-center justify-center">
-              <Image
-                src="/images/snapp-pay.png"
-                alt="اسنپ پی Snapp Pay"
-                fill
-                className="object-contain p-0.5"
-              />
-            </div>
-            <div>
-              <div className="flex items-center gap-2 justify-center sm:justify-start mb-1">
-                <span className="text-xs font-bold text-[#172554]">
-                  {t.rooms.snappPayBannerTitle}
-                </span>
-                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[#172554]/10 text-[#172554]">
-                  {t.rooms.snappPayShortTag}
-                </span>
-              </div>
-              <p className="text-xs text-[#555f6d] leading-relaxed font-light">
-                {t.rooms.snappPayBannerDesc}
-              </p>
-            </div>
-          </div>
-
-          <div className="flex-shrink-0 w-full sm:w-auto">
-            <Button
-              onClick={() => handleOpenBooking(isEn ? "Snapp! Pay 4-Installments Booking" : "رزرو ۴ قسطه اسنپ‌پی")}
-              className="w-full sm:w-auto h-10 px-6 rounded-full bg-[#172554] hover:bg-[#0f172a] text-white text-xs font-semibold shadow-2xs transition-colors cursor-pointer"
-            >
-              <span>{t.rooms.snappPayBtn}</span>
-            </Button>
-          </div>
-        </div>
 
         {/* Room Showcases - Alternating Editorial Layout */}
         <div className="flex flex-col gap-20 sm:gap-28">
