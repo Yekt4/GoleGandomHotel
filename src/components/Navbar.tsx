@@ -159,18 +159,6 @@ export function Navbar() {
 
           {/* Header Actions */}
           <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0 whitespace-nowrap">
-            {/* Instagram Icon Link - Hidden on smallest phones in island mode to save space */}
-            <a
-              href="https://www.instagram.com/farhadi.boutique.hotel/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:flex h-8 sm:h-9 w-8 sm:w-9 rounded-full border border-[#dfd9cc] bg-white hover:bg-[#faf8f5] text-[#172554] hover:text-[#E1306C] items-center justify-center transition-all cursor-pointer shadow-2xs flex-shrink-0 hover:scale-105"
-              title="اینستاگرام بوتیک هتل فرهادی"
-              aria-label="Instagram: @farhadi.boutique.hotel"
-            >
-              <InstagramIcon className="w-3.5 h-3.5" />
-            </a>
-
             {/* Language Switcher Pill */}
             <button
               type="button"
