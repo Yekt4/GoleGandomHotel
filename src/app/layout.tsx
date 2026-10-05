@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "بوتیک هتل فرهادی شیراز | اقامتگاه تاریخی و بومی",
     description: "تجربه‌ای فراموش‌نشدنی از اقامت در قلب تاریخی شیراز؛ سه‌راه نمازی، خیابان شهید دستغیب.",
-    images: ["/images/hero.jpg"],
+    images: ["/images/areas/courtyard-1.webp"],
     type: "website",
   },
 };
