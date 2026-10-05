@@ -121,18 +121,10 @@ export function RoomsSection() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") {
         e.preventDefault();
-        if (isEn) {
-          showPrevGalleryPhoto();
-        } else {
-          showNextGalleryPhoto();
-        }
+        showPrevGalleryPhoto();
       } else if (e.key === "ArrowRight") {
         e.preventDefault();
-        if (isEn) {
-          showNextGalleryPhoto();
-        } else {
-          showPrevGalleryPhoto();
-        }
+        showNextGalleryPhoto();
       } else if (e.key === "Escape") {
         closeRoomGallery();
       }
@@ -140,7 +132,7 @@ export function RoomsSection() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [galleryModalRoom, showNextGalleryPhoto, showPrevGalleryPhoto, isEn]);
+  }, [galleryModalRoom, showNextGalleryPhoto, showPrevGalleryPhoto]);
 
   // Touch swipe support for mobile in room gallery
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -204,7 +196,7 @@ export function RoomsSection() {
               >
                 <span>{cat.label}</span>
                 <span
-                  className={`text-[11px] px-2 py-0.5 rounded-full font-mono ${
+                  className={`text-[11px] px-2 py-0.5 rounded-full font-semibold tabular-nums ${
                     isActive ? "bg-white/20 text-white" : "bg-white text-[#8c7b64] border border-[#dfd9cc]"
                   }`}
                 >
@@ -290,16 +282,10 @@ export function RoomsSection() {
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
-                          if (isEn) {
-                            handlePrevImage(room.id, imagesList.length);
-                          } else {
-                            handleNextImage(room.id, imagesList.length);
-                          }
+                          handlePrevImage(room.id, imagesList.length);
                         }}
-                        className={`absolute top-1/2 -translate-y-1/2 ${
-                          isEn ? "left-3" : "right-3"
-                        } w-9 h-9 rounded-full bg-black/45 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-md border border-white/25 opacity-0 group-hover:opacity-100 transition-all z-20 cursor-pointer shadow-md hover:scale-110`}
-                        aria-label="Previous Photo"
+                        className="absolute top-1/2 -translate-y-1/2 left-3 w-9 h-9 rounded-full bg-black/45 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-md border border-white/25 opacity-0 group-hover:opacity-100 transition-all z-20 cursor-pointer shadow-md hover:scale-110"
+                        aria-label={isEn ? "Previous Photo" : "تصویر قبلی"}
                         title={isEn ? "Previous Photo" : "تصویر قبلی"}
                       >
                         <ChevronLeft className="w-5 h-5" />
@@ -309,16 +295,10 @@ export function RoomsSection() {
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
-                          if (isEn) {
-                            handleNextImage(room.id, imagesList.length);
-                          } else {
-                            handlePrevImage(room.id, imagesList.length);
-                          }
+                          handleNextImage(room.id, imagesList.length);
                         }}
-                        className={`absolute top-1/2 -translate-y-1/2 ${
-                          isEn ? "right-3" : "left-3"
-                        } w-9 h-9 rounded-full bg-black/45 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-md border border-white/25 opacity-0 group-hover:opacity-100 transition-all z-20 cursor-pointer shadow-md hover:scale-110`}
-                        aria-label="Next Photo"
+                        className="absolute top-1/2 -translate-y-1/2 right-3 w-9 h-9 rounded-full bg-black/45 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-md border border-white/25 opacity-0 group-hover:opacity-100 transition-all z-20 cursor-pointer shadow-md hover:scale-110"
+                        aria-label={isEn ? "Next Photo" : "تصویر بعدی"}
                         title={isEn ? "Next Photo" : "تصویر بعدی"}
                       >
                         <ChevronRight className="w-5 h-5" />
@@ -348,7 +328,7 @@ export function RoomsSection() {
                           />
                         ))}
                       </div>
-                      <span className="text-[11px] text-white/90 font-mono pr-1.5 border-r border-white/25">
+                      <span className="text-[11px] text-white/90 font-semibold tabular-nums pr-1.5 border-r border-white/25">
                         {formatNumber(currentImgIdx + 1)}/{formatNumber(imagesList.length)}
                       </span>
                     </div>
@@ -500,7 +480,7 @@ export function RoomsSection() {
 
             <div className="flex items-center gap-2.5 sm:gap-4">
               {/* Photo Counter */}
-              <span className="text-xs sm:text-sm font-mono text-white/70 bg-white/10 px-3 py-1 rounded-full border border-white/15">
+              <span className="text-xs sm:text-sm font-semibold tabular-nums text-white/70 bg-white/10 px-3 py-1 rounded-full border border-white/15">
                 {formatNumber(galleryPhotoIndex + 1)} {isEn ? "of" : "از"}{" "}
                 {formatNumber(galleryModalRoom.images?.length || 1)}
               </span>
@@ -551,9 +531,10 @@ export function RoomsSection() {
             {/* Left Button */}
             <button
               type="button"
-              onClick={isEn ? showPrevGalleryPhoto : showNextGalleryPhoto}
+              onClick={showPrevGalleryPhoto}
               className="absolute top-1/2 -translate-y-1/2 left-3 sm:left-6 w-12 h-12 rounded-full bg-black/50 hover:bg-black/85 backdrop-blur-md border border-white/25 text-white flex items-center justify-center transition-all z-20 cursor-pointer shadow-2xl hover:scale-110 focus-visible:outline-2 focus-visible:outline-white"
-              aria-label={isEn ? "Previous" : "بعدی"}
+              aria-label={isEn ? "Previous" : "تصویر قبلی"}
+              title={isEn ? "Previous (Arrow Left)" : "تصویر قبلی (کلید چپ)"}
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
@@ -561,9 +542,10 @@ export function RoomsSection() {
             {/* Right Button */}
             <button
               type="button"
-              onClick={isEn ? showNextGalleryPhoto : showPrevGalleryPhoto}
+              onClick={showNextGalleryPhoto}
               className="absolute top-1/2 -translate-y-1/2 right-3 sm:right-6 w-12 h-12 rounded-full bg-black/50 hover:bg-black/85 backdrop-blur-md border border-white/25 text-white flex items-center justify-center transition-all z-20 cursor-pointer shadow-2xl hover:scale-110 focus-visible:outline-2 focus-visible:outline-white"
-              aria-label={isEn ? "Next" : "قبلی"}
+              aria-label={isEn ? "Next" : "تصویر بعدی"}
+              title={isEn ? "Next (Arrow Right)" : "تصویر بعدی (کلید راست)"}
             >
               <ChevronRight className="w-6 h-6" />
             </button>

@@ -110,18 +110,10 @@ export function GallerySection() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") {
         e.preventDefault();
-        if (isEn) {
-          showPrev();
-        } else {
-          showNext();
-        }
+        showPrev();
       } else if (e.key === "ArrowRight") {
         e.preventDefault();
-        if (isEn) {
-          showNext();
-        } else {
-          showPrev();
-        }
+        showNext();
       } else if (e.key === "Escape") {
         closeLightbox();
       }
@@ -129,7 +121,7 @@ export function GallerySection() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxIndex, showNext, showPrev, isEn]);
+  }, [lightboxIndex, showNext, showPrev]);
 
   // Touch swipe support for mobile
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -208,7 +200,7 @@ export function GallerySection() {
                 >
                   <span>{tab.label}</span>
                   <span
-                    className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+                    className={`text-[10px] px-1.5 py-0.2 rounded-full font-semibold tabular-nums ${
                       isActive ? "bg-white/20 text-white" : "bg-[#faf8f5] text-[#8c7b64]"
                     }`}
                   >
@@ -268,7 +260,7 @@ export function GallerySection() {
 
           {/* Mobile Carousel Controls & Progress */}
           <div className="mt-3 flex items-center justify-between px-2">
-            <div className="text-xs text-[#8c7b64] font-semibold flex items-center gap-1.5 bg-white px-3 py-1 rounded-full border border-[#dfd9cc] shadow-2xs">
+            <div className="text-xs text-[#8c7b64] font-semibold tabular-nums flex items-center gap-1.5 bg-white px-3 py-1 rounded-full border border-[#dfd9cc] shadow-2xs">
               <span>{formatNumber(mobileCurrentIndex + 1)}</span>
               <span className="text-[#8c7b64]/40">/</span>
               <span>{formatNumber(filteredItems.length)}</span>
@@ -277,19 +269,21 @@ export function GallerySection() {
             <div className="flex items-center gap-2">
               <button
                 type="button"
-                onClick={() => scrollMobileCarousel(isEn ? "left" : "right")}
+                onClick={() => scrollMobileCarousel("left")}
                 className="w-9 h-9 rounded-full bg-white border border-[#dfd9cc] text-[#172554] flex items-center justify-center shadow-2xs hover:bg-[#faf8f5] active:scale-95 transition-all cursor-pointer"
                 aria-label={isEn ? "Previous image" : "تصویر قبلی"}
+                title={isEn ? "Previous image" : "تصویر قبلی"}
               >
-                <ChevronRight className="w-4 h-4" />
+                <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 type="button"
-                onClick={() => scrollMobileCarousel(isEn ? "right" : "left")}
+                onClick={() => scrollMobileCarousel("right")}
                 className="w-9 h-9 rounded-full bg-white border border-[#dfd9cc] text-[#172554] flex items-center justify-center shadow-2xs hover:bg-[#faf8f5] active:scale-95 transition-all cursor-pointer"
                 aria-label={isEn ? "Next image" : "تصویر بعدی"}
+                title={isEn ? "Next image" : "تصویر بعدی"}
               >
-                <ChevronLeft className="w-4 h-4" />
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -367,7 +361,7 @@ export function GallerySection() {
 
             <div className="flex items-center gap-3">
               {/* Photo Counter */}
-              <span className="text-xs sm:text-sm font-mono text-white/70 bg-white/10 px-3 py-1 rounded-full border border-white/15">
+              <span className="text-xs sm:text-sm font-semibold tabular-nums text-white/70 bg-white/10 px-3 py-1 rounded-full border border-white/15">
                 {formatNumber(lightboxIndex + 1)} {t.gallery.of} {formatNumber(filteredItems.length)}
               </span>
 
@@ -405,10 +399,10 @@ export function GallerySection() {
             {/* Left Navigation Button */}
             <button
               type="button"
-              onClick={isEn ? showPrev : showNext}
+              onClick={showPrev}
               className="absolute top-1/2 -translate-y-1/2 left-3 sm:left-6 w-12 h-12 rounded-full bg-black/50 hover:bg-black/85 backdrop-blur-md border border-white/25 text-white flex items-center justify-center transition-all z-20 cursor-pointer shadow-2xl hover:scale-110 focus-visible:outline-2 focus-visible:outline-white"
-              aria-label={isEn ? t.gallery.prev : t.gallery.next}
-              title={isEn ? t.gallery.prev : t.gallery.next}
+              aria-label={t.gallery.prev}
+              title={t.gallery.prev}
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
@@ -416,10 +410,10 @@ export function GallerySection() {
             {/* Right Navigation Button */}
             <button
               type="button"
-              onClick={isEn ? showNext : showPrev}
+              onClick={showNext}
               className="absolute top-1/2 -translate-y-1/2 right-3 sm:right-6 w-12 h-12 rounded-full bg-black/50 hover:bg-black/85 backdrop-blur-md border border-white/25 text-white flex items-center justify-center transition-all z-20 cursor-pointer shadow-2xl hover:scale-110 focus-visible:outline-2 focus-visible:outline-white"
-              aria-label={isEn ? t.gallery.next : t.gallery.prev}
-              title={isEn ? t.gallery.next : t.gallery.prev}
+              aria-label={t.gallery.next}
+              title={t.gallery.next}
             >
               <ChevronRight className="w-6 h-6" />
             </button>

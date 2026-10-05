@@ -114,7 +114,7 @@ export function BookingDialog({
                 <Phone className="w-5 h-5 text-[#8c7b64]" />
                 <span className="text-sm font-semibold">{t.booking.landlineText}</span>
               </div>
-              <span className="text-base font-bold font-mono" dir="ltr">{t.nav.phone}</span>
+              <span className="text-base font-bold tabular-nums tracking-wide" dir="ltr">{t.nav.phone}</span>
             </a>
 
             {/* Mobile */}
@@ -126,7 +126,7 @@ export function BookingDialog({
                 <Phone className="w-5 h-5 text-[#8c7b64]" />
                 <span className="text-sm font-semibold">{t.booking.mobileText}</span>
               </div>
-              <span className="text-base font-bold font-mono" dir="ltr">{t.nav.mobile}</span>
+              <span className="text-base font-bold tabular-nums tracking-wide" dir="ltr">{t.nav.mobile}</span>
             </a>
           </div>
         </DialogContent>
