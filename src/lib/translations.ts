@@ -126,7 +126,7 @@ export const translations = {
         {
                 "id": "talar-ayineh",
                 "title": "اتاق تالار آیینه",
-                "subtitle": "بعضی اقامت‌ها، خودشون مقصدن... شاهکار سقف هندسی و دیوارهای درخشان آینه‌کاری",
+                "subtitle": "شاهکار سقف هندسی و دیوارهای تمام آینه‌کاری",
                 "image": "/images/rooms/talar-ayineh-1.webp",
                 "images": [
               "/images/rooms/talar-ayineh-1.webp",
@@ -143,17 +143,17 @@ export const translations = {
                 "category": "mirror",
                 "categoryLabel": "شاه‌نشین و آیینه",
                 "highlights": [
-			"بعضی اقامت‌ها خودشون مقصدن؛ تجربه‌ای که هرکسی باید از نزدیک لمس کند",
-			"سقف شاهکار هنری تزئین‌شده با طرح‌های هندسی و نقوش سنتی",
-			"دیوارهای آینه‌کاری ظریف با انعکاس درخشان نور در سراسر فضا",
-			"کفپوش کاشی‌کاری‌های چشم‌نواز و پنجره‌های هفت‌رنگ ارسی قاجاری"
+			"دیوارهای آینه‌کاری ظریف با انعکاس درخشان نور",
+			"سقف شاهکار با طرح‌های هندسی و نقوش سنتی",
+			"پنجره ارسی هفت‌رنگ رو به حوض فیروزه‌ای حیاط",
+			"کفپوش کاشی‌کاری سنتی با چیدمان اصیل"
 		],
-                "description": "بعضی اقامت‌ها، خودشون مقصدن... مثل اتاق تالار آیینه 💎 هرکسی باید یک بار این حس رو از نزدیک تجربه کنه. سقف این اتاق یک شاهکار هنری است که با طرح‌های هندسی و نقوش سنتی تزئین شده است. کف اتاق با کاشی‌کاری‌های چشم‌نواز ترکیبی زیبا از هنر اصیل را به نمایش می‌گذارد و دیوارهایی که با آینه‌کاری‌های ظریف پوشیده شده‌اند، انعکاس نور را در سراسر فضا صدچندان کرده و جلوه‌ای درخشان می‌آفرینند."
+                "description": "تالار آیینه با دیوارهای ظریف آینه‌کاری، سقف هندسی سنتی و پنجره‌های هفت‌رنگ ارسی قاجاری، بازتابی خیره‌کننده از نور و هنر اصیل ایرانی را به نمایش می‌گذارد."
         },
         {
                 "id": "hezar-ayineh",
                 "title": "اتاق هزار آیینه",
-                "subtitle": "اقامتی رویایی در فضایی شاهانه با لوستر کریستالی و آینه‌کاری‌های هنرمندانه",
+                "subtitle": "اقامتی مجلل با لوستر کریستالی و آینه‌کاری‌های شاهانه",
                 "image": "/images/rooms/hezar-ayineh-1.webp",
                 "images": [
               "/images/rooms/hezar-ayineh-1.webp",
@@ -165,21 +165,21 @@ export const translations = {
 ],
                 "capacity": "۲ الی ۴ نفر",
                 "size": "۳۸ متر مربع",
-                "architectureFeature": "آینه‌کاری‌های هنرمندانه، نقوش هندسی و گل‌های ظریف در کنار لوستر کریستالی",
+                "architectureFeature": "آینه‌کاری‌های هنرمندانه، نقوش هندسی سقف و لوستر کریستالی",
                 "category": "mirror",
                 "categoryLabel": "شاه‌نشین و آیینه",
                 "highlights": [
-			"اقامتی رویایی در فضایی شاهانه و درخشان",
-			"سقف با نقوش هندسی و گل‌های ظریف سنتی",
-			"لوستر کریستالی باشکوه و درخشان",
-			"دیوارهای آینه‌کاری هنرمندانه و کفپوش کاشی‌کاری چشم‌نواز"
+			"دیوارهای سراسر آینه‌کاری با بازتاب چشم‌نواز نور",
+			"سقف هندسی مزین به نقوش گل و لوستر کریستالی",
+			"تخت دونفره منبت‌کاری دست‌ساز و نشیمن اختصاصی",
+			"کفپوش کاشی‌کاری دست‌ساز و دکوراسیون مجلل"
 		],
-                "description": "اتاق هزار آینه؛ اقامتی رویایی در فضایی شاهانه. سقف این اتاق با نقوش هندسی و گل‌های ظریف در کنار لوستر کریستالی باشکوه، فضایی رویایی و مجلل ایجاد کرده است. دیوارهای این اتاق با آینه‌کاری‌های هنرمندانه پوشیده شده‌اند که نور را به شکلی خیره‌کننده منعکس کرده و کف اتاق نیز با کاشی‌کاری‌های زیبا و چشم‌نواز تزئین شده است."
+                "description": "اتاق هزار آینه با سقف منقش به طرح‌های هندسی، لوستر کریستالی باشکوه و دیوارهای آینه‌کاری ظریف، فضایی رویایی و شاهانه را خلق کرده است."
         },
         {
                 "id": "orsi-pasto",
                 "title": "اتاق ارسی پستو",
-                "subtitle": "اقامتی راحت در اتاق کانکت با طراحی سنتی و دو فضای مستقل و متصل",
+                "subtitle": "اتاق کانکت سنتی با دو فضای مستقل و متصل",
                 "image": "/images/rooms/orsi-pasto-1.webp",
                 "images": [
               "/images/rooms/orsi-pasto-1.webp",
@@ -188,23 +188,23 @@ export const translations = {
               "/images/rooms/orsi-pasto-4.webp",
               "/images/rooms/orsi-pasto-5.webp"
 ],
-                "capacity": "۲ الی ۳ نفر (اتاق کانکت)",
+                "capacity": "۲ الی ۳ نفر (کانکت)",
                 "size": "۳۰ متر مربع",
                 "architectureFeature": "اتاق کانکت دو فضایی با نشیمن کلاسیک، تخت اضافه و ارسی کهن",
                 "category": "traditional",
                 "categoryLabel": "اتاق‌های ارسی و سنتی",
                 "highlights": [
-			"دو فضای مستقل ولی متصل (اتاق نشیمن اصیل + اتاق خواب دونفره)",
-			"یک تخت اضافی در اتاق نشیمن برای اقامت راحت همراه",
-			"مبلمان کلاسیک با دکوراسیون سنتی و فرش‌های دستبافت شیراز",
-			"پنجره ارسی کهن با گره‌چینی قاجاری و نورهای رنگین‌کمانی"
+			"دو فضای متصل شامل نشیمن کلاسیک و اتاق خواب اختصاصی",
+			"تخت خواب اضافه در نشیمن برای اقامت راحت تا ۳ نفر",
+			"پنجره ارسی چوب گردو با شیشه‌های رنگی قاجاری",
+			"فرش‌های دستبافت شیراز و چیدمان اصیل سنتی"
 		],
-                "description": "اتاق ارسی پستو؛ اقامتی راحت در اتاق کانکت با طراحی سنتی. این اتاق از دو فضای مستقل ولی متصل تشکیل شده است: یکی به عنوان اتاق نشیمن با مبلمان کلاسیک و دکوراسیون اصیل به همراه یک تخت اضافی که امکان اقامت راحت نفر سوم را فراهم می‌کند، و دیگری اتاق خوابی دنج با تخت دونفره راحت برای استراحت در پناه پنجره‌های ارسی و کهن شیراز."
+                "description": "این اتاق کانکت شامل دو فضای مستقل ولی متصل است؛ یک اتاق نشیمن کلاسیک با تخت اضافه و یک اتاق خواب دنج با تخت دونفره در پناه پنجره‌های ارسی کهن."
         },
         {
                 "id": "panjdari",
                 "title": "اتاق پنج‌دری",
-                "subtitle": "گوهری از هنر و آرامش؛ سقف چوبی منقش و پنجره‌های رنگین رو به حیاط",
+                "subtitle": "گوهری از هنر و آرامش؛ سقف چوبی منقش و درهای بازشو رو به حیاط",
                 "image": "/images/rooms/panjdari-1.webp",
                 "images": [
               "/images/rooms/panjdari-1.webp",
@@ -221,17 +221,17 @@ export const translations = {
                 "category": "traditional",
                 "categoryLabel": "اتاق‌های ارسی و سنتی",
                 "highlights": [
-			"گوهری از هنر و آرامش؛ جایی که هر جزئیات روایتی از هنر ایرانی را زمزمه می‌کند",
-			"سقف چوبی منحصربه‌فرد با نقوش سنتی دست‌ساز",
-			"پنجره‌ها و لنگه‌های چوبی با شیشه‌های رنگی؛ قلب تپنده اتاق",
-			"پیوندی عمیق و زنده میان هنر، تاریخ و طبیعت دل‌انگیز شیراز"
+			"پنج لنگه در چوبی بازشو رو به حیاط باصفا و حوض فیروزه",
+			"سقف چوبی با نقوش منحصربه‌فرد و دست‌ساز ایرانی",
+			"نورگیری دل‌انگیز صبحگاهی از میان شیشه‌های رنگی",
+			"استشمام عطر بهارنارنج و صدای آرامش‌بخش آب"
 		],
-                "description": "اتاق پنج‌دری؛ گوهری از هنر و آرامش، جایی که هر جزئیات روایتی از هنر ایرانی را زمزمه می‌کند. سقف چوبی اتاق با نقوش منحصربه‌فرد و پنجره‌های چوبی با شیشه‌های رنگی، قلب تپنده این اتاق‌اند. اتاق پنج‌دری، تنها یک اتاق نیست؛ تجربه‌ایست از پیوند هنر، تاریخ و طبیعت."
+                "description": "سقف چوبی منقش و پنج لنگه درب ارسی با شیشه‌های رنگی، قلب تپنده این اتاق‌اند؛ فضایی دلباز که پیوند هنر، تاریخ و طبیعت شیراز را زنده می‌کند."
         },
         {
                 "id": "pahlavi",
                 "title": "اتاق پهلوی",
-                "subtitle": "شکوه هنر در معماری ایرانی با سقف قوس‌دار زرین و مبلمان کلاسیک",
+                "subtitle": "شکوه هنر در معماری اصیل با سقف قوس‌دار زرین",
                 "image": "/images/rooms/pahlavi-1.webp",
                 "images": [
               "/images/rooms/pahlavi-1.webp",
@@ -249,17 +249,17 @@ export const translations = {
                 "category": "mirror",
                 "categoryLabel": "شاه‌نشین و آیینه",
                 "highlights": [
-			"سقف قوس‌دار مزین به نقوش طلایی و گچ‌بری هنرمندانه",
-			"کفپوش کاشی‌کاری دست‌ساز و فرش‌های نفیس دستبافت ایرانی",
-			"مبلمان کلاسیک با جزئیات طلایی و دکوراسیون سنتی اصیل",
-			"هوایی پر از عطر تاریخ در دل بافت کهن شیراز"
+			"سقف قوس‌دار با نقوش طلایی و گچ‌بری هنرمندانه",
+			"کفپوش کاشی‌کاری دست‌ساز و فرش‌های نفیس ایرانی",
+			"مبلمان کلاسیک با جزئیات طلایی و نورپردازی ملایم",
+			"حال‌وهوای آرام و اصیل در قلب بافت تاریخی"
 		],
-                "description": "اتاق پهلوی – شکوه هنر در معماری ایرانی؛ جایی که معماری اصیل ایرانی با حال‌وهوای یک اقامت آرام گره خورده است. با سقف قوس‌دار مزین به نقوش طلایی، کفپوش کاشی‌کاری دست‌ساز و مبلمان کلاسیک با جزئیات طلایی، فضایی مجلل و اصیل را برای اقامتی خاص فراهم کرده است. ترکیب فرش‌های دستبافت ایرانی، نورپردازی ظریف و دکوراسیون سنتی، حس آرامش و زیبایی را در این اتاق به اوج می‌رساند."
+                "description": "اتاق پهلوی با سقف قوس‌دار مزین به نقوش طلایی، کفپوش کاشی‌کاری دست‌ساز و مبلمان کلاسیک، فضایی آرام و اصیل را در دل بافت کهن شیراز فراهم ساخته است."
         },
         {
                 "id": "karimkhan",
                 "title": "اتاق کریم‌خان",
-                "subtitle": "جایی که سقفم برات قصه می‌گه… اقامت در اتاقی اصیل و منحصربه‌فرد",
+                "subtitle": "صلابت و وقار معماری زندیه با طاق‌های خشتی قرینه",
                 "image": "/images/rooms/karimkhan-1.webp",
                 "images": [
               "/images/rooms/karimkhan-1.webp",
@@ -274,17 +274,17 @@ export const translations = {
                 "category": "traditional",
                 "categoryLabel": "اتاق‌های ارسی و سنتی",
                 "highlights": [
-			"جایی که سقفم برات قصه می‌گه… اقامت در اتاقی اصیل و منحصربه‌فرد 🕰️",
-			"معماری استوار الهام‌گرفته از ارگ و عصر زرین کریم‌خان زند",
-			"آرامش و سکوت دلنشین در دل کوچه پس‌کوچه‌های تاریخی شیراز",
-			"کف‌پوش سنتی با قالی‌های دست‌بافت و امکانات بهداشتی مدرن"
+			"طاق‌های خشتی استوار با هندسه قرینه دوره زندیه",
+			"نقوش سنتی سقف با روایتی از تاریخ کهن شیراز",
+			"سکوت و آرامش عمیق به دور از هیاهوی شهری",
+			"کف‌پوش سنتی با قالی‌های دست‌بافت و حمام مدرن"
 		],
-                "description": "اتاق کریم‌خان؛ جایی که سقفم برات قصه می‌گه… اقامت در اتاقی اصیل و منحصربه‌فرد 🕰️ با الهام از دوران زرین وکیل‌الرعایا در قلب شیراز؛ طاق‌های استوار تاریخی، نقوش اصیل و آرامش عمیق، فضایی سرشار از وقار و صلابت تاریخی را برای اقامتی خاطره‌انگیز فراهم می‌آورند."
+                "description": "اتاق کریم‌خان با الهام از معماری دوران زندیه، طاق‌های خشتی استوار و نقوش تاریخی سقف، فضایی امن، دنج و سرشار از اصالت را پدید آورده است."
         },
         {
                 "id": "sehdari",
                 "title": "اتاق سه‌دری",
-                "subtitle": "اتاقی که هر گوشه‌ش قصه می‌گه… نقاشی مراحل عروسی و فضایی رمانتیک",
+                "subtitle": "فضایی رمانتیک با دیوارنگاره‌های مراحل عروسی سنتی",
                 "image": "/images/rooms/sehdari-1.webp",
                 "images": [
               "/images/rooms/sehdari-1.webp",
@@ -298,17 +298,17 @@ export const translations = {
                 "category": "traditional",
                 "categoryLabel": "اتاق‌های ارسی و سنتی",
                 "highlights": [
-			"اتاقی که هر گوشه‌ش قصه می‌گه؛ یه اقامت متفاوت وسط هنر و آرامش ♥️",
-			"نقاشی مراحل زیبای عروسی روی دیوارها (از خواستگاری تا جشن عروسی)",
-			"سقف‌های پر از نقاشی و پنجره‌هایی با شیشه‌های رنگی که نور رو جادو می‌کنن",
-			"حال‌وهوای رمانتیک و عاشقانه؛ انتخابی عالی برای ماه عسل و زوج‌ها"
+			"دیوارنگاره‌های روایتگر مراحل عروسی از خواستگاری تا جشن",
+			"سقف‌های پر از نقاشی و پنجره‌های ارسی با شیشه‌های رنگی",
+			"فضایی گرم و رمانتیک؛ مناسب ماه عسل و اقامت زوج‌ها",
+			"ارسی‌های چوبی رو به نور ملایم و دلنشین روز"
 		],
-                "description": "اتاق سه‌دری – اتاقی که هر گوشه‌ش قصه می‌گه… سقف‌های پر از نقاشی، پنجره‌هایی با شیشه‌های رنگی که نور رو جادو می‌کنن؛ یه اقامت متفاوت، وسط هنر و آرامش ♥️ روی دیوارهای این اتاق، مراحل زیبای عروسی به تصویر کشیده شده؛ از خواستگاری تا جشن عروسی. فضای این اتاق با حال‌وهوای عاشقانه‌اش، انتخابی عالی برای زوج‌هاییست که در ماه عسل به دنبال یک تجربه خاص و رمانتیک هستند. اگر تازه عروس و داماد هستید یا دنبال یک اقامت عاشقانه‌اید، این اتاق رو از دست ندید!"
+                "description": "دیوارهای این اتاق مزین به نگاره‌های زیبای عروسی سنتی و سقف آن پر از نقاشی‌های اصیل است؛ انتخابی ایده‌آل و خاطره‌انگیز برای ماه عسل و زوج‌ها."
         },
         {
                 "id": "vesal-shirazi",
                 "title": "اتاق وصال شیرازی",
-                "subtitle": "بزرگداشت ادیب و خوشنویس نامدار شیراز با چشم‌انداز حیاط",
+                "subtitle": "بزرگداشت ادیب نامدار شیراز با فضایی آرام و اهل قلم",
                 "image": "/images/rooms/vesal-shirazi-1.webp",
                 "images": [
               "/images/rooms/vesal-shirazi-1.webp",
@@ -318,21 +318,21 @@ export const translations = {
 ],
                 "capacity": "۲ نفر",
                 "size": "۲۷ متر مربع",
-                "architectureFeature": "کتیبه‌های کهن و دست‌بافته‌های اصیل فارس",
+                "architectureFeature": "کتیبه‌های کهن خوشنویسی و دست‌بافته‌های اصیل فارس",
                 "category": "traditional",
                 "categoryLabel": "اتاق‌های ارسی و سنتی",
                 "highlights": [
-                        "فضای باوقار الهام‌بخش اهل قلم و ادب",
-                        "تابلوهای خطاطی نفیس شیرازی",
-                        "میز تحریر چوبی سنتی و نور مناسب مطالعه",
-                        "سکوت دلپذیر برای تمرکز و استراحت"
-                ],
-                "description": "این اتاق به پاس یاد وصال شیرازی، ادیب برجسته قرن سیزدهم هجری نام‌گذاری شده است. هارمونی رنگ‌ها و آرامش فضای داخلی، محیطی الهام‌بخش را فراهم کرده است."
+			"آثار خوشنویسی اصیل و کتیبه‌های کهن شیراز",
+			"میز تحریر سنتی چوبی با نور مناسب مطالعه",
+			"سکوت دلپذیر برای تمرکز، آرامش و استراحت",
+			"پنجره رو به حیاط با نورگیری مطبوع و طبیعی"
+		],
+                "description": "به یاد وصال شیرازی؛ این اتاق با تابلوهای خطاطی نفیس، میز تحریر چوبی و هارمونی آرامش‌بخش، محیطی الهام‌بخش برای دوستداران ادب و فرهنگ است."
         },
         {
                 "id": "sangi",
                 "title": "اتاق سنگی",
-                "subtitle": "عایق طبیعی با ازاره‌های سنگی دست‌تراش و سکوت مطلق",
+                "subtitle": "عایق طبیعی با ازاره‌های سنگی کهن و سکوت مطلق",
                 "image": "/images/rooms/sangi-1.webp",
                 "images": [
               "/images/rooms/sangi-1.webp",
@@ -348,17 +348,17 @@ export const translations = {
                 "category": "serene",
                 "categoryLabel": "اتاق‌های دنج و آرام",
                 "highlights": [
-                        "خنکی مطبوع و طبیعی در فصل گرما",
-                        "سکوت فوق‌العاده عمیق و مناسب خواب آرام",
-                        "سنگ‌تراشی‌های اصیل دوره قاجار",
-                        "تخت خواب فوق‌العاده راحت ارگونومیک"
-                ],
-                "description": "برای مسافرانی که به دنبال نهایت سکوت و آرامش خواب هستند؛ اتاق سنگی با دیوارهای ضخیم تاریخی خود سدی نفوذناپذیر در برابر هرگونه صدای شهری ایجاد کرده است."
+			"دیوارهای قطور سنگی با عایق‌بندی صوتی و حرارتی طبیعی",
+			"خنکی دلپذیر در روزهای گرم و حفظ گرمای مطبوع در زمستان",
+			"سنگ‌تراشی‌های اصیل دوره قاجار با بافت کهن",
+			"تخت‌خواب ارگونومیک راحت برای خواب عمیق و بی‌دغدغه"
+		],
+                "description": "اتاق سنگی با دیوارهای قطور تاریخی و ازاره‌های سنگی دست‌تراش قاجاری، خنکی طبیعی و آرامشی عمیق و بی‌صدا را برای خوابی دلپذیر به ارمغان می‌آورد."
         },
         {
                 "id": "parvindokht",
                 "title": "اتاق پروین‌دخت",
-                "subtitle": "فضایی شاعرانه و آرامش‌بخش مزین به دست‌بافته‌های ایل قشقایی",
+                "subtitle": "فضایی لطیف و شاعرانه مزین به دست‌بافته‌های اصیل فارس",
                 "image": "/images/rooms/parvindokht-1.jpg",
                 "images": [
               "/images/rooms/parvindokht-1.jpg",
@@ -372,17 +372,17 @@ export const translations = {
                 "category": "serene",
                 "categoryLabel": "اتاق‌های دنج و آرام",
                 "highlights": [
-                        "چیدمان گرم و لطیف با دست‌دوزهای محلی فارس",
-                        "طاقچه‌های گچ‌بری کهن با تزیینات آیینه‌کاری",
-                        "پنجره رو به باغچه با نورگیری ملایم",
-                        "امکانات کامل بهداشتی لوکس"
-                ],
-                "description": "اتاق پروین‌دخت فضایی لطیف، آرام و سرشار از گرماست. هارمونی قالیچه‌های عشایری فارس با طاقچه‌های سنتی، تصویری دلنشین از زندگی گرم شیرازی به مهمان هدیه می‌دهد."
+			"چیدمان گرم و صمیمی با دست‌بافته‌های محلی و عشایری",
+			"طاقچه‌های سنتی با گچ‌بری‌های کهن و آینه‌های کوچک",
+			"نورگیری ملایم و منظره دلپذیر رو به باغچه حیاط",
+			"امکانات رفاهی کامل و دوش حمام مدرن"
+		],
+                "description": "اتاق پروین‌دخت با طاقچه‌های گچ‌بری کهن، قالیچه‌های عشایری فارس و پنجره رو به باغچه، تصویری گرم و دلنشین از زندگی اصیل شیرازی را بازمی‌آفریند."
         },
         {
                 "id": "shoorideh",
                 "title": "اتاق شوریده",
-                "subtitle": "فضایی سرشار از ذوق ادبی و طراوت هنر دوران قاجار",
+                "subtitle": "طاق ضربی خشتی و ذوق ادبی در پناه بافت کهن",
                 "image": "/images/rooms/shoorideh-1.webp",
                 "images": [
               "/images/rooms/shoorideh-1.webp",
@@ -399,17 +399,17 @@ export const translations = {
                 "category": "serene",
                 "categoryLabel": "اتاق‌های دنج و آرام",
                 "highlights": [
-                        "بزرگداشت شاعر شوریده شیرازی",
-                        "نورپردازی دیواری ملایم و آرامش‌بخش",
-                        "کمد دیواری سنتی چوبی جادار",
-                        "سرویس بهداشتی شیک و دوش فرنگی مدرن"
-                ],
-                "description": "نام‌گذاری شده به یاد شوریده فصیح‌الملک شیرازی؛ این اتاق با هندسه دلپذیر و طاق‌های قوسی خشتی، پناهگاهی امن و دل‌انگیز پس از گشت‌وگذار در کوچه‌پس‌کوچه‌های تاریخی است."
+			"طاق ضربی خشتی سنتی با هندسه اصیل معماری شیراز",
+			"نورپردازی دیواری ملایم و آرامش‌بخش شبانه",
+			"کمد دیواری چوبی سنتی و فضای استراحت دلباز",
+			"حمام اختصاصی شیک و مجهز با امکانات مدرن"
+		],
+                "description": "به یاد شوریده شیرازی؛ این اتاق با طاق‌های قوسی خشتی و اندود سپید، پناهگاهی دنج، آرام و دل‌انگیز پس از گشت‌وگذار در کوچه‌باغ‌های تاریخی است."
         },
         {
                 "id": "lotus",
                 "title": "اتاق لوتوس",
-                "subtitle": "الهام‌گرفته از نقش‌مایه‌های نیلوفر آبی تخت‌جمشید",
+                "subtitle": "الهام‌گرفته از نقش کهن نیلوفر آبی؛ نماد صلح و پاکیزگی",
                 "image": "/images/rooms/lotus-1.webp",
                 "images": [
               "/images/rooms/lotus-1.webp",
@@ -421,21 +421,21 @@ export const translations = {
 ],
                 "capacity": "۲ نفر",
                 "size": "۲۵ متر مربع",
-                "architectureFeature": "قرنیزهای گچی با موتیف‌های هخامنشی",
+                "architectureFeature": "قرنیزهای گچی با موتیف‌های هخامنشی نیلوفر آبی",
                 "category": "serene",
                 "categoryLabel": "اتاق‌های دنج و آرام",
                 "highlights": [
-                        "نمادهای اصیل نیلوفر آبی نماد صلح و پاکی",
-                        "تخت دبل مجلل با ملحفه‌های کتان ارگانیک",
-                        "عایق کامل حرارتی و صوتی",
-                        "سیستم گرمایش از کف و تهویه نوین"
-                ],
-                "description": "لوتوس نماد کهن آرامش و پاکیزگی در هنر ایران‌زمین است. تلفیق این نماد با خطوط مینیمال و چیدمان گرم، اقامتی سرشار از آرامش روحی را رقم می‌زند."
+			"قرنیزهای گچی با نقش‌مایه‌های تاریخی نیلوفر آبی",
+			"تخت دونفره راحت با ملحفه‌های کتان ارگانیک",
+			"عایق صوتی کامل و سیستم سرمایش و گرمایش نوین",
+			"فضایی روشن، مینیمال و آکنده از آرامش فکری"
+		],
+                "description": "طراحی این اتاق با الهام از موتیف‌های نیلوفر آبی تخت‌جمشید و خطوط آرامش‌بخش، فضایی سرشار از آسایش روحی و پاکی را فراهم کرده است."
         },
         {
                 "id": "arjan",
                 "title": "اتاق ارجان",
-                "subtitle": "کاشی‌های فیروزه‌ای، سقف اسلیمی زرین و منظره دلنشین حیاط و حوض",
+                "subtitle": "کاشی‌های فیروزه‌ای، سقف اسلیمی و منظره دلنشین حیاط و حوض",
                 "image": "/images/rooms/arjan-1.webp",
                 "images": [
               "/images/rooms/arjan-1.webp",
@@ -450,17 +450,17 @@ export const translations = {
                 "category": "serene",
                 "categoryLabel": "اتاق‌های دنج و آرام",
                 "highlights": [
-			"گاهی فقط یک اتاق دلباز با نور دلنشین و منظره حیاط و حوض کافیست... 🪷🦋",
-			"سقف نقاشی‌شده با طرح‌های اسلیمی در رنگ‌های طلایی، سبز و آبی",
-			"کفپوش کاشی‌های فیروزه‌ای چشم‌نواز دست‌ساز",
-			"لوستر کریستالی درخشان، پنجره‌های چوبی و پرده‌های مخملی آبی"
+			"کفپوش کاشی‌های فیروزه‌ای دست‌ساز شیراز",
+			"سقف نقاشی‌شده با طرح‌های اسلیمی در رنگ‌های طلایی و آبی",
+			"پنجره‌های چوبی دلباز رو به حوض و حیاط مرکزی",
+			"لوستر کریستالی درخشان و پرده‌های مخملی لاجوردی"
 		],
-                "description": "گاهی فقط یک اتاق دلباز مثل اتاق ارجان با نور دلنشین و منظره‌ی حیاط و حوض، کافیست تا زمان را از یاد ببری... 🪷🦋 این اتاق با کفپوش کاشی‌های فیروزه‌ای و سقفی نقاشی‌شده با طرح‌های اسلیمی و رنگ‌های طلایی، سبز و آبی، فضایی دل‌انگیز و اصیل را برای اقامتی خاطره‌انگیز فراهم کرده است. لوستر کریستالی درخشان، همراه با پنجره‌های چوبی و پرده‌های مخملی آبی، ترکیبی از نور، رنگ و هنر را در این فضا به نمایش می‌گذارد."
+                "description": "اتاق ارجان با کاشی‌های دست‌ساز فیروزه‌ای، سقف نقاشی‌شده با طرح‌های اسلیمی، لوستر کریستالی و پنجره‌های رو به حوض، فضایی دلباز و دل‌انگیز است."
         },
         {
                 "id": "marjook",
                 "title": "اتاق مرجوک",
-                "subtitle": "سقف چوبی مرجوک با نقاشی دستی، کاشی‌های دست‌ساز و شیشه‌های رنگی",
+                "subtitle": "سقف چوبی مرجوک با نقاشی دستی و پنجره‌های رنگین",
                 "image": "/images/rooms/marjook-1.webp",
                 "images": [
               "/images/rooms/marjook-1.webp",
@@ -480,12 +480,12 @@ export const translations = {
                 "category": "serene",
                 "categoryLabel": "اتاق‌های دنج و آرام",
                 "highlights": [
-			"برگرفته از هنر اصیل چوب‌های سقف (اصطلاح محلی مرجوک مخصوص شیراز)",
-			"شیوه معماری منحصربه‌فرد دوره زندیه و قاجاریه شیراز",
-			"سقف چوبی نقاشی‌شده‌ی دستی با ظرافت استادکاران قدیم",
-			"کاشی‌های دست‌ساز کف و پنجره‌های چوبی با شیشه‌های رنگی"
+			"سقف چوبی با تکنیک کهن «مرجوک» ویژه استادکاران شیراز",
+			"نقاشی دستی ظریف روی تیرها و تخته‌های چوبی سقف",
+			"کاشی‌های دست‌ساز کف و پنجره‌های چوبی با شیشه‌های رنگی",
+			"چیدمان دنج و نقلی با حداکثر آرامش و تمیزی"
 		],
-                "description": "اتاق مرجوک؛ نام این اتاق بر گرفته از چوب‌های سقف است که در اصطلاح محلی «مرجوک» نامیده می‌شود؛ هنری که مخصوص استادکاران شیراز بوده و در بیشتر ساختمان‌های دوره زندیه و قاجاریه شیراز مشاهده می‌شود. اتاق مرجوک با سقف چوبی نقاشی‌شده‌ی دستی، کاشی‌های دست‌ساز کف و پنجره‌های چوبی با شیشه‌های رنگی، ترکیبی از هنر و اصالت دیرین شیراز را به نمایش می‌گذارد."
+                "description": "نام‌گذاری شده به اصطلاح محلی چوب‌های سقف «مرجوک» در دوره زندیه؛ این اتاق با نقاشی دستی چوب، کاشی‌های دست‌ساز و شیشه‌های رنگی، فضایی دنج و اصیل است."
         }
 ],
     },
@@ -961,7 +961,7 @@ export const translations = {
         {
                 "id": "talar-ayineh",
                 "title": "Talar Ayineh Suite (Mirror Hall)",
-                "subtitle": "Some stays are destinations in themselves... geometric ceiling masterpiece and radiant mirrors",
+                "subtitle": "Geometric ceiling masterpiece with radiant mirror mosaics",
                 "image": "/images/rooms/talar-ayineh-1.webp",
                 "images": [
               "/images/rooms/talar-ayineh-1.webp",
@@ -978,17 +978,17 @@ export const translations = {
                 "category": "mirror",
                 "categoryLabel": "Mirror Suites",
                 "highlights": [
-			"Some stays are destinations in themselves—a once-in-a-lifetime experience",
-			"Ceiling masterpiece adorned with sacred geometric patterns",
-			"Delicate antique mirror facets multiplying natural radiant light",
-			"Striking artisanal tile flooring and seven-color Qajar orsi windows"
+			"Full-wall mirror mosaics with radiant reflections",
+			"Handcrafted geometric ceiling and traditional motifs",
+			"Seven-color orsi windows facing the courtyard pool",
+			"Artisanal tiled flooring with classic Persian decor"
 		],
-                "description": "Some stays are destinations in themselves... like the Talar Ayineh (Mirror Hall) 💎 An experience everyone must savor firsthand. The ceiling is a true masterpiece adorned with intricate geometric patterns and traditional motifs, while dazzling handcrafted mirrorwork envelops the walls, reflecting prismatic sunlight across the room in breathtaking splendor."
+                "description": "The Mirror Hall features exquisite full-wall mirror mosaics, historic geometric ceiling motifs, and seven-color Qajar orsi windows reflecting radiant natural light."
         },
         {
                 "id": "hezar-ayineh",
                 "title": "Hezar Ayineh Suite (Thousand Mirrors)",
-                "subtitle": "A royal reverie with majestic crystal chandeliers and artisanal mirrorcraft",
+                "subtitle": "Regal retreat with crystal chandelier and ornate mirrorcraft",
                 "image": "/images/rooms/hezar-ayineh-1.webp",
                 "images": [
               "/images/rooms/hezar-ayineh-1.webp",
@@ -1004,17 +1004,17 @@ export const translations = {
                 "category": "mirror",
                 "categoryLabel": "Mirror Suites",
                 "highlights": [
-			"A dreamlike royal stay steeped in regal Shirazi craftsmanship",
-			"Ceiling adorned with intricate floral and geometric motifs",
-			"Magnificent crystal chandelier casting prismatic refractions",
-			"Artisan mirrorwork walls harmonized with bespoke decorative tiles"
+			"Full-surface mirror mosaics with dazzling illumination",
+			"Artisanal floral ceiling with grand crystal chandelier",
+			"Hand-carved double bed and private sitting area",
+			"Bespoke handcrafted tilework and aristocratic furnishings"
 		],
-                "description": "The Hezar Ayineh (Thousand Mirrors) suite delivers a regal stay fit for royalty. Its ceiling is adorned with delicate geometric patterns and graceful floral motifs crowned by a grand crystal chandelier. The walls are covered in masterfully cut antique mirrors that catch and refract the light brilliantly across eye-catching handcrafted tile floors."
+                "description": "Hezar Ayineh combines geometric floral ceilings, an imposing crystal chandelier, and intricate mirrorwork for a truly royal Persian stay."
         },
         {
                 "id": "orsi-pasto",
                 "title": "Orsi Pasto Room",
-                "subtitle": "Connected traditional suite featuring two independent yet linked chambers",
+                "subtitle": "Connected heritage suite with two distinct interconnected chambers",
                 "image": "/images/rooms/orsi-pasto-1.webp",
                 "images": [
               "/images/rooms/orsi-pasto-1.webp",
@@ -1023,23 +1023,23 @@ export const translations = {
               "/images/rooms/orsi-pasto-4.webp",
               "/images/rooms/orsi-pasto-5.webp"
 ],
-                "capacity": "2 to 3 Guests (Connected Room)",
+                "capacity": "2 to 3 Guests (Connected)",
                 "size": "30 sq.m",
                 "architectureFeature": "Two-room connected layout with classic parlor, extra bed & heritage orsi",
                 "category": "traditional",
                 "categoryLabel": "Traditional Orsi",
                 "highlights": [
-			"Two independent interconnected chambers (living parlor + private bedroom)",
-			"Additional full bed in the parlor comfortably accommodating a third guest",
-			"Classical furniture with authentic decor and Shiraz handwoven rugs",
-			"Antique walnut orsi windows filtering vibrant colored daylight"
+			"Two interconnected rooms: classic salon plus private bedroom",
+			"Extra full bed in parlor comfortably hosting a third guest",
+			"Antique walnut orsi windows with colored lattice glass",
+			"Handwoven Shiraz carpets and authentic period styling"
 		],
-                "description": "The Orsi Pasto suite offers a restful stay in a connected layout designed in authentic Persian heritage style. It features two distinct yet interconnected spaces: an elegant sitting salon with classical furnishings and an extra bed for a companion, alongside a serene primary bedroom featuring a plush double bed bathed in the gem-toned glow of historic orsi windows."
+                "description": "Features two interconnected spaces: a classic parlor with an extra companion bed and a peaceful bedroom framed by historic walnut orsi windows."
         },
         {
                 "id": "panjdari",
                 "title": "Panj Dari Room (Five-Door)",
-                "subtitle": "A jewel of art and serenity; carved timber ceilings and stained glass doors",
+                "subtitle": "Art and tranquility; carved timber ceiling and courtyard doors",
                 "image": "/images/rooms/panjdari-1.webp",
                 "images": [
               "/images/rooms/panjdari-1.webp",
@@ -1056,17 +1056,17 @@ export const translations = {
                 "category": "traditional",
                 "categoryLabel": "Traditional Orsi",
                 "highlights": [
-			"A jewel of art and serenity, where every detail whispers Iranian heritage",
-			"Exquisite timber ceiling embellished with one-of-a-kind antique motifs",
-			"Five wooden stained-glass doors serving as the beating heart of the room",
-			"An authentic harmony uniting timeless craft, history, and nature"
+			"Five arched timber doors opening to the central pool",
+			"Handcrafted wooden ceiling with rare Persian motifs",
+			"Vibrant morning sunshine filtered through colored glass",
+			"Fresh courtyard breeze scented with bitter orange blossoms"
 		],
-                "description": "The Panj Dari (Five-Door) room is a jewel of art and tranquility—where every delicate detail whispers stories of Persian heritage. The intricate timber ceiling with bespoke motifs and wooden stained-glass doors form the living heartbeat of this space. Panj Dari is more than just a room; it is an immersive experience where art, history, and nature merge in serene stillness."
+                "description": "An ornate timber ceiling and five arched stained-glass doors form the soul of this room, opening wide to the central courtyard and fountain breeze."
         },
         {
                 "id": "pahlavi",
                 "title": "Pahlavi Suite",
-                "subtitle": "Grandeur of Persian architecture with golden vaulted ceilings and classical decor",
+                "subtitle": "Persian architectural grandeur with golden vaulted ceiling",
                 "image": "/images/rooms/pahlavi-1.webp",
                 "images": [
               "/images/rooms/pahlavi-1.webp",
@@ -1084,17 +1084,17 @@ export const translations = {
                 "category": "mirror",
                 "categoryLabel": "Mirror Suites",
                 "highlights": [
-			"Gilded vaulted ceiling with intricate plaster carvings",
-			"Handcrafted floor tiling and genuine Persian woven rugs",
-			"Classical heritage armchairs with antique gold accents",
-			"Authentic ambiance immersed in the historical scent of old Shiraz"
+			"Gilded vaulted ceiling with refined plaster moldings",
+			"Handcrafted floor tiles and fine Persian carpets",
+			"Classical armchairs with antique gold detailing",
+			"Tranquil heritage ambiance in historic Shiraz"
 		],
-                "description": "The Pahlavi Room celebrates the grandeur of Iranian architectural artistry—where heritage craftsmanship merges seamlessly with tranquil relaxation. Featuring soaring gilded vaults, bespoke artisan tiles, classical gold-accented furnishings, and handwoven Persian carpets, this suite delivers an unforgettable aristocratic stay in the heart of old Shiraz."
+                "description": "Showcases soaring gilded vaults, handcrafted tiles, and classical furnishings, offering a distinguished retreat steeped in historical elegance."
         },
         {
                 "id": "karimkhan",
                 "title": "Karim Khan Room",
-                "subtitle": "Where even the ceiling whispers history... an authentic & unique sanctuary",
+                "subtitle": "Stately Zand era architecture with vaulted brick arches",
                 "image": "/images/rooms/karimkhan-1.webp",
                 "images": [
               "/images/rooms/karimkhan-1.webp",
@@ -1109,17 +1109,17 @@ export const translations = {
                 "category": "traditional",
                 "categoryLabel": "Traditional Orsi",
                 "highlights": [
-			"Where even the ceiling tells you stories—an authentic heritage retreat 🕰️",
-			"Steadfast architecture echoing the noble Karim Khan Zand era",
-			"Profound peace and tranquility tucked into historic Shirazi alleyways",
-			"Traditional terracotta flooring, artisan rugs, and luxury modern bath"
+			"Solid brick arches honoring Zand architectural symmetry",
+			"Atmospheric ceiling telling stories of ancient Shiraz",
+			"Profound quiet and shelter from urban noise",
+			"Traditional terracotta floors, artisan rugs, modern bath"
 		],
-                "description": "The Karim Khan Room is a haven where even the ceiling whispers tales of history... 🕰️ Inspired by the golden era of the benevolent regent Karim Khan Zand, its majestic brick vaults, balanced geometry, and deep restful quiet offer an unforgettable sanctuary within the heart of ancient Shiraz."
+                "description": "Inspired by the golden Zand era, featuring symmetrical brick vaulting and quiet proportions for a deeply authentic historical experience."
         },
         {
                 "id": "sehdari",
                 "title": "Seh Dari Room (Three-Door)",
-                "subtitle": "A room where every corner tells a tale... wedding frescoes & romantic charm",
+                "subtitle": "Romantic sanctuary with historic Shirazi wedding frescoes",
                 "image": "/images/rooms/sehdari-1.webp",
                 "images": [
               "/images/rooms/sehdari-1.webp",
@@ -1133,17 +1133,17 @@ export const translations = {
                 "category": "traditional",
                 "categoryLabel": "Traditional Orsi",
                 "highlights": [
-			"A chamber where every corner tells a tale—art, romance, and tranquility ♥️",
-			"Murals depicting the poetic stages of traditional Persian weddings",
-			"Hand-painted ceilings and stained-glass windows working light magic",
-			"Intimate, romantic ambiance—a premier honeymoon destination in Shiraz"
+			"Historic murals depicting courtship and wedding festivities",
+			"Hand-painted ceiling and colorful stained-glass orsi",
+			"Intimate romantic atmosphere tailored for honeymooners",
+			"Lattice timber doors welcoming soft natural daylight"
 		],
-                "description": "The Seh Dari (Three-Door) room is a place where every corner tells a story... soaring ceilings alive with hand-painted frescoes and tinted windows casting enchanted patterns of light. On the walls, the romantic stages of traditional Shirazi nuptials are depicted—from courtship to joyful wedding celebration. Its tender, poetic atmosphere makes it the consummate choice for honeymoons and romantic retreats."
+                "description": "Features ceiling paintings and wall murals illustrating traditional Persian wedding customs, creating a poetic setting perfect for couples."
         },
         {
                 "id": "vesal-shirazi",
                 "title": "Vesal Shirazi Room",
-                "subtitle": "Honoring the legendary Shiraz calligrapher and poet",
+                "subtitle": "Honoring the celebrated Shiraz poet and calligrapher",
                 "image": "/images/rooms/vesal-shirazi-1.webp",
                 "images": [
               "/images/rooms/vesal-shirazi-1.webp",
@@ -1157,17 +1157,17 @@ export const translations = {
                 "category": "traditional",
                 "categoryLabel": "Traditional Orsi",
                 "highlights": [
-                        "Inspiring literary ambiance suited for creative souls",
-                        "Curated Shiraz master calligraphy artworks",
-                        "Traditional wooden writing desk and reading light",
-                        "Delightful serenity for relaxation and reading"
-                ],
-                "description": "Named in honor of Vesal Shirazi, the celebrated 19th-century master calligrapher and poet. Its balanced color harmony creates a deeply soothing and inspiring environment."
+			"Master calligraphy artworks and historic Persian inscriptions",
+			"Traditional wooden writing desk with focused reading light",
+			"Serene acoustic quiet for contemplation and rest",
+			"Window overlooking the courtyard with soft daylight"
+		],
+                "description": "Dedicated to poet Vesal Shirazi, featuring curated calligraphy panels, a classic writing desk, and soothing harmony ideal for literary minds."
         },
         {
                 "id": "sangi",
                 "title": "Sangi Room (Stone Chamber)",
-                "subtitle": "Hand-carved stone plinths offering profound silence and comfort",
+                "subtitle": "Natural acoustic cocoon with hand-carved stone plinths",
                 "image": "/images/rooms/sangi-1.webp",
                 "images": [
               "/images/rooms/sangi-1.webp",
@@ -1183,17 +1183,17 @@ export const translations = {
                 "category": "serene",
                 "categoryLabel": "Serene Heritage",
                 "highlights": [
-                        "Pleasant natural coolness during warm seasons",
-                        "Exceptional deep acoustic isolation for sound sleep",
-                        "Authentic Qajar era hand-cut stone finishes",
-                        "Ultra-comfortable ergonomic mattress and luxury linen"
-                ],
-                "description": "Ideal for travelers seeking quiet restful sleep; the thick natural stone walls create a restful cocoon completely sheltered from external noise."
+			"Thick masonry walls providing natural thermal and sound shielding",
+			"Pleasant natural coolness during warm sunny days",
+			"Authentic hand-dressed Qajar era stonework",
+			"Premium ergonomic bedding for uninterrupted deep rest"
+		],
+                "description": "Thick heritage stone masonry delivers complete acoustic isolation and natural seasonal coolness for profoundly restful sleep."
         },
         {
                 "id": "parvindokht",
                 "title": "Parvin Dokht Room",
-                "subtitle": "Poetic and tranquil retreat adorned with authentic Qashqai rugs",
+                "subtitle": "Poetic, warm haven styled with tribal nomadic textiles",
                 "image": "/images/rooms/parvindokht-1.jpg",
                 "images": [
               "/images/rooms/parvindokht-1.jpg",
@@ -1207,17 +1207,17 @@ export const translations = {
                 "category": "serene",
                 "categoryLabel": "Serene Heritage",
                 "highlights": [
-                        "Warm ambiance styled with authentic Fars embroidery",
-                        "Heritage plaster niches with petite mirror ornaments",
-                        "Garden-facing window with gentle soft daylight",
-                        "Full luxury ensuite amenities and organic toiletries"
-                ],
-                "description": "Parvin Dokht room offers a tender, calming shelter filled with warmth. The harmony of tribal nomadic carpets with classical plaster niches delivers genuine Shiraz hospitality."
+			"Warm interiors decorated with authentic Fars tribal rugs",
+			"Heritage plaster niches with antique mirror accents",
+			"Garden-facing window welcoming gentle diffused daylight",
+			"Full ensuite conveniences with modern walk-in shower"
+		],
+                "description": "Adorned with heritage plaster niches, authentic nomadic rugs, and a garden-facing window, offering a gentle glimpse into traditional Shirazi life."
         },
         {
                 "id": "shoorideh",
                 "title": "Shoorideh Room",
-                "subtitle": "Inspiring space celebrating the lyrical spirit of Qajar Shiraz",
+                "subtitle": "Exposed brick vaulting celebrating a legendary lyricist",
                 "image": "/images/rooms/shoorideh-1.webp",
                 "images": [
               "/images/rooms/shoorideh-1.webp",
@@ -1234,17 +1234,17 @@ export const translations = {
                 "category": "serene",
                 "categoryLabel": "Serene Heritage",
                 "highlights": [
-                        "Commemorating celebrated Shiraz poet Shoorideh",
-                        "Gentle warm sconce lighting for serene evenings",
-                        "Spacious built-in traditional timber wardrobe",
-                        "Elegant private bath with modern rainfall fixture"
-                ],
-                "description": "Named after Shoorideh of Shiraz; with delightful archways and soothing proportions, this room offers a sanctuary of calm after wandering through Shiraz's old quarters."
+			"Traditional brick barrel vaulting with genuine heritage lines",
+			"Warm ambient sconce lighting for quiet evenings",
+			"Built-in timber closet and comfortable lounge space",
+			"Contemporary private ensuite with walk-in rainfall shower"
+		],
+                "description": "Commemorating poet Shoorideh of Shiraz, this room blends traditional brick arches and white plaster for a serene, intimate sanctuary."
         },
         {
                 "id": "lotus",
                 "title": "Lotus Room",
-                "subtitle": "Inspired by ancient Persepolis lotus waterlily motifs",
+                "subtitle": "Inspired by timeless Persepolis lotus waterlily motifs",
                 "image": "/images/rooms/lotus-1.webp",
                 "images": [
               "/images/rooms/lotus-1.webp",
@@ -1260,17 +1260,17 @@ export const translations = {
                 "category": "serene",
                 "categoryLabel": "Serene Heritage",
                 "highlights": [
-                        "Lotus emblem symbolizing purity and enduring peace",
-                        "Luxurious double bed with organic linen bedding",
-                        "Complete acoustic and thermal insulation",
-                        "Modern underfloor heating and climate control"
-                ],
-                "description": "The lotus is an eternal Persian emblem of peace and renewal. Its subtle aesthetic presence combined with modern comforts ensures deeply restorative relaxation."
+			"Decorative plaster friezes featuring classical lotus motifs",
+			"Comfortable queen bed dressed in crisp organic cotton",
+			"Comprehensive acoustic insulation and climate control",
+			"Bright, minimalist atmosphere designed for mental stillness"
+		],
+                "description": "Draws inspiration from the ancient Persian lotus symbol of peace and purity, blending minimalist harmony with modern hotel comforts."
         },
         {
                 "id": "arjan",
                 "title": "Arjan Room",
-                "subtitle": "Turquoise tiles, gilded arabesque ceiling, and tranquil pool courtyard views",
+                "subtitle": "Turquoise tiles, arabesque ceiling, and central pool views",
                 "image": "/images/rooms/arjan-1.webp",
                 "images": [
               "/images/rooms/arjan-1.webp",
@@ -1285,17 +1285,17 @@ export const translations = {
                 "category": "serene",
                 "categoryLabel": "Serene Heritage",
                 "highlights": [
-			"Sometimes an airy room with gentle light and courtyard views is all you need... 🪷",
-			"Artisanal ceiling painted in gold, azure, and emerald arabesque motifs",
-			"Striking turquoise ceramic floor tiles handmade in Shiraz",
-			"Glittering crystal chandelier, wooden windows, and royal blue velvet drapes"
+			"Handcrafted turquoise ceramic flooring made in Shiraz",
+			"Ceiling painted with gold and cobalt arabesque curves",
+			"Generous wooden windows opening to the courtyard fountain",
+			"Radiant crystal chandelier paired with azure velvet drapery"
 		],
-                "description": "Sometimes just an airy retreat like the Arjan room, with its gentle daylight and courtyard pool vista, is enough to make you forget the passage of time... 🪷🦋 Featuring turquoise tile flooring, an exquisite ceiling painted with arabesque curves in gold, emerald, and azure hues, a gleaming crystal chandelier, and deep blue velvet draperies, it orchestrates a harmonious symphony of light, color, and Persian artistry."
+                "description": "Bright and airy, featuring turquoise ceramic tiles, hand-painted gilded arabesques, a sparkling crystal fixture, and courtyard pool vistas."
         },
         {
                 "id": "marjook",
                 "title": "Marjook Room",
-                "subtitle": "Historic 'Marjook' hand-painted wooden ceiling, artisan tiles, and stained glass",
+                "subtitle": "Shirazi 'Marjook' painted timber beams and stained glass",
                 "image": "/images/rooms/marjook-1.webp",
                 "images": [
               "/images/rooms/marjook-1.webp",
@@ -1315,12 +1315,12 @@ export const translations = {
                 "category": "serene",
                 "categoryLabel": "Serene Heritage",
                 "highlights": [
-			"Named after authentic local Shiraz ceiling woodwork ('Marjook')",
-			"Signature architectural style unique to Zand and Qajar era heritage homes",
-			"Hand-painted wooden ceiling beams restored by master craftsmen",
-			"Handmade ceramic tiles and timber lattice windows with tinted glass"
+			"Historic Shirazi 'Marjook' painted ceiling woodwork",
+			"Hand-painted floral detailing across heritage ceiling beams",
+			"Artisan floor tiles and tinted lattice timber windows",
+			"Intimate and spotless layout maximizing tranquility"
 		],
-                "description": "The Marjook Room draws its identity from the painted timber ceiling beams traditionally known in local Shirazi terminology as 'Marjook'. This specialized artisanal technique, celebrated throughout Shiraz's prominent Zand and Qajar mansions, harmonizes hand-painted wooden beams, custom floor tiles, and vibrantly stained glass windows into a masterclass of timeless Persian warmth."
+                "description": "Celebrates the regional Zand-era timber beam technique known as 'Marjook', pairing hand-painted beams with bespoke tiles and colorful stained glass."
         }
 ],
     },
