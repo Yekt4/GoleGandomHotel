@@ -1,10 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { BookingDialog } from "./BookingDialog";
-import { MessageCircle, Phone, Sparkles } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  X,
+  Images,
+  Phone,
+  MessageCircle,
+} from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 
@@ -17,6 +24,12 @@ export function RoomsSection() {
   const [roomImageIndexes, setRoomImageIndexes] = useState<Record<string, number>>({});
   const [selectedRoomForDialog, setSelectedRoomForDialog] = useState<string>("");
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
+
+  // Dedicated Room Gallery Modal State
+  const [galleryModalRoom, setGalleryModalRoom] = useState<(typeof t.rooms.items)[0] | null>(null);
+  const [galleryPhotoIndex, setGalleryPhotoIndex] = useState<number>(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const activeGalleryThumbRef = useRef<HTMLButtonElement | null>(null);
 
   const filteredRooms = t.rooms.items.filter((room) => {
     if (filter === "all") return true;
@@ -40,6 +53,112 @@ export function RoomsSection() {
       return String(num).replace(/\d/g, (d) => persianDigits[Number(d)]);
     }
     return String(num);
+  };
+
+  // Inline card photo switching
+  const handlePrevImage = (roomId: string, total: number) => {
+    setRoomImageIndexes((prev) => {
+      const cur = prev[roomId] || 0;
+      return { ...prev, [roomId]: (cur - 1 + total) % total };
+    });
+  };
+
+  const handleNextImage = (roomId: string, total: number) => {
+    setRoomImageIndexes((prev) => {
+      const cur = prev[roomId] || 0;
+      return { ...prev, [roomId]: (cur + 1) % total };
+    });
+  };
+
+  // Open Room Gallery Modal
+  const openRoomGallery = (room: (typeof t.rooms.items)[0], initialIndex = 0) => {
+    setGalleryModalRoom(room);
+    setGalleryPhotoIndex(initialIndex);
+  };
+
+  const closeRoomGallery = () => {
+    setGalleryModalRoom(null);
+  };
+
+  const showNextGalleryPhoto = useCallback(() => {
+    if (!galleryModalRoom) return;
+    const total = galleryModalRoom.images?.length || 1;
+    setGalleryPhotoIndex((prev) => (prev + 1) % total);
+  }, [galleryModalRoom]);
+
+  const showPrevGalleryPhoto = useCallback(() => {
+    if (!galleryModalRoom) return;
+    const total = galleryModalRoom.images?.length || 1;
+    setGalleryPhotoIndex((prev) => (prev - 1 + total) % total);
+  }, [galleryModalRoom]);
+
+  // Lock body scroll when room gallery is open
+  useEffect(() => {
+    if (galleryModalRoom !== null) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [galleryModalRoom]);
+
+  // Auto-scroll active thumbnail in room gallery into view
+  useEffect(() => {
+    if (galleryModalRoom !== null && activeGalleryThumbRef.current) {
+      activeGalleryThumbRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    }
+  }, [galleryModalRoom, galleryPhotoIndex]);
+
+  // Keyboard navigation for room gallery
+  useEffect(() => {
+    if (galleryModalRoom === null) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        if (isEn) {
+          showPrevGalleryPhoto();
+        } else {
+          showNextGalleryPhoto();
+        }
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        if (isEn) {
+          showNextGalleryPhoto();
+        } else {
+          showPrevGalleryPhoto();
+        }
+      } else if (e.key === "Escape") {
+        closeRoomGallery();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [galleryModalRoom, showNextGalleryPhoto, showPrevGalleryPhoto, isEn]);
+
+  // Touch swipe support for mobile in room gallery
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart === null) return;
+    const touchEnd = e.changedTouches[0].clientX;
+    const diff = touchStart - touchEnd;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        showNextGalleryPhoto();
+      } else {
+        showPrevGalleryPhoto();
+      }
+    }
+    setTouchStart(null);
   };
 
   return (
@@ -96,24 +215,35 @@ export function RoomsSection() {
           })}
         </div>
 
-
-        {/* Room Showcases - Alternating Editorial Layout */}
+        {/* Room Showcases - Alternating Editorial Layout with Gallery */}
         <div className="flex flex-col gap-20 sm:gap-28">
           {filteredRooms.map((room, index) => {
             const isEven = index % 2 === 0;
-            const currentImgIdx = roomImageIndexes[room.id] || 0;
-            const currentSrc = room.images?.[currentImgIdx] || room.image;
+            const imagesList = room.images && room.images.length > 0 ? room.images : [room.image];
+            const hasMultipleImages = imagesList.length > 1;
+            const currentImgIdx = (roomImageIndexes[room.id] || 0) % imagesList.length;
+            const currentSrc = imagesList[currentImgIdx];
 
             return (
               <div
                 key={room.id}
                 className="bg-[#faf8f5] rounded-[24px] border border-[#dfd9cc] overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-stretch shadow-xs hover:shadow-md transition-shadow duration-300"
               >
-                {/* Photo Frame with Multi-Image Support */}
+                {/* Photo Frame with Multi-Image Support & Click-to-Open Gallery */}
                 <div
-                  className={`lg:col-span-7 relative min-h-[360px] sm:min-h-[440px] lg:min-h-[500px] overflow-hidden group ${
+                  onClick={() => openRoomGallery(room, currentImgIdx)}
+                  className={`lg:col-span-7 relative min-h-[360px] sm:min-h-[440px] lg:min-h-[500px] overflow-hidden group cursor-pointer ${
                     isEven ? "lg:order-1" : "lg:order-2"
                   }`}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`${room.title} - ${isEn ? "View Photo Gallery" : "مشاهده گالری تصاویر"}`}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      openRoomGallery(room, currentImgIdx);
+                    }
+                  }}
                 >
                   <Image
                     src={currentSrc}
@@ -133,25 +263,94 @@ export function RoomsSection() {
                     </div>
                   )}
 
-                  {/* Multi-Photo Dots Switcher */}
-                  {room.images && room.images.length > 1 && (
-                    <div className={`absolute bottom-4 ${isEn ? "right-4" : "left-4"} z-20 flex items-center gap-1.5 bg-black/50 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/20`}>
-                      {room.images.map((_, imgIdx) => (
-                        <button
-                          key={imgIdx}
-                          type="button"
-                          onClick={() => {
-                            setRoomImageIndexes((prev) => ({ ...prev, [room.id]: imgIdx }));
-                          }}
-                          className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${
-                            currentImgIdx === imgIdx
-                              ? "bg-white scale-125 shadow-xs"
-                              : "bg-white/40 hover:bg-white/80"
-                          }`}
-                          aria-label={`Photo ${imgIdx + 1}`}
-                          title={`تصویر ${formatNumber(imgIdx + 1)}`}
-                        />
-                      ))}
+                  {/* Prominent Gallery Badge on Photo */}
+                  {hasMultipleImages && (
+                    <div className={`absolute top-4 ${isEn ? "right-4" : "left-4"} z-20`}>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openRoomGallery(room, currentImgIdx);
+                        }}
+                        className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-black/60 hover:bg-black/85 text-white backdrop-blur-md border border-white/25 shadow-sm transition-all group-hover:scale-105 cursor-pointer"
+                        title={isEn ? "Open full gallery" : "مشاهده گالری تصاویر این اتاق"}
+                      >
+                        <Images className="w-3.5 h-3.5 text-amber-300" />
+                        <span>
+                          {formatNumber(imagesList.length)} {isEn ? "Photos" : "تصویر"}
+                        </span>
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Inline Prev/Next Chevrons on Card Photo */}
+                  {hasMultipleImages && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (isEn) {
+                            handlePrevImage(room.id, imagesList.length);
+                          } else {
+                            handleNextImage(room.id, imagesList.length);
+                          }
+                        }}
+                        className={`absolute top-1/2 -translate-y-1/2 ${
+                          isEn ? "left-3" : "right-3"
+                        } w-9 h-9 rounded-full bg-black/45 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-md border border-white/25 opacity-0 group-hover:opacity-100 transition-all z-20 cursor-pointer shadow-md hover:scale-110`}
+                        aria-label="Previous Photo"
+                        title={isEn ? "Previous Photo" : "تصویر قبلی"}
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (isEn) {
+                            handleNextImage(room.id, imagesList.length);
+                          } else {
+                            handlePrevImage(room.id, imagesList.length);
+                          }
+                        }}
+                        className={`absolute top-1/2 -translate-y-1/2 ${
+                          isEn ? "right-3" : "left-3"
+                        } w-9 h-9 rounded-full bg-black/45 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-md border border-white/25 opacity-0 group-hover:opacity-100 transition-all z-20 cursor-pointer shadow-md hover:scale-110`}
+                        aria-label="Next Photo"
+                        title={isEn ? "Next Photo" : "تصویر بعدی"}
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                    </>
+                  )}
+
+                  {/* Multi-Photo Dots & Counter Indicator */}
+                  {hasMultipleImages && (
+                    <div className={`absolute bottom-4 ${isEn ? "right-4" : "left-4"} z-20 flex items-center gap-2 bg-black/55 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20`}>
+                      <div className="flex items-center gap-1.5">
+                        {imagesList.map((_, imgIdx) => (
+                          <button
+                            key={imgIdx}
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setRoomImageIndexes((prev) => ({ ...prev, [room.id]: imgIdx }));
+                            }}
+                            className={`w-2 h-2 rounded-full transition-all cursor-pointer ${
+                              currentImgIdx === imgIdx
+                                ? "bg-white scale-125 shadow-xs"
+                                : "bg-white/40 hover:bg-white/80"
+                            }`}
+                            aria-label={`Photo ${imgIdx + 1}`}
+                            title={`تصویر ${formatNumber(imgIdx + 1)}`}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-[11px] text-white/90 font-mono pr-1.5 border-r border-white/25">
+                        {formatNumber(currentImgIdx + 1)}/{formatNumber(imagesList.length)}
+                      </span>
                     </div>
                   )}
 
@@ -168,25 +367,52 @@ export function RoomsSection() {
                   } ${isEven ? "lg:order-2" : "lg:order-1"}`}
                 >
                   <div>
-                    <h3 className="hidden lg:block text-2xl sm:text-3xl font-bold text-[#172554] leading-snug mb-3">
-                      {room.title}
-                    </h3>
+                    <div className="flex items-start justify-between gap-3 mb-2">
+                      <h3 className="text-2xl sm:text-3xl font-bold text-[#172554] leading-snug">
+                        {room.title}
+                      </h3>
+                    </div>
 
-                    <p className="text-sm sm:text-base text-[#555f6d] mb-6 leading-relaxed font-light">
+                    <p className="text-xs sm:text-sm font-medium text-[#8c7b64] mb-3">
+                      {room.subtitle}
+                    </p>
+
+                    <p className="text-sm sm:text-base text-[#555f6d] mb-5 leading-relaxed font-light">
                       {room.description}
                     </p>
 
+                    {/* Button to Open Full Room Photo Gallery */}
+                    {hasMultipleImages && (
+                      <button
+                        type="button"
+                        onClick={() => openRoomGallery(room, currentImgIdx)}
+                        className="mb-5 inline-flex items-center gap-2 text-xs font-semibold text-[#172554] hover:text-[#0f172a] bg-[#faf8f5] hover:bg-white px-3.5 py-1.5 rounded-full border border-[#dfd9cc] transition-all cursor-pointer group/btn shadow-2xs hover:shadow-xs"
+                      >
+                        <Images className="w-3.5 h-3.5 text-[#8c7b64] group-hover/btn:scale-110 transition-transform" />
+                        <span>
+                          {isEn
+                            ? `View all ${imagesList.length} photos of this room`
+                            : `مشاهده گالری (${formatNumber(imagesList.length)} تصویر این اتاق)`}
+                        </span>
+                        <ChevronLeft className={`w-3.5 h-3.5 ${isEn ? "rotate-180" : ""}`} />
+                      </button>
+                    )}
+
                     {/* Room Specs - Editorial Line */}
-                    <div className="flex flex-wrap items-center gap-x-5 gap-y-2 py-3 border-y border-[#dfd9cc] text-xs sm:text-sm text-[#555f6d] mb-6">
-                      <span>{t.rooms.capacityLabel} <strong className="text-[#172554] font-semibold">{room.capacity}</strong></span>
+                    <div className="flex flex-wrap items-center gap-x-5 gap-y-2 py-3 border-y border-[#dfd9cc] text-xs sm:text-sm text-[#555f6d] mb-5">
+                      <span>
+                        {t.rooms.capacityLabel} <strong className="text-[#172554] font-semibold">{room.capacity}</strong>
+                      </span>
                       <span>·</span>
-                      <span>{t.rooms.sizeLabel} <strong className="text-[#172554] font-semibold">{room.size}</strong></span>
+                      <span>
+                        {t.rooms.sizeLabel} <strong className="text-[#172554] font-semibold">{room.size}</strong>
+                      </span>
                       <span>·</span>
                       <span>{room.architectureFeature}</span>
                     </div>
 
-                    {/* Highlights - Editorial Typography, No Checkmark Icons */}
-                    <ul className="space-y-2.5 mb-6 text-xs sm:text-sm text-[#475569] font-light">
+                    {/* Highlights */}
+                    <ul className="space-y-2 mb-5 text-xs sm:text-sm text-[#475569] font-light">
                       {room.highlights.map((item, hIdx) => (
                         <li key={hIdx} className="flex items-start gap-2.5">
                           <span className="text-[#8c7b64] font-bold select-none">—</span>
@@ -250,7 +476,143 @@ export function RoomsSection() {
           onOpenChange={setDialogOpen}
         />
       </div>
+
+      {/* Full-Screen Dedicated Room Photo Gallery Modal */}
+      {galleryModalRoom && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={galleryModalRoom.title}
+          className="fixed inset-0 z-50 bg-[#070b14]/98 backdrop-blur-2xl flex flex-col justify-between text-white select-none animate-in fade-in duration-200"
+        >
+          {/* Top Bar: Room Title, Category, Counter, Quick Book, Close */}
+          <div className="relative z-20 w-full px-4 sm:px-8 py-4 flex items-center justify-between border-b border-white/10 bg-black/40 backdrop-blur-md">
+            <div className={`flex items-center gap-3.5 max-w-[65%] ${isEn ? "text-left" : "text-right"}`}>
+              {galleryModalRoom.categoryLabel && (
+                <span className="text-xs font-semibold px-3 py-1 rounded-full bg-white/15 text-[#93c5fd] border border-white/20 whitespace-nowrap">
+                  {galleryModalRoom.categoryLabel}
+                </span>
+              )}
+              <h3 className="text-sm sm:text-base font-bold text-white truncate">
+                {galleryModalRoom.title}
+              </h3>
+            </div>
+
+            <div className="flex items-center gap-2.5 sm:gap-4">
+              {/* Photo Counter */}
+              <span className="text-xs sm:text-sm font-mono text-white/70 bg-white/10 px-3 py-1 rounded-full border border-white/15">
+                {formatNumber(galleryPhotoIndex + 1)} {isEn ? "of" : "از"}{" "}
+                {formatNumber(galleryModalRoom.images?.length || 1)}
+              </span>
+
+              {/* Quick Book from Inside Gallery */}
+              <Button
+                onClick={() => {
+                  const title = galleryModalRoom.title;
+                  closeRoomGallery();
+                  handleOpenBooking(title);
+                }}
+                className="hidden sm:flex bg-[#172554] hover:bg-[#1e3a8a] text-white rounded-full h-9 px-4 text-xs font-semibold gap-1.5 shadow-sm border border-white/20 cursor-pointer"
+              >
+                <Phone className="w-3.5 h-3.5 text-white/80" />
+                <span>{isEn ? "Book This Room" : "رزرو این اتاق"}</span>
+              </Button>
+
+              {/* Close Button */}
+              <button
+                type="button"
+                onClick={closeRoomGallery}
+                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-white hover:scale-105"
+                aria-label={isEn ? "Close" : "بستن"}
+                title={isEn ? "Close (Esc)" : "بستن (Esc)"}
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Main Stage: Large High-Fidelity Room Photo with Next / Prev */}
+          <div
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            className="relative flex-1 w-full flex items-center justify-center p-2 sm:p-6 overflow-hidden touch-pan-y"
+          >
+            <div className="relative w-full h-full max-h-[62vh] sm:max-h-[68vh] flex items-center justify-center">
+              <Image
+                src={galleryModalRoom.images[galleryPhotoIndex]}
+                alt={`${galleryModalRoom.title} - photo ${galleryPhotoIndex + 1}`}
+                fill
+                priority
+                className="object-contain"
+                sizes="100vw"
+              />
+            </div>
+
+            {/* Left Button */}
+            <button
+              type="button"
+              onClick={isEn ? showPrevGalleryPhoto : showNextGalleryPhoto}
+              className="absolute top-1/2 -translate-y-1/2 left-3 sm:left-6 w-12 h-12 rounded-full bg-black/50 hover:bg-black/85 backdrop-blur-md border border-white/25 text-white flex items-center justify-center transition-all z-20 cursor-pointer shadow-2xl hover:scale-110 focus-visible:outline-2 focus-visible:outline-white"
+              aria-label={isEn ? "Previous" : "بعدی"}
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            {/* Right Button */}
+            <button
+              type="button"
+              onClick={isEn ? showNextGalleryPhoto : showPrevGalleryPhoto}
+              className="absolute top-1/2 -translate-y-1/2 right-3 sm:right-6 w-12 h-12 rounded-full bg-black/50 hover:bg-black/85 backdrop-blur-md border border-white/25 text-white flex items-center justify-center transition-all z-20 cursor-pointer shadow-2xl hover:scale-110 focus-visible:outline-2 focus-visible:outline-white"
+              aria-label={isEn ? "Next" : "قبلی"}
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Bottom Bar: Filmstrip Thumbnails of all photos of this room */}
+          <div className="relative z-20 w-full bg-black/60 backdrop-blur-xl border-t border-white/10 pt-3 pb-4 px-4 sm:px-8 flex flex-col gap-3">
+            <div className={`w-full flex items-center justify-between ${isEn ? "text-left" : "text-right"}`}>
+              <p className="text-xs sm:text-sm font-medium text-white/95 truncate">
+                {galleryModalRoom.title} · {galleryModalRoom.subtitle}
+              </p>
+              <div className="hidden sm:flex items-center gap-2 text-[11px] text-white/50 flex-shrink-0">
+                <span>{isEn ? "Arrow keys to navigate" : "کلیدهای جهت‌نما برای جابجایی"}</span>
+                <span>·</span>
+                <span>{isEn ? "Esc to close" : "Esc برای بستن"}</span>
+              </div>
+            </div>
+
+            {/* Filmstrip Row */}
+            <div className="w-full flex items-center justify-start sm:justify-center gap-2.5 sm:gap-3 overflow-x-auto py-1 scrollbar-none [scrollbar-width:none]">
+              {galleryModalRoom.images.map((thumbSrc, thumbIdx) => {
+                const isCurrent = thumbIdx === galleryPhotoIndex;
+                return (
+                  <button
+                    key={thumbIdx}
+                    ref={isCurrent ? activeGalleryThumbRef : null}
+                    type="button"
+                    onClick={() => setGalleryPhotoIndex(thumbIdx)}
+                    aria-label={`Photo ${thumbIdx + 1}`}
+                    className={`relative flex-shrink-0 w-16 sm:w-20 h-12 sm:h-14 rounded-lg sm:rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${
+                      isCurrent
+                        ? "ring-2 ring-white ring-offset-2 ring-offset-[#070b14] scale-105 opacity-100 shadow-lg"
+                        : "opacity-45 hover:opacity-90 border border-white/15"
+                    }`}
+                  >
+                    <Image
+                      src={thumbSrc}
+                      alt={`Thumbnail ${thumbIdx + 1}`}
+                      fill
+                      sizes="80px"
+                      className="object-cover"
+                    />
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
-

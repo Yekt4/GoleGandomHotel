@@ -82,6 +82,10 @@ export const translations = {
       heading: "اتاق‌ها و سوئیت‌های عمارت",
       desc: "۱۴ اتاق و سوئیت تاریخی با هویتی اصیل از عصر زندیه، قاجار و پهلوی؛ تلفیق شاهکارهای آینه‌کاری و ارسی‌های سنتی با بالاترین استانداردهای هتلداری لوکس.",
       inquireBtn: "استعلام و رزرو",
+      viewGalleryBtn: "مشاهده گالری تصاویر",
+      photosLabel: "تصویر",
+      allPhotosCount: "مشاهده همه",
+
       callToBook: "تماس برای رزرو",
       whatsapp: "واتس‌اپ",
       capacityLabel: "ظرفیت:",
@@ -117,10 +121,14 @@ export const translations = {
                 "subtitle": "شکوه آینه‌کاری دست‌ساز و پنجره‌های هفت‌رنگ ارسی قاجاری",
                 "image": "/images/rooms/talar-ayineh-1.webp",
                 "images": [
-                        "/images/rooms/talar-ayineh-1.webp",
-                        "/images/rooms/talar-ayineh-2.webp",
-                        "/images/rooms/talar-ayineh-3.webp"
-                ],
+              "/images/rooms/talar-ayineh-1.webp",
+              "/images/rooms/talar-ayineh-2.webp",
+              "/images/rooms/talar-ayineh-3.webp",
+              "/images/rooms/talar-ayineh-4.webp",
+              "/images/rooms/talar-ayineh-5.webp",
+              "/images/rooms/talar-ayineh-6.jpg",
+              "/images/rooms/talar-ayineh-7.webp"
+],
                 "capacity": "۲ الی ۳ نفر",
                 "size": "۳۵ متر مربع",
                 "architectureFeature": "آینه‌کاری دست‌تراش با گچ‌بری اسلیمی",
@@ -140,10 +148,13 @@ export const translations = {
                 "subtitle": "انعکاس پرتوهای نور در هزاران قطعه آینه با ترنج زرین",
                 "image": "/images/rooms/hezar-ayineh-1.webp",
                 "images": [
-                        "/images/rooms/hezar-ayineh-1.webp",
-                        "/images/rooms/hezar-ayineh-2.webp",
-                        "/images/rooms/hezar-ayineh-3.webp"
-                ],
+              "/images/rooms/hezar-ayineh-1.webp",
+              "/images/rooms/hezar-ayineh-2.webp",
+              "/images/rooms/hezar-ayineh-3.webp",
+              "/images/rooms/hezar-ayineh-4.webp",
+              "/images/rooms/hezar-ayineh-5.webp",
+              "/images/rooms/hezar-ayineh-6.jpg"
+],
                 "capacity": "۲ الی ۴ نفر",
                 "size": "۳۸ متر مربع",
                 "architectureFeature": "آینه‌کاری لانه‌زنبوری و ترنج سقف",
@@ -163,10 +174,12 @@ export const translations = {
                 "subtitle": "پنجره ارسی مشبک کهن با پستوی اختصاصی، دنج و تاریخی",
                 "image": "/images/rooms/orsi-pasto-1.webp",
                 "images": [
-                        "/images/rooms/orsi-pasto-1.webp",
-                        "/images/rooms/orsi-pasto-2.webp",
-                        "/images/rooms/orsi-pasto-3.webp"
-                ],
+              "/images/rooms/orsi-pasto-1.webp",
+              "/images/rooms/orsi-pasto-2.webp",
+              "/images/rooms/orsi-pasto-3.webp",
+              "/images/rooms/orsi-pasto-4.webp",
+              "/images/rooms/orsi-pasto-5.webp"
+],
                 "capacity": "۲ نفر",
                 "size": "۳۰ متر مربع",
                 "architectureFeature": "پنجره ارسی چوب گردو با پستوی کهن",
@@ -186,10 +199,14 @@ export const translations = {
                 "subtitle": "پنج لنگه در چوبی بازشو رو به عطر بهارنارنج حیاط مرکزی",
                 "image": "/images/rooms/panjdari-1.webp",
                 "images": [
-                        "/images/rooms/panjdari-1.webp",
-                        "/images/rooms/panjdari-2.webp",
-                        "/images/rooms/panjdari-3.webp"
-                ],
+              "/images/rooms/panjdari-1.webp",
+              "/images/rooms/panjdari-2.webp",
+              "/images/rooms/panjdari-3.webp",
+              "/images/rooms/panjdari-4.webp",
+              "/images/rooms/panjdari-5.webp",
+              "/images/rooms/panjdari-6.webp",
+              "/images/rooms/panjdari-7.webp"
+],
                 "capacity": "۲ الی ۳ نفر",
                 "size": "۳۲ متر مربع",
                 "architectureFeature": "پنج لنگه در چوبی بازشو با طاق هلالی",
@@ -209,10 +226,15 @@ export const translations = {
                 "subtitle": "تلفیق شکوه معماری اوایل قرن با چیدمان اصیل و شاهانه",
                 "image": "/images/rooms/pahlavi-1.webp",
                 "images": [
-                        "/images/rooms/pahlavi-1.webp",
-                        "/images/rooms/pahlavi-2.webp",
-                        "/images/rooms/pahlavi-3.webp"
-                ],
+              "/images/rooms/pahlavi-1.webp",
+              "/images/rooms/pahlavi-2.webp",
+              "/images/rooms/pahlavi-3.webp",
+              "/images/rooms/pahlavi-4.webp",
+              "/images/rooms/pahlavi-5.webp",
+              "/images/rooms/pahlavi-6.webp",
+              "/images/rooms/pahlavi-7.webp",
+              "/images/rooms/pahlavi-8.webp"
+],
                 "capacity": "۲ الی ۳ نفر",
                 "size": "۳۴ متر مربع",
                 "architectureFeature": "سقف مرتفع با نقاشی و گچ‌بری دوره پهلوی اول",
@@ -232,10 +254,12 @@ export const translations = {
                 "subtitle": "الهام‌گرفته از صلابت و اصالت دوران زندیه در قلب شیراز",
                 "image": "/images/rooms/karimkhan-1.webp",
                 "images": [
-                        "/images/rooms/karimkhan-1.webp",
-                        "/images/rooms/karimkhan-2.webp",
-                        "/images/rooms/karimkhan-3.webp"
-                ],
+              "/images/rooms/karimkhan-1.webp",
+              "/images/rooms/karimkhan-2.webp",
+              "/images/rooms/karimkhan-3.webp",
+              "/images/rooms/karimkhan-4.webp",
+              "/images/rooms/karimkhan-5.webp"
+],
                 "capacity": "۲ نفر",
                 "size": "۲۸ متر مربع",
                 "architectureFeature": "طاق‌های خشتی اصیل با دیوارهای کاه‌گلی قطور",
@@ -255,10 +279,11 @@ export const translations = {
                 "subtitle": "اتاق سنتی با سه لنگه درب ارسی چوبی و نورگیر آرامش‌بخش",
                 "image": "/images/rooms/sehdari-1.webp",
                 "images": [
-                        "/images/rooms/sehdari-1.webp",
-                        "/images/rooms/sehdari-2.webp",
-                        "/images/rooms/sehdari-3.webp"
-                ],
+              "/images/rooms/sehdari-1.webp",
+              "/images/rooms/sehdari-2.webp",
+              "/images/rooms/sehdari-3.webp",
+              "/images/rooms/sehdari-4.webp"
+],
                 "capacity": "۲ نفر",
                 "size": "۲۴ متر مربع",
                 "architectureFeature": "گره‌چینی دست‌ساز چوبی با شیشه‌های کهربایی",
@@ -278,10 +303,11 @@ export const translations = {
                 "subtitle": "بزرگداشت ادیب و خوشنویس نامدار شیراز با چشم‌انداز حیاط",
                 "image": "/images/rooms/vesal-shirazi-1.webp",
                 "images": [
-                        "/images/rooms/vesal-shirazi-1.webp",
-                        "/images/rooms/vesal-shirazi-2.webp",
-                        "/images/rooms/vesal-shirazi-3.webp"
-                ],
+              "/images/rooms/vesal-shirazi-1.webp",
+              "/images/rooms/vesal-shirazi-2.webp",
+              "/images/rooms/vesal-shirazi-3.webp",
+              "/images/rooms/vesal-shirazi-4.webp"
+],
                 "capacity": "۲ نفر",
                 "size": "۲۷ متر مربع",
                 "architectureFeature": "کتیبه‌های کهن و دست‌بافته‌های اصیل فارس",
@@ -301,10 +327,13 @@ export const translations = {
                 "subtitle": "عایق طبیعی با ازاره‌های سنگی دست‌تراش و سکوت مطلق",
                 "image": "/images/rooms/sangi-1.webp",
                 "images": [
-                        "/images/rooms/sangi-1.webp",
-                        "/images/rooms/sangi-2.webp",
-                        "/images/rooms/sangi-3.webp"
-                ],
+              "/images/rooms/sangi-1.webp",
+              "/images/rooms/sangi-2.webp",
+              "/images/rooms/sangi-3.webp",
+              "/images/rooms/sangi-4.webp",
+              "/images/rooms/sangi-5.webp",
+              "/images/rooms/sangi-6.webp"
+],
                 "capacity": "۲ نفر",
                 "size": "۲۶ متر مربع",
                 "architectureFeature": "دیواره‌های قطور سنگی و طاق ضربی خشتی",
@@ -324,10 +353,11 @@ export const translations = {
                 "subtitle": "فضایی شاعرانه و آرامش‌بخش مزین به دست‌بافته‌های ایل قشقایی",
                 "image": "/images/rooms/parvindokht-1.jpg",
                 "images": [
-                        "/images/rooms/parvindokht-1.jpg",
-                        "/images/rooms/parvindokht-2.jpg",
-                        "/images/rooms/parvindokht-3.jpg"
-                ],
+              "/images/rooms/parvindokht-1.jpg",
+              "/images/rooms/parvindokht-2.jpg",
+              "/images/rooms/parvindokht-3.jpg",
+              "/images/rooms/parvindokht-4.jpg"
+],
                 "capacity": "۲ نفر",
                 "size": "۲۵ متر مربع",
                 "architectureFeature": "طاقچه و رف‌های سنتی با گچ‌بری ظریف",
@@ -347,10 +377,14 @@ export const translations = {
                 "subtitle": "فضایی سرشار از ذوق ادبی و طراوت هنر دوران قاجار",
                 "image": "/images/rooms/shoorideh-1.webp",
                 "images": [
-                        "/images/rooms/shoorideh-1.webp",
-                        "/images/rooms/shoorideh-2.webp",
-                        "/images/rooms/shoorideh-3.webp"
-                ],
+              "/images/rooms/shoorideh-1.webp",
+              "/images/rooms/shoorideh-2.webp",
+              "/images/rooms/shoorideh-3.webp",
+              "/images/rooms/shoorideh-4.webp",
+              "/images/rooms/shoorideh-5.webp",
+              "/images/rooms/shoorideh-6.webp",
+              "/images/rooms/shoorideh-7.jpg"
+],
                 "capacity": "۲ نفر",
                 "size": "۲۶ متر مربع",
                 "architectureFeature": "طاق ضربی خشتی و اندود گچ سپید شیرازی",
@@ -370,10 +404,13 @@ export const translations = {
                 "subtitle": "الهام‌گرفته از نقش‌مایه‌های نیلوفر آبی تخت‌جمشید",
                 "image": "/images/rooms/lotus-1.webp",
                 "images": [
-                        "/images/rooms/lotus-1.webp",
-                        "/images/rooms/lotus-2.webp",
-                        "/images/rooms/lotus-3.webp"
-                ],
+              "/images/rooms/lotus-1.webp",
+              "/images/rooms/lotus-2.webp",
+              "/images/rooms/lotus-3.webp",
+              "/images/rooms/lotus-4.webp",
+              "/images/rooms/lotus-5.webp",
+              "/images/rooms/lotus-6.jpg"
+],
                 "capacity": "۲ نفر",
                 "size": "۲۵ متر مربع",
                 "architectureFeature": "قرنیزهای گچی با موتیف‌های هخامنشی",
@@ -393,10 +430,12 @@ export const translations = {
                 "subtitle": "بازتابی از تمدن کهن جنوب ایران با نورپردازی گرم و دلپذیر",
                 "image": "/images/rooms/arjan-1.webp",
                 "images": [
-                        "/images/rooms/arjan-1.webp",
-                        "/images/rooms/arjan-2.webp",
-                        "/images/rooms/arjan-3.jpg"
-                ],
+              "/images/rooms/arjan-1.webp",
+              "/images/rooms/arjan-2.webp",
+              "/images/rooms/arjan-3.jpg",
+              "/images/rooms/arjan-4.webp",
+              "/images/rooms/arjan-5.webp"
+],
                 "capacity": "۲ نفر",
                 "size": "۲۴ متر مربع",
                 "architectureFeature": "اندود کاه‌گل نرم معطر و سقف چوبی توفال",
@@ -416,10 +455,17 @@ export const translations = {
                 "subtitle": "روایت اصالت فرهنگ شیراز با طاق‌های ضربی و آرامش شبانه",
                 "image": "/images/rooms/marjook-1.webp",
                 "images": [
-                        "/images/rooms/marjook-1.webp",
-                        "/images/rooms/marjook-2.webp",
-                        "/images/rooms/marjook-3.webp"
-                ],
+              "/images/rooms/marjook-1.webp",
+              "/images/rooms/marjook-2.webp",
+              "/images/rooms/marjook-3.webp",
+              "/images/rooms/marjook-4.webp",
+              "/images/rooms/marjook-5.webp",
+              "/images/rooms/marjook-6.webp",
+              "/images/rooms/marjook-7.webp",
+              "/images/rooms/marjook-8.webp",
+              "/images/rooms/marjook-9.webp",
+              "/images/rooms/marjook-10.webp"
+],
                 "capacity": "۲ نفر",
                 "size": "۲۴ متر مربع",
                 "architectureFeature": "طاق‌های خشتی سنتی با عایق‌بندی مدرن صوتی",
@@ -863,6 +909,10 @@ export const translations = {
       heading: "Rooms & Suites of the Mansion",
       desc: "14 authentic historical rooms and suites reviving the Zand, Qajar, and Pahlavi eras; combining handcrafted mirror mosaics and stained-glass orsi with premier boutique hotel comfort.",
       inquireBtn: "Inquire & Reserve",
+      viewGalleryBtn: "View Photo Gallery",
+      photosLabel: "photos",
+      allPhotosCount: "View all",
+
       callToBook: "Call to Reserve",
       whatsapp: "WhatsApp",
       capacityLabel: "Capacity:",
@@ -898,10 +948,14 @@ export const translations = {
                 "subtitle": "Handcrafted mirror mosaic with seven-color Qajar stained-glass orsi",
                 "image": "/images/rooms/talar-ayineh-1.webp",
                 "images": [
-                        "/images/rooms/talar-ayineh-1.webp",
-                        "/images/rooms/talar-ayineh-2.webp",
-                        "/images/rooms/talar-ayineh-3.webp"
-                ],
+              "/images/rooms/talar-ayineh-1.webp",
+              "/images/rooms/talar-ayineh-2.webp",
+              "/images/rooms/talar-ayineh-3.webp",
+              "/images/rooms/talar-ayineh-4.webp",
+              "/images/rooms/talar-ayineh-5.webp",
+              "/images/rooms/talar-ayineh-6.jpg",
+              "/images/rooms/talar-ayineh-7.webp"
+],
                 "capacity": "2 to 3 Guests",
                 "size": "35 sq.m",
                 "architectureFeature": "Hand-cut mirror mosaic with arabesque plasterwork",
@@ -921,10 +975,13 @@ export const translations = {
                 "subtitle": "Prismatic light reflections through thousands of antique mirrors",
                 "image": "/images/rooms/hezar-ayineh-1.webp",
                 "images": [
-                        "/images/rooms/hezar-ayineh-1.webp",
-                        "/images/rooms/hezar-ayineh-2.webp",
-                        "/images/rooms/hezar-ayineh-3.webp"
-                ],
+              "/images/rooms/hezar-ayineh-1.webp",
+              "/images/rooms/hezar-ayineh-2.webp",
+              "/images/rooms/hezar-ayineh-3.webp",
+              "/images/rooms/hezar-ayineh-4.webp",
+              "/images/rooms/hezar-ayineh-5.webp",
+              "/images/rooms/hezar-ayineh-6.jpg"
+],
                 "capacity": "2 to 4 Guests",
                 "size": "38 sq.m",
                 "architectureFeature": "Honeycomb mirror mosaic with gilded medallion ceiling",
@@ -944,10 +1001,12 @@ export const translations = {
                 "subtitle": "Historic fretwork orsi window with a private traditional alcove",
                 "image": "/images/rooms/orsi-pasto-1.webp",
                 "images": [
-                        "/images/rooms/orsi-pasto-1.webp",
-                        "/images/rooms/orsi-pasto-2.webp",
-                        "/images/rooms/orsi-pasto-3.webp"
-                ],
+              "/images/rooms/orsi-pasto-1.webp",
+              "/images/rooms/orsi-pasto-2.webp",
+              "/images/rooms/orsi-pasto-3.webp",
+              "/images/rooms/orsi-pasto-4.webp",
+              "/images/rooms/orsi-pasto-5.webp"
+],
                 "capacity": "2 Guests",
                 "size": "30 sq.m",
                 "architectureFeature": "Walnut sliding orsi with artisan colored glass & alcove",
@@ -967,10 +1026,14 @@ export const translations = {
                 "subtitle": "Five arched wooden doors opening toward courtyard orange blossoms",
                 "image": "/images/rooms/panjdari-1.webp",
                 "images": [
-                        "/images/rooms/panjdari-1.webp",
-                        "/images/rooms/panjdari-2.webp",
-                        "/images/rooms/panjdari-3.webp"
-                ],
+              "/images/rooms/panjdari-1.webp",
+              "/images/rooms/panjdari-2.webp",
+              "/images/rooms/panjdari-3.webp",
+              "/images/rooms/panjdari-4.webp",
+              "/images/rooms/panjdari-5.webp",
+              "/images/rooms/panjdari-6.webp",
+              "/images/rooms/panjdari-7.webp"
+],
                 "capacity": "2 to 3 Guests",
                 "size": "32 sq.m",
                 "architectureFeature": "Five arched wooden doors opening wide to the courtyard",
@@ -990,10 +1053,15 @@ export const translations = {
                 "subtitle": "Early 20th-century architectural elegance paired with noble decor",
                 "image": "/images/rooms/pahlavi-1.webp",
                 "images": [
-                        "/images/rooms/pahlavi-1.webp",
-                        "/images/rooms/pahlavi-2.webp",
-                        "/images/rooms/pahlavi-3.webp"
-                ],
+              "/images/rooms/pahlavi-1.webp",
+              "/images/rooms/pahlavi-2.webp",
+              "/images/rooms/pahlavi-3.webp",
+              "/images/rooms/pahlavi-4.webp",
+              "/images/rooms/pahlavi-5.webp",
+              "/images/rooms/pahlavi-6.webp",
+              "/images/rooms/pahlavi-7.webp",
+              "/images/rooms/pahlavi-8.webp"
+],
                 "capacity": "2 to 3 Guests",
                 "size": "34 sq.m",
                 "architectureFeature": "High ceiling with first Pahlavi era frescoes and moldings",
@@ -1013,10 +1081,12 @@ export const translations = {
                 "subtitle": "Inspired by the timeless dignity of the Zand era in Shiraz",
                 "image": "/images/rooms/karimkhan-1.webp",
                 "images": [
-                        "/images/rooms/karimkhan-1.webp",
-                        "/images/rooms/karimkhan-2.webp",
-                        "/images/rooms/karimkhan-3.webp"
-                ],
+              "/images/rooms/karimkhan-1.webp",
+              "/images/rooms/karimkhan-2.webp",
+              "/images/rooms/karimkhan-3.webp",
+              "/images/rooms/karimkhan-4.webp",
+              "/images/rooms/karimkhan-5.webp"
+],
                 "capacity": "2 Guests",
                 "size": "28 sq.m",
                 "architectureFeature": "Traditional clay-brick arches with thick insulating walls",
@@ -1036,10 +1106,11 @@ export const translations = {
                 "subtitle": "Traditional chamber with three wooden orsi doors and soothing light",
                 "image": "/images/rooms/sehdari-1.webp",
                 "images": [
-                        "/images/rooms/sehdari-1.webp",
-                        "/images/rooms/sehdari-2.webp",
-                        "/images/rooms/sehdari-3.webp"
-                ],
+              "/images/rooms/sehdari-1.webp",
+              "/images/rooms/sehdari-2.webp",
+              "/images/rooms/sehdari-3.webp",
+              "/images/rooms/sehdari-4.webp"
+],
                 "capacity": "2 Guests",
                 "size": "24 sq.m",
                 "architectureFeature": "Handmade wood lattice with amber and azure glass",
@@ -1059,10 +1130,11 @@ export const translations = {
                 "subtitle": "Honoring the legendary Shiraz calligrapher and poet",
                 "image": "/images/rooms/vesal-shirazi-1.webp",
                 "images": [
-                        "/images/rooms/vesal-shirazi-1.webp",
-                        "/images/rooms/vesal-shirazi-2.webp",
-                        "/images/rooms/vesal-shirazi-3.webp"
-                ],
+              "/images/rooms/vesal-shirazi-1.webp",
+              "/images/rooms/vesal-shirazi-2.webp",
+              "/images/rooms/vesal-shirazi-3.webp",
+              "/images/rooms/vesal-shirazi-4.webp"
+],
                 "capacity": "2 Guests",
                 "size": "27 sq.m",
                 "architectureFeature": "Historic calligraphy panels and Fars handwoven textiles",
@@ -1082,10 +1154,13 @@ export const translations = {
                 "subtitle": "Hand-carved stone plinths offering profound silence and comfort",
                 "image": "/images/rooms/sangi-1.webp",
                 "images": [
-                        "/images/rooms/sangi-1.webp",
-                        "/images/rooms/sangi-2.webp",
-                        "/images/rooms/sangi-3.webp"
-                ],
+              "/images/rooms/sangi-1.webp",
+              "/images/rooms/sangi-2.webp",
+              "/images/rooms/sangi-3.webp",
+              "/images/rooms/sangi-4.webp",
+              "/images/rooms/sangi-5.webp",
+              "/images/rooms/sangi-6.webp"
+],
                 "capacity": "2 Guests",
                 "size": "26 sq.m",
                 "architectureFeature": "Thick masonry stone walls and historic vaulted ceiling",
@@ -1105,10 +1180,11 @@ export const translations = {
                 "subtitle": "Poetic and tranquil retreat adorned with authentic Qashqai rugs",
                 "image": "/images/rooms/parvindokht-1.jpg",
                 "images": [
-                        "/images/rooms/parvindokht-1.jpg",
-                        "/images/rooms/parvindokht-2.jpg",
-                        "/images/rooms/parvindokht-3.jpg"
-                ],
+              "/images/rooms/parvindokht-1.jpg",
+              "/images/rooms/parvindokht-2.jpg",
+              "/images/rooms/parvindokht-3.jpg",
+              "/images/rooms/parvindokht-4.jpg"
+],
                 "capacity": "2 Guests",
                 "size": "25 sq.m",
                 "architectureFeature": "Traditional plaster niches and delicate heritage moldings",
@@ -1128,10 +1204,14 @@ export const translations = {
                 "subtitle": "Inspiring space celebrating the lyrical spirit of Qajar Shiraz",
                 "image": "/images/rooms/shoorideh-1.webp",
                 "images": [
-                        "/images/rooms/shoorideh-1.webp",
-                        "/images/rooms/shoorideh-2.webp",
-                        "/images/rooms/shoorideh-3.webp"
-                ],
+              "/images/rooms/shoorideh-1.webp",
+              "/images/rooms/shoorideh-2.webp",
+              "/images/rooms/shoorideh-3.webp",
+              "/images/rooms/shoorideh-4.webp",
+              "/images/rooms/shoorideh-5.webp",
+              "/images/rooms/shoorideh-6.webp",
+              "/images/rooms/shoorideh-7.jpg"
+],
                 "capacity": "2 Guests",
                 "size": "26 sq.m",
                 "architectureFeature": "Brick barrel vaulting with pure white Shirazi plaster",
@@ -1151,10 +1231,13 @@ export const translations = {
                 "subtitle": "Inspired by ancient Persepolis lotus waterlily motifs",
                 "image": "/images/rooms/lotus-1.webp",
                 "images": [
-                        "/images/rooms/lotus-1.webp",
-                        "/images/rooms/lotus-2.webp",
-                        "/images/rooms/lotus-3.webp"
-                ],
+              "/images/rooms/lotus-1.webp",
+              "/images/rooms/lotus-2.webp",
+              "/images/rooms/lotus-3.webp",
+              "/images/rooms/lotus-4.webp",
+              "/images/rooms/lotus-5.webp",
+              "/images/rooms/lotus-6.jpg"
+],
                 "capacity": "2 Guests",
                 "size": "25 sq.m",
                 "architectureFeature": "Plaster friezes with classical Persian lotus motifs",
@@ -1174,10 +1257,12 @@ export const translations = {
                 "subtitle": "Reflecting ancient southern Persian heritage with warm ambient light",
                 "image": "/images/rooms/arjan-1.webp",
                 "images": [
-                        "/images/rooms/arjan-1.webp",
-                        "/images/rooms/arjan-2.webp",
-                        "/images/rooms/arjan-3.jpg"
-                ],
+              "/images/rooms/arjan-1.webp",
+              "/images/rooms/arjan-2.webp",
+              "/images/rooms/arjan-3.jpg",
+              "/images/rooms/arjan-4.webp",
+              "/images/rooms/arjan-5.webp"
+],
                 "capacity": "2 Guests",
                 "size": "24 sq.m",
                 "architectureFeature": "Aromatic earthen plaster and timber-beam ceiling",
@@ -1197,10 +1282,17 @@ export const translations = {
                 "subtitle": "Authentic Shiraz narrative with traditional vaulting and restful quiet",
                 "image": "/images/rooms/marjook-1.webp",
                 "images": [
-                        "/images/rooms/marjook-1.webp",
-                        "/images/rooms/marjook-2.webp",
-                        "/images/rooms/marjook-3.webp"
-                ],
+              "/images/rooms/marjook-1.webp",
+              "/images/rooms/marjook-2.webp",
+              "/images/rooms/marjook-3.webp",
+              "/images/rooms/marjook-4.webp",
+              "/images/rooms/marjook-5.webp",
+              "/images/rooms/marjook-6.webp",
+              "/images/rooms/marjook-7.webp",
+              "/images/rooms/marjook-8.webp",
+              "/images/rooms/marjook-9.webp",
+              "/images/rooms/marjook-10.webp"
+],
                 "capacity": "2 Guests",
                 "size": "24 sq.m",
                 "architectureFeature": "Clay brick vaulting with modern acoustic insulation",
