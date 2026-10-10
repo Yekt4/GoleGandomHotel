@@ -228,17 +228,11 @@ export default function AnalyticsStatsPage() {
               <Lock className="w-8 h-8 text-amber-700" />
             </div>
 
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#172554] text-white">
-              <ShieldCheck className="w-3.5 h-3.5 text-amber-300" />
-              <span>بوتیک هتل فرهادی شیراز</span>
-            </div>
+
 
             <h1 className="text-xl sm:text-2xl font-black text-[#172554]">
-              ورود به داشبورد تحلیلی و پایلوت
-            </h1>
-            <p className="text-xs text-[#555f6d] leading-relaxed">
-              مشاهده آمار ترافیک، لیدهای تماس، تفکیک کمپین‌ها و نرخ تبدیل مستلزم احراز هویت مدیریتی است.
-            </p>
+              ورود            </h1>
+
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
@@ -291,7 +285,7 @@ export default function AnalyticsStatsPage() {
               ) : (
                 <>
                   <KeyRound className="w-4 h-4 text-amber-300" />
-                  <span>ورود به پنل آمار</span>
+                  <span>  ورود   </span>
                 </>
               )}
             </button>
@@ -604,9 +598,8 @@ export default function AnalyticsStatsPage() {
                   >
                     <div className="flex items-center gap-3">
                       <div
-                        className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                          isCall ? "bg-emerald-100 text-emerald-800" : "bg-emerald-500 text-white"
-                        }`}
+                        className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 ${isCall ? "bg-emerald-100 text-emerald-800" : "bg-emerald-500 text-white"
+                          }`}
                       >
                         {isCall ? <Phone className="w-4 h-4" /> : <MessageCircle className="w-4 h-4" />}
                       </div>
@@ -656,11 +649,10 @@ export default function AnalyticsStatsPage() {
                       key={s}
                       type="button"
                       onClick={() => setGenSource(s)}
-                      className={`h-8 rounded-lg text-xs font-semibold border transition-all ${
-                        genSource === s
-                          ? "bg-[#172554] text-white border-[#172554]"
-                          : "bg-[#faf8f5] text-[#555f6d] border-[#dfd9cc] hover:bg-white"
-                      }`}
+                      className={`h-8 rounded-lg text-xs font-semibold border transition-all ${genSource === s
+                        ? "bg-[#172554] text-white border-[#172554]"
+                        : "bg-[#faf8f5] text-[#555f6d] border-[#dfd9cc] hover:bg-white"
+                        }`}
                     >
                       {s}
                     </button>

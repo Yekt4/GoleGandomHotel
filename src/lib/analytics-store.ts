@@ -224,13 +224,8 @@ export function seedSamplePilotData(): void {
  */
 export function getAnalyticsReport(): DashboardReport {
   ensureStoreExists();
-  let events = getAllEvents();
+  const events = getAllEvents();
 
-  // If store is completely empty, automatically seed realistic pilot demo data
-  if (events.length === 0) {
-    seedSamplePilotData();
-    events = getAllEvents();
-  }
 
   const visitorsSet = new Set<string>();
   let totalPageviews = 0;
@@ -292,9 +287,9 @@ export function getAnalyticsReport(): DashboardReport {
     }
   }
 
-  const totalVisitors = Math.max(visitorsSet.size, 1);
+  const totalVisitors = visitorsSet.size;
   const totalLeads = totalCalls + totalWhatsApp;
-  const conversionRate = Number(((totalLeads / totalVisitors) * 100).toFixed(1));
+  const conversionRate = totalVisitors > 0 ? Number(((totalLeads / totalVisitors) * 100).toFixed(1)) : 0;
 
   // Channel array
   const channels: ChannelStat[] = Array.from(channelMap.entries()).map(([source, data]) => {
@@ -331,12 +326,12 @@ export function getAnalyticsReport(): DashboardReport {
   rooms.sort((a, b) => b.leads - a.leads);
 
   // Top source and room
-  const topSource = channels[0]?.source || "direct";
-  const topRoom = rooms[0]?.room || "اتاق تالار آیینه";
+  const topSource = channels[0]?.source || "—";
+  const topRoom = rooms[0]?.room || "—";
 
   // Device breakdown share
-  const totalDevices = Math.max(deviceCounts.mobile + deviceCounts.desktop + deviceCounts.tablet, 1);
-  const mobileShare = Number(((deviceCounts.mobile / totalDevices) * 100).toFixed(1));
+  const totalDevices = deviceCounts.mobile + deviceCounts.desktop + deviceCounts.tablet;
+  const mobileShare = totalDevices > 0 ? Number(((deviceCounts.mobile / totalDevices) * 100).toFixed(1)) : 0;
 
   // Sort recent leads descending
   recentLeads.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
