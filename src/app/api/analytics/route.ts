@@ -21,7 +21,11 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const report = getAnalyticsReport();
+    const range = (req.nextUrl.searchParams.get("range") || "7d") as "today" | "7d" | "30d" | "all";
+    const startDate = req.nextUrl.searchParams.get("startDate") || undefined;
+    const endDate = req.nextUrl.searchParams.get("endDate") || undefined;
+
+    const report = getAnalyticsReport({ range, startDate, endDate });
     return NextResponse.json({ success: true, report });
   } catch (err: any) {
     console.error("Analytics report error:", err);

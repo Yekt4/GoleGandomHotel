@@ -25,6 +25,10 @@ import {
   LogOut,
   KeyRound,
   ShieldAlert,
+  Calendar,
+  CalendarDays,
+  BarChart3,
+  Filter,
 } from "lucide-react";
 import { DashboardReport } from "@/lib/analytics-store";
 import { toast } from "sonner";
@@ -34,6 +38,12 @@ export default function AnalyticsStatsPage() {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  // Date Filter State
+  const [selectedRange, setSelectedRange] = useState<"today" | "7d" | "30d" | "all" | "custom">("7d");
+  const [startDate, setStartDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
+  const [showCustomDateModal, setShowCustomDateModal] = useState(false);
 
   // Authentication State
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -69,10 +79,17 @@ export default function AnalyticsStatsPage() {
     }
   };
 
-  const fetchStats = async (isManual = false) => {
+  const fetchStats = async (isManual = false, overrideRange?: string) => {
     if (isManual) setRefreshing(true);
     try {
-      const res = await fetch("/api/analytics");
+      const activeRange = overrideRange !== undefined ? overrideRange : selectedRange;
+      let url = `/api/analytics?range=${activeRange}`;
+      if (activeRange === "custom") {
+        if (startDate) url += `&startDate=${startDate}`;
+        if (endDate) url += `&endDate=${endDate}`;
+      }
+
+      const res = await fetch(url);
 
       if (res.status === 401) {
         setIsAuthenticated(false);
@@ -123,7 +140,7 @@ export default function AnalyticsStatsPage() {
       if (isAuthenticated) fetchStats(false);
     }, 30000);
     return () => clearInterval(interval);
-  }, [isAuthenticated]);
+  }, [isAuthenticated, selectedRange]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -375,7 +392,7 @@ export default function AnalyticsStatsPage() {
               ) : (
                 <>
                   <ShieldCheck className="w-4 h-4 text-amber-300" />
-                  <span>ورود امن به پنل</span>
+                  <span> ورود</span>
                 </>
               )}
             </button>
@@ -426,8 +443,7 @@ export default function AnalyticsStatsPage() {
               </span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-black text-[#172554] tracking-tight">
-              پایش عملکرد و نرخ تبدیل لیدهای تلفنی
-            </h1>
+              داشبورد            </h1>
             <p className="text-xs sm:text-sm text-[#555f6d]">
               سنجش تقاضای رزرو مستقیم، تبدیل تماس‌ها به رزرو قطعی و سهم کانال‌های ورودی بوتیک هتل فرهادی شیراز
             </p>
@@ -479,6 +495,149 @@ export default function AnalyticsStatsPage() {
             </button>
           </div>
         </header>
+
+        {/* Date & Period Filter Bar */}
+        <div className="bg-white rounded-2xl p-3 sm:p-4 border border-[#dfd9cc] shadow-xs flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+          {/* Quick Period Filter Tabs */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0">
+            <div className="flex items-center gap-1 bg-[#f7f5f0] p-1 rounded-xl border border-[#dfd9cc]/60">
+              <button
+                onClick={() => {
+                  setSelectedRange("today");
+                  fetchStats(false, "today");
+                }}
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  selectedRange === "today"
+                    ? "bg-[#172554] text-white shadow-xs"
+                    : "text-[#555f6d] hover:text-[#172554] hover:bg-white/60"
+                }`}
+              >
+                امروز
+              </button>
+
+              <button
+                onClick={() => {
+                  setSelectedRange("7d");
+                  fetchStats(false, "7d");
+                }}
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                  selectedRange === "7d"
+                    ? "bg-[#172554] text-white shadow-xs"
+                    : "text-[#555f6d] hover:text-[#172554] hover:bg-white/60"
+                }`}
+              >
+                <span>۷ روز اخیر</span>
+                <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-black ${
+                  selectedRange === "7d" ? "bg-amber-400 text-stone-900" : "bg-amber-100 text-amber-900"
+                }`}>
+                  هفتگی
+                </span>
+              </button>
+
+              <button
+                onClick={() => {
+                  setSelectedRange("30d");
+                  fetchStats(false, "30d");
+                }}
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  selectedRange === "30d"
+                    ? "bg-[#172554] text-white shadow-xs"
+                    : "text-[#555f6d] hover:text-[#172554] hover:bg-white/60"
+                }`}
+              >
+                ۳۰ روز اخیر (ماهانه)
+              </button>
+
+              <button
+                onClick={() => {
+                  setSelectedRange("all");
+                  fetchStats(false, "all");
+                }}
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  selectedRange === "all"
+                    ? "bg-[#172554] text-white shadow-xs"
+                    : "text-[#555f6d] hover:text-[#172554] hover:bg-white/60"
+                }`}
+              >
+                کل دوره
+              </button>
+            </div>
+          </div>
+
+          {/* Active Period Label & Custom Date Picker */}
+          <div className="flex items-center justify-between md:justify-end gap-2 text-xs">
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50/80 border border-amber-200/60 text-amber-900 font-semibold">
+              <Calendar className="w-3.5 h-3.5 text-amber-700 shrink-0" />
+              <span>بازه فعال:</span>
+              <span className="font-bold text-[#172554]">
+                {data?.summary.dateRangeLabel || "۷ روز اخیر (هفتگی)"}
+              </span>
+            </div>
+
+            {/* Custom Date Filter Button & Popup */}
+            <div className="relative">
+              <button
+                onClick={() => setShowCustomDateModal(!showCustomDateModal)}
+                className={`h-9 px-3 rounded-xl border text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+                  selectedRange === "custom"
+                    ? "bg-[#172554] text-white border-[#172554]"
+                    : "bg-white hover:bg-[#faf8f5] text-[#172554] border-[#dfd9cc]"
+                }`}
+              >
+                <CalendarDays className="w-3.5 h-3.5" />
+                <span>تقویم دلخواه</span>
+              </button>
+
+              {showCustomDateModal && (
+                <div className="absolute left-0 top-11 z-30 w-72 bg-white rounded-2xl border border-[#dfd9cc] shadow-xl p-4 space-y-3">
+                  <div className="text-xs font-bold text-[#172554]">انتخاب بازه زمانی دلخواه</div>
+                  <div className="space-y-1">
+                    <label className="text-[11px] text-stone-500 block">از تاریخ:</label>
+                    <input
+                      type="date"
+                      value={startDate}
+                      onChange={(e) => setStartDate(e.target.value)}
+                      className="w-full h-8 px-2.5 rounded-lg border border-[#dfd9cc] text-xs font-mono"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-[11px] text-stone-500 block">تا تاریخ:</label>
+                    <input
+                      type="date"
+                      value={endDate}
+                      onChange={(e) => setEndDate(e.target.value)}
+                      className="w-full h-8 px-2.5 rounded-lg border border-[#dfd9cc] text-xs font-mono"
+                    />
+                  </div>
+                  <div className="flex items-center gap-2 pt-1.5">
+                    <button
+                      onClick={() => {
+                        if (!startDate) {
+                          toast.error("لطفاً تاریخ شروع را تعیین نمایید");
+                          return;
+                        }
+                        setSelectedRange("custom");
+                        setShowCustomDateModal(false);
+                        fetchStats(false, "custom");
+                      }}
+                      className="flex-1 h-8 rounded-lg bg-[#172554] text-white text-xs font-bold cursor-pointer"
+                    >
+                      اعمال
+                    </button>
+                    <button
+                      onClick={() => {
+                        setShowCustomDateModal(false);
+                      }}
+                      className="h-8 px-3 rounded-lg bg-stone-100 text-stone-600 text-xs font-semibold cursor-pointer"
+                    >
+                      بستن
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
 
         {/* 4 Key Executive Metric Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -558,6 +717,88 @@ export default function AnalyticsStatsPage() {
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Visual Trend Chart: Activity over Time */}
+        <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#dfd9cc] shadow-xs space-y-5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#f0ece1]">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <BarChart3 className="w-5 h-5 text-[#172554]" />
+                <h2 className="text-base sm:text-lg font-bold text-[#172554]">
+                  روند زمانی ترافیک و سرنخ‌ها ({data?.summary.dateRangeLabel})
+                </h2>
+              </div>
+              <p className="text-xs text-[#555f6d]">
+                مقایسه تعداد بازدیدکنندگان یکتا با لیدهای ثبت‌شده (تماس و واتس‌اپ) در طول بازه انتخابی
+              </p>
+            </div>
+
+            {/* Legend */}
+            <div className="flex items-center gap-4 text-xs font-semibold">
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-md bg-[#172554]" />
+                <span className="text-[#172554]">بازدیدکننده</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-md bg-emerald-500" />
+                <span className="text-emerald-800">لید (تماس/واتس‌اپ)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Bars Visualizer */}
+          {data?.hourlyActivity && data.hourlyActivity.length > 0 ? (
+            <div className="pt-4 pb-2">
+              <div className="grid grid-flow-col auto-cols-fr gap-2 sm:gap-4 items-end h-44 sm:h-52 px-2 border-b border-[#dfd9cc]/60">
+                {(() => {
+                  const maxVisitors = Math.max(
+                    ...data.hourlyActivity.map((a) => Math.max(a.visitors, a.leads)),
+                    1
+                  );
+                  return data.hourlyActivity.map((point, idx) => {
+                    const visHeight = Math.max(Math.round((point.visitors / maxVisitors) * 100), point.visitors > 0 ? 8 : 3);
+                    const leadHeight = Math.max(Math.round((point.leads / maxVisitors) * 100), point.leads > 0 ? 8 : 3);
+
+                    return (
+                      <div key={idx} className="flex flex-col items-center justify-end h-full gap-2 group">
+                        {/* Values preview tooltip on hover */}
+                        <div className="text-[10px] font-bold text-[#555f6d] opacity-0 group-hover:opacity-100 transition-opacity tabular-nums whitespace-nowrap">
+                          {point.leads > 0 && <span className="text-emerald-700">{point.leads} لید / </span>}
+                          <span>{point.visitors} باز</span>
+                        </div>
+
+                        {/* Bars cluster */}
+                        <div className="w-full flex items-end justify-center gap-1 sm:gap-1.5 h-36">
+                          {/* Visitor Bar */}
+                          <div
+                            className="w-3 sm:w-6 rounded-t-lg bg-[#172554] hover:bg-[#0f172a] transition-all duration-300 relative group-hover:scale-y-105"
+                            style={{ height: `${visHeight}%` }}
+                            title={`بازدیدکنندگان: ${point.visitors}`}
+                          />
+                          {/* Lead Bar */}
+                          <div
+                            className="w-3 sm:w-6 rounded-t-lg bg-emerald-500 hover:bg-emerald-600 transition-all duration-300 relative group-hover:scale-y-105"
+                            style={{ height: `${leadHeight}%` }}
+                            title={`لیدها: ${point.leads}`}
+                          />
+                        </div>
+
+                        {/* Label beneath bar */}
+                        <div className="text-[10px] sm:text-xs font-semibold text-[#8c7b64] tabular-nums mt-1 truncate">
+                          {point.hour}
+                        </div>
+                      </div>
+                    );
+                  });
+                })()}
+              </div>
+            </div>
+          ) : (
+            <div className="py-12 text-center text-xs text-slate-400">
+              داده‌ای برای این بازه زمانی یافت نشد.
+            </div>
+          )}
         </div>
 
         {/* Channels & Rooms Grid */}
