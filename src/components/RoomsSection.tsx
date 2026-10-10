@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
+import { trackEvent, buildAttributedWhatsAppUrl } from "@/lib/tracker";
 
 export function RoomsSection() {
   const { language } = useLanguage();
@@ -72,6 +73,7 @@ export function RoomsSection() {
 
   // Open Room Gallery Modal
   const openRoomGallery = (room: (typeof t.rooms.items)[0], initialIndex = 0) => {
+    trackEvent("view_room_gallery", { room: room.title, photosCount: room.images?.length || 1 });
     setGalleryModalRoom(room);
     setGalleryPhotoIndex(initialIndex);
   };
@@ -421,7 +423,10 @@ export function RoomsSection() {
                   {/* Actions */}
                   <div className="pt-4 border-t border-[#dfd9cc] flex items-center gap-3">
                     <Button
-                      onClick={() => handleOpenBooking(room.title)}
+                      onClick={() => {
+                        trackEvent("booking_dialog_open", { room: room.title, location: "room_card" });
+                        handleOpenBooking(room.title);
+                      }}
                       className="flex-1 bg-[#172554] hover:bg-[#0f172a] text-white rounded-full h-11 text-sm font-semibold gap-2 shadow-sm cursor-pointer"
                     >
                       <Phone className="w-4 h-4 text-white/80" />
@@ -429,14 +434,13 @@ export function RoomsSection() {
                     </Button>
 
                     <a
-                      href={`https://wa.me/989173029002?text=${encodeURIComponent(
-                        isEn
-                          ? `Hello, I would like to inquire about booking ${room.title} at Farhadi Boutique Hotel Shiraz.`
-                          : `سلام، درخواست رزرو ${room.title} در بوتیک هتل فرهادی شیراز را دارم.`
-                      )}`}
+                      href={buildAttributedWhatsAppUrl("989173029002", room.title, isEn ? "en" : "fa")}
+                      onClick={() => {
+                        trackEvent("whatsapp_click", { room: room.title, location: "room_card" });
+                      }}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="h-11 px-5 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white flex items-center gap-2 text-sm font-semibold transition-colors shadow-sm"
+                      className="h-11 px-5 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white flex items-center gap-2 text-sm font-semibold transition-colors shadow-sm cursor-pointer"
                       aria-label={`${t.rooms.whatsapp} - ${room.title}`}
                     >
                       <MessageCircle className="w-4 h-4" />
@@ -489,6 +493,7 @@ export function RoomsSection() {
               <Button
                 onClick={() => {
                   const title = galleryModalRoom.title;
+                  trackEvent("booking_dialog_open", { room: title, location: "gallery_modal" });
                   closeRoomGallery();
                   handleOpenBooking(title);
                 }}

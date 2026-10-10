@@ -12,6 +12,8 @@ import { Phone, MessageCircle } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 
+import { trackEvent, buildAttributedWhatsAppUrl } from "@/lib/tracker";
+
 interface BookingDialogProps {
   initialRoom?: string;
   trigger?: React.ReactNode;
@@ -32,15 +34,21 @@ export function BookingDialog({
   const [internalOpen, setInternalOpen] = useState(false);
 
   const openState = isOpen !== undefined ? isOpen : internalOpen;
-  const setOpen = onOpenChange !== undefined ? onOpenChange : setInternalOpen;
+  const setOpen = (open: boolean) => {
+    if (open) {
+      trackEvent("booking_dialog_open", { room: initialRoom || "general", location: "booking_dialog" });
+    }
+    if (onOpenChange) onOpenChange(open);
+    else setInternalOpen(open);
+  };
 
   const defaultRoomName = isEn ? "Farhadi Boutique Hotel" : "عمارت تاریخی فرهادی";
   const currentRoom = initialRoom || defaultRoomName;
 
-  const whatsappMessage = encodeURIComponent(
-    isEn
-      ? `Hello, I would like to inquire about booking ${currentRoom} (including 4-installment Snapp! Pay option) at Farhadi Boutique Hotel Shiraz.`
-      : `سلام و درود، جهت استعلام و هماهنگی اقامت در ${currentRoom} بوتیک هتل فرهادی شیراز (امکان پرداخت ۴ قسطه اسنپ‌پی) پیام می‌دهم.`
+  const attributedWhatsAppUrl = buildAttributedWhatsAppUrl(
+    "989173029002",
+    currentRoom,
+    isEn ? "en" : "fa"
   );
 
   const renderedTrigger = trigger && React.isValidElement(trigger)
@@ -91,10 +99,16 @@ export function BookingDialog({
           <div className="space-y-3">
             {/* WhatsApp Direct */}
             <a
-              href={`https://wa.me/989173029002?text=${whatsappMessage}`}
+              href={attributedWhatsAppUrl}
+              onClick={() => {
+                trackEvent("whatsapp_click", {
+                  room: currentRoom,
+                  location: "booking_dialog",
+                });
+              }}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between p-4 rounded-[16px] bg-[#25D366] hover:bg-[#20ba59] text-white transition-colors shadow-sm"
+              className="flex items-center justify-between p-4 rounded-[16px] bg-[#25D366] hover:bg-[#20ba59] text-white transition-colors shadow-sm cursor-pointer"
             >
               <div className="flex items-center gap-3">
                 <MessageCircle className="w-5 h-5" />
@@ -108,7 +122,15 @@ export function BookingDialog({
             {/* Landline */}
             <a
               href={`tel:${isEn ? "+987132222294" : "07132222294"}`}
-              className="flex items-center justify-between p-4 rounded-[16px] bg-[#faf8f5] hover:bg-[#f3efe6] border border-[#dfd9cc] text-[#172554] transition-colors"
+              onClick={() => {
+                trackEvent("phone_call_click", {
+                  room: currentRoom,
+                  type: "landline",
+                  number: "07132222294",
+                  location: "booking_dialog",
+                });
+              }}
+              className="flex items-center justify-between p-4 rounded-[16px] bg-[#faf8f5] hover:bg-[#f3efe6] border border-[#dfd9cc] text-[#172554] transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-[#8c7b64]" />
@@ -120,7 +142,15 @@ export function BookingDialog({
             {/* Mobile */}
             <a
               href={`tel:${isEn ? "+989173029002" : "09173029002"}`}
-              className="flex items-center justify-between p-4 rounded-[16px] bg-[#faf8f5] hover:bg-[#f3efe6] border border-[#dfd9cc] text-[#172554] transition-colors"
+              onClick={() => {
+                trackEvent("phone_call_click", {
+                  room: currentRoom,
+                  type: "mobile",
+                  number: "09173029002",
+                  location: "booking_dialog",
+                });
+              }}
+              className="flex items-center justify-between p-4 rounded-[16px] bg-[#faf8f5] hover:bg-[#f3efe6] border border-[#dfd9cc] text-[#172554] transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-[#8c7b64]" />

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Toaster } from "sonner";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { UtmTracker } from "@/components/UtmTracker";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -45,6 +46,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-white text-slate-900 antialiased selection:bg-[#eff6ff] selection:text-[#172554]">
         <LanguageProvider>
+          <UtmTracker />
           {children}
           <Toaster richColors position="top-center" />
         </LanguageProvider>

@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { BookingDialog } from "./BookingDialog";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
+import { trackEvent, buildAttributedWhatsAppUrl } from "@/lib/tracker";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -289,17 +290,29 @@ export function Navbar() {
             <div className="grid grid-cols-2 gap-2.5">
               <a
                 href="tel:07132222294"
-                className="h-12 rounded-xl bg-[#172554] text-white flex items-center justify-center gap-2 text-xs font-bold shadow-sm active:scale-98 transition-all"
+                onClick={() => {
+                  trackEvent("phone_call_click", {
+                    type: "landline",
+                    number: "07132222294",
+                    location: "mobile_drawer",
+                  });
+                }}
+                className="h-12 rounded-xl bg-[#172554] text-white flex items-center justify-center gap-2 text-xs font-bold shadow-sm active:scale-98 transition-all cursor-pointer"
               >
                 <Phone className="w-4 h-4 text-[#c59b27]" />
                 <span dir="ltr">۰۷۱-۳۲۲۲۲۲۹۴</span>
               </a>
 
               <a
-                href="https://wa.me/989173029002"
+                href={buildAttributedWhatsAppUrl("989173029002", undefined, isEn ? "en" : "fa")}
+                onClick={() => {
+                  trackEvent("whatsapp_click", {
+                    location: "mobile_drawer",
+                  });
+                }}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-12 rounded-xl bg-[#25D366] text-white flex items-center justify-center gap-2 text-xs font-bold shadow-sm active:scale-98 transition-all"
+                className="h-12 rounded-xl bg-[#25D366] text-white flex items-center justify-center gap-2 text-xs font-bold shadow-sm active:scale-98 transition-all cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>{isEn ? "WhatsApp" : "پیام واتساپ"}</span>
