@@ -12,7 +12,6 @@ import {
   RefreshCw,
   Copy,
   Check,
-  Sparkles,
   ArrowRight,
   SlidersHorizontal,
   Hotel,
@@ -219,42 +218,6 @@ export default function AnalyticsStatsPage() {
     }
   };
 
-  const handleReset = async () => {
-    if (!confirm("آیا از ریست کامل داده‌های تحلیلی اطمینان دارید؟")) return;
-    try {
-      const res = await fetch("/api/analytics", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "reset" }),
-      });
-      if (res.status === 401) {
-        handleLogout();
-        return;
-      }
-      toast.info("داده‌ها ریست شدند");
-      fetchStats();
-    } catch {
-      toast.error("خطا در ریست داده‌ها");
-    }
-  };
-
-  const handleSeed = async () => {
-    try {
-      const res = await fetch("/api/analytics", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "seed" }),
-      });
-      if (res.status === 401) {
-        handleLogout();
-        return;
-      }
-      toast.success("داده‌های شبیه‌سازی پایلوت با موفقیت تزریق شدند");
-      fetchStats();
-    } catch {
-      toast.error("خطا در تزریق داده‌های نمونه");
-    }
-  };
 
   const generatedUrl = typeof window !== "undefined"
     ? `${window.location.origin}/?utm_source=${genSource}&utm_medium=${genMedium}&utm_campaign=${genCampaign}`
@@ -468,23 +431,6 @@ export default function AnalyticsStatsPage() {
             >
               <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? "animate-spin" : ""}`} />
               <span>به‌روزرسانی</span>
-            </button>
-
-            <button
-              onClick={handleSeed}
-              className="flex-1 sm:flex-initial h-10 px-4 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-xs font-semibold text-amber-900 flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs active:scale-95"
-              title="تزریق داده‌های شبیه‌سازی شده برای پرزنت به مدیران"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-              <span>دیتای دمو</span>
-            </button>
-
-            <button
-              onClick={handleReset}
-              className="h-10 px-3 rounded-xl bg-[#faf8f5] hover:bg-rose-50 border border-[#dfd9cc] hover:border-rose-200 text-xs font-semibold text-slate-500 hover:text-rose-700 transition-all cursor-pointer"
-              title="پاک‌سازی کامل لاگ‌ها"
-            >
-              ریست
             </button>
 
             <Link
@@ -874,7 +820,7 @@ export default function AnalyticsStatsPage() {
                   {(!data?.channels || data.channels.length === 0) && (
                     <tr>
                       <td colSpan={7} className="py-6 text-center text-slate-400">
-                        داده‌ای برای این بازه ثبت نشده است. روی «دیتای دمو» کلیک کنید.
+                        داده‌ای برای این بازه زمانی ثبت نشده است.
                       </td>
                     </tr>
                   )}
@@ -969,7 +915,7 @@ export default function AnalyticsStatsPage() {
               })}
               {(!data?.recentLeads || data.recentLeads.length === 0) && (
                 <p className="text-center py-8 text-xs text-slate-400">
-                  هنوز تماسی ثبت نشده است. با کلیک روی دکمه‌های سایت یا «دیتای دمو» آن را تست کنید.
+                  هنوز تماسی در این بازه زمانی ثبت نشده است.
                 </p>
               )}
             </div>
