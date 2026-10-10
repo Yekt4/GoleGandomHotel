@@ -19,6 +19,12 @@ import {
   ShieldCheck,
   Clock,
   ExternalLink,
+  Lock,
+  Eye,
+  EyeOff,
+  LogOut,
+  KeyRound,
+  ShieldAlert,
 } from "lucide-react";
 import { DashboardReport } from "@/lib/analytics-store";
 import { toast } from "sonner";
@@ -29,18 +35,51 @@ export default function AnalyticsStatsPage() {
   const [refreshing, setRefreshing] = useState(false);
   const [copied, setCopied] = useState(false);
 
+  // Authentication State
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const [passwordInput, setPasswordInput] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [authError, setAuthError] = useState("");
+  const [submittingAuth, setSubmittingAuth] = useState(false);
+
   // Link Generator State
   const [genSource, setGenSource] = useState("instagram");
   const [genMedium, setGenMedium] = useState("story");
   const [genCampaign, setGenCampaign] = useState("summer_pilot");
 
-  const fetchStats = async (isManual = false) => {
+  const getStoredPassword = () => {
+    if (typeof window === "undefined") return "";
+    return sessionStorage.getItem("farhadi_stats_auth") || "";
+  };
+
+  const fetchStats = async (isManual = false, customPwd?: string) => {
+    const pwd = customPwd !== undefined ? customPwd : getStoredPassword();
+    if (!pwd) {
+      setIsAuthenticated(false);
+      setLoading(false);
+      return;
+    }
+
     if (isManual) setRefreshing(true);
     try {
-      const res = await fetch("/api/analytics");
+      const res = await fetch("/api/analytics", {
+        headers: { "x-stats-password": pwd },
+      });
+
+      if (res.status === 401) {
+        if (typeof window !== "undefined") {
+          sessionStorage.removeItem("farhadi_stats_auth");
+        }
+        setIsAuthenticated(false);
+        setData(null);
+        if (isManual) toast.error("رمز عبور نامعتبر است. لطفاً مجدداً وارد شوید.");
+        return;
+      }
+
       const json = await res.json();
       if (json.success && json.report) {
         setData(json.report);
+        setIsAuthenticated(true);
         if (isManual) toast.success("داده‌های آماری به‌روزرسانی شدند");
       }
     } catch {
@@ -52,20 +91,83 @@ export default function AnalyticsStatsPage() {
   };
 
   useEffect(() => {
-    fetchStats();
-    // Auto-refresh every 30 seconds
-    const interval = setInterval(() => fetchStats(), 30000);
+    const stored = getStoredPassword();
+    if (stored) {
+      fetchStats(false, stored);
+    } else {
+      setIsAuthenticated(false);
+      setLoading(false);
+    }
+
+    // Auto-refresh every 30 seconds if authenticated
+    const interval = setInterval(() => {
+      const currentPwd = getStoredPassword();
+      if (currentPwd) fetchStats(false, currentPwd);
+    }, 30000);
     return () => clearInterval(interval);
   }, []);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!passwordInput.trim()) {
+      setAuthError("لطفاً رمز عبور را وارد کنید.");
+      return;
+    }
+
+    setSubmittingAuth(true);
+    setAuthError("");
+
+    try {
+      const res = await fetch("/api/analytics", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "verify", password: passwordInput.trim() }),
+      });
+
+      if (res.status === 200) {
+        const json = await res.json();
+        if (json.success) {
+          sessionStorage.setItem("farhadi_stats_auth", passwordInput.trim());
+          setIsAuthenticated(true);
+          toast.success("ورود موفقیت‌آمیز بود.");
+          fetchStats(false, passwordInput.trim());
+        } else {
+          setAuthError(json.error || "رمز عبور نادرست است.");
+        }
+      } else {
+        setAuthError("رمز عبور وارد شده نادرست است.");
+      }
+    } catch {
+      setAuthError("خطا در برقراری ارتباط با سرور.");
+    } finally {
+      setSubmittingAuth(false);
+    }
+  };
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("farhadi_stats_auth");
+    setIsAuthenticated(false);
+    setData(null);
+    setPasswordInput("");
+    setAuthError("");
+    toast.info("از داشبورد مدیریتی خارج شدید.");
+  };
 
   const handleReset = async () => {
     if (!confirm("آیا از ریست کامل داده‌های تحلیلی اطمینان دارید؟")) return;
     try {
-      await fetch("/api/analytics", {
+      const res = await fetch("/api/analytics", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-stats-password": getStoredPassword(),
+        },
         body: JSON.stringify({ action: "reset" }),
       });
+      if (res.status === 401) {
+        handleLogout();
+        return;
+      }
       toast.info("داده‌ها ریست شدند");
       fetchStats();
     } catch {
@@ -75,11 +177,18 @@ export default function AnalyticsStatsPage() {
 
   const handleSeed = async () => {
     try {
-      await fetch("/api/analytics", {
+      const res = await fetch("/api/analytics", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-stats-password": getStoredPassword(),
+        },
         body: JSON.stringify({ action: "seed" }),
       });
+      if (res.status === 401) {
+        handleLogout();
+        return;
+      }
       toast.success("داده‌های شبیه‌سازی پایلوت با موفقیت تزریق شدند");
       fetchStats();
     } catch {
@@ -108,6 +217,102 @@ export default function AnalyticsStatsPage() {
       </div>
     );
   }
+
+  // Render Login Lock Screen if not authenticated
+  if (isAuthenticated === false) {
+    return (
+      <div className="min-h-screen bg-[#f7f5f0] flex items-center justify-center p-4 sm:p-6" dir="rtl">
+        <div className="w-full max-w-md bg-white rounded-3xl border border-[#dfd9cc] shadow-xl p-6 sm:p-8 space-y-6">
+          <div className="text-center space-y-3">
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-amber-50 border border-amber-200/80 flex items-center justify-center shadow-inner text-[#172554]">
+              <Lock className="w-8 h-8 text-amber-700" />
+            </div>
+
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#172554] text-white">
+              <ShieldCheck className="w-3.5 h-3.5 text-amber-300" />
+              <span>بوتیک هتل فرهادی شیراز</span>
+            </div>
+
+            <h1 className="text-xl sm:text-2xl font-black text-[#172554]">
+              ورود به داشبورد تحلیلی و پایلوت
+            </h1>
+            <p className="text-xs text-[#555f6d] leading-relaxed">
+              مشاهده آمار ترافیک، لیدهای تماس، تفکیک کمپین‌ها و نرخ تبدیل مستلزم احراز هویت مدیریتی است.
+            </p>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-[#172554] flex items-center justify-between">
+                <span>رمز عبور دسترسی</span>
+                <span className="text-[11px] font-normal text-stone-400">پیش‌فرض: farhadi2026</span>
+              </label>
+
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={passwordInput}
+                  onChange={(e) => {
+                    setPasswordInput(e.target.value);
+                    if (authError) setAuthError("");
+                  }}
+                  autoFocus
+                  placeholder="رمز عبور مدیریتی..."
+                  className="w-full h-12 pr-4 pl-11 rounded-xl bg-[#faf8f5] border border-[#dfd9cc] text-sm font-medium text-[#172554] focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-600 transition-all text-left"
+                  dir="ltr"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 p-1 cursor-pointer transition-colors"
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
+
+              {authError && (
+                <div className="flex items-center gap-1.5 text-rose-600 text-xs font-semibold pt-1">
+                  <ShieldAlert className="w-3.5 h-3.5 shrink-0" />
+                  <span>{authError}</span>
+                </div>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              disabled={submittingAuth}
+              className="w-full h-12 rounded-xl bg-[#172554] hover:bg-[#0f172a] text-white text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md active:scale-98 disabled:opacity-70"
+            >
+              {submittingAuth ? (
+                <>
+                  <RefreshCw className="w-4 h-4 animate-spin" />
+                  <span>در حال بررسی رمز...</span>
+                </>
+              ) : (
+                <>
+                  <KeyRound className="w-4 h-4 text-amber-300" />
+                  <span>ورود به پنل آمار</span>
+                </>
+              )}
+            </button>
+          </form>
+
+          <div className="pt-2 border-t border-[#f0ece4] flex items-center justify-between text-xs text-stone-500">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-1 text-stone-600 hover:text-[#172554] font-medium transition-colors"
+            >
+              <ArrowRight className="w-3.5 h-3.5" />
+              <span>بازگشت به لندینگ هتل</span>
+            </Link>
+
+            <span className="text-[11px] text-stone-400">سامانه ردیابی پایلوت</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
 
   const summary = data?.summary || {
     totalVisitors: 0,
@@ -179,6 +384,15 @@ export default function AnalyticsStatsPage() {
               <span>مشاهده سایت</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </Link>
+
+            <button
+              onClick={handleLogout}
+              className="h-10 px-3.5 rounded-xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-xs font-semibold text-rose-700 flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs active:scale-95"
+              title="خروج از نشست مدیریتی"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              <span>خروج</span>
+            </button>
           </div>
         </header>
 
