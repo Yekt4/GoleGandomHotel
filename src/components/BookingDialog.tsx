@@ -19,6 +19,7 @@ interface BookingDialogProps {
   trigger?: React.ReactNode;
   isOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
+  location?: string;
 }
 
 export function BookingDialog({
@@ -26,6 +27,7 @@ export function BookingDialog({
   trigger,
   isOpen,
   onOpenChange,
+  location,
 }: BookingDialogProps) {
   const { language } = useLanguage();
   const t = translations[language];
@@ -36,7 +38,7 @@ export function BookingDialog({
   const openState = isOpen !== undefined ? isOpen : internalOpen;
   const setOpen = (open: boolean) => {
     if (open) {
-      trackEvent("booking_dialog_open", { room: initialRoom || "general", location: "booking_dialog" });
+      trackEvent("booking_dialog_open", { room: initialRoom || "general", location: location || "booking_dialog" });
     }
     if (onOpenChange) onOpenChange(open);
     else setInternalOpen(open);
@@ -103,7 +105,7 @@ export function BookingDialog({
               onClick={() => {
                 trackEvent("whatsapp_click", {
                   room: currentRoom,
-                  location: "booking_dialog",
+                  location: location || "booking_dialog",
                 });
               }}
               target="_blank"
@@ -127,7 +129,7 @@ export function BookingDialog({
                   room: currentRoom,
                   type: "landline",
                   number: "07132222294",
-                  location: "booking_dialog",
+                  location: location || "booking_dialog",
                 });
               }}
               className="flex items-center justify-between p-4 rounded-[16px] bg-[#faf8f5] hover:bg-[#f3efe6] border border-[#dfd9cc] text-[#172554] transition-colors cursor-pointer"
@@ -147,7 +149,7 @@ export function BookingDialog({
                   room: currentRoom,
                   type: "mobile",
                   number: "09173029002",
-                  location: "booking_dialog",
+                  location: location || "booking_dialog",
                 });
               }}
               className="flex items-center justify-between p-4 rounded-[16px] bg-[#faf8f5] hover:bg-[#f3efe6] border border-[#dfd9cc] text-[#172554] transition-colors cursor-pointer"

@@ -5,6 +5,7 @@ import { Phone, MessageCircle } from "lucide-react";
 import { BookingDialog } from "./BookingDialog";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
+import { trackEvent, buildAttributedWhatsAppUrl } from "@/lib/tracker";
 
 export function FloatingCTA() {
   const { language } = useLanguage();
@@ -19,9 +20,15 @@ export function FloatingCTA() {
     >
       {/* WhatsApp Quiet Link */}
       <a
-        href="https://wa.me/989173029002"
+        href={buildAttributedWhatsAppUrl("989173029002", "عمارت تاریخی فرهادی", language === "en" ? "en" : "fa")}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => {
+          trackEvent("whatsapp_click", {
+            room: "عمارت تاریخی فرهادی",
+            location: "floating_cta",
+          });
+        }}
         className="w-11 h-11 rounded-full bg-white/95 hover:bg-white text-[#25D366] flex items-center justify-center shadow-lg border border-[#dfd9cc] backdrop-blur-md transition-colors"
         aria-label={t.floatingCTA.whatsappAria}
         title={t.floatingCTA.whatsappAria}
@@ -31,6 +38,7 @@ export function FloatingCTA() {
 
       {/* Reception Call Button with Installment Tag */}
       <BookingDialog
+        location="floating_cta"
         trigger={
           <button className="h-11 px-4 sm:px-5 rounded-full bg-[#172554] hover:bg-[#0f172a] text-white font-medium text-xs sm:text-sm flex items-center gap-2 shadow-xl transition-all cursor-pointer border border-white/10 hover:scale-105">
             <Phone className="w-4 h-4 text-white/80" />

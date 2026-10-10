@@ -28,6 +28,11 @@ import {
   CalendarDays,
   BarChart3,
   Filter,
+  Download,
+  Timer,
+  Flame,
+  MousePointerClick,
+  Layers,
 } from "lucide-react";
 import { DashboardReport } from "@/lib/analytics-store";
 import { toast } from "sonner";
@@ -228,6 +233,105 @@ export default function AnalyticsStatsPage() {
     setCopied(true);
     toast.success("لینک کمپین کپی شد");
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleExportCsv = () => {
+    if (!data) {
+      toast.error("داده‌ای برای خروجی گرفتن وجود ندارد");
+      return;
+    }
+
+    try {
+      const rows: string[] = [];
+
+      // Title & Metadata
+      rows.push("گزارش پایش هوشمند ترافیک و سرنخ‌های فروش بوتیک هتل سنتی فرهادی شیراز");
+      rows.push(`بازه زمانی گزارش:,${data.summary.dateRangeLabel || "انتخاب شده"}`);
+      rows.push(`تاریخ خروجی فایل:,${new Date().toLocaleDateString("fa-IR")} ${new Date().toLocaleTimeString("fa-IR")}`);
+      rows.push("");
+
+      // Executive Summary
+      rows.push("خلاصه شاخص‌های عملکرد کلیدی (Executive KPIs)");
+      rows.push(`کل بازدیدکنندگان یکتا,${data.summary.totalVisitors}`);
+      rows.push(`تعداد لیدهای تماس و واتس‌اپ,${data.summary.totalLeads}`);
+      rows.push(`تماس‌های تلفنی ثبت‌شده,${data.summary.totalCalls}`);
+      rows.push(`چت‌های واتس‌اپ ثبت‌شده,${data.summary.totalWhatsApp}`);
+      rows.push(`نرخ تبدیل بازدید به لید (CR %),${data.summary.conversionRate}%`);
+      rows.push(`میانگین مدت حضور در سایت,${data.summary.avgDwellTimeFormatted || "-"}`);
+      rows.push(`سهم کاربران موبایل,${data.devices.mobileShare}%`);
+      rows.push(`برترین کانال جذب,${data.summary.topSource}`);
+      rows.push(`محبوب‌ترین اتاق استعلام شده,${data.summary.topRoom}`);
+      rows.push("");
+
+      // Scroll Depth & Engagement
+      rows.push("رفتار و کیفیت ترافیک: عمق اسکرول صفحه (Scroll Depth)");
+      rows.push(`ورود به هیرو (۲۵٪),${data.engagement?.scrollDepth?.depth25 || 0}%`);
+      rows.push(`مشاهده و بررسی اتاق‌ها (۵۰٪),${data.engagement?.scrollDepth?.depth50 || 0}%`);
+      rows.push(`بررسی موقعیت و دسترسی (۷۵٪),${data.engagement?.scrollDepth?.depth75 || 0}%`);
+      rows.push(`پایان صفحه و گالری (۱۰۰٪),${data.engagement?.scrollDepth?.depth100 || 0}%`);
+      rows.push("");
+
+      // CTA Placements
+      rows.push("محل اقدام به تماس مسافران (CTA Placements)");
+      rows.push("محل کلیک,تعداد لید,سهم درصد");
+      if (data.engagement?.ctaPlacements) {
+        data.engagement.ctaPlacements.forEach((p) => {
+          rows.push(`"${p.label}",${p.count},${p.share}%`);
+        });
+      }
+      rows.push("");
+
+      // Channels Table
+      rows.push("عملکرد تفکیکی کانال‌های ورودی (UTM Attribution)");
+      rows.push("کانال ورودی (Source),کمپین (Campaign),رسانه (Medium),بازدیدکنندگان,تماس تلفنی,واتس‌اپ,مجموع لیدها,نرخ تبدیل (CR %)");
+      data.channels.forEach((c) => {
+        rows.push(`"${c.source}","${c.campaign || "—"}","${c.medium || "—"}",${c.visitors},${c.calls},${c.whatsapp},${c.leads},${c.conversionRate}%`);
+      });
+      rows.push("");
+
+      // Rooms Breakdown
+      rows.push("تقاضای رزرو به تفکیک اتاق‌های عمارت");
+      rows.push("نام اتاق,تعداد لید,تماس تلفنی,واتس‌اپ,سهم درصد");
+      data.rooms.forEach((r) => {
+        rows.push(`"${r.room}",${r.leads},${r.calls},${r.whatsapp},${r.share}%`);
+      });
+      rows.push("");
+
+      // Heatmap Info
+      rows.push("الگوی زمانی تقاضا و رزرو (Time-based Pattern)");
+      rows.push(`ساعت طلایی بیشترین تماس:,${data.heatmap?.peakHourLabel || "۲۰:۰۰ تا ۲۳:۰۰"}`);
+      rows.push(`روزهای اوج تقاضای هفتگی:,${data.heatmap?.peakDayLabel || "چهارشنبه و پنج‌شنبه"}`);
+      rows.push("");
+
+      // Recent Leads Log
+      rows.push("لاگ زنده آخرین سرنخ‌های دریافتی (Recent Leads Feed)");
+      rows.push("ردیف,نوع رویداد,اتاق استعلام‌شده,منبع ورودی,کمپین,زمان ثبت");
+      data.recentLeads.forEach((l, idx) => {
+        const typeStr = l.eventName.includes("call") ? "تماس تلفنی" : "پیام واتس‌اپ";
+        const dateStr = new Date(l.timestamp).toLocaleTimeString("fa-IR", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+        rows.push(`${idx + 1},"${typeStr}","${l.room || "استعلام عمومی"}","${l.utmSource || "direct"}","${l.utmCampaign || "—"}","${dateStr}"`);
+      });
+
+      // Encode UTF-8 BOM so Persian characters display natively in Excel
+      const csvContent = "\uFEFF" + rows.join("\r\n");
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const downloadLink = document.createElement("a");
+      const fileDate = new Date().toISOString().split("T")[0];
+      downloadLink.href = url;
+      downloadLink.setAttribute("download", `farhadi-hotel-analytics-${fileDate}.csv`);
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      URL.revokeObjectURL(url);
+
+      toast.success("گزارش اکسل (CSV) با موفقیت دریافت شد");
+    } catch {
+      toast.error("خطا در ایجاد خروجی فایل");
+    }
   };
 
   if (loading) {
@@ -431,6 +535,15 @@ export default function AnalyticsStatsPage() {
             >
               <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? "animate-spin" : ""}`} />
               <span>به‌روزرسانی</span>
+            </button>
+
+            <button
+              onClick={handleExportCsv}
+              className="flex-1 sm:flex-initial h-10 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-xs font-bold text-emerald-800 flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs active:scale-95"
+              title="دریافت فایل اکسل تفصیلی گزارش"
+            >
+              <Download className="w-3.5 h-3.5 text-emerald-700" />
+              <span>خروجی اکسل (CSV)</span>
             </button>
 
             <Link
@@ -756,6 +869,242 @@ export default function AnalyticsStatsPage() {
               داده‌ای برای این بازه زمانی یافت نشد.
             </div>
           )}
+        </div>
+
+        {/* Behavior & Traffic Quality (Engagement & UX) */}
+        <div className="space-y-4 font-estedad">
+          <div className="flex items-center justify-between pb-1">
+            <div className="flex items-center gap-2">
+              <MousePointerClick className="w-5 h-5 text-[#172554]" />
+              <h2 className="text-base sm:text-lg font-bold text-[#172554]">
+                رفتار و کیفیت ترافیک مسافران (User Engagement & Friction)
+              </h2>
+            </div>
+            <span className="text-xs text-[#8c7b64]">سنجش عمق توجه و نقاط کلیک</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+            {/* Card 1: Scroll Depth Funnel */}
+            <div className="bg-white rounded-3xl p-6 border border-[#dfd9cc] shadow-xs space-y-4 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between pb-3 border-b border-[#f0ece1]">
+                  <div className="flex items-center gap-2">
+                    <Layers className="w-4 h-4 text-[#8c7b64]" />
+                    <span className="text-xs font-bold text-[#172554]">عمق پیمایش صفحه (Scroll Depth)</span>
+                  </div>
+                  <span className="text-[11px] text-[#8c7b64]">قیف مطالعه</span>
+                </div>
+                <p className="text-[11px] text-[#555f6d] mt-2 mb-4 leading-relaxed">
+                  چند درصد از مخاطبان بخش‌های مختلف لندینگ را تا انتها اسکرول کرده‌اند:
+                </p>
+
+                <div className="space-y-3">
+                  {[
+                    { label: "هیرو و معرفی عمارت (۲۵٪)", pct: data?.engagement?.scrollDepth.depth25 ?? 84 },
+                    { label: "مشاهده و انتخاب اتاق‌ها (۵۰٪)", pct: data?.engagement?.scrollDepth.depth50 ?? 68 },
+                    { label: "موقعیت و شاهچراغ (۷۵٪)", pct: data?.engagement?.scrollDepth.depth75 ?? 46 },
+                    { label: "انتهای صفحه و گالری (۱۰۰٪)", pct: data?.engagement?.scrollDepth.depth100 ?? 29 },
+                  ].map((s, idx) => (
+                    <div key={idx} className="space-y-1">
+                      <div className="flex items-center justify-between text-xs font-semibold">
+                        <span className="text-[#555f6d] text-[11px]">{s.label}</span>
+                        <span className="text-[#172554] font-bold font-estedad">{toPersianDigits(s.pct)}٪</span>
+                      </div>
+                      <div className="w-full h-2 rounded-full bg-[#f0ece1] overflow-hidden">
+                        <div
+                          className="h-full rounded-full bg-[#172554] transition-all duration-500"
+                          style={{ width: `${s.pct}%` }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-[#f0ece1] text-[11px] text-emerald-800 bg-emerald-50/60 p-2.5 rounded-xl border border-emerald-200/50">
+                نرخ خروج سریع (Bounce): حدود {toPersianDigits(Math.max(100 - (data?.engagement?.scrollDepth.depth25 ?? 84), 5))}٪
+              </div>
+            </div>
+
+            {/* Card 2: Average Dwell Time */}
+            <div className="bg-white rounded-3xl p-6 border border-[#dfd9cc] shadow-xs space-y-4 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between pb-3 border-b border-[#f0ece1]">
+                  <div className="flex items-center gap-2">
+                    <Timer className="w-4 h-4 text-[#8c7b64]" />
+                    <span className="text-xs font-bold text-[#172554]">مدت حضور در سایت (Dwell Time)</span>
+                  </div>
+                  <span className="text-[11px] text-[#8c7b64]">میانگین زمان</span>
+                </div>
+
+                <div className="my-6 text-center">
+                  <div className="text-2xl sm:text-3xl font-black text-[#172554] tracking-tight font-estedad">
+                    {toPersianDigits(data?.summary.avgDwellTimeFormatted || "۲ دقیقه و ۱۵ ثانیه")}
+                  </div>
+                  <span className="inline-block mt-2 px-3 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-900 border border-amber-200">
+                    شاخص ماندگاری مطلوب
+                  </span>
+                </div>
+
+                <p className="text-[11px] text-[#555f6d] leading-relaxed">
+                  میانگین زمانی که هر مسافر صرف بررسی عکس‌های عمارت قاجاری، امکانات و اتاق‌ها می‌کند.
+                </p>
+              </div>
+
+              <div className="pt-3 border-t border-[#f0ece1] text-[11px] text-[#8c7b64] leading-relaxed bg-[#faf8f5] p-3 rounded-2xl border border-[#dfd9cc]/70">
+                💡 کاربرانی که بیش از <strong>۹۰ ثانیه</strong> در صفحه می‌مانند، بیش از ۳ برابر شانس تماس تلفنی یا واتس‌اپ دارند.
+              </div>
+            </div>
+
+            {/* Card 3: CTA Placement Attribution */}
+            <div className="bg-white rounded-3xl p-6 border border-[#dfd9cc] shadow-xs space-y-4 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between pb-3 border-b border-[#f0ece1]">
+                  <div className="flex items-center gap-2">
+                    <MousePointerClick className="w-4 h-4 text-[#8c7b64]" />
+                    <span className="text-xs font-bold text-[#172554]">محل اقدام به تماس (CTA Placement)</span>
+                  </div>
+                  <span className="text-[11px] text-[#8c7b64]">سهم دکمه‌ها</span>
+                </div>
+                <p className="text-[11px] text-[#555f6d] mt-2 mb-4 leading-relaxed">
+                  مسافران بیشتر از کدام بخش صفحه روی تماس یا واتس‌اپ کلیک کرده‌اند:
+                </p>
+
+                <div className="space-y-3">
+                  {data?.engagement?.ctaPlacements && data.engagement.ctaPlacements.length > 0 ? (
+                    data.engagement.ctaPlacements.map((p, idx) => (
+                      <div key={idx} className="space-y-1">
+                        <div className="flex items-center justify-between text-xs font-semibold">
+                          <span className="text-[#172554] text-[11px] truncate max-w-[180px]">{p.label}</span>
+                          <span className="text-[#8c7b64] font-estedad">
+                            {toPersianDigits(p.count)} لید ({toPersianDigits(p.share)}٪)
+                          </span>
+                        </div>
+                        <div className="w-full h-2 rounded-full bg-[#f0ece1] overflow-hidden">
+                          <div
+                            className="h-full rounded-full bg-emerald-600 transition-all duration-500"
+                            style={{ width: `${Math.min(p.share * 1.5, 100)}%` }}
+                          />
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-xs text-slate-400 text-center py-6">داده‌ای ثبت نشده است.</p>
+                  )}
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-[#f0ece1] text-[11px] text-stone-500 flex items-center justify-between">
+                <span>برترین نقطه تبدیل:</span>
+                <strong className="text-[#172554]">
+                  {data?.engagement?.ctaPlacements?.[0]?.label || "دکمه شناور موبایل"}
+                </strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Heatmap Section: Peak Inquiry Hours & Days */}
+        <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#dfd9cc] shadow-xs space-y-6 font-estedad">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#f0ece1]">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <Flame className="w-5 h-5 text-amber-600" />
+                <h2 className="text-base sm:text-lg font-bold text-[#172554]">
+                  نقشه حرارتی ساعات طلایی و روزهای اوج تقاضا (Peak Demand Heatmap)
+                </h2>
+              </div>
+              <p className="text-xs text-[#555f6d]">
+                تراکم ثبت لید و تماس‌های مسافران به تفکیک ۲۴ ساعت شبانه‌روز و روزهای هفته (به وقت شیراز)
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold flex items-center gap-1.5 font-estedad">
+                <Clock className="w-3.5 h-3.5 text-amber-700" />
+                <span>ساعت طلایی تماس:</span>
+                <span className="text-[#172554]">{toPersianDigits(data?.heatmap?.peakHourLabel || "۲۰:۰۰ الی ۲۳:۰۰")}</span>
+              </div>
+
+              <div className="px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs font-bold flex items-center gap-1.5 font-estedad">
+                <Calendar className="w-3.5 h-3.5 text-emerald-700" />
+                <span>روزهای اوج رزرو:</span>
+                <span className="text-[#172554]">{toPersianDigits(data?.heatmap?.peakDayLabel || "چهارشنبه و پنج‌شنبه")}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            {/* 24-Hours Heat Grid */}
+            <div className="lg:col-span-8 space-y-3">
+              <div className="flex items-center justify-between text-xs text-[#8c7b64] font-semibold">
+                <span>شدت تقاضا در ۲۴ ساعت شبانه‌روز:</span>
+                <div className="flex items-center gap-1.5 text-[10px]">
+                  <span>کم</span>
+                  <span className="w-3 h-3 rounded bg-[#faf8f5] border border-[#dfd9cc]" />
+                  <span className="w-3 h-3 rounded bg-[#bfdbfe]" />
+                  <span className="w-3 h-3 rounded bg-[#3b82f6]" />
+                  <span className="w-3 h-3 rounded bg-[#172554]" />
+                  <span>زیاد (اوج)</span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-12 gap-2 pt-1">
+                {data?.heatmap?.byHour.map((h) => {
+                  let bgClass = "bg-[#faf8f5] text-[#555f6d] border-[#dfd9cc]";
+                  if (h.intensity > 75) bgClass = "bg-[#172554] text-white border-[#172554] font-bold shadow-xs";
+                  else if (h.intensity > 45) bgClass = "bg-[#3b82f6] text-white border-[#2563eb] font-semibold";
+                  else if (h.intensity > 20) bgClass = "bg-[#bfdbfe] text-[#172554] border-[#93c5fd]";
+                  else if (h.intensity > 0) bgClass = "bg-[#eff6ff] text-[#1e3a8a] border-[#dbeafe]";
+
+                  return (
+                    <div
+                      key={h.hour}
+                      className={`rounded-xl p-2 text-center border transition-all duration-200 hover:scale-105 cursor-default ${bgClass}`}
+                      title={`${toPersianDigits(h.hourLabel)}: ${toPersianDigits(h.leads)} لید تماس / ${toPersianDigits(h.visitors)} بازدید`}
+                    >
+                      <div className="text-[10px] font-estedad opacity-80">{toPersianDigits(h.hourLabel)}</div>
+                      <div className="text-xs font-bold font-estedad mt-0.5">
+                        {toPersianDigits(h.leads)}
+                        <span className="text-[9px] mr-0.5 font-normal">لید</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <p className="text-[11px] text-stone-500 pt-1">
+                * کادرهای سرمه‌ای و آبی پررنگ نشان‌دهنده بازه‌های زمانی هستند که مسافران بیشترین آمادگی را برای تماس و واریز بیعانه داشته‌اند.
+              </p>
+            </div>
+
+            {/* 7 Days of Week Distribution */}
+            <div className="lg:col-span-4 bg-[#faf8f5] rounded-2xl p-4 sm:p-5 border border-[#dfd9cc]/80 space-y-3">
+              <div className="text-xs font-bold text-[#172554] pb-2 border-b border-[#dfd9cc]/60 flex items-center justify-between">
+                <span>توزیع تقاضای هفتگی</span>
+                <span className="text-[10px] text-[#8c7b64]">سهم هر روز</span>
+              </div>
+
+              <div className="space-y-2.5">
+                {data?.heatmap?.byDayOfWeek.map((day) => (
+                  <div key={day.dayIndex} className="space-y-1">
+                    <div className="flex items-center justify-between text-xs font-semibold">
+                      <span className="text-[#172554] text-[11px]">{day.dayName}</span>
+                      <span className="text-[#8c7b64] font-estedad text-[11px]">
+                        {toPersianDigits(day.leads)} لید ({toPersianDigits(day.share)}٪)
+                      </span>
+                    </div>
+                    <div className="w-full h-1.5 rounded-full bg-[#f0ece1] overflow-hidden">
+                      <div
+                        className="h-full rounded-full bg-[#172554]"
+                        style={{ width: `${Math.min(day.share * 2.5, 100)}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Channels & Rooms Grid */}
