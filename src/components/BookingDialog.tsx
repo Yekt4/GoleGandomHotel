@@ -13,6 +13,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 
 import { trackEvent, buildAttributedWhatsAppUrl } from "@/lib/tracker";
+import { hotelConfig } from "@/config/hotel.config";
 
 interface BookingDialogProps {
   initialRoom?: string;
@@ -44,11 +45,11 @@ export function BookingDialog({
     else setInternalOpen(open);
   };
 
-  const defaultRoomName = isEn ? "Farhadi Boutique Hotel" : "عمارت تاریخی فرهادی";
+  const defaultRoomName = isEn ? hotelConfig.meta.nameEn : hotelConfig.meta.fullNameFa;
   const currentRoom = initialRoom || defaultRoomName;
 
   const attributedWhatsAppUrl = buildAttributedWhatsAppUrl(
-    "989173029002",
+    hotelConfig.contact.whatsapp.number,
     currentRoom,
     isEn ? "en" : "fa"
   );
@@ -123,12 +124,12 @@ export function BookingDialog({
 
             {/* Landline */}
             <a
-              href={`tel:${isEn ? "+987132222294" : "07132222294"}`}
+              href={`tel:${isEn ? hotelConfig.contact.phone.international : hotelConfig.contact.phone.raw}`}
               onClick={() => {
                 trackEvent("phone_call_click", {
                   room: currentRoom,
                   type: "landline",
-                  number: "07132222294",
+                  number: hotelConfig.contact.phone.raw,
                   location: location || "booking_dialog",
                 });
               }}
@@ -143,12 +144,12 @@ export function BookingDialog({
 
             {/* Mobile */}
             <a
-              href={`tel:${isEn ? "+989173029002" : "09173029002"}`}
+              href={`tel:${isEn ? hotelConfig.contact.mobile.international : hotelConfig.contact.mobile.raw}`}
               onClick={() => {
                 trackEvent("phone_call_click", {
                   room: currentRoom,
                   type: "mobile",
-                  number: "09173029002",
+                  number: hotelConfig.contact.mobile.raw,
                   location: location || "booking_dialog",
                 });
               }}

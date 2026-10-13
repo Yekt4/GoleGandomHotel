@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Toaster } from "sonner";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { UtmTracker } from "@/components/UtmTracker";
+import { hotelConfig } from "@/config/hotel.config";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -16,14 +17,14 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://farhadihotel.com"),
-  title: "بوتیک هتل فرهادی شیراز | اقامت در عمارت تاریخی قاجار-پهلوی",
-  description: "بوتیک هتل سنتی فرهادی در بافت تاریخی شیراز، بازسازی اصیل دوران قاجار و پهلوی با ۱۴ اتاق اختصاصی، تالار آینه، پنج‌دری، کافه سنتی و چشم‌انداز گنبد شاهچراغ. رزرو مستقیم.",
-  keywords: ["بوتیک هتل فرهادی شیراز", "هتل سنتی شیراز", "رزرو هتل شیراز", "شاهچراغ", "هتل بافت تاریخی"],
+  metadataBase: new URL(hotelConfig.meta.siteUrl),
+  title: hotelConfig.meta.metaTitleFa,
+  description: hotelConfig.meta.metaDescriptionFa,
+  keywords: hotelConfig.meta.keywordsFa,
   openGraph: {
-    title: "بوتیک هتل فرهادی شیراز | اقامتگاه تاریخی و بومی",
-    description: "تجربه‌ای فراموش‌نشدنی از اقامت در قلب تاریخی شیراز؛ سه‌راه نمازی، خیابان شهید دستغیب.",
-    images: ["/images/areas/courtyard-1.webp"],
+    title: hotelConfig.meta.metaTitleFa,
+    description: hotelConfig.meta.metaDescriptionFa,
+    images: [hotelConfig.meta.ogImage],
     type: "website",
   },
 };

@@ -15,6 +15,7 @@ import {
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 import { trackEvent, buildAttributedWhatsAppUrl } from "@/lib/tracker";
+import { hotelConfig } from "@/config/hotel.config";
 
 export function RoomsSection() {
   const { language } = useLanguage();
@@ -434,7 +435,7 @@ export function RoomsSection() {
                     </Button>
 
                     <a
-                      href={buildAttributedWhatsAppUrl("989173029002", room.title, isEn ? "en" : "fa")}
+                      href={buildAttributedWhatsAppUrl(hotelConfig.contact.whatsapp.number, room.title, isEn ? "en" : "fa")}
                       onClick={() => {
                         trackEvent("whatsapp_click", { room: room.title, location: "room_card" });
                       }}

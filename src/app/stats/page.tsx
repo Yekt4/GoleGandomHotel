@@ -36,6 +36,7 @@ import {
 } from "lucide-react";
 import { DashboardReport } from "@/lib/analytics-store";
 import { toast } from "sonner";
+import { hotelConfig } from "@/config/hotel.config";
 
 // Convert all numeric digits to Persian numerals using Estedad font glyphs
 const toPersianDigits = (val: string | number | undefined | null): string => {
@@ -226,7 +227,7 @@ export default function AnalyticsStatsPage() {
 
   const generatedUrl = typeof window !== "undefined"
     ? `${window.location.origin}/?utm_source=${genSource}&utm_medium=${genMedium}&utm_campaign=${genCampaign}`
-    : `https://farhadihotel.com/?utm_source=${genSource}&utm_medium=${genMedium}&utm_campaign=${genCampaign}`;
+    : `${hotelConfig.meta.siteUrl}/?utm_source=${genSource}&utm_medium=${genMedium}&utm_campaign=${genCampaign}`;
 
   const copyGeneratedLink = () => {
     navigator.clipboard.writeText(generatedUrl);
@@ -322,7 +323,7 @@ export default function AnalyticsStatsPage() {
       const downloadLink = document.createElement("a");
       const fileDate = new Date().toISOString().split("T")[0];
       downloadLink.href = url;
-      downloadLink.setAttribute("download", `farhadi-hotel-analytics-${fileDate}.csv`);
+      downloadLink.setAttribute("download", `${hotelConfig.brand.id}-analytics-${fileDate}.csv`);
       document.body.appendChild(downloadLink);
       downloadLink.click();
       document.body.removeChild(downloadLink);
@@ -523,7 +524,7 @@ export default function AnalyticsStatsPage() {
               داشبورد پایش تقاضا و کانال‌های ورودی
             </h1>
             <p className="text-xs sm:text-sm text-[#555f6d]">
-              سنجش تقاضای رزرو مستقیم، تبدیل تماس‌ها به رزرو قطعی و سهم کانال‌های ورودی بوتیک هتل فرهادی شیراز
+              سنجش تقاضای رزرو مستقیم، تبدیل تماس‌ها به رزرو قطعی و سهم کانال‌های ورودی {hotelConfig.meta.fullNameFa}
             </p>
           </div>
 

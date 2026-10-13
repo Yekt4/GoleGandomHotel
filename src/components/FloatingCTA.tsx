@@ -6,10 +6,12 @@ import { BookingDialog } from "./BookingDialog";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 import { trackEvent, buildAttributedWhatsAppUrl } from "@/lib/tracker";
+import { hotelConfig } from "@/config/hotel.config";
 
 export function FloatingCTA() {
   const { language } = useLanguage();
   const t = translations[language];
+  const hotelName = language === "en" ? hotelConfig.meta.nameEn : hotelConfig.meta.fullNameFa;
 
   return (
     <aside
@@ -20,12 +22,12 @@ export function FloatingCTA() {
     >
       {/* WhatsApp Quiet Link */}
       <a
-        href={buildAttributedWhatsAppUrl("989173029002", "عمارت تاریخی فرهادی", language === "en" ? "en" : "fa")}
+        href={buildAttributedWhatsAppUrl(hotelConfig.contact.whatsapp.number, hotelName, language === "en" ? "en" : "fa")}
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => {
           trackEvent("whatsapp_click", {
-            room: "عمارت تاریخی فرهادی",
+            room: hotelName,
             location: "floating_cta",
           });
         }}
@@ -43,9 +45,11 @@ export function FloatingCTA() {
           <button className="h-11 px-4 sm:px-5 rounded-full bg-[#172554] hover:bg-[#0f172a] text-white font-medium text-xs sm:text-sm flex items-center gap-2 shadow-xl transition-all cursor-pointer border border-white/10 hover:scale-105">
             <Phone className="w-4 h-4 text-white/80" />
             <span>{t.floatingCTA.receptionBtn}</span>
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#0085FF] text-[10px] font-bold text-white shadow-2xs">
-              {language === "fa" ? "۴ قسطه با اسنپ‌پی" : "4x Snapp! Pay"}
-            </span>
+            {hotelConfig.features.snappPay.enabled && (
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#0085FF] text-[10px] font-bold text-white shadow-2xs">
+                {language === "fa" ? hotelConfig.features.snappPay.badgeFa : hotelConfig.features.snappPay.badgeEn}
+              </span>
+            )}
           </button>
         }
       />

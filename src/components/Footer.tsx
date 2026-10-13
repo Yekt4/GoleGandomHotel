@@ -8,6 +8,7 @@ import { BookingDialog } from "./BookingDialog";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
+import { hotelConfig } from "@/config/hotel.config";
 
 export function Footer() {
   const { language } = useLanguage();
@@ -113,7 +114,7 @@ export function Footer() {
         {/* Minimal Direct Contacts & Quick Action */}
         <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-[#555f6d] mb-8 pb-4">
           <a
-            href={`tel:${isEn ? "+987132222294" : "07132222294"}`}
+            href={`tel:${isEn ? hotelConfig.contact.phone.international : hotelConfig.contact.phone.raw}`}
             className="flex items-center gap-2 hover:text-[#172554] transition-colors font-semibold"
           >
             <Phone className="w-3.5 h-3.5 text-[#8c7b64]" />
@@ -123,7 +124,7 @@ export function Footer() {
           <span className="text-[#8c7b64]/40 select-none hidden sm:inline">·</span>
 
           <a
-            href="https://wa.me/989173029002"
+            href={`https://wa.me/${hotelConfig.contact.whatsapp.number}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 hover:text-[#25D366] transition-colors font-semibold"
@@ -135,14 +136,14 @@ export function Footer() {
           <span className="text-[#8c7b64]/40 select-none hidden sm:inline">·</span>
 
           <a
-            href="https://www.instagram.com/farhadi.boutique.hotel/"
+            href={hotelConfig.contact.social.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 hover:text-[#E1306C] transition-colors font-semibold group"
-            aria-label="Instagram: @farhadi.boutique.hotel"
+            aria-label={`Instagram: ${hotelConfig.contact.social.instagramHandle}`}
           >
             <InstagramIcon className="w-3.5 h-3.5 text-[#E1306C] transition-transform group-hover:scale-110" />
-            <span dir="ltr">@farhadi.boutique.hotel</span>
+            <span dir="ltr">{hotelConfig.contact.social.instagramHandle}</span>
           </a>
 
           <span className="text-[#8c7b64]/40 select-none hidden sm:inline">·</span>

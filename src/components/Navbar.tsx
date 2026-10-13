@@ -19,6 +19,7 @@ import { BookingDialog } from "./BookingDialog";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 import { trackEvent, buildAttributedWhatsAppUrl } from "@/lib/tracker";
+import { hotelConfig } from "@/config/hotel.config";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -82,14 +83,14 @@ export function Navbar() {
           </div>
           <div className="flex items-center gap-5">
             <a
-              href="tel:07132222294"
+              href={`tel:${hotelConfig.contact.phone.raw}`}
               className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
             >
               <Phone className="w-3 h-3 text-[#c59b27]" />
               <span className="font-semibold" dir="ltr">{t.nav.phone}</span>
             </a>
             <a
-              href="https://wa.me/989173029002"
+              href={`https://wa.me/${hotelConfig.contact.whatsapp.number}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 hover:text-[#25D366] transition-colors"
@@ -289,22 +290,22 @@ export function Navbar() {
           <div className="p-4 sm:p-5 border-t border-[#dfd9cc] bg-white/60 pb-[max(1.5rem,env(safe-area-inset-bottom))] flex flex-col gap-3">
             <div className="grid grid-cols-2 gap-2.5">
               <a
-                href="tel:07132222294"
+                href={`tel:${hotelConfig.contact.phone.raw}`}
                 onClick={() => {
                   trackEvent("phone_call_click", {
                     type: "landline",
-                    number: "07132222294",
+                    number: hotelConfig.contact.phone.raw,
                     location: "mobile_drawer",
                   });
                 }}
                 className="h-12 rounded-xl bg-[#172554] text-white flex items-center justify-center gap-2 text-xs font-bold shadow-sm active:scale-98 transition-all cursor-pointer"
               >
                 <Phone className="w-4 h-4 text-[#c59b27]" />
-                <span dir="ltr">۰۷۱-۳۲۲۲۲۲۹۴</span>
+                <span dir="ltr">{t.nav.phone}</span>
               </a>
 
               <a
-                href={buildAttributedWhatsAppUrl("989173029002", undefined, isEn ? "en" : "fa")}
+                href={buildAttributedWhatsAppUrl(hotelConfig.contact.whatsapp.number, undefined, isEn ? "en" : "fa")}
                 onClick={() => {
                   trackEvent("whatsapp_click", {
                     location: "mobile_drawer",

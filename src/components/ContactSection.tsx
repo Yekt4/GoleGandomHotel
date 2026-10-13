@@ -5,6 +5,7 @@ import { MessageCircle } from "lucide-react";
 import { InstagramIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
+import { hotelConfig } from "@/config/hotel.config";
 
 export function ContactSection() {
   const { language } = useLanguage();
@@ -36,7 +37,7 @@ export function ContactSection() {
             <div className="py-3">
               <span className="block text-xs text-[#8c7b64] font-medium mb-1">{t.contact.landlineLabel}</span>
               <a
-                href={`tel:${isEn ? "+987132222294" : "07132222294"}`}
+                href={`tel:${isEn ? hotelConfig.contact.phone.international : hotelConfig.contact.phone.raw}`}
                 className="text-2xl sm:text-3xl font-bold text-[#172554] hover:text-[#0f172a] transition-colors inline-block"
                 dir="ltr"
               >
@@ -48,7 +49,7 @@ export function ContactSection() {
             <div className="py-3 border-t border-[#dfd9cc]">
               <span className="block text-xs text-[#8c7b64] font-medium mb-1">{t.contact.mobileLabel}</span>
               <a
-                href={`tel:${isEn ? "+989173029002" : "09173029002"}`}
+                href={`tel:${isEn ? hotelConfig.contact.mobile.international : hotelConfig.contact.mobile.raw}`}
                 className="text-2xl sm:text-3xl font-bold text-[#172554] hover:text-[#0f172a] transition-colors inline-block"
                 dir="ltr"
               >
@@ -59,10 +60,10 @@ export function ContactSection() {
             {/* Direct Channels: WhatsApp & Instagram */}
             <div className="pt-2 flex flex-wrap items-center gap-3">
               <a
-                href={`https://wa.me/989173029002?text=${encodeURIComponent(
+                href={`https://wa.me/${hotelConfig.contact.whatsapp.number}?text=${encodeURIComponent(
                   isEn
-                    ? "Hello, I would like to inquire about booking at Farhadi Boutique Hotel Shiraz."
-                    : "سلام، جهت رزرو اقامت در بوتیک هتل فرهادی شیراز پیام می‌دهم."
+                    ? `Hello, I would like to inquire about booking at ${hotelConfig.meta.nameEn}.`
+                    : `سلام، جهت رزرو اقامت در ${hotelConfig.meta.nameFa} پیام می‌دهم.`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -73,7 +74,7 @@ export function ContactSection() {
               </a>
 
               <a
-                href="https://www.instagram.com/farhadi.boutique.hotel/"
+                href={hotelConfig.contact.social.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="h-12 px-6 rounded-full bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] hover:opacity-90 text-white inline-flex items-center gap-2.5 font-semibold text-sm transition-all shadow-sm hover:scale-[1.02] cursor-pointer"

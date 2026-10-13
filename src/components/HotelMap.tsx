@@ -3,66 +3,10 @@
 import React, { useEffect, useRef } from "react";
 import "leaflet/dist/leaflet.css";
 import { useLanguage } from "@/context/LanguageContext";
+import { hotelConfig } from "@/config/hotel.config";
 
-export const ATTRACTIONS_DATA = [
-  {
-    id: 0,
-    coords: [29.6096, 52.5432] as [number, number],
-    nameFa: "حرم مطهر حضرت شاهچراغ (ع)",
-    nameEn: "Holy Shrine of Shah Cheragh",
-    distFa: "۴ دقیقه پیاده",
-    distEn: "4 min walk",
-    timeFa: "پیاده‌روی مستقیم از کوچه دستغیب",
-    timeEn: "Direct walking route via Dastgheib Alley",
-    icon: "🕌",
-  },
-  {
-    id: 1,
-    coords: [29.6152, 52.5458] as [number, number],
-    nameFa: "مجموعه زندیه، بازار و حمام وکیل",
-    nameEn: "Zand Complex & Vakil Bazaar",
-    distFa: "۸ دقیقه پیاده",
-    distEn: "8 min walk",
-    timeFa: "گذر از بافت تاریخی زندیه",
-    timeEn: "Historic Zand quarter",
-    icon: "🏛️",
-  },
-  {
-    id: 2,
-    coords: [29.6085, 52.551] as [number, number],
-    nameFa: "مسجد نصیرالملک (مسجد صورتی)",
-    nameEn: "Nasir al-Mulk Mosque (Pink Mosque)",
-    distFa: "۱۲ دقیقه پیاده",
-    distEn: "12 min walk",
-    timeFa: "گذر از محله تاریخی گود عربان",
-    timeEn: "Goud-e Araban quarter",
-    icon: "🌸",
-  },
-  {
-    id: 3,
-    coords: [29.6178, 52.5448] as [number, number],
-    nameFa: "ارگ کریم‌خان زند",
-    nameEn: "Arg of Karim Khan",
-    distFa: "۵ دقیقه با خودرو",
-    distEn: "5 min drive",
-    timeFa: "میدان شهدا (توپخانه کهن)",
-    timeEn: "Shohada Square",
-    icon: "🏰",
-  },
-  {
-    id: 4,
-    coords: [29.5392, 52.5898] as [number, number],
-    nameFa: "فرودگاه بین‌المللی شیراز",
-    nameEn: "Shiraz International Airport",
-    distFa: "۲۰ دقیقه با خودرو",
-    distEn: "20 min drive",
-    timeFa: "مسیر بزرگراه شهید مدرس",
-    timeEn: "Via Modarres Expressway",
-    icon: "✈️",
-  },
-];
-
-export const HOTEL_COORDS: [number, number] = [29.6112, 52.5442];
+export const ATTRACTIONS_DATA = hotelConfig.attractions;
+export const HOTEL_COORDS: [number, number] = hotelConfig.location.coordinates;
 
 /**
  * Calculates smooth quadratic bezier arc points between start and end coordinates.

@@ -1,15 +1,17 @@
+import { hotelConfig } from "@/config/hotel.config";
+
 export const translations = {
   fa: {
     brand: {
-      name: "بوتیک هتل فرهادی",
-      title: "عمارت تاریخی فرهادی شیراز",
-      subtitle: "بوتیک هتل سنتی شیراز",
-      badge: "شیراز · قدمت قاجار",
+      name: hotelConfig.meta.nameFa,
+      title: hotelConfig.meta.fullNameFa,
+      subtitle: hotelConfig.meta.subtitleFa,
+      badge: hotelConfig.meta.badgeFa,
     },
     nav: {
-      address: "شیراز، سه‌راه نمازی، خیابان شهید دستغیب، کوچه ۶",
-      phone: "۰۷۱-۳۲۲۲۲۲۹۴",
-      mobile: "۰۹۱۷-۳۰۲-۹۰۰۲",
+      address: hotelConfig.location.addressFa,
+      phone: hotelConfig.contact.phone.displayFa,
+      mobile: hotelConfig.contact.mobile.displayFa,
       reception: "پذیرش:",
       home: "صفحه اصلی",
       story: "داستان عمارت",
@@ -23,11 +25,11 @@ export const translations = {
       langSwitch: "English",
     },
     hero: {
-      title: "بوتیک هتل فرهادی",
-      subtitle: "شیراز · قدمت قاجار",
+      title: hotelConfig.meta.nameFa,
+      subtitle: hotelConfig.meta.badgeFa,
       reserveBtn: "تماس و رزرو تلفنی",
       scrollHint: "رفتن به بخش داستان عمارت",
-      snappPayHeroBadge: "امکان پرداخت در ۴ قسط با اسنپ‌پی (بدون کارمزد و ضامن)",
+      snappPayHeroBadge: hotelConfig.features.snappPay.heroDescFa,
       images: [
         {
           src: "/images/areas/courtyard-1.webp",
@@ -836,15 +838,15 @@ export const translations = {
   },
   en: {
     brand: {
-      name: "Farhadi Boutique Hotel",
-      title: "Farhadi Historic Boutique Hotel Shiraz",
-      subtitle: "Traditional Boutique Hotel in Shiraz",
-      badge: "Shiraz · Qajar Era Heritage",
+      name: hotelConfig.meta.nameEn,
+      title: hotelConfig.meta.fullNameEn,
+      subtitle: hotelConfig.meta.subtitleEn,
+      badge: hotelConfig.meta.badgeEn,
     },
     nav: {
-      address: "Alley 6, Dastgheib St, Namazi Intersection, Shiraz",
-      phone: "+98 71 3222 2294",
-      mobile: "+98 917 302 9002",
+      address: hotelConfig.location.addressEn,
+      phone: hotelConfig.contact.phone.displayEn,
+      mobile: hotelConfig.contact.mobile.displayEn,
       reception: "Reception:",
       home: "Home",
       story: "Story",
@@ -858,11 +860,11 @@ export const translations = {
       langSwitch: "فارسی",
     },
     hero: {
-      title: "Farhadi Boutique Hotel",
-      subtitle: "Shiraz · Qajar Era Heritage",
+      title: hotelConfig.meta.nameEn,
+      subtitle: hotelConfig.meta.badgeEn,
       reserveBtn: "Direct Reservation",
       scrollHint: "Scroll down to mansion story",
-      snappPayHeroBadge: "Pay in 4 installments with Snapp! Pay (0% interest)",
+      snappPayHeroBadge: hotelConfig.features.snappPay.heroDescEn,
       images: [
         {
           src: "/images/areas/courtyard-1.webp",

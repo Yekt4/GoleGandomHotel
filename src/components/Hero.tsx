@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { BookingDialog } from "./BookingDialog";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
+import { hotelConfig } from "@/config/hotel.config";
 
 export function Hero() {
   const { language } = useLanguage();
@@ -80,17 +81,19 @@ export function Hero() {
         />
 
         {/* Snapp Pay 4-Installment Hero Badge */}
-        <div className="mt-4 sm:mt-5 max-w-[94vw] inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-black/55 backdrop-blur-md border border-[#0085FF]/50 text-white shadow-xl transition-all">
-          <div className="w-8 sm:w-10 h-4 sm:h-5 relative flex-shrink-0">
-            <Image src="/images/snapp-pay.png" alt="اسنپ پی" fill className="object-contain" />
+        {hotelConfig.features.snappPay.enabled && (
+          <div className="mt-4 sm:mt-5 max-w-[94vw] inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-black/55 backdrop-blur-md border border-[#0085FF]/50 text-white shadow-xl transition-all">
+            <div className="w-8 sm:w-10 h-4 sm:h-5 relative flex-shrink-0">
+              <Image src="/images/snapp-pay.png" alt="اسنپ پی" fill className="object-contain" />
+            </div>
+            <span className="text-[10px] sm:text-xs font-medium text-white/95 truncate sm:whitespace-normal">
+              {t.hero.snappPayHeroBadge}
+            </span>
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#0085FF] text-white whitespace-nowrap flex-shrink-0">
+              {language === "fa" ? hotelConfig.features.snappPay.badgeFa : hotelConfig.features.snappPay.badgeEn}
+            </span>
           </div>
-          <span className="text-[10px] sm:text-xs font-medium text-white/95 truncate sm:whitespace-normal">
-            {t.hero.snappPayHeroBadge}
-          </span>
-          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#0085FF] text-white whitespace-nowrap flex-shrink-0">
-            {language === "fa" ? "۴ قسطه" : "4x Pay"}
-          </span>
-        </div>
+        )}
       </div>
 
       {/* Slide Progress Indicators */}

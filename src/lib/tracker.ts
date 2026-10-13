@@ -1,5 +1,7 @@
 "use client";
 
+import { hotelConfig } from "@/config/hotel.config";
+
 export interface UtmParams {
   utm_source: string;
   utm_medium?: string;
@@ -165,7 +167,7 @@ export function trackEvent(
  * Build WhatsApp click URL with campaign attribution tag embedded into text
  */
 export function buildAttributedWhatsAppUrl(
-  phone: string = "989173029002",
+  phone: string = hotelConfig.contact.whatsapp.number,
   roomTitle?: string,
   lang: string = "fa"
 ): string {
@@ -175,16 +177,19 @@ export function buildAttributedWhatsAppUrl(
     refTag = ` [کد ارجاع: ${utm.utm_source}${utm.utm_campaign ? ` / ${utm.utm_campaign}` : ""}]`;
   }
 
+  const hotelName = lang === "en" ? hotelConfig.meta.nameEn : hotelConfig.meta.nameFa;
+
   let message = "";
   if (lang === "en") {
     message = roomTitle
-      ? `Hello, I would like to inquire about booking ${roomTitle} at Farhadi Boutique Hotel Shiraz.${refTag}`
-      : `Hello, I would like to inquire about booking a room at Farhadi Boutique Hotel Shiraz.${refTag}`;
+      ? `Hello, I would like to inquire about booking ${roomTitle} at ${hotelName}.${refTag}`
+      : `Hello, I would like to inquire about booking a room at ${hotelName}.${refTag}`;
   } else {
     message = roomTitle
-      ? `سلام، درخواست رزرو ${roomTitle} در بوتیک هتل فرهادی شیراز را دارم.${refTag}`
-      : `سلام، جهت استعلام و رزرو اتاق در بوتیک هتل فرهادی شیراز پیام می‌دهم.${refTag}`;
+      ? `سلام، درخواست رزرو ${roomTitle} در ${hotelName} را دارم.${refTag}`
+      : `سلام، جهت استعلام و رزرو اتاق در ${hotelName} پیام می‌دهم.${refTag}`;
   }
 
-  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  const targetPhone = phone || hotelConfig.contact.whatsapp.number;
+  return `https://wa.me/${targetPhone}?text=${encodeURIComponent(message)}`;
 }
