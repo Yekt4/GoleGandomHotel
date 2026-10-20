@@ -13,14 +13,14 @@ export function ContactSection() {
   const isEn = language === "en";
 
   return (
-    <section id="contact" className="py-24 md:py-36 bg-white border-t border-[#e8e4db]">
+    <section id="contact" className="py-24 md:py-36 bg-white border-t border-[#e9ddca]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         {/* Section Heading - Dignified & Restrained */}
         <div className={`max-w-2xl mb-16 md:mb-20 ${isEn ? "text-left" : "text-right"}`}>
-          <h2 className="text-[32px] sm:text-[44px] lg:text-[48px] font-bold leading-tight text-[#172554] tracking-tight mb-4">
+          <h2 className="text-[32px] sm:text-[44px] lg:text-[48px] font-bold leading-tight text-[#563820] tracking-tight mb-4">
             {t.contact.heading}
           </h2>
-          <p className="text-base sm:text-lg leading-relaxed text-[#555f6d] font-light">
+          <p className="text-base sm:text-lg leading-relaxed text-[#6b5948] font-light">
             {t.contact.desc}
           </p>
         </div>
@@ -29,16 +29,16 @@ export function ContactSection() {
         <div className={`grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14 ${isEn ? "text-left" : "text-right"}`}>
           {/* Direct Lines */}
           <div className="space-y-6">
-            <h3 className="text-xl font-bold text-[#172554] pb-3 border-b border-[#dfd9cc]">
+            <h3 className="text-xl font-bold text-[#563820] pb-3 border-b border-[#e3d5bf]">
               {t.contact.phoneHeading}
             </h3>
 
             {/* Landline */}
             <div className="py-3">
-              <span className="block text-xs text-[#8c7b64] font-medium mb-1">{t.contact.landlineLabel}</span>
+              <span className="block text-xs text-[#927344] font-medium mb-1">{t.contact.landlineLabel}</span>
               <a
                 href={`tel:${isEn ? hotelConfig.contact.phone.international : hotelConfig.contact.phone.raw}`}
-                className="text-2xl sm:text-3xl font-bold text-[#172554] hover:text-[#0f172a] transition-colors inline-block"
+                className="text-2xl sm:text-3xl font-bold text-[#563820] hover:text-[#382619] transition-colors inline-block"
                 dir="ltr"
               >
                 {t.nav.phone}
@@ -46,11 +46,11 @@ export function ContactSection() {
             </div>
 
             {/* Mobile */}
-            <div className="py-3 border-t border-[#dfd9cc]">
-              <span className="block text-xs text-[#8c7b64] font-medium mb-1">{t.contact.mobileLabel}</span>
+            <div className="py-3 border-t border-[#e3d5bf]">
+              <span className="block text-xs text-[#927344] font-medium mb-1">{t.contact.mobileLabel}</span>
               <a
                 href={`tel:${isEn ? hotelConfig.contact.mobile.international : hotelConfig.contact.mobile.raw}`}
-                className="text-2xl sm:text-3xl font-bold text-[#172554] hover:text-[#0f172a] transition-colors inline-block"
+                className="text-2xl sm:text-3xl font-bold text-[#563820] hover:text-[#382619] transition-colors inline-block"
                 dir="ltr"
               >
                 {t.nav.mobile}
@@ -87,29 +87,28 @@ export function ContactSection() {
 
           {/* Practical Stay Information */}
           <div className="space-y-6">
-            <h3 className="text-xl font-bold text-[#172554] pb-3 border-b border-[#dfd9cc]">
+            <h3 className="text-xl font-bold text-[#563820] pb-3 border-b border-[#e3d5bf]">
               {t.contact.stayInfoHeading}
             </h3>
 
-            <div className="space-y-4 text-sm leading-7 text-[#555f6d] font-light">
+            <div className="space-y-4 text-sm leading-7 text-[#6b5948] font-light">
               <div>
-                <strong className="block text-sm font-semibold text-[#172554] mb-0.5">{t.contact.addressTitle}</strong>
+                <strong className="block text-sm font-semibold text-[#563820] mb-0.5">{t.contact.addressTitle}</strong>
                 <p>{t.contact.addressDesc}</p>
               </div>
 
-              <div className="pt-2 border-t border-[#dfd9cc]">
-                <strong className="block text-sm font-semibold text-[#172554] mb-0.5">{t.contact.checkInOutTitle}</strong>
+              <div className="pt-2 border-t border-[#e3d5bf]">
+                <strong className="block text-sm font-semibold text-[#563820] mb-0.5">{t.contact.checkInOutTitle}</strong>
                 <p>{t.contact.checkInOutDesc}</p>
               </div>
 
-              <div className="pt-2 border-t border-[#dfd9cc]">
-                <strong className="block text-sm font-semibold text-[#172554] mb-0.5">{t.contact.buyoutTitle}</strong>
-                <p>{t.contact.buyoutDesc}</p>
-              </div>
-
-              <div className="pt-2 border-t border-[#dfd9cc]">
-                <strong className="block text-sm font-semibold text-[#172554] mb-0.5">{t.contact.emailTitle}</strong>
-                <p dir="ltr" className={`text-[#172554] ${isEn ? "text-left" : "text-right"}`}>info@farhadihotel.com</p>
+              <div className="pt-2 border-t border-[#e3d5bf]">
+                <strong className="block text-sm font-semibold text-[#563820] mb-1">{t.contact.rulesTitle}</strong>
+                <ul className="list-disc space-y-1 pr-5 ltr:pl-5 ltr:pr-0">
+                  {t.contact.rules.map((rule: string) => (
+                    <li key={rule}>{rule}</li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>

@@ -7,6 +7,7 @@ import { InstagramIcon } from "@/components/ui/icons";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
+import { hotelConfig } from "@/config/hotel.config";
 
 export function ReelsSection() {
   const { language } = useLanguage();
@@ -79,18 +80,18 @@ export function ReelsSection() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header row with Instagram channel link */}
         <div className="flex items-center justify-between mb-4 px-1">
-          <span className="text-xs sm:text-sm font-bold text-[#172554] tracking-tight">
-            {isEn ? "Farhadi Video Stories" : "استوری‌ها و ویدیوهای عمارت"}
+          <span className="text-xs sm:text-sm font-bold text-[#563820] tracking-tight">
+            {isEn ? "Mashhad Videos & Nearby Attractions" : "ویدیوهای مشهد و جاذبه‌های اطراف"}
           </span>
 
           <a
-            href="https://www.instagram.com/farhadi.boutique.hotel/"
+            href={hotelConfig.contact.social.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 hover:bg-white text-[#172554] hover:text-[#E1306C] border border-[#dfd9cc] text-xs font-semibold shadow-2xs transition-all hover:scale-105 cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 hover:bg-white text-[#563820] hover:text-[#E1306C] border border-[#e3d5bf] text-xs font-semibold shadow-2xs transition-all hover:scale-105 cursor-pointer"
           >
             <InstagramIcon className="w-3.5 h-3.5 text-[#E1306C]" />
-            <span dir="ltr">@farhadi.boutique.hotel</span>
+            <span dir="ltr">{hotelConfig.contact.social.instagramHandle}</span>
           </a>
         </div>
 
@@ -98,7 +99,7 @@ export function ReelsSection() {
         <button
           onClick={() => scrollCarousel(isEn ? "left" : "right")}
           aria-label={t.reels.prev}
-          className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/95 hover:bg-white text-[#172554] backdrop-blur-md border border-[#dfd9cc] items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg hover:shadow-xl cursor-pointer"
+          className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/95 hover:bg-white text-[#563820] backdrop-blur-md border border-[#e3d5bf] items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg hover:shadow-xl cursor-pointer"
         >
           <ChevronRight className="w-6 h-6" />
         </button>
@@ -106,7 +107,7 @@ export function ReelsSection() {
         <button
           onClick={() => scrollCarousel(isEn ? "right" : "left")}
           aria-label={t.reels.next}
-          className="hidden md:flex absolute -left-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/95 hover:bg-white text-[#172554] backdrop-blur-md border border-[#dfd9cc] items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg hover:shadow-xl cursor-pointer"
+          className="hidden md:flex absolute -left-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/95 hover:bg-white text-[#563820] backdrop-blur-md border border-[#e3d5bf] items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg hover:shadow-xl cursor-pointer"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
@@ -120,15 +121,19 @@ export function ReelsSection() {
             <div
               key={story.id}
               onClick={() => setActiveStoryIndex(index)}
-              className="group relative flex-shrink-0 w-[240px] sm:w-[270px] lg:w-[290px] aspect-[9/16] rounded-[24px] overflow-hidden bg-[#172554] border border-[#dfd9cc]/70 hover:border-[#8c7b64] shadow-lg hover:shadow-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1.5 snap-start"
+              className="group relative flex-shrink-0 w-[240px] sm:w-[270px] lg:w-[290px] aspect-[9/16] rounded-[24px] overflow-hidden bg-[#563820] border border-[#e3d5bf]/70 hover:border-[#927344] shadow-lg hover:shadow-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1.5 snap-start"
             >
-              {/* Poster Image */}
-              <Image
-                src={story.poster}
-                alt={story.caption}
-                fill
-                sizes="(max-width: 640px) 240px, (max-width: 1024px) 270px, 290px"
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              {/* The actual uploaded video is used as the card preview so old poster artwork cannot be mixed with new clips. */}
+              <video
+                src={story.videoSrc}
+                poster={story.poster}
+                muted
+                loop
+                autoPlay
+                playsInline
+                preload="metadata"
+                aria-label={story.caption}
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
 
               {/* Bottom Scrim for Caption Readability */}
@@ -136,7 +141,7 @@ export function ReelsSection() {
 
               {/* Center Play Button Indicator */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-                <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-black/40 backdrop-blur-md border border-white/40 text-white flex items-center justify-center shadow-xl transition-all duration-300 group-hover:scale-110 group-hover:bg-[#172554]/90 group-hover:border-white">
+                <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-black/40 backdrop-blur-md border border-white/40 text-white flex items-center justify-center shadow-xl transition-all duration-300 group-hover:scale-110 group-hover:bg-[#563820]/90 group-hover:border-white">
                   <Play className="w-6 h-6 text-white fill-white translate-x-0.5" />
                 </div>
               </div>
@@ -210,18 +215,18 @@ export function ReelsSection() {
 
                 <div className="flex items-center justify-between">
                   <a
-                    href="https://www.instagram.com/farhadi.boutique.hotel/"
+                    href={hotelConfig.contact.social.instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 hover:opacity-85 transition-opacity group cursor-pointer"
-                    title="Instagram: @farhadi.boutique.hotel"
+                    title={`Instagram: ${hotelConfig.contact.social.instagramHandle}`}
                   >
                     <div className="w-7 h-7 rounded-full overflow-hidden bg-white relative border border-white/30">
                       <Image src="/images/logo.jpg" alt="Logo" fill sizes="28px" className="object-contain" />
                     </div>
                     <div className="flex flex-col text-right">
                       <span className="text-xs font-bold text-white drop-shadow leading-tight">{t.reels.hotelTitle}</span>
-                      <span className="text-[10px] text-white/70 group-hover:underline leading-tight" dir="ltr">@farhadi.boutique.hotel</span>
+                      <span className="text-[10px] text-white/70 group-hover:underline leading-tight" dir="ltr">{hotelConfig.contact.social.instagramHandle}</span>
                     </div>
                   </a>
 
@@ -305,4 +310,5 @@ export function ReelsSection() {
     </section>
   );
 }
+
 

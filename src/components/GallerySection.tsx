@@ -162,15 +162,15 @@ export function GallerySection() {
   };
 
   return (
-    <section id="gallery" className="py-20 sm:py-28 bg-[#faf8f5] border-t border-[#e8e4db] relative overflow-hidden">
+    <section id="gallery" className="py-20 sm:py-28 bg-[#faf6e8] border-t border-[#e9ddca] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Editorial Section Header - Dignified & Restrained */}
         <div className={`flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-14 ${isEn ? "text-left" : "text-right"}`}>
           <div className="max-w-2xl">
-            <h2 className="text-[30px] sm:text-[42px] font-bold text-[#172554] tracking-tight leading-tight mb-3">
+            <h2 className="text-[30px] sm:text-[42px] font-bold text-[#563820] tracking-tight leading-tight mb-3">
               {t.gallery.heading}
             </h2>
-            <p className="text-sm sm:text-base text-[#555f6d] leading-relaxed font-light">
+            <p className="text-sm sm:text-base text-[#6b5948] leading-relaxed font-light">
               {t.gallery.desc}
             </p>
           </div>
@@ -192,16 +192,16 @@ export function GallerySection() {
                   aria-selected={isActive}
                   aria-controls="gallery-grid"
                   onClick={() => setFilter(tab.id)}
-                  className={`h-9 px-3.5 sm:px-4 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer flex items-center gap-1.5 whitespace-nowrap focus-visible:outline-2 focus-visible:outline-[#172554] ${
+                  className={`h-9 px-3.5 sm:px-4 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer flex items-center gap-1.5 whitespace-nowrap focus-visible:outline-2 focus-visible:outline-[#563820] ${
                     isActive
-                      ? "bg-[#172554] text-white shadow-xs"
-                      : "bg-white/80 hover:bg-white text-[#555f6d] hover:text-[#172554] border border-[#dfd9cc]"
+                      ? "bg-[#563820] text-white shadow-xs"
+                      : "bg-white/80 hover:bg-white text-[#6b5948] hover:text-[#563820] border border-[#e3d5bf]"
                   }`}
                 >
                   <span>{tab.label}</span>
                   <span
                     className={`text-[10px] px-1.5 py-0.2 rounded-full font-semibold tabular-nums ${
-                      isActive ? "bg-white/20 text-white" : "bg-[#faf8f5] text-[#8c7b64]"
+                      isActive ? "bg-white/20 text-white" : "bg-[#faf6e8] text-[#927344]"
                     }`}
                   >
                     {formatNumber(count)}
@@ -225,7 +225,7 @@ export function GallerySection() {
                 key={item.id}
                 type="button"
                 onClick={() => openLightbox(idx)}
-                className="group relative w-[86vw] max-w-[340px] aspect-[4/3] rounded-[22px] overflow-hidden snap-center flex-shrink-0 border border-[#dfd9cc] bg-[#f0ece1]/50 shadow-md text-right focus:outline-none"
+                className="group relative w-[86vw] max-w-[340px] aspect-[4/3] rounded-[22px] overflow-hidden snap-center flex-shrink-0 border border-[#e3d5bf] bg-[#f1e8cd]/50 shadow-md text-right focus:outline-none"
               >
                 <Image
                   src={item.src}
@@ -260,9 +260,9 @@ export function GallerySection() {
 
           {/* Mobile Carousel Controls & Progress */}
           <div className="mt-3 flex items-center justify-between px-2">
-            <div className="text-xs text-[#8c7b64] font-semibold tabular-nums flex items-center gap-1.5 bg-white px-3 py-1 rounded-full border border-[#dfd9cc] shadow-2xs">
+            <div className="text-xs text-[#927344] font-semibold tabular-nums flex items-center gap-1.5 bg-white px-3 py-1 rounded-full border border-[#e3d5bf] shadow-2xs">
               <span>{formatNumber(mobileCurrentIndex + 1)}</span>
-              <span className="text-[#8c7b64]/40">/</span>
+              <span className="text-[#927344]/40">/</span>
               <span>{formatNumber(filteredItems.length)}</span>
             </div>
 
@@ -270,7 +270,7 @@ export function GallerySection() {
               <button
                 type="button"
                 onClick={() => scrollMobileCarousel("left")}
-                className="w-9 h-9 rounded-full bg-white border border-[#dfd9cc] text-[#172554] flex items-center justify-center shadow-2xs hover:bg-[#faf8f5] active:scale-95 transition-all cursor-pointer"
+                className="w-9 h-9 rounded-full bg-white border border-[#e3d5bf] text-[#563820] flex items-center justify-center shadow-2xs hover:bg-[#faf6e8] active:scale-95 transition-all cursor-pointer"
                 aria-label={isEn ? "Previous image" : "تصویر قبلی"}
                 title={isEn ? "Previous image" : "تصویر قبلی"}
               >
@@ -279,7 +279,7 @@ export function GallerySection() {
               <button
                 type="button"
                 onClick={() => scrollMobileCarousel("right")}
-                className="w-9 h-9 rounded-full bg-white border border-[#dfd9cc] text-[#172554] flex items-center justify-center shadow-2xs hover:bg-[#faf8f5] active:scale-95 transition-all cursor-pointer"
+                className="w-9 h-9 rounded-full bg-white border border-[#e3d5bf] text-[#563820] flex items-center justify-center shadow-2xs hover:bg-[#faf6e8] active:scale-95 transition-all cursor-pointer"
                 aria-label={isEn ? "Next image" : "تصویر بعدی"}
                 title={isEn ? "Next image" : "تصویر بعدی"}
               >
@@ -302,7 +302,7 @@ export function GallerySection() {
               type="button"
               onClick={() => openLightbox(idx)}
               aria-label={item.title}
-              className={`group relative rounded-[18px] sm:rounded-[22px] overflow-hidden border border-[#dfd9cc] bg-[#f0ece1]/50 shadow-xs hover:shadow-xl transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#172554] col-span-1 aspect-[4/3] ${
+              className={`group relative rounded-[18px] sm:rounded-[22px] overflow-hidden border border-[#e3d5bf] bg-[#f1e8cd]/50 shadow-xs hover:shadow-xl transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#563820] col-span-1 aspect-[4/3] ${
                 isEn ? "text-left" : "text-right"
               }`}
             >
@@ -346,7 +346,7 @@ export function GallerySection() {
           role="dialog"
           aria-modal="true"
           aria-label={filteredItems[lightboxIndex]?.title || "Gallery Viewer"}
-          className="fixed inset-0 z-50 bg-[#070b14]/98 backdrop-blur-2xl flex flex-col justify-between text-white select-none animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-[#20160f]/98 backdrop-blur-2xl flex flex-col justify-between text-white select-none animate-in fade-in duration-200"
         >
           {/* Top Bar: Title, Counter & Close */}
           <div className="relative z-20 w-full px-4 sm:px-8 py-4 flex items-center justify-between border-b border-white/10 bg-black/40 backdrop-blur-md">
@@ -448,7 +448,7 @@ export function GallerySection() {
                     aria-label={thumbItem.title}
                     className={`relative flex-shrink-0 w-14 sm:w-18 h-10 sm:h-12 rounded-lg sm:rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${
                       isCurrent
-                        ? "ring-2 ring-white ring-offset-2 ring-offset-[#070b14] scale-105 opacity-100 shadow-lg"
+                        ? "ring-2 ring-white ring-offset-2 ring-offset-[#20160f] scale-105 opacity-100 shadow-lg"
                         : "opacity-45 hover:opacity-90 border border-white/15"
                     }`}
                   >

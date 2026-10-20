@@ -3,7 +3,7 @@
  * 
  * To adapt this website for another hotel:
  * 1. Update this file with the new hotel's details (Name, Contact, Location, Coordinates, Brand).
- * 2. Update room types and photos in `src/data/rooms.ts`.
+ * 2. Update room types and photos in the room data inside `src/lib/translations.ts`.
  * 3. Update `.env.local` if you wish to change analytics credentials.
  * 
  * All components, navigation, maps, contact buttons, WhatsApp tags, and SEO metadata
@@ -24,19 +24,19 @@ export interface HotelAttraction {
 
 export interface HotelContactConfig {
   phone: {
-    raw: string; // Dialing string without dashes (e.g., "07132222294")
-    international: string; // E.164 dialing string (e.g., "+987132222294")
-    displayFa: string; // Persian formatted display (e.g., "۰۷۱-۳۲۲۲۲۲۹۴")
-    displayEn: string; // English formatted display (e.g., "+98 71 3222 2294")
+    raw: string; // Dialing string without dashes (e.g., "05138553671")
+    international: string; // E.164 dialing string (e.g., "+985138553671")
+    displayFa: string; // Persian formatted display (e.g., "۰۵۱-۳۸۵۵۳۶۷۱")
+    displayEn: string; // English formatted display (e.g., "+98 51 3855 3671")
   };
   mobile: {
-    raw: string; // Dialing string without dashes (e.g., "09173029002")
-    international: string; // E.164 dialing string (e.g., "+989173029002")
-    displayFa: string; // Persian formatted display (e.g., "۰۹۱۷-۳۰۲-۹۰۰۲")
-    displayEn: string; // English formatted display (e.g., "+98 917 302 9002")
+    raw: string; // Dialing string without dashes (e.g., "09374144235")
+    international: string; // E.164 dialing string (e.g., "+989374144235")
+    displayFa: string; // Persian formatted display (e.g., "۰۹۳۷-۴۱۴-۴۲۳۵")
+    displayEn: string; // English formatted display (e.g., "+98 937 414 4235")
   };
   whatsapp: {
-    number: string; // WhatsApp international digits only (e.g., "989173029002")
+    number: string; // WhatsApp international digits only (e.g., "989374144235")
   };
   social: {
     instagramUrl: string;
@@ -113,85 +113,85 @@ export interface HotelConfig {
 }
 
 export const hotelConfig: HotelConfig = {
-  id: "farhadi",
+  id: "gole-gandom",
 
   brand: {
-    id: "farhadi",
-    nameFa: "بوتیک هتل فرهادی",
-    nameEn: "Farhadi Boutique Hotel",
-    fullNameFa: "عمارت تاریخی فرهادی شیراز",
-    fullNameEn: "Farhadi Historic Boutique Hotel Shiraz",
-    subtitleFa: "بوتیک هتل سنتی شیراز",
-    subtitleEn: "Traditional Boutique Hotel in Shiraz",
+    id: "gole-gandom",
+    nameFa: "هتل گل گندم",
+    nameEn: "Gol Gandom Hotel",
+    fullNameFa: "هتل گل گندم مشهد",
+    fullNameEn: "Gol Gandom Hotel Mashhad",
+    subtitleFa: "اقامتی آرام در قلب مشهد",
+    subtitleEn: "A calm stay in the heart of Mashhad",
   },
 
   meta: {
-    id: "farhadi",
-    siteUrl: "https://farhadihotel.com",
-    nameFa: "بوتیک هتل فرهادی",
-    nameEn: "Farhadi Boutique Hotel",
-    fullNameFa: "عمارت تاریخی فرهادی شیراز",
-    fullNameEn: "Farhadi Historic Boutique Hotel Shiraz",
-    subtitleFa: "بوتیک هتل سنتی شیراز",
-    subtitleEn: "Traditional Boutique Hotel in Shiraz",
-    badgeFa: "شیراز · قدمت قاجار",
-    badgeEn: "Shiraz · Qajar Era Heritage",
-    metaTitleFa: "بوتیک هتل فرهادی شیراز | اقامت در عمارت تاریخی قاجار-پهلوی",
-    metaTitleEn: "Farhadi Boutique Hotel Shiraz | Qajar-Pahlavi Historic Stay",
+    id: "gole-gandom",
+    siteUrl: "https://hotelgandom.com",
+    nameFa: "هتل گل گندم",
+    nameEn: "Gol Gandom Hotel",
+    fullNameFa: "هتل گل گندم مشهد",
+    fullNameEn: "Gol Gandom Hotel Mashhad",
+    subtitleFa: "اقامتی آرام در قلب مشهد",
+    subtitleEn: "A calm stay in the heart of Mashhad",
+    badgeFa: "مشهد · هتل دو ستاره · ۳۰ واحد",
+    badgeEn: "Mashhad · 2-star hotel · 30 units",
+    metaTitleFa: "هتل گل گندم مشهد | اقامتی آرام نزدیک حرم امام رضا",
+    metaTitleEn: "Gol Gandom Hotel Mashhad | A calm stay near Imam Reza Shrine",
     metaDescriptionFa:
-      "بوتیک هتل سنتی فرهادی در بافت تاریخی شیراز، بازسازی اصیل دوران قاجار و پهلوی با ۱۴ اتاق اختصاصی، تالار آینه، پنج‌دری، کافه سنتی و چشم‌انداز گنبد شاهچراغ. رزرو مستقیم.",
+      "هتل آپارتمان گل گندم در مشهد، اقامتگاهی شهری و مجهز با دو نوبت ترانسفر رایگان رفت به حرم و دسترسی آسان به خطوط بی‌آرتی حرم است؛ اتاق‌های آن برای اقامت اقتصادی، آرام و نزدیک به مراکز شهری ارائه می‌شوند.",
     metaDescriptionEn:
-      "Farhadi Traditional Boutique Hotel in historic Shiraz. Authentic Qajar-Pahlavi restoration with 14 unique rooms, Mirror Hall, Panjdari, rooftop cafe, and direct reservations.",
+      "Gol Gandom is a city hotel apartment in Mashhad with two complimentary daily transfers to the Imam Reza Shrine, practical rooms, complimentary breakfast, an elevator, and easy BRT access.",
     keywordsFa: [
-      "بوتیک هتل فرهادی شیراز",
-      "هتل سنتی شیراز",
-      "رزرو هتل شیراز",
-      "شاهچراغ",
-      "هتل بافت تاریخی",
-      "عمارت قاجاری",
+      "هتل گل گندم مشهد",
+      "هتل نزدیک حرم امام رضا",
+      "رزرو هتل مشهد",
+      "بازار رضا",
+      "هتل امام رضا ۶۴",
+      "اقامت در مشهد",
     ],
     keywordsEn: [
-      "Farhadi Boutique Hotel Shiraz",
-      "Traditional hotel Shiraz",
-      "Shiraz heritage boutique hotel",
-      "Book hotel in Shiraz",
-      "Shah Cheragh hotel",
+      "Gol Gandom Hotel Mashhad",
+      "Hotel near Imam Reza Shrine",
+      "Mashhad hotel",
+      "Book hotel in Mashhad",
+      "Imam Reza 64 hotel",
     ],
     ogImage: "/images/areas/courtyard-1.webp",
   },
 
   contact: {
     phone: {
-      raw: "07132222294",
-      international: "+987132222294",
-      displayFa: "۰۷۱-۳۲۲۲۲۲۹۴",
-      displayEn: "+98 71 3222 2294",
+      raw: "05138553671",
+      international: "+985138553671",
+      displayFa: "۰۵۱-۳۸۵۵۳۶۷۱",
+      displayEn: "+98 51 3855 3671",
     },
     mobile: {
-      raw: "09173029002",
-      international: "+989173029002",
-      displayFa: "۰۹۱۷-۳۰۲-۹۰۰۲",
-      displayEn: "+98 917 302 9002",
+      raw: "09374144235",
+      international: "+989374144235",
+      displayFa: "۰۹۳۷-۴۱۴-۴۲۳۵",
+      displayEn: "+98 937 414 4235",
     },
     whatsapp: {
-      number: "989173029002",
+      number: "989374144235",
     },
     social: {
-      instagramUrl: "https://www.instagram.com/farhadi.boutique.hotel/",
-      instagramHandle: "@farhadi.boutique.hotel",
-      email: "info@farhadihotel.com",
+      instagramUrl: "https://instagram.com/hotelgandom",
+      instagramHandle: "@hotelgandom",
+      email: undefined,
     },
   },
 
   location: {
-    cityFa: "شیراز",
-    cityEn: "Shiraz",
-    addressFa: "شیراز، سه‌راه نمازی، خیابان شهید دستغیب، کوچه ۶",
-    addressEn: "Alley 6, Dastgheib St, Namazi Intersection, Shiraz",
-    coordinates: [29.6112, 52.5442],
+    cityFa: "مشهد",
+    cityEn: "Mashhad",
+    addressFa: "مشهد، امام رضا ۶۴، نبش چهارراه اول",
+    addressEn: "Mashhad, Imam Reza 64, on the corner of the first intersection",
+    coordinates: [36.2638855, 59.5966564],
     mapZoom: 15,
-    routingAlleyFa: "کوچه دستغیب ۶",
-    routingAlleyEn: "Dastgheib Alley 6",
+    routingAlleyFa: "امام رضا ۶۴",
+    routingAlleyEn: "Imam Reza 64",
   },
 
   features: {
@@ -203,67 +203,102 @@ export const hotelConfig: HotelConfig = {
       heroDescFa: "امکان پرداخت در ۴ قسط با اسنپ‌پی (بدون کارمزد و ضامن)",
       heroDescEn: "Pay in 4 installments with Snapp! Pay (0% interest)",
     },
-    establishedEraFa: "قدمت قاجار",
-    establishedEraEn: "Qajar Era Heritage",
+    establishedEraFa: "افتتاح ۱۳۹۱ · هتل دو ستاره",
+    establishedEraEn: "Opened in 2012 · 2-star hotel",
   },
 
   attractions: [
     {
       id: 0,
-      coords: [29.6096, 52.5432],
-      nameFa: "حرم مطهر حضرت شاهچراغ (ع)",
-      nameEn: "Holy Shrine of Shah Cheragh",
-      distFa: "۴ دقیقه پیاده",
-      distEn: "4 min walk",
-      timeFa: "پیاده‌روی مستقیم از کوچه دستغیب",
-      timeEn: "Direct walking route via Dastgheib Alley",
+      coords: [36.2878549, 59.6156637],
+      nameFa: "حرم مطهر امام رضا",
+      nameEn: "Imam Reza Holy Shrine",
+      distFa: "۳.۲ کیلومتر",
+      distEn: "3.2 km",
+      timeFa: "۸ دقیقه با ماشین",
+      timeEn: "8 min drive",
       icon: "🕌",
     },
     {
       id: 1,
-      coords: [29.6152, 52.5458],
-      nameFa: "مجموعه زندیه، بازار و حمام وکیل",
-      nameEn: "Zand Complex & Vakil Bazaar",
-      distFa: "۸ دقیقه پیاده",
-      distEn: "8 min walk",
-      timeFa: "گذر از بافت تاریخی زندیه",
-      timeEn: "Historic Zand quarter",
+      coords: [36.2815697, 59.6092965],
+      nameFa: "بازار رضا",
+      nameEn: "Reza Bazaar",
+      distFa: "۲.۵ کیلومتر",
+      distEn: "2.5 km",
+      timeFa: "۶ دقیقه با ماشین",
+      timeEn: "6 min drive",
       icon: "🏛️",
     },
     {
       id: 2,
-      coords: [29.6085, 52.551],
-      nameFa: "مسجد نصیرالملک (مسجد صورتی)",
-      nameEn: "Nasir al-Mulk Mosque (Pink Mosque)",
-      distFa: "۱۲ دقیقه پیاده",
-      distEn: "12 min walk",
-      timeFa: "گذر از محله تاریخی گود عربان",
-      timeEn: "Goud-e Araban quarter",
+      coords: [36.25995, 59.59754],
+      nameFa: "سرزمین بازی‌ها",
+      nameEn: "Sarzamin-e Baziha Family Park",
+      distFa: "۶۶۲ متر",
+      distEn: "662 m",
+      timeFa: "۳ دقیقه با ماشین",
+      timeEn: "3 min drive",
       icon: "🌸",
     },
     {
       id: 3,
-      coords: [29.6178, 52.5448],
-      nameFa: "ارگ کریم‌خان زند",
-      nameEn: "Arg of Karim Khan",
-      distFa: "۵ دقیقه با خودرو",
-      distEn: "5 min drive",
-      timeFa: "میدان شهدا (توپخانه کهن)",
-      timeEn: "Shohada Square",
-      icon: "🏰",
+      coords: [36.2537172, 59.6066931],
+      nameFa: "باغ گیاه‌شناسی",
+      nameEn: "Mashhad Botanical Garden",
+      distFa: "۱.۶ کیلومتر",
+      distEn: "1.6 km",
+      timeFa: "۴ دقیقه با ماشین",
+      timeEn: "4 min drive",
+      icon: "🌿",
     },
     {
       id: 4,
-      coords: [29.5392, 52.5898],
-      nameFa: "فرودگاه بین‌المللی شیراز",
-      nameEn: "Shiraz International Airport",
-      distFa: "۲۰ دقیقه با خودرو",
-      distEn: "20 min drive",
-      timeFa: "مسیر بزرگراه شهید مدرس",
-      timeEn: "Via Modarres Expressway",
-      icon: "✈️",
+      coords: [36.2792574, 59.6038382],
+      nameFa: "سرای بلور",
+      nameEn: "Saray-e Bolour",
+      distFa: "۱.۹ کیلومتر",
+      distEn: "1.9 km",
+      timeFa: "۵ دقیقه با ماشین",
+      timeEn: "5 min drive",
+      icon: "🏺",
+    },
+    {
+      id: 5,
+      coords: [36.2948646, 59.607823],
+      nameFa: "آرامگاه نادرشاه افشار (باغ موزه نادری)",
+      nameEn: "Nader Shah Afshar Mausoleum (Naderi Garden Museum)",
+      distFa: "۳.۷ کیلومتر",
+      distEn: "3.7 km",
+      timeFa: "۹ دقیقه با ماشین",
+      timeEn: "9 min drive",
+      icon: "🏛️",
+    },
+    {
+      id: 6,
+      coords: [36.28279, 59.56398],
+      nameFa: "بوستان کوهسنگی",
+      nameEn: "Kuhsangi Park",
+      distFa: "۳.۹ کیلومتر",
+      distEn: "3.9 km",
+      timeFa: "۹ دقیقه با ماشین",
+      timeEn: "9 min drive",
+      icon: "🌳",
+    },
+    {
+      id: 7,
+      coords: [36.3188413, 59.5374002],
+      nameFa: "شهربازی پارک ملت",
+      nameEn: "Mellat Park Amusement Park",
+      distFa: "۸.۴ کیلومتر",
+      distEn: "8.4 km",
+      timeFa: "۱۴ دقیقه با ماشین",
+      timeEn: "14 min drive",
+      icon: "🎡",
     },
   ],
 };
 
 export default hotelConfig;
+
+

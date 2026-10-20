@@ -189,21 +189,18 @@ export function seedSamplePilotData(): void {
   const sources = [
     { source: "instagram", medium: "story", campaign: "summer_getaway", weight: 45 },
     { source: "snapp_trip", medium: "direct_sms", campaign: "vip_members", weight: 30 },
-    { source: "google", medium: "organic", campaign: "shiraz_boutique_hotels", weight: 15 },
+    { source: "google", medium: "organic", campaign: "mashhad_hotels", weight: 15 },
     { source: "direct", medium: "none", campaign: "direct_traffic", weight: 10 },
   ];
 
   const rooms = [
-    "اتاق تالار آیینه",
-    "اتاق ارسی پستو",
-    "اتاق پهلوی",
-    "اتاق پنج‌دری",
-    "اتاق ارجان",
-    "اتاق هزار آیینه",
-    "اتاق کریم‌خان",
-    "اتاق سه‌دری",
+    "اتاق یک تخته",
+    "اتاق دو تخته دابل",
+    "اتاق دو تخته تویین",
+    "اتاق سه تخته",
+    "اتاق چهار تخته",
+    "اتاق پنج تخته",
   ];
-
   const now = Date.now();
 
   // Generate 320 simulated visitors spanning across the last 30 days

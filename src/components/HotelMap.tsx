@@ -102,24 +102,22 @@ export default function HotelMap({
         attribution: "© OpenStreetMap",
       }).addTo(map);
 
-      const hotelLabel = isEn ? "Farhadi Boutique Hotel" : "بوتیک هتل عمارت فرهادی";
-      const hotelAddress = isEn
-        ? "Shiraz, Namazi 3-way, Dastgheib St, Alley 6"
-        : "شیراز، سه‌راه نمازی، خیابان شهید دستغیب، کوچه ۶";
+      const hotelLabel = isEn ? hotelConfig.meta.fullNameEn : hotelConfig.meta.fullNameFa;
+      const hotelAddress = isEn ? hotelConfig.location.addressEn : hotelConfig.location.addressFa;
 
       // Custom Hotel Marker with exact pinpoint anchor and downward pointer
       const hotelIcon = L.divIcon({
         className: "custom-hotel-pin",
         html: `
           <div class="hotel-pin-wrapper" style="display: flex; flex-direction: column; align-items: center; transform: translate(-50%, -100%); cursor: pointer; user-select: none; direction: ${isEn ? "ltr" : "rtl"};">
-            <div class="hotel-pin-inner" style="background-color: #172554; color: #ffffff; padding: 7px 18px; border-radius: 9999px; font-weight: 800; font-family: inherit; font-size: 13px; box-shadow: 0 6px 22px rgba(23,37,84,0.45); display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 2px solid #ffffff; white-space: nowrap; width: max-content; min-width: max-content;">
-              <span style="display: inline-block; width: 8px; height: 8px; border-radius: 9999px; background: #c59b27; box-shadow: 0 0 8px #c59b27; flex-shrink: 0;"></span>
+            <div class="hotel-pin-inner" style="background-color: #563820; color: #ffffff; padding: 7px 18px; border-radius: 9999px; font-weight: 800; font-family: inherit; font-size: 13px; box-shadow: 0 6px 22px rgba(86,56,32,0.45); display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 2px solid #ffffff; white-space: nowrap; width: max-content; min-width: max-content;">
+              <span style="display: inline-block; width: 8px; height: 8px; border-radius: 9999px; background: #cf9f2d; box-shadow: 0 0 8px #cf9f2d; flex-shrink: 0;"></span>
               <span style="white-space: nowrap; display: inline-block;">${hotelLabel}</span>
             </div>
             <!-- Pin Pointer Arrow -->
-            <div style="width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 6px solid #172554; margin-top: -1px;"></div>
+            <div style="width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 6px solid #563820; margin-top: -1px;"></div>
             <!-- Pin Coordinate Anchor Dot -->
-            <div style="width: 8px; height: 8px; border-radius: 9999px; background: #c59b27; border: 2px solid #ffffff; box-shadow: 0 0 10px rgba(197,155,39,0.9); margin-top: 1px;"></div>
+            <div style="width: 8px; height: 8px; border-radius: 9999px; background: #cf9f2d; border: 2px solid #ffffff; box-shadow: 0 0 10px rgba(207,159,45,0.9); margin-top: 1px;"></div>
           </div>
         `,
         iconSize: [0, 0],
@@ -129,10 +127,10 @@ export default function HotelMap({
         .addTo(map)
         .bindPopup(
           `<div style="font-family: inherit; text-align: ${isEn ? "left" : "right"}; direction: ${isEn ? "ltr" : "rtl"}; min-width: 200px; padding: 2px;">
-            <div style="font-size: 14px; font-weight: 800; color: #172554; margin-bottom: 4px;">${hotelLabel}</div>
-            <div style="font-size: 12px; color: #555f6d; line-height: 1.5;">${hotelAddress}</div>
-            <div style="margin-top: 8px; display: inline-block; background: #f0ece1; color: #172554; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px;">
-              ${isEn ? "Heritage Qajar Mansion" : "عمارت تاریخی دوره قاجار"}
+            <div style="font-size: 14px; font-weight: 800; color: #563820; margin-bottom: 4px;">${hotelLabel}</div>
+            <div style="font-size: 12px; color: #6b5948; line-height: 1.5;">${hotelAddress}</div>
+            <div style="margin-top: 8px; display: inline-block; background: #f1e8cd; color: #563820; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px;">
+              ${isEn ? hotelConfig.features.establishedEraEn : hotelConfig.features.establishedEraFa}
             </div>
           </div>`
         );
@@ -154,7 +152,7 @@ export default function HotelMap({
         const attIcon = L.divIcon({
           className: `attraction-pin-${idx}`,
           html: `
-            <div style="background: #ffffff; color: #172554; padding: 5px 14px; border-radius: 9999px; font-size: 12px; font-family: inherit; border: 1.5px solid #dfd9cc; box-shadow: 0 4px 14px rgba(0,0,0,0.12); white-space: nowrap; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; width: max-content; min-width: max-content; cursor: pointer; transform: translate(-50%, -50%); transition: transform 0.2s ease;">
+            <div style="background: #ffffff; color: #563820; padding: 5px 14px; border-radius: 9999px; font-size: 12px; font-family: inherit; border: 1.5px solid #e3d5bf; box-shadow: 0 4px 14px rgba(0,0,0,0.12); white-space: nowrap; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; width: max-content; min-width: max-content; cursor: pointer; transform: translate(-50%, -50%); transition: transform 0.2s ease;">
               <span>${att.icon}</span>
               <span style="white-space: nowrap; display: inline-block;">${attName}</span>
             </div>
@@ -166,9 +164,9 @@ export default function HotelMap({
           .addTo(map)
           .bindPopup(
             `<div style="font-family: inherit; text-align: ${isEn ? "left" : "right"}; direction: ${isEn ? "ltr" : "rtl"}; min-width: 180px; padding: 2px;">
-              <div style="font-size: 13px; font-weight: 700; color: #172554; margin-bottom: 4px;">${att.icon} ${attName}</div>
-              <div style="font-size: 11px; color: #8c7b64; margin-bottom: 6px;">${attTime}</div>
-              <div style="display: inline-block; background: #172554; color: #ffffff; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;">${attDist}</div>
+              <div style="font-size: 13px; font-weight: 700; color: #563820; margin-bottom: 4px;">${att.icon} ${attName}</div>
+              <div style="font-size: 11px; color: #927344; margin-bottom: 6px;">${attTime}</div>
+              <div style="display: inline-block; background: #563820; color: #ffffff; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;">${attDist}</div>
             </div>`
           );
 
@@ -228,7 +226,7 @@ export default function HotelMap({
 
       // 2. Animated Curved Polyline
       const diagonalLine = L.polyline(curvedPoints, {
-        color: "#c59b27",
+        color: "#cf9f2d",
         weight: 4,
         opacity: 0.95,
         className: "animated-diagonal-path",
@@ -242,7 +240,7 @@ export default function HotelMap({
       const midBadge = L.divIcon({
         className: "diagonal-midpoint-badge",
         html: `
-          <div style="background: #172554; color: #ffffff; padding: 5px 14px; border-radius: 9999px; font-size: 11px; font-weight: 700; border: 1.5px solid #c59b27; box-shadow: 0 4px 14px rgba(23,37,84,0.45); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; width: max-content; min-width: max-content; transform: translate(-50%, -50%);">
+          <div style="background: #563820; color: #ffffff; padding: 5px 14px; border-radius: 9999px; font-size: 11px; font-weight: 700; border: 1.5px solid #cf9f2d; box-shadow: 0 4px 14px rgba(86,56,32,0.45); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; width: max-content; min-width: max-content; transform: translate(-50%, -50%);">
             <span style="font-size: 13px;">${target.icon}</span>
             <span style="white-space: nowrap; display: inline-block;">${isEn ? target.distEn : target.distFa}</span>
           </div>

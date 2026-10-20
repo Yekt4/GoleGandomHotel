@@ -246,7 +246,7 @@ export default function AnalyticsStatsPage() {
       const rows: string[] = [];
 
       // Title & Metadata
-      rows.push("گزارش پایش هوشمند ترافیک و سرنخ‌های فروش بوتیک هتل سنتی فرهادی شیراز");
+      rows.push("گزارش پایش هوشمند ترافیک و سرنخ‌های فروش بوتیک هتل سنتی گل گندم مشهد");
       rows.push(`بازه زمانی گزارش:,${data.summary.dateRangeLabel || "انتخاب شده"}`);
       rows.push(`تاریخ خروجی فایل:,${new Date().toLocaleDateString("fa-IR")} ${new Date().toLocaleTimeString("fa-IR")}`);
       rows.push("");
@@ -291,7 +291,7 @@ export default function AnalyticsStatsPage() {
       rows.push("");
 
       // Rooms Breakdown
-      rows.push("تقاضای رزرو به تفکیک اتاق‌های عمارت");
+      rows.push("تقاضای رزرو به تفکیک اتاق‌های هتل");
       rows.push("نام اتاق,تعداد لید,تماس تلفنی,واتس‌اپ,سهم درصد");
       data.rooms.forEach((r) => {
         rows.push(`"${r.room}",${r.leads},${r.calls},${r.whatsapp},${r.share}%`);
@@ -337,10 +337,10 @@ export default function AnalyticsStatsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#faf8f5] flex items-center justify-center p-6 text-center" dir="rtl">
+      <div className="min-h-screen bg-[#faf6e8] flex items-center justify-center p-6 text-center" dir="rtl">
         <div className="flex flex-col items-center gap-3">
-          <RefreshCw className="w-8 h-8 text-[#172554] animate-spin" />
-          <p className="text-sm font-semibold text-[#172554]">در حال بررسی نشست امنیتی و بارگذاری...</p>
+          <RefreshCw className="w-8 h-8 text-[#563820] animate-spin" />
+          <p className="text-sm font-semibold text-[#563820]">در حال بررسی نشست امنیتی و بارگذاری...</p>
         </div>
       </div>
     );
@@ -349,19 +349,19 @@ export default function AnalyticsStatsPage() {
   // Render Secure Login Lock Screen if not authenticated
   if (isAuthenticated === false) {
     return (
-      <div className="min-h-screen bg-[#f7f5f0] flex items-center justify-center p-4 sm:p-6 font-estedad stats-dashboard" dir="rtl">
-        <div className="w-full max-w-md bg-white rounded-3xl border border-[#dfd9cc] shadow-xl p-6 sm:p-8 space-y-6">
+      <div className="min-h-screen bg-[#f7f0dc] flex items-center justify-center p-4 sm:p-6 font-estedad stats-dashboard" dir="rtl">
+        <div className="w-full max-w-md bg-white rounded-3xl border border-[#e3d5bf] shadow-xl p-6 sm:p-8 space-y-6">
           <div className="text-center space-y-2.5">
-            <div className="w-16 h-16 mx-auto rounded-2xl bg-amber-50 border border-amber-200/80 flex items-center justify-center shadow-inner text-[#172554]">
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-amber-50 border border-amber-200/80 flex items-center justify-center shadow-inner text-[#563820]">
               <Lock className="w-8 h-8 text-amber-700" />
             </div>
 
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#172554] text-white">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#563820] text-white">
               <ShieldCheck className="w-3.5 h-3.5 text-amber-300" />
               <span>سامانه امن پایش و تحلیلی</span>
             </div>
 
-            <h1 className="text-xl sm:text-2xl font-black text-[#172554]">
+            <h1 className="text-xl sm:text-2xl font-black text-[#563820]">
               ورود به داشبورد تحلیلی
             </h1>
           </div>
@@ -369,7 +369,7 @@ export default function AnalyticsStatsPage() {
           <form onSubmit={handleLogin} className="space-y-4">
             {/* Username Input */}
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-[#172554] block">
+              <label className="text-xs font-bold text-[#563820] block">
                 نام کاربری
               </label>
               <input
@@ -381,14 +381,14 @@ export default function AnalyticsStatsPage() {
                 }}
                 autoFocus
                 placeholder="نام کاربری..."
-                className="w-full h-11 px-3.5 rounded-xl bg-[#faf8f5] border border-[#dfd9cc] text-sm font-medium text-[#172554] focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-600 transition-all text-left"
+                className="w-full h-11 px-3.5 rounded-xl bg-[#faf6e8] border border-[#e3d5bf] text-sm font-medium text-[#563820] focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-600 transition-all text-left"
                 dir="ltr"
               />
             </div>
 
             {/* Password Input */}
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-[#172554] block">
+              <label className="text-xs font-bold text-[#563820] block">
                 رمز عبور
               </label>
               <div className="relative">
@@ -400,7 +400,7 @@ export default function AnalyticsStatsPage() {
                     if (authError) setAuthError("");
                   }}
                   placeholder="رمز عبور..."
-                  className="w-full h-11 pr-3.5 pl-11 rounded-xl bg-[#faf8f5] border border-[#dfd9cc] text-sm font-medium text-[#172554] focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-600 transition-all text-left"
+                  className="w-full h-11 pr-3.5 pl-11 rounded-xl bg-[#faf6e8] border border-[#e3d5bf] text-sm font-medium text-[#563820] focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-600 transition-all text-left"
                   dir="ltr"
                 />
                 <button
@@ -415,7 +415,7 @@ export default function AnalyticsStatsPage() {
 
             {/* Visual SVG CAPTCHA */}
             <div className="space-y-2 pt-1 border-t border-[#f0ece4]">
-              <div className="flex items-center justify-between text-xs font-bold text-[#172554]">
+              <div className="flex items-center justify-between text-xs font-bold text-[#563820]">
                 <span>کد امنیتی (کپچا)</span>
                 <button
                   type="button"
@@ -443,7 +443,7 @@ export default function AnalyticsStatsPage() {
                   }}
                   placeholder="کد تصویر..."
                   maxLength={6}
-                  className="flex-1 h-[54px] px-3 rounded-xl bg-[#faf8f5] border border-[#dfd9cc] text-base font-black font-mono tracking-widest text-[#172554] uppercase text-center focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-600 transition-all"
+                  className="flex-1 h-[54px] px-3 rounded-xl bg-[#faf6e8] border border-[#e3d5bf] text-base font-black font-mono tracking-widest text-[#563820] uppercase text-center focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-600 transition-all"
                   dir="ltr"
                 />
               </div>
@@ -460,7 +460,7 @@ export default function AnalyticsStatsPage() {
             <button
               type="submit"
               disabled={submittingAuth}
-              className="w-full h-12 rounded-xl bg-[#172554] hover:bg-[#0f172a] text-white text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md active:scale-98 disabled:opacity-70 mt-2"
+              className="w-full h-12 rounded-xl bg-[#563820] hover:bg-[#382619] text-white text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md active:scale-98 disabled:opacity-70 mt-2"
             >
               {submittingAuth ? (
                 <>
@@ -479,7 +479,7 @@ export default function AnalyticsStatsPage() {
           <div className="pt-2 border-t border-[#f0ece4] flex items-center justify-between text-xs text-stone-500">
             <Link
               href="/"
-              className="inline-flex items-center gap-1 text-stone-600 hover:text-[#172554] font-medium transition-colors"
+              className="inline-flex items-center gap-1 text-stone-600 hover:text-[#563820] font-medium transition-colors"
             >
               <ArrowRight className="w-3.5 h-3.5" />
               <span>بازگشت به صفحه اصلی</span>
@@ -505,13 +505,13 @@ export default function AnalyticsStatsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f7f5f0] text-[#172554] p-4 sm:p-6 lg:p-10 select-none font-estedad stats-dashboard" dir="rtl">
+    <div className="min-h-screen bg-[#f7f0dc] text-[#563820] p-4 sm:p-6 lg:p-10 select-none font-estedad stats-dashboard" dir="rtl">
       <div className="max-w-7xl mx-auto space-y-8 font-estedad">
         {/* Top Header & Brand Bar */}
-        <header className="bg-white rounded-3xl p-6 sm:p-8 border border-[#dfd9cc] shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <header className="bg-white rounded-3xl p-6 sm:p-8 border border-[#e3d5bf] shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-2">
             <div className="flex items-center gap-2.5">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#172554] text-white font-estedad">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#563820] text-white font-estedad">
                 <ShieldCheck className="w-3.5 h-3.5 text-amber-300" />
                 پایلوت
               </span>
@@ -520,10 +520,10 @@ export default function AnalyticsStatsPage() {
                 داده‌های زنده
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black text-[#172554] tracking-tight font-estedad">
+            <h1 className="text-2xl sm:text-3xl font-black text-[#563820] tracking-tight font-estedad">
               داشبورد پایش تقاضا و کانال‌های ورودی
             </h1>
-            <p className="text-xs sm:text-sm text-[#555f6d]">
+            <p className="text-xs sm:text-sm text-[#6b5948]">
               سنجش تقاضای رزرو مستقیم، تبدیل تماس‌ها به رزرو قطعی و سهم کانال‌های ورودی {hotelConfig.meta.fullNameFa}
             </p>
           </div>
@@ -532,7 +532,7 @@ export default function AnalyticsStatsPage() {
             <button
               onClick={() => fetchStats(true)}
               disabled={refreshing}
-              className="flex-1 sm:flex-initial h-10 px-4 rounded-xl bg-[#faf8f5] hover:bg-slate-100 border border-[#dfd9cc] text-xs font-semibold text-[#172554] flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs active:scale-95"
+              className="flex-1 sm:flex-initial h-10 px-4 rounded-xl bg-[#faf6e8] hover:bg-slate-100 border border-[#e3d5bf] text-xs font-semibold text-[#563820] flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs active:scale-95"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? "animate-spin" : ""}`} />
               <span>به‌روزرسانی</span>
@@ -550,7 +550,7 @@ export default function AnalyticsStatsPage() {
             <Link
               href="/"
               target="_blank"
-              className="h-10 px-4 rounded-xl bg-[#172554] hover:bg-[#0f172a] text-white text-xs font-semibold flex items-center gap-2 transition-all shadow-sm"
+              className="h-10 px-4 rounded-xl bg-[#563820] hover:bg-[#382619] text-white text-xs font-semibold flex items-center gap-2 transition-all shadow-sm"
             >
               <span>مشاهده سایت</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -568,10 +568,10 @@ export default function AnalyticsStatsPage() {
         </header>
 
         {/* Date & Period Filter Bar */}
-        <div className="bg-white rounded-2xl p-3 sm:p-4 border border-[#dfd9cc] shadow-xs flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+        <div className="bg-white rounded-2xl p-3 sm:p-4 border border-[#e3d5bf] shadow-xs flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
           {/* Quick Period Filter Tabs */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0">
-            <div className="flex items-center gap-1 bg-[#f7f5f0] p-1 rounded-xl border border-[#dfd9cc]/60">
+            <div className="flex items-center gap-1 bg-[#f7f0dc] p-1 rounded-xl border border-[#e3d5bf]/60">
               <button
                 onClick={() => {
                   setSelectedRange("today");
@@ -579,8 +579,8 @@ export default function AnalyticsStatsPage() {
                 }}
                 className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   selectedRange === "today"
-                    ? "bg-[#172554] text-white shadow-xs"
-                    : "text-[#555f6d] hover:text-[#172554] hover:bg-white/60"
+                    ? "bg-[#563820] text-white shadow-xs"
+                    : "text-[#6b5948] hover:text-[#563820] hover:bg-white/60"
                 }`}
               >
                 امروز
@@ -593,8 +593,8 @@ export default function AnalyticsStatsPage() {
                 }}
                 className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                   selectedRange === "7d"
-                    ? "bg-[#172554] text-white shadow-xs"
-                    : "text-[#555f6d] hover:text-[#172554] hover:bg-white/60"
+                    ? "bg-[#563820] text-white shadow-xs"
+                    : "text-[#6b5948] hover:text-[#563820] hover:bg-white/60"
                 }`}
               >
                 <span>۷ روز اخیر</span>
@@ -612,8 +612,8 @@ export default function AnalyticsStatsPage() {
                 }}
                 className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   selectedRange === "30d"
-                    ? "bg-[#172554] text-white shadow-xs"
-                    : "text-[#555f6d] hover:text-[#172554] hover:bg-white/60"
+                    ? "bg-[#563820] text-white shadow-xs"
+                    : "text-[#6b5948] hover:text-[#563820] hover:bg-white/60"
                 }`}
               >
                 ۳۰ روز اخیر (ماهانه)
@@ -626,8 +626,8 @@ export default function AnalyticsStatsPage() {
                 }}
                 className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   selectedRange === "all"
-                    ? "bg-[#172554] text-white shadow-xs"
-                    : "text-[#555f6d] hover:text-[#172554] hover:bg-white/60"
+                    ? "bg-[#563820] text-white shadow-xs"
+                    : "text-[#6b5948] hover:text-[#563820] hover:bg-white/60"
                 }`}
               >
                 کل دوره
@@ -640,7 +640,7 @@ export default function AnalyticsStatsPage() {
             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50/80 border border-amber-200/60 text-amber-900 font-semibold font-estedad">
               <Calendar className="w-3.5 h-3.5 text-amber-700 shrink-0" />
               <span>بازه فعال:</span>
-              <span className="font-bold text-[#172554]">
+              <span className="font-bold text-[#563820]">
                 {toPersianDigits(data?.summary.dateRangeLabel || "۷ روز اخیر (هفتگی)")}
               </span>
             </div>
@@ -651,8 +651,8 @@ export default function AnalyticsStatsPage() {
                 onClick={() => setShowCustomDateModal(!showCustomDateModal)}
                 className={`h-9 px-3 rounded-xl border text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer font-estedad ${
                   selectedRange === "custom"
-                    ? "bg-[#172554] text-white border-[#172554]"
-                    : "bg-white hover:bg-[#faf8f5] text-[#172554] border-[#dfd9cc]"
+                    ? "bg-[#563820] text-white border-[#563820]"
+                    : "bg-white hover:bg-[#faf6e8] text-[#563820] border-[#e3d5bf]"
                 }`}
               >
                 <CalendarDays className="w-3.5 h-3.5" />
@@ -660,15 +660,15 @@ export default function AnalyticsStatsPage() {
               </button>
 
               {showCustomDateModal && (
-                <div className="absolute left-0 top-11 z-30 w-72 bg-white rounded-2xl border border-[#dfd9cc] shadow-xl p-4 space-y-3 font-estedad">
-                  <div className="text-xs font-bold text-[#172554]">انتخاب بازه زمانی دلخواه</div>
+                <div className="absolute left-0 top-11 z-30 w-72 bg-white rounded-2xl border border-[#e3d5bf] shadow-xl p-4 space-y-3 font-estedad">
+                  <div className="text-xs font-bold text-[#563820]">انتخاب بازه زمانی دلخواه</div>
                   <div className="space-y-1">
                     <label className="text-[11px] text-stone-500 block">از تاریخ:</label>
                     <input
                       type="date"
                       value={startDate}
                       onChange={(e) => setStartDate(e.target.value)}
-                      className="w-full h-8 px-2.5 rounded-lg border border-[#dfd9cc] text-xs font-estedad"
+                      className="w-full h-8 px-2.5 rounded-lg border border-[#e3d5bf] text-xs font-estedad"
                     />
                   </div>
                   <div className="space-y-1">
@@ -677,7 +677,7 @@ export default function AnalyticsStatsPage() {
                       type="date"
                       value={endDate}
                       onChange={(e) => setEndDate(e.target.value)}
-                      className="w-full h-8 px-2.5 rounded-lg border border-[#dfd9cc] text-xs font-estedad"
+                      className="w-full h-8 px-2.5 rounded-lg border border-[#e3d5bf] text-xs font-estedad"
                     />
                   </div>
                   <div className="flex items-center gap-2 pt-1.5">
@@ -691,7 +691,7 @@ export default function AnalyticsStatsPage() {
                         setShowCustomDateModal(false);
                         fetchStats(false, "custom");
                       }}
-                      className="flex-1 h-8 rounded-lg bg-[#172554] text-white text-xs font-bold cursor-pointer"
+                      className="flex-1 h-8 rounded-lg bg-[#563820] text-white text-xs font-bold cursor-pointer"
                     >
                       اعمال
                     </button>
@@ -713,18 +713,18 @@ export default function AnalyticsStatsPage() {
         {/* 4 Key Executive Metric Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 font-estedad">
           {/* Metric 1: Total Visitors */}
-          <div className="bg-white rounded-3xl p-6 border border-[#dfd9cc] shadow-xs relative overflow-hidden flex flex-col justify-between">
+          <div className="bg-white rounded-3xl p-6 border border-[#e3d5bf] shadow-xs relative overflow-hidden flex flex-col justify-between">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-xs font-bold text-[#8c7b64]">کل بازدیدکنندگان</span>
-              <div className="w-10 h-10 rounded-2xl bg-[#eff6ff] flex items-center justify-center text-[#172554]">
+              <span className="text-xs font-bold text-[#927344]">کل بازدیدکنندگان</span>
+              <div className="w-10 h-10 rounded-2xl bg-[#faf0d9] flex items-center justify-center text-[#563820]">
                 <Users className="w-5 h-5" />
               </div>
             </div>
             <div>
-              <div className="text-3xl sm:text-4xl font-black text-[#172554] tracking-tight font-estedad">
+              <div className="text-3xl sm:text-4xl font-black text-[#563820] tracking-tight font-estedad">
                 {toPersianDigits(summary.totalVisitors.toLocaleString())}
               </div>
-              <p className="text-[11px] text-[#555f6d] mt-1.5 flex items-center gap-2 font-estedad">
+              <p className="text-[11px] text-[#6b5948] mt-1.5 flex items-center gap-2 font-estedad">
                 <span>موبایل: {toPersianDigits(data?.devices.mobile.toLocaleString())} ({toPersianDigits(data?.devices.mobileShare)}٪)</span>
                 <span>·</span>
                 <span>دسکتاپ: {toPersianDigits(data?.devices.desktop.toLocaleString())}</span>
@@ -733,7 +733,7 @@ export default function AnalyticsStatsPage() {
           </div>
 
           {/* Metric 2: Total Leads (Calls & WhatsApp) */}
-          <div className="bg-white rounded-3xl p-6 border border-[#dfd9cc] shadow-xs relative overflow-hidden flex flex-col justify-between">
+          <div className="bg-white rounded-3xl p-6 border border-[#e3d5bf] shadow-xs relative overflow-hidden flex flex-col justify-between">
             <div className="flex items-center justify-between mb-4">
               <span className="text-xs font-bold text-emerald-800">کل لیدهای تماس (Lead)</span>
               <div className="w-10 h-10 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-700">
@@ -744,7 +744,7 @@ export default function AnalyticsStatsPage() {
               <div className="text-3xl sm:text-4xl font-black text-emerald-700 tracking-tight font-estedad">
                 {toPersianDigits(summary.totalLeads.toLocaleString())}
               </div>
-              <p className="text-[11px] text-[#555f6d] mt-1.5 flex items-center gap-2 font-estedad">
+              <p className="text-[11px] text-[#6b5948] mt-1.5 flex items-center gap-2 font-estedad">
                 <span>تماس تلفنی: {toPersianDigits(summary.totalCalls.toLocaleString())}</span>
                 <span>·</span>
                 <span>چت واتس‌اپ: {toPersianDigits(summary.totalWhatsApp.toLocaleString())}</span>
@@ -753,7 +753,7 @@ export default function AnalyticsStatsPage() {
           </div>
 
           {/* Metric 3: Conversion Rate */}
-          <div className="bg-white rounded-3xl p-6 border border-[#dfd9cc] shadow-xs relative overflow-hidden flex flex-col justify-between bg-gradient-to-br from-white to-amber-50/40">
+          <div className="bg-white rounded-3xl p-6 border border-[#e3d5bf] shadow-xs relative overflow-hidden flex flex-col justify-between bg-gradient-to-br from-white to-amber-50/40">
             <div className="flex items-center justify-between mb-4">
               <span className="text-xs font-bold text-amber-900">نرخ تبدیل لید (CR %)</span>
               <div className="w-10 h-10 rounded-2xl bg-amber-100/70 flex items-center justify-center text-amber-800">
@@ -765,42 +765,42 @@ export default function AnalyticsStatsPage() {
                 <span>{toPersianDigits(summary.conversionRate)}</span>
                 <span className="text-xl font-bold">٪</span>
               </div>
-              <p className="text-[11px] text-[#8c7b64] mt-1.5 font-estedad">
+              <p className="text-[11px] text-[#927344] mt-1.5 font-estedad">
                 از هر ۱۰۰ بازدیدکننده، حدود {toPersianDigits(summary.conversionRate)} نفر تماس می‌گیرند
               </p>
             </div>
           </div>
 
           {/* Metric 4: Top Performing Room */}
-          <div className="bg-white rounded-3xl p-6 border border-[#dfd9cc] shadow-xs relative overflow-hidden flex flex-col justify-between">
+          <div className="bg-white rounded-3xl p-6 border border-[#e3d5bf] shadow-xs relative overflow-hidden flex flex-col justify-between">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-xs font-bold text-[#8c7b64]">بیشترین استعلام اتاق</span>
-              <div className="w-10 h-10 rounded-2xl bg-slate-100 flex items-center justify-center text-[#172554]">
+              <span className="text-xs font-bold text-[#927344]">بیشترین استعلام اتاق</span>
+              <div className="w-10 h-10 rounded-2xl bg-slate-100 flex items-center justify-center text-[#563820]">
                 <Hotel className="w-5 h-5" />
               </div>
             </div>
             <div>
-              <div className="text-lg sm:text-xl font-bold text-[#172554] truncate">
+              <div className="text-lg sm:text-xl font-bold text-[#563820] truncate">
                 {summary.topRoom}
               </div>
-              <p className="text-[11px] text-[#555f6d] mt-1.5 font-estedad">
-                کانال برتر ورودی: <strong className="text-[#172554]">{summary.topSource}</strong>
+              <p className="text-[11px] text-[#6b5948] mt-1.5 font-estedad">
+                کانال برتر ورودی: <strong className="text-[#563820]">{summary.topSource}</strong>
               </p>
             </div>
           </div>
         </div>
 
         {/* Visual Trend Chart: Activity over Time */}
-        <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#dfd9cc] shadow-xs space-y-5 font-estedad">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#f0ece1]">
+        <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#e3d5bf] shadow-xs space-y-5 font-estedad">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#f1e8cd]">
             <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <BarChart3 className="w-5 h-5 text-[#172554]" />
-                <h2 className="text-base sm:text-lg font-bold text-[#172554]">
+                <BarChart3 className="w-5 h-5 text-[#563820]" />
+                <h2 className="text-base sm:text-lg font-bold text-[#563820]">
                   روند زمانی ترافیک و سرنخ‌ها ({toPersianDigits(data?.summary.dateRangeLabel)})
                 </h2>
               </div>
-              <p className="text-xs text-[#555f6d]">
+              <p className="text-xs text-[#6b5948]">
                 مقایسه تعداد بازدیدکنندگان یکتا با لیدهای ثبت‌شده (تماس و واتس‌اپ) در طول بازه انتخابی
               </p>
             </div>
@@ -808,8 +808,8 @@ export default function AnalyticsStatsPage() {
             {/* Legend */}
             <div className="flex items-center gap-4 text-xs font-semibold font-estedad">
               <div className="flex items-center gap-1.5">
-                <span className="w-3 h-3 rounded-md bg-[#172554]" />
-                <span className="text-[#172554]">بازدیدکننده</span>
+                <span className="w-3 h-3 rounded-md bg-[#563820]" />
+                <span className="text-[#563820]">بازدیدکننده</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded-md bg-emerald-500" />
@@ -821,7 +821,7 @@ export default function AnalyticsStatsPage() {
           {/* Bars Visualizer */}
           {data?.hourlyActivity && data.hourlyActivity.length > 0 ? (
             <div className="pt-4 pb-2">
-              <div className="grid grid-flow-col auto-cols-fr gap-2 sm:gap-4 items-end h-44 sm:h-52 px-2 border-b border-[#dfd9cc]/60">
+              <div className="grid grid-flow-col auto-cols-fr gap-2 sm:gap-4 items-end h-44 sm:h-52 px-2 border-b border-[#e3d5bf]/60">
                 {(() => {
                   const maxVisitors = Math.max(
                     ...data.hourlyActivity.map((a) => Math.max(a.visitors, a.leads)),
@@ -834,7 +834,7 @@ export default function AnalyticsStatsPage() {
                     return (
                       <div key={idx} className="flex flex-col items-center justify-end h-full gap-2 group font-estedad">
                         {/* Values preview tooltip on hover */}
-                        <div className="text-[10px] font-bold text-[#555f6d] opacity-0 group-hover:opacity-100 transition-opacity font-estedad whitespace-nowrap">
+                        <div className="text-[10px] font-bold text-[#6b5948] opacity-0 group-hover:opacity-100 transition-opacity font-estedad whitespace-nowrap">
                           {point.leads > 0 && <span className="text-emerald-700">{toPersianDigits(point.leads)} لید / </span>}
                           <span>{toPersianDigits(point.visitors)} باز</span>
                         </div>
@@ -843,7 +843,7 @@ export default function AnalyticsStatsPage() {
                         <div className="w-full flex items-end justify-center gap-1 sm:gap-1.5 h-36">
                           {/* Visitor Bar */}
                           <div
-                            className="w-3 sm:w-6 rounded-t-lg bg-[#172554] hover:bg-[#0f172a] transition-all duration-300 relative group-hover:scale-y-105"
+                            className="w-3 sm:w-6 rounded-t-lg bg-[#563820] hover:bg-[#382619] transition-all duration-300 relative group-hover:scale-y-105"
                             style={{ height: `${visHeight}%` }}
                             title={`بازدیدکنندگان: ${toPersianDigits(point.visitors)}`}
                           />
@@ -856,7 +856,7 @@ export default function AnalyticsStatsPage() {
                         </div>
 
                         {/* Label beneath bar */}
-                        <div className="text-[10px] sm:text-xs font-semibold text-[#8c7b64] font-estedad mt-1 truncate">
+                        <div className="text-[10px] sm:text-xs font-semibold text-[#927344] font-estedad mt-1 truncate">
                           {toPersianDigits(point.hour)}
                         </div>
                       </div>
@@ -876,44 +876,44 @@ export default function AnalyticsStatsPage() {
         <div className="space-y-4 font-estedad">
           <div className="flex items-center justify-between pb-1">
             <div className="flex items-center gap-2">
-              <MousePointerClick className="w-5 h-5 text-[#172554]" />
-              <h2 className="text-base sm:text-lg font-bold text-[#172554]">
+              <MousePointerClick className="w-5 h-5 text-[#563820]" />
+              <h2 className="text-base sm:text-lg font-bold text-[#563820]">
                 رفتار و کیفیت ترافیک مسافران (User Engagement & Friction)
               </h2>
             </div>
-            <span className="text-xs text-[#8c7b64]">سنجش عمق توجه و نقاط کلیک</span>
+            <span className="text-xs text-[#927344]">سنجش عمق توجه و نقاط کلیک</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             {/* Card 1: Scroll Depth Funnel */}
-            <div className="bg-white rounded-3xl p-6 border border-[#dfd9cc] shadow-xs space-y-4 flex flex-col justify-between">
+            <div className="bg-white rounded-3xl p-6 border border-[#e3d5bf] shadow-xs space-y-4 flex flex-col justify-between">
               <div>
-                <div className="flex items-center justify-between pb-3 border-b border-[#f0ece1]">
+                <div className="flex items-center justify-between pb-3 border-b border-[#f1e8cd]">
                   <div className="flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-[#8c7b64]" />
-                    <span className="text-xs font-bold text-[#172554]">عمق پیمایش صفحه (Scroll Depth)</span>
+                    <Layers className="w-4 h-4 text-[#927344]" />
+                    <span className="text-xs font-bold text-[#563820]">عمق پیمایش صفحه (Scroll Depth)</span>
                   </div>
-                  <span className="text-[11px] text-[#8c7b64]">قیف مطالعه</span>
+                  <span className="text-[11px] text-[#927344]">قیف مطالعه</span>
                 </div>
-                <p className="text-[11px] text-[#555f6d] mt-2 mb-4 leading-relaxed">
+                <p className="text-[11px] text-[#6b5948] mt-2 mb-4 leading-relaxed">
                   چند درصد از مخاطبان بخش‌های مختلف لندینگ را تا انتها اسکرول کرده‌اند:
                 </p>
 
                 <div className="space-y-3">
                   {[
-                    { label: "هیرو و معرفی عمارت (۲۵٪)", pct: data?.engagement?.scrollDepth.depth25 ?? 84 },
+                    { label: "هیرو و معرفی هتل (۲۵٪)", pct: data?.engagement?.scrollDepth.depth25 ?? 84 },
                     { label: "مشاهده و انتخاب اتاق‌ها (۵۰٪)", pct: data?.engagement?.scrollDepth.depth50 ?? 68 },
-                    { label: "موقعیت و شاهچراغ (۷۵٪)", pct: data?.engagement?.scrollDepth.depth75 ?? 46 },
+                    { label: "موقعیت و امام رضا (۷۵٪)", pct: data?.engagement?.scrollDepth.depth75 ?? 46 },
                     { label: "انتهای صفحه و گالری (۱۰۰٪)", pct: data?.engagement?.scrollDepth.depth100 ?? 29 },
                   ].map((s, idx) => (
                     <div key={idx} className="space-y-1">
                       <div className="flex items-center justify-between text-xs font-semibold">
-                        <span className="text-[#555f6d] text-[11px]">{s.label}</span>
-                        <span className="text-[#172554] font-bold font-estedad">{toPersianDigits(s.pct)}٪</span>
+                        <span className="text-[#6b5948] text-[11px]">{s.label}</span>
+                        <span className="text-[#563820] font-bold font-estedad">{toPersianDigits(s.pct)}٪</span>
                       </div>
-                      <div className="w-full h-2 rounded-full bg-[#f0ece1] overflow-hidden">
+                      <div className="w-full h-2 rounded-full bg-[#f1e8cd] overflow-hidden">
                         <div
-                          className="h-full rounded-full bg-[#172554] transition-all duration-500"
+                          className="h-full rounded-full bg-[#563820] transition-all duration-500"
                           style={{ width: `${s.pct}%` }}
                         />
                       </div>
@@ -922,24 +922,24 @@ export default function AnalyticsStatsPage() {
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-[#f0ece1] text-[11px] text-emerald-800 bg-emerald-50/60 p-2.5 rounded-xl border border-emerald-200/50">
+              <div className="pt-3 border-t border-[#f1e8cd] text-[11px] text-emerald-800 bg-emerald-50/60 p-2.5 rounded-xl border border-emerald-200/50">
                 نرخ خروج سریع (Bounce): حدود {toPersianDigits(Math.max(100 - (data?.engagement?.scrollDepth.depth25 ?? 84), 5))}٪
               </div>
             </div>
 
             {/* Card 2: Average Dwell Time */}
-            <div className="bg-white rounded-3xl p-6 border border-[#dfd9cc] shadow-xs space-y-4 flex flex-col justify-between">
+            <div className="bg-white rounded-3xl p-6 border border-[#e3d5bf] shadow-xs space-y-4 flex flex-col justify-between">
               <div>
-                <div className="flex items-center justify-between pb-3 border-b border-[#f0ece1]">
+                <div className="flex items-center justify-between pb-3 border-b border-[#f1e8cd]">
                   <div className="flex items-center gap-2">
-                    <Timer className="w-4 h-4 text-[#8c7b64]" />
-                    <span className="text-xs font-bold text-[#172554]">مدت حضور در سایت (Dwell Time)</span>
+                    <Timer className="w-4 h-4 text-[#927344]" />
+                    <span className="text-xs font-bold text-[#563820]">مدت حضور در سایت (Dwell Time)</span>
                   </div>
-                  <span className="text-[11px] text-[#8c7b64]">میانگین زمان</span>
+                  <span className="text-[11px] text-[#927344]">میانگین زمان</span>
                 </div>
 
                 <div className="my-6 text-center">
-                  <div className="text-2xl sm:text-3xl font-black text-[#172554] tracking-tight font-estedad">
+                  <div className="text-2xl sm:text-3xl font-black text-[#563820] tracking-tight font-estedad">
                     {toPersianDigits(data?.summary.avgDwellTimeFormatted || "۲ دقیقه و ۱۵ ثانیه")}
                   </div>
                   <span className="inline-block mt-2 px-3 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-900 border border-amber-200">
@@ -947,27 +947,27 @@ export default function AnalyticsStatsPage() {
                   </span>
                 </div>
 
-                <p className="text-[11px] text-[#555f6d] leading-relaxed">
-                  میانگین زمانی که هر مسافر صرف بررسی عکس‌های عمارت قاجاری، امکانات و اتاق‌ها می‌کند.
+                <p className="text-[11px] text-[#6b5948] leading-relaxed">
+                  میانگین زمانی که هر مسافر صرف بررسی عکس‌های هتل قاجاری، امکانات و اتاق‌ها می‌کند.
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-[#f0ece1] text-[11px] text-[#8c7b64] leading-relaxed bg-[#faf8f5] p-3 rounded-2xl border border-[#dfd9cc]/70">
+              <div className="pt-3 border-t border-[#f1e8cd] text-[11px] text-[#927344] leading-relaxed bg-[#faf6e8] p-3 rounded-2xl border border-[#e3d5bf]/70">
                 💡 کاربرانی که بیش از <strong>۹۰ ثانیه</strong> در صفحه می‌مانند، بیش از ۳ برابر شانس تماس تلفنی یا واتس‌اپ دارند.
               </div>
             </div>
 
             {/* Card 3: CTA Placement Attribution */}
-            <div className="bg-white rounded-3xl p-6 border border-[#dfd9cc] shadow-xs space-y-4 flex flex-col justify-between">
+            <div className="bg-white rounded-3xl p-6 border border-[#e3d5bf] shadow-xs space-y-4 flex flex-col justify-between">
               <div>
-                <div className="flex items-center justify-between pb-3 border-b border-[#f0ece1]">
+                <div className="flex items-center justify-between pb-3 border-b border-[#f1e8cd]">
                   <div className="flex items-center gap-2">
-                    <MousePointerClick className="w-4 h-4 text-[#8c7b64]" />
-                    <span className="text-xs font-bold text-[#172554]">محل اقدام به تماس (CTA Placement)</span>
+                    <MousePointerClick className="w-4 h-4 text-[#927344]" />
+                    <span className="text-xs font-bold text-[#563820]">محل اقدام به تماس (CTA Placement)</span>
                   </div>
-                  <span className="text-[11px] text-[#8c7b64]">سهم دکمه‌ها</span>
+                  <span className="text-[11px] text-[#927344]">سهم دکمه‌ها</span>
                 </div>
-                <p className="text-[11px] text-[#555f6d] mt-2 mb-4 leading-relaxed">
+                <p className="text-[11px] text-[#6b5948] mt-2 mb-4 leading-relaxed">
                   مسافران بیشتر از کدام بخش صفحه روی تماس یا واتس‌اپ کلیک کرده‌اند:
                 </p>
 
@@ -976,12 +976,12 @@ export default function AnalyticsStatsPage() {
                     data.engagement.ctaPlacements.map((p, idx) => (
                       <div key={idx} className="space-y-1">
                         <div className="flex items-center justify-between text-xs font-semibold">
-                          <span className="text-[#172554] text-[11px] truncate max-w-[180px]">{p.label}</span>
-                          <span className="text-[#8c7b64] font-estedad">
+                          <span className="text-[#563820] text-[11px] truncate max-w-[180px]">{p.label}</span>
+                          <span className="text-[#927344] font-estedad">
                             {toPersianDigits(p.count)} لید ({toPersianDigits(p.share)}٪)
                           </span>
                         </div>
-                        <div className="w-full h-2 rounded-full bg-[#f0ece1] overflow-hidden">
+                        <div className="w-full h-2 rounded-full bg-[#f1e8cd] overflow-hidden">
                           <div
                             className="h-full rounded-full bg-emerald-600 transition-all duration-500"
                             style={{ width: `${Math.min(p.share * 1.5, 100)}%` }}
@@ -995,9 +995,9 @@ export default function AnalyticsStatsPage() {
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-[#f0ece1] text-[11px] text-stone-500 flex items-center justify-between">
+              <div className="pt-3 border-t border-[#f1e8cd] text-[11px] text-stone-500 flex items-center justify-between">
                 <span>برترین نقطه تبدیل:</span>
-                <strong className="text-[#172554]">
+                <strong className="text-[#563820]">
                   {data?.engagement?.ctaPlacements?.[0]?.label || "دکمه شناور موبایل"}
                 </strong>
               </div>
@@ -1006,17 +1006,17 @@ export default function AnalyticsStatsPage() {
         </div>
 
         {/* Heatmap Section: Peak Inquiry Hours & Days */}
-        <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#dfd9cc] shadow-xs space-y-6 font-estedad">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#f0ece1]">
+        <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#e3d5bf] shadow-xs space-y-6 font-estedad">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#f1e8cd]">
             <div className="space-y-1">
               <div className="flex items-center gap-2">
                 <Flame className="w-5 h-5 text-amber-600" />
-                <h2 className="text-base sm:text-lg font-bold text-[#172554]">
+                <h2 className="text-base sm:text-lg font-bold text-[#563820]">
                   نقشه حرارتی ساعات طلایی و روزهای اوج تقاضا (Peak Demand Heatmap)
                 </h2>
               </div>
-              <p className="text-xs text-[#555f6d]">
-                تراکم ثبت لید و تماس‌های مسافران به تفکیک ۲۴ ساعت شبانه‌روز و روزهای هفته (به وقت شیراز)
+              <p className="text-xs text-[#6b5948]">
+                تراکم ثبت لید و تماس‌های مسافران به تفکیک ۲۴ ساعت شبانه‌روز و روزهای هفته (به وقت مشهد)
               </p>
             </div>
 
@@ -1024,13 +1024,13 @@ export default function AnalyticsStatsPage() {
               <div className="px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold flex items-center gap-1.5 font-estedad">
                 <Clock className="w-3.5 h-3.5 text-amber-700" />
                 <span>ساعت طلایی تماس:</span>
-                <span className="text-[#172554]">{toPersianDigits(data?.heatmap?.peakHourLabel || "۲۰:۰۰ الی ۲۳:۰۰")}</span>
+                <span className="text-[#563820]">{toPersianDigits(data?.heatmap?.peakHourLabel || "۲۰:۰۰ الی ۲۳:۰۰")}</span>
               </div>
 
               <div className="px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs font-bold flex items-center gap-1.5 font-estedad">
                 <Calendar className="w-3.5 h-3.5 text-emerald-700" />
                 <span>روزهای اوج رزرو:</span>
-                <span className="text-[#172554]">{toPersianDigits(data?.heatmap?.peakDayLabel || "چهارشنبه و پنج‌شنبه")}</span>
+                <span className="text-[#563820]">{toPersianDigits(data?.heatmap?.peakDayLabel || "چهارشنبه و پنج‌شنبه")}</span>
               </div>
             </div>
           </div>
@@ -1038,25 +1038,25 @@ export default function AnalyticsStatsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             {/* 24-Hours Heat Grid */}
             <div className="lg:col-span-8 space-y-3">
-              <div className="flex items-center justify-between text-xs text-[#8c7b64] font-semibold">
+              <div className="flex items-center justify-between text-xs text-[#927344] font-semibold">
                 <span>شدت تقاضا در ۲۴ ساعت شبانه‌روز:</span>
                 <div className="flex items-center gap-1.5 text-[10px]">
                   <span>کم</span>
-                  <span className="w-3 h-3 rounded bg-[#faf8f5] border border-[#dfd9cc]" />
+                  <span className="w-3 h-3 rounded bg-[#faf6e8] border border-[#e3d5bf]" />
                   <span className="w-3 h-3 rounded bg-[#bfdbfe]" />
                   <span className="w-3 h-3 rounded bg-[#3b82f6]" />
-                  <span className="w-3 h-3 rounded bg-[#172554]" />
+                  <span className="w-3 h-3 rounded bg-[#563820]" />
                   <span>زیاد (اوج)</span>
                 </div>
               </div>
 
               <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-12 gap-2 pt-1">
                 {data?.heatmap?.byHour.map((h) => {
-                  let bgClass = "bg-[#faf8f5] text-[#555f6d] border-[#dfd9cc]";
-                  if (h.intensity > 75) bgClass = "bg-[#172554] text-white border-[#172554] font-bold shadow-xs";
+                  let bgClass = "bg-[#faf6e8] text-[#6b5948] border-[#e3d5bf]";
+                  if (h.intensity > 75) bgClass = "bg-[#563820] text-white border-[#563820] font-bold shadow-xs";
                   else if (h.intensity > 45) bgClass = "bg-[#3b82f6] text-white border-[#2563eb] font-semibold";
-                  else if (h.intensity > 20) bgClass = "bg-[#bfdbfe] text-[#172554] border-[#93c5fd]";
-                  else if (h.intensity > 0) bgClass = "bg-[#eff6ff] text-[#1e3a8a] border-[#dbeafe]";
+                  else if (h.intensity > 20) bgClass = "bg-[#bfdbfe] text-[#563820] border-[#93c5fd]";
+                  else if (h.intensity > 0) bgClass = "bg-[#faf0d9] text-[#704b2c] border-[#dbeafe]";
 
                   return (
                     <div
@@ -1080,24 +1080,24 @@ export default function AnalyticsStatsPage() {
             </div>
 
             {/* 7 Days of Week Distribution */}
-            <div className="lg:col-span-4 bg-[#faf8f5] rounded-2xl p-4 sm:p-5 border border-[#dfd9cc]/80 space-y-3">
-              <div className="text-xs font-bold text-[#172554] pb-2 border-b border-[#dfd9cc]/60 flex items-center justify-between">
+            <div className="lg:col-span-4 bg-[#faf6e8] rounded-2xl p-4 sm:p-5 border border-[#e3d5bf]/80 space-y-3">
+              <div className="text-xs font-bold text-[#563820] pb-2 border-b border-[#e3d5bf]/60 flex items-center justify-between">
                 <span>توزیع تقاضای هفتگی</span>
-                <span className="text-[10px] text-[#8c7b64]">سهم هر روز</span>
+                <span className="text-[10px] text-[#927344]">سهم هر روز</span>
               </div>
 
               <div className="space-y-2.5">
                 {data?.heatmap?.byDayOfWeek.map((day) => (
                   <div key={day.dayIndex} className="space-y-1">
                     <div className="flex items-center justify-between text-xs font-semibold">
-                      <span className="text-[#172554] text-[11px]">{day.dayName}</span>
-                      <span className="text-[#8c7b64] font-estedad text-[11px]">
+                      <span className="text-[#563820] text-[11px]">{day.dayName}</span>
+                      <span className="text-[#927344] font-estedad text-[11px]">
                         {toPersianDigits(day.leads)} لید ({toPersianDigits(day.share)}٪)
                       </span>
                     </div>
-                    <div className="w-full h-1.5 rounded-full bg-[#f0ece1] overflow-hidden">
+                    <div className="w-full h-1.5 rounded-full bg-[#f1e8cd] overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-[#172554]"
+                        className="h-full rounded-full bg-[#563820]"
                         style={{ width: `${Math.min(day.share * 2.5, 100)}%` }}
                       />
                     </div>
@@ -1111,23 +1111,23 @@ export default function AnalyticsStatsPage() {
         {/* Channels & Rooms Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start font-estedad">
           {/* Channel Attribution Breakdown (Table) */}
-          <div className="lg:col-span-8 bg-white rounded-3xl p-6 sm:p-7 border border-[#dfd9cc] shadow-xs">
-            <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#f0ece1]">
+          <div className="lg:col-span-8 bg-white rounded-3xl p-6 sm:p-7 border border-[#e3d5bf] shadow-xs">
+            <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#f1e8cd]">
               <div>
-                <h2 className="text-base sm:text-lg font-bold text-[#172554]">
+                <h2 className="text-base sm:text-lg font-bold text-[#563820]">
                   عملکرد به تفکیک کانال‌های ورودی (UTM Attribution)
                 </h2>
-                <p className="text-xs text-[#555f6d] mt-1">
+                <p className="text-xs text-[#6b5948] mt-1">
                   کدام کمپین‌ها بیشترین ترافیک و تماس تلفنی را وارد چرخه فروش کرده‌اند؟
                 </p>
               </div>
-              <SlidersHorizontal className="w-4 h-4 text-[#8c7b64]" />
+              <SlidersHorizontal className="w-4 h-4 text-[#927344]" />
             </div>
 
             <div className="overflow-x-auto">
               <table className="w-full text-right text-xs font-estedad">
                 <thead>
-                  <tr className="border-b border-[#f0ece1] text-[#8c7b64] font-bold">
+                  <tr className="border-b border-[#f1e8cd] text-[#927344] font-bold">
                     <th className="pb-3 pr-2">کانال ورودی (Source)</th>
                     <th className="pb-3 text-center">کمپین (Campaign)</th>
                     <th className="pb-3 text-center">بازدیدکننده</th>
@@ -1137,18 +1137,18 @@ export default function AnalyticsStatsPage() {
                     <th className="pb-3 text-left pl-2">نرخ تبدیل (CR)</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#f7f5f0]">
+                <tbody className="divide-y divide-[#f7f0dc]">
                   {data?.channels.map((chan, idx) => (
-                    <tr key={idx} className="hover:bg-[#faf8f5] transition-colors">
-                      <td className="py-3.5 pr-2 font-bold text-[#172554]">
-                        <span className="inline-block px-2.5 py-1 rounded-md bg-[#faf8f5] border border-[#dfd9cc]">
+                    <tr key={idx} className="hover:bg-[#faf6e8] transition-colors">
+                      <td className="py-3.5 pr-2 font-bold text-[#563820]">
+                        <span className="inline-block px-2.5 py-1 rounded-md bg-[#faf6e8] border border-[#e3d5bf]">
                           {chan.source}
                         </span>
                       </td>
-                      <td className="py-3.5 text-center text-[#555f6d] font-estedad text-[11px]" dir="ltr">
+                      <td className="py-3.5 text-center text-[#6b5948] font-estedad text-[11px]" dir="ltr">
                         {chan.campaign || "—"}
                       </td>
-                      <td className="py-3.5 text-center font-estedad font-semibold text-[#172554]">
+                      <td className="py-3.5 text-center font-estedad font-semibold text-[#563820]">
                         {toPersianDigits(chan.visitors.toLocaleString())}
                       </td>
                       <td className="py-3.5 text-center font-estedad text-emerald-700 font-bold">
@@ -1157,7 +1157,7 @@ export default function AnalyticsStatsPage() {
                       <td className="py-3.5 text-center font-estedad text-emerald-700 font-bold">
                         {toPersianDigits(chan.whatsapp.toLocaleString())}
                       </td>
-                      <td className="py-3.5 text-center font-estedad font-black text-[#172554]">
+                      <td className="py-3.5 text-center font-estedad font-black text-[#563820]">
                         {toPersianDigits(chan.leads.toLocaleString())}
                       </td>
                       <td className="py-3.5 text-left pl-2">
@@ -1180,12 +1180,12 @@ export default function AnalyticsStatsPage() {
           </div>
 
           {/* Room Inquiry Share (Card) */}
-          <div className="lg:col-span-4 bg-white rounded-3xl p-6 sm:p-7 border border-[#dfd9cc] shadow-xs space-y-5 font-estedad">
+          <div className="lg:col-span-4 bg-white rounded-3xl p-6 sm:p-7 border border-[#e3d5bf] shadow-xs space-y-5 font-estedad">
             <div>
-              <h2 className="text-base sm:text-lg font-bold text-[#172554]">
+              <h2 className="text-base sm:text-lg font-bold text-[#563820]">
                 تقاضای رزرو به تفکیک اتاق‌ها
               </h2>
-              <p className="text-xs text-[#555f6d] mt-1">
+              <p className="text-xs text-[#6b5948] mt-1">
                 سهم هر اتاق از کل تماس‌ها و چت‌های دریافتی
               </p>
             </div>
@@ -1194,14 +1194,14 @@ export default function AnalyticsStatsPage() {
               {data?.rooms.slice(0, 6).map((r, idx) => (
                 <div key={idx} className="space-y-1.5 font-estedad">
                   <div className="flex items-center justify-between text-xs font-semibold">
-                    <span className="text-[#172554]">{r.room}</span>
-                    <span className="text-[#8c7b64] font-estedad">
+                    <span className="text-[#563820]">{r.room}</span>
+                    <span className="text-[#927344] font-estedad">
                       {toPersianDigits(r.leads.toLocaleString())} لید ({toPersianDigits(r.share)}٪)
                     </span>
                   </div>
-                  <div className="w-full h-2 rounded-full bg-[#f0ece1] overflow-hidden">
+                  <div className="w-full h-2 rounded-full bg-[#f1e8cd] overflow-hidden">
                     <div
-                      className="h-full rounded-full bg-[#172554]"
+                      className="h-full rounded-full bg-[#563820]"
                       style={{ width: `${Math.min(r.share * 2.5, 100)}%` }}
                     />
                   </div>
@@ -1217,13 +1217,13 @@ export default function AnalyticsStatsPage() {
         {/* Live Leads Stream & Link Generator */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start font-estedad">
           {/* Live Recent Inquiries Feed */}
-          <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-7 border border-[#dfd9cc] shadow-xs space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-[#f0ece1]">
+          <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-7 border border-[#e3d5bf] shadow-xs space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-[#f1e8cd]">
               <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-[#8c7b64]" />
-                <h2 className="text-base font-bold text-[#172554]">جریان زنده لیدها (Live Activity Stream)</h2>
+                <Clock className="w-4 h-4 text-[#927344]" />
+                <h2 className="text-base font-bold text-[#563820]">جریان زنده لیدها (Live Activity Stream)</h2>
               </div>
-              <span className="text-xs text-[#8c7b64]">آخرین رویدادهای تماس</span>
+              <span className="text-xs text-[#927344]">آخرین رویدادهای تماس</span>
             </div>
 
             <div className="space-y-2.5 max-h-[360px] overflow-y-auto pr-1">
@@ -1232,7 +1232,7 @@ export default function AnalyticsStatsPage() {
                 return (
                   <div
                     key={idx}
-                    className="flex items-center justify-between p-3 rounded-2xl bg-[#faf8f5] border border-[#dfd9cc]/70 text-xs font-estedad"
+                    className="flex items-center justify-between p-3 rounded-2xl bg-[#faf6e8] border border-[#e3d5bf]/70 text-xs font-estedad"
                   >
                     <div className="flex items-center gap-3">
                       <div
@@ -1242,17 +1242,17 @@ export default function AnalyticsStatsPage() {
                         {isCall ? <Phone className="w-4 h-4" /> : <MessageCircle className="w-4 h-4" />}
                       </div>
                       <div>
-                        <div className="font-bold text-[#172554]">
+                        <div className="font-bold text-[#563820]">
                           {lead.room || "استعلام عمومی هتل"}
                         </div>
-                        <div className="text-[11px] text-[#555f6d] flex items-center gap-1.5 mt-0.5">
-                          <span>منبع: <strong className="text-[#172554]">{lead.utmSource || "direct"}</strong></span>
+                        <div className="text-[11px] text-[#6b5948] flex items-center gap-1.5 mt-0.5">
+                          <span>منبع: <strong className="text-[#563820]">{lead.utmSource || "direct"}</strong></span>
                           {lead.utmCampaign && <span>· کمپین: {lead.utmCampaign}</span>}
                         </div>
                       </div>
                     </div>
 
-                    <div className="text-left text-[11px] text-[#8c7b64] font-estedad font-bold">
+                    <div className="text-left text-[11px] text-[#927344] font-estedad font-bold">
                       {toPersianDigits(
                         new Date(lead.timestamp).toLocaleTimeString("fa-IR", {
                           hour: "2-digit",
@@ -1272,17 +1272,17 @@ export default function AnalyticsStatsPage() {
           </div>
 
           {/* Campaign Link Generator */}
-          <div className="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-7 border border-[#dfd9cc] shadow-xs space-y-4">
+          <div className="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-7 border border-[#e3d5bf] shadow-xs space-y-4">
             <div>
-              <h2 className="text-base font-bold text-[#172554]">ابزار ساخت لینک کمپین (UTM Builder)</h2>
-              <p className="text-xs text-[#555f6d] mt-1">
+              <h2 className="text-base font-bold text-[#563820]">ابزار ساخت لینک کمپین (UTM Builder)</h2>
+              <p className="text-xs text-[#6b5948] mt-1">
                 برای استوری اینستاگرام، پیامک اسنپ‌تریپ یا اینفلوئنسرها لینک اختصاصی بسازید تا دقیق تفکیک شوند:
               </p>
             </div>
 
             <div className="space-y-3">
               <div>
-                <label className="text-[11px] font-bold text-[#8c7b64] block mb-1">منبع (utm_source):</label>
+                <label className="text-[11px] font-bold text-[#927344] block mb-1">منبع (utm_source):</label>
                 <div className="grid grid-cols-3 gap-1.5">
                   {["instagram", "snapp_sms", "google", "telegram", "influencer", "direct"].map((s) => (
                     <button
@@ -1290,8 +1290,8 @@ export default function AnalyticsStatsPage() {
                       type="button"
                       onClick={() => setGenSource(s)}
                       className={`h-8 rounded-lg text-xs font-semibold border transition-all ${genSource === s
-                        ? "bg-[#172554] text-white border-[#172554]"
-                        : "bg-[#faf8f5] text-[#555f6d] border-[#dfd9cc] hover:bg-white"
+                        ? "bg-[#563820] text-white border-[#563820]"
+                        : "bg-[#faf6e8] text-[#6b5948] border-[#e3d5bf] hover:bg-white"
                         }`}
                     >
                       {s}
@@ -1302,37 +1302,37 @@ export default function AnalyticsStatsPage() {
 
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="text-[11px] font-bold text-[#8c7b64] block mb-1">نوع رسانه (medium):</label>
+                  <label className="text-[11px] font-bold text-[#927344] block mb-1">نوع رسانه (medium):</label>
                   <input
                     type="text"
                     value={genMedium}
                     onChange={(e) => setGenMedium(e.target.value)}
-                    className="w-full h-8 px-2.5 rounded-lg border border-[#dfd9cc] text-xs font-mono text-left bg-[#faf8f5]"
+                    className="w-full h-8 px-2.5 rounded-lg border border-[#e3d5bf] text-xs font-mono text-left bg-[#faf6e8]"
                     dir="ltr"
                     placeholder="story / banner / cpc"
                   />
                 </div>
                 <div>
-                  <label className="text-[11px] font-bold text-[#8c7b64] block mb-1">نام کمپین (campaign):</label>
+                  <label className="text-[11px] font-bold text-[#927344] block mb-1">نام کمپین (campaign):</label>
                   <input
                     type="text"
                     value={genCampaign}
                     onChange={(e) => setGenCampaign(e.target.value)}
-                    className="w-full h-8 px-2.5 rounded-lg border border-[#dfd9cc] text-xs font-mono text-left bg-[#faf8f5]"
+                    className="w-full h-8 px-2.5 rounded-lg border border-[#e3d5bf] text-xs font-mono text-left bg-[#faf6e8]"
                     dir="ltr"
-                    placeholder="pilot_shiraz"
+                    placeholder="pilot_mashhad"
                   />
                 </div>
               </div>
 
               <div className="pt-2">
-                <div className="p-2.5 rounded-xl bg-[#faf8f5] border border-[#dfd9cc] font-mono text-[11px] break-all text-[#172554] text-left select-all" dir="ltr">
+                <div className="p-2.5 rounded-xl bg-[#faf6e8] border border-[#e3d5bf] font-mono text-[11px] break-all text-[#563820] text-left select-all" dir="ltr">
                   {generatedUrl}
                 </div>
                 <button
                   type="button"
                   onClick={copyGeneratedLink}
-                  className="mt-2.5 w-full h-10 rounded-xl bg-[#172554] hover:bg-[#0f172a] text-white text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm active:scale-95"
+                  className="mt-2.5 w-full h-10 rounded-xl bg-[#563820] hover:bg-[#382619] text-white text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm active:scale-95"
                 >
                   {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
                   <span>{copied ? "لینک در کلیپ‌بورد کپی شد!" : "کپی لینک اختصاصی کمپین"}</span>
@@ -1345,3 +1345,4 @@ export default function AnalyticsStatsPage() {
     </div>
   );
 }
+

@@ -18,8 +18,8 @@ import { Button } from "@/components/ui/button";
 import { BookingDialog } from "./BookingDialog";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
-import { trackEvent, buildAttributedWhatsAppUrl } from "@/lib/tracker";
 import { hotelConfig } from "@/config/hotel.config";
+import { trackEvent, buildAttributedWhatsAppUrl } from "@/lib/tracker";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -53,7 +53,7 @@ export function Navbar() {
       href: "#reels",
       label: t.nav.reels,
       badge: isEn ? "Videos" : "ویدیوها",
-      badgeColor: "bg-[#172554]/10 text-[#172554]",
+      badgeColor: "bg-[#563820]/10 text-[#563820]",
       icon: Film,
     },
     { href: "#story", label: t.nav.story },
@@ -73,7 +73,7 @@ export function Navbar() {
     <>
       {/* Top Notice Bar - Hidden on small mobile screens to preserve viewport height */}
       <aside
-        className={`hidden sm:block bg-[#172554] text-white/80 text-xs py-2 transition-all duration-300 ${
+        className={`hidden sm:block bg-[#563820] text-white/80 text-xs py-2 transition-all duration-300 ${
           scrolled ? "max-h-0 opacity-0 overflow-hidden py-0" : "max-h-12 opacity-100"
         }`}
       >
@@ -86,7 +86,7 @@ export function Navbar() {
               href={`tel:${hotelConfig.contact.phone.raw}`}
               className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
             >
-              <Phone className="w-3 h-3 text-[#c59b27]" />
+              <Phone className="w-3 h-3 text-[#cf9f2d]" />
               <span className="font-semibold" dir="ltr">{t.nav.phone}</span>
             </a>
             <a
@@ -104,9 +104,9 @@ export function Navbar() {
 
       {/* Main Header - Normal scroll on mobile (non-sticky), floating pill on sm+ */}
       <header
-        className={`absolute sm:fixed z-50 transition-all duration-300 ease-out inset-x-0 w-full bg-white/95 backdrop-blur-md border-b border-[#dfd9cc] px-4 py-2.5 pt-[max(0.625rem,env(safe-area-inset-top))] top-0 ${
+        className={`absolute sm:fixed z-50 transition-all duration-300 ease-out inset-x-0 w-full bg-white/95 backdrop-blur-md border-b border-[#e3d5bf] px-4 py-2.5 pt-[max(0.625rem,env(safe-area-inset-top))] top-0 ${
           scrolled
-            ? "sm:top-4 sm:mx-auto sm:w-[calc(100%-2rem)] lg:w-max max-w-[96vw] sm:backdrop-blur-xl sm:shadow-[0_10px_35px_-5px_rgba(23,37,84,0.12)] sm:border sm:rounded-full sm:px-5 lg:px-6 sm:py-2.5 sm:border-b-transparent"
+            ? "sm:top-4 sm:mx-auto sm:w-[calc(100%-2rem)] lg:w-max max-w-[96vw] sm:backdrop-blur-xl sm:shadow-[0_10px_35px_-5px_rgba(86,56,32,0.12)] sm:border sm:rounded-full sm:px-5 lg:px-6 sm:py-2.5"
             : "sm:top-8 sm:bg-white/90 sm:px-8 sm:py-3.5"
         }`}
       >
@@ -117,29 +117,29 @@ export function Navbar() {
             className="flex items-center gap-2 sm:gap-2.5 group flex-shrink-0 whitespace-nowrap"
           >
             <div
-              className={`relative rounded-full overflow-hidden border border-[#dfd9cc] bg-white flex items-center justify-center transition-all flex-shrink-0 ${
+              className={`relative rounded-full overflow-hidden border border-[#e3d5bf] bg-white flex items-center justify-center transition-all flex-shrink-0 ${
                 scrolled ? "w-8 h-8 sm:w-9 sm:h-9" : "w-9 h-9 sm:w-11 sm:h-11"
               }`}
             >
               <Image
-                src="/images/logo.jpg"
+                src="/images/gol-gandom-logo.png"
                 alt={t.brand.title}
                 fill
                 sizes="44px"
-                className="object-contain p-0.5"
+                className="object-cover"
                 priority
               />
             </div>
             <div className={`flex flex-col whitespace-nowrap ${isEn ? "text-left" : "text-right"}`}>
               <span
-                className={`font-bold tracking-tight text-[#172554] transition-all whitespace-nowrap ${
+                className={`font-bold tracking-tight text-[#563820] transition-all whitespace-nowrap ${
                   scrolled ? "text-sm sm:text-base" : "text-sm sm:text-xl font-black"
                 }`}
               >
                 {t.brand.name}
               </span>
               {!scrolled && (
-                <span className="hidden sm:block text-[10px] text-[#8c7b64] whitespace-nowrap">
+                <span className="hidden sm:block text-[10px] text-[#927344] whitespace-nowrap">
                   {t.brand.subtitle}
                 </span>
               )}
@@ -152,7 +152,7 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-xs xl:text-sm font-medium text-[#172554] hover:text-[#8c7b64] transition-colors whitespace-nowrap py-1"
+                className="text-xs xl:text-sm font-medium text-[#563820] hover:text-[#927344] transition-colors whitespace-nowrap py-1"
               >
                 {link.label}
               </a>
@@ -165,11 +165,11 @@ export function Navbar() {
             <button
               type="button"
               onClick={toggleLanguage}
-              className="h-8 sm:h-9 px-2.5 sm:px-3 rounded-full border border-[#dfd9cc] bg-white hover:bg-[#faf8f5] text-[#172554] text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer shadow-2xs whitespace-nowrap flex-shrink-0"
+              className="h-8 sm:h-9 px-2.5 sm:px-3 rounded-full border border-[#e3d5bf] bg-white hover:bg-[#faf6e8] text-[#563820] text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer shadow-2xs whitespace-nowrap flex-shrink-0"
               title={isEn ? "تغییر زبان به فارسی" : "Switch language to English"}
               aria-label="Language switcher"
             >
-              <Globe className="w-3.5 h-3.5 text-[#8c7b64] flex-shrink-0" />
+              <Globe className="w-3.5 h-3.5 text-[#927344] flex-shrink-0" />
               <span className="font-bold whitespace-nowrap">{isEn ? "فارسی" : "EN"}</span>
             </button>
 
@@ -178,7 +178,7 @@ export function Navbar() {
               <BookingDialog
                 trigger={
                   <Button
-                    className={`bg-[#172554] hover:bg-[#0f172a] text-white font-medium transition-all shadow-sm cursor-pointer whitespace-nowrap flex-shrink-0 ${
+                    className={`bg-[#563820] hover:bg-[#382619] text-white font-medium transition-all shadow-sm cursor-pointer whitespace-nowrap flex-shrink-0 ${
                       scrolled
                         ? "rounded-full px-3 sm:px-4 py-1.5 h-8 sm:h-9 text-xs"
                         : "rounded-full px-3.5 sm:px-5 py-2 h-8.5 sm:h-10 text-xs sm:text-sm"
@@ -195,11 +195,11 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="lg:hidden w-8.5 h-8.5 sm:w-10 sm:h-10 text-[#172554] bg-[#faf8f5] sm:bg-transparent border border-[#dfd9cc] sm:border-transparent hover:bg-slate-100 rounded-full flex items-center justify-center transition-all cursor-pointer flex-shrink-0 active:scale-95 shadow-2xs sm:shadow-none"
+              className="lg:hidden w-8.5 h-8.5 sm:w-10 sm:h-10 text-[#563820] bg-[#faf6e8] sm:bg-transparent border border-[#e3d5bf] sm:border-transparent hover:bg-slate-100 rounded-full flex items-center justify-center transition-all cursor-pointer flex-shrink-0 active:scale-95 shadow-2xs sm:shadow-none"
               aria-label={isEn ? "Open navigation menu" : "باز کردن منو"}
               aria-expanded={mobileMenuOpen}
             >
-              <Menu className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-[#172554]" />
+              <Menu className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-[#563820]" />
             </button>
           </div>
         </div>
@@ -211,25 +211,25 @@ export function Navbar() {
           role="dialog"
           aria-modal="true"
           aria-label={isEn ? "Navigation Menu" : "منوی ناوبری"}
-          className="fixed inset-0 z-[100] lg:hidden bg-[#faf8f5]/98 backdrop-blur-2xl flex flex-col justify-between overflow-y-auto overscroll-contain animate-in fade-in duration-200"
+          className="fixed inset-0 z-[100] lg:hidden bg-[#faf6e8]/98 backdrop-blur-2xl flex flex-col justify-between overflow-y-auto overscroll-contain animate-in fade-in duration-200"
         >
           {/* Top Bar inside Drawer */}
-          <div className="pt-[max(1rem,env(safe-area-inset-top))] px-5 pb-4 border-b border-[#dfd9cc] flex items-center justify-between">
+          <div className="pt-[max(1rem,env(safe-area-inset-top))] px-5 pb-4 border-b border-[#e3d5bf] flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="relative w-9 h-9 rounded-full overflow-hidden border border-[#dfd9cc] bg-white flex items-center justify-center flex-shrink-0">
+              <div className="relative w-9 h-9 rounded-full overflow-hidden border border-[#e3d5bf] bg-white flex items-center justify-center flex-shrink-0">
                 <Image
-                  src="/images/logo.jpg"
+                  src="/images/gol-gandom-logo.png"
                   alt={t.brand.title}
                   fill
                   sizes="36px"
-                  className="object-contain p-0.5"
+                  className="object-cover"
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-bold text-sm text-[#172554]">
+                <span className="font-bold text-sm text-[#563820]">
                   {t.brand.name}
                 </span>
-                <span className="text-[10px] text-[#8c7b64]">
+                <span className="text-[10px] text-[#927344]">
                   {t.brand.subtitle}
                 </span>
               </div>
@@ -239,15 +239,15 @@ export function Navbar() {
               <button
                 type="button"
                 onClick={toggleLanguage}
-                className="h-9 px-3 rounded-full border border-[#dfd9cc] bg-white text-[#172554] text-xs font-bold flex items-center gap-1.5 shadow-2xs"
+                className="h-9 px-3 rounded-full border border-[#e3d5bf] bg-white text-[#563820] text-xs font-bold flex items-center gap-1.5 shadow-2xs"
               >
-                <Globe className="w-3.5 h-3.5 text-[#8c7b64]" />
+                <Globe className="w-3.5 h-3.5 text-[#927344]" />
                 <span>{isEn ? "فارسی" : "EN"}</span>
               </button>
 
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-10 h-10 rounded-full bg-white border border-[#dfd9cc] text-[#172554] flex items-center justify-center shadow-2xs hover:bg-[#faf8f5] active:scale-95 transition-all cursor-pointer"
+                className="w-10 h-10 rounded-full bg-white border border-[#e3d5bf] text-[#563820] flex items-center justify-center shadow-2xs hover:bg-[#faf6e8] active:scale-95 transition-all cursor-pointer"
                 aria-label={isEn ? "Close menu" : "بستن منو"}
               >
                 <X className="w-5 h-5" />
@@ -265,7 +265,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="min-h-[52px] px-4 rounded-2xl bg-white border border-[#e8e4db] text-[#172554] hover:bg-[#172554] hover:text-white hover:border-[#172554] transition-all flex items-center justify-between gap-3 shadow-2xs active:scale-[0.98] group"
+                  className="min-h-[52px] px-4 rounded-2xl bg-white border border-[#e9ddca] text-[#563820] hover:bg-[#563820] hover:text-white hover:border-[#563820] transition-all flex items-center justify-between gap-3 shadow-2xs active:scale-[0.98] group"
                 >
                   <div className="flex items-center gap-2.5">
                     <span className="text-base font-bold tracking-tight">
@@ -273,21 +273,21 @@ export function Navbar() {
                     </span>
                     {link.badge && (
                       <span
-                        className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full ${link.badgeColor} group-hover:bg-white group-hover:text-[#172554] transition-colors`}
+                        className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full ${link.badgeColor} group-hover:bg-white group-hover:text-[#563820] transition-colors`}
                       >
                         {link.badge}
                       </span>
                     )}
                   </div>
 
-                  <Chevron className="w-4 h-4 text-[#8c7b64] group-hover:text-white transition-colors" />
+                  <Chevron className="w-4 h-4 text-[#927344] group-hover:text-white transition-colors" />
                 </a>
               );
             })}
           </nav>
 
           {/* Bottom Direct Contacts & Social Strip */}
-          <div className="p-4 sm:p-5 border-t border-[#dfd9cc] bg-white/60 pb-[max(1.5rem,env(safe-area-inset-bottom))] flex flex-col gap-3">
+          <div className="p-4 sm:p-5 border-t border-[#e3d5bf] bg-white/60 pb-[max(1.5rem,env(safe-area-inset-bottom))] flex flex-col gap-3">
             <div className="grid grid-cols-2 gap-2.5">
               <a
                 href={`tel:${hotelConfig.contact.phone.raw}`}
@@ -298,9 +298,9 @@ export function Navbar() {
                     location: "mobile_drawer",
                   });
                 }}
-                className="h-12 rounded-xl bg-[#172554] text-white flex items-center justify-center gap-2 text-xs font-bold shadow-sm active:scale-98 transition-all cursor-pointer"
+                className="h-12 rounded-xl bg-[#563820] text-white flex items-center justify-center gap-2 text-xs font-bold shadow-sm active:scale-98 transition-all cursor-pointer"
               >
-                <Phone className="w-4 h-4 text-[#c59b27]" />
+                <Phone className="w-4 h-4 text-[#cf9f2d]" />
                 <span dir="ltr">{t.nav.phone}</span>
               </a>
 
@@ -321,13 +321,13 @@ export function Navbar() {
             </div>
 
             <a
-              href="https://www.instagram.com/farhadi.boutique.hotel/"
+              href={hotelConfig.contact.social.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="h-11 rounded-xl bg-white border border-[#dfd9cc] text-[#172554] hover:text-[#E1306C] flex items-center justify-center gap-2 text-xs font-bold shadow-2xs active:scale-98 transition-all"
+              className="h-11 rounded-xl bg-white border border-[#e3d5bf] text-[#563820] hover:text-[#E1306C] flex items-center justify-center gap-2 text-xs font-bold shadow-2xs active:scale-98 transition-all"
             >
               <InstagramIcon className="w-4 h-4 text-[#E1306C]" />
-              <span dir="ltr">@farhadi.boutique.hotel</span>
+              <span dir="ltr">{hotelConfig.contact.social.instagramHandle}</span>
             </a>
           </div>
         </div>
@@ -335,3 +335,4 @@ export function Navbar() {
     </>
   );
 }
+

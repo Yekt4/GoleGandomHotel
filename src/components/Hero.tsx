@@ -25,7 +25,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative w-full h-[100svh] min-h-[560px] flex flex-col justify-between items-center overflow-hidden bg-[#0a1120]"
+      className="relative w-full h-[100svh] min-h-[560px] flex flex-col justify-between items-center overflow-hidden bg-[#2c1d13]"
     >
       {/* Cinematic Crossfading Background Images */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
@@ -74,7 +74,7 @@ export function Hero() {
         {/* Minimal Quiet Action */}
         <BookingDialog
           trigger={
-            <Button className="h-11 px-8 rounded-full bg-white/95 hover:bg-white text-[#172554] text-sm font-semibold shadow-xl backdrop-blur-md transition-all hover:scale-105 cursor-pointer">
+            <Button className="h-11 px-8 rounded-full bg-white/95 hover:bg-white text-[#563820] text-sm font-semibold shadow-xl backdrop-blur-md transition-all hover:scale-105 cursor-pointer">
               {t.hero.reserveBtn}
             </Button>
           }

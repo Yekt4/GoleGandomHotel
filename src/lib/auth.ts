@@ -2,14 +2,14 @@ import crypto from "crypto";
 import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 
-const SESSION_COOKIE_NAME = "farhadi_stats_session";
+const SESSION_COOKIE_NAME = "golegandom_stats_session";
 const SESSION_SECRET =
   process.env.STATS_SESSION_SECRET ||
   process.env.STATS_PASSWORD ||
-  "farhadi_super_secure_vault_secret_2026_xyz987!";
+  "golegandom_super_secure_vault_secret_2026_xyz987!";
 
 const DEFAULT_USERNAME = process.env.STATS_ADMIN_USERNAME || "admin";
-const DEFAULT_PASSWORD = process.env.STATS_ADMIN_PASSWORD || "farhadi2026";
+const DEFAULT_PASSWORD = process.env.STATS_ADMIN_PASSWORD || "hotelgandom2026";
 
 // Rate limiting in-memory store
 interface FailedAttempt {

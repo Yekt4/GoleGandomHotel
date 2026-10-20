@@ -11,8 +11,8 @@ export const viewport: Viewport = {
   viewportFit: "cover",
   interactiveWidget: "resizes-content",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#172554" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
+    { media: "(prefers-color-scheme: light)", color: "#563820" },
+    { media: "(prefers-color-scheme: dark)", color: "#382619" },
   ],
 };
 
@@ -45,7 +45,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-full flex flex-col bg-white text-slate-900 antialiased selection:bg-[#eff6ff] selection:text-[#172554]">
+      <body className="min-h-full flex flex-col bg-white text-slate-900 antialiased selection:bg-[#faf0d9] selection:text-[#563820]">
         <LanguageProvider>
           <UtmTracker />
           {children}

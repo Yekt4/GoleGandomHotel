@@ -10,8 +10,8 @@ export interface UtmParams {
   utm_term?: string;
 }
 
-const STORAGE_KEY = "farhadi_utm_params";
-const VISITOR_KEY = "farhadi_visitor_id";
+const STORAGE_KEY = "golegandom_utm_params";
+const VISITOR_KEY = "golegandom_visitor_id";
 
 /**
  * Get or create unique anonymous visitor ID

@@ -19,8 +19,8 @@ import { ATTRACTIONS_DATA } from "./HotelMap";
 const HotelMap = dynamic(() => import("./HotelMap"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full min-h-[500px] bg-[#f0ece1]/50 rounded-[28px] flex items-center justify-center text-[#555f6d] text-sm font-medium animate-pulse">
-      در حال بارگذاری نقشه تعاملی شیراز...
+    <div className="w-full h-full min-h-[500px] bg-[#f1e8cd]/50 rounded-[28px] flex items-center justify-center text-[#6b5948] text-sm font-medium animate-pulse">
+      در حال بارگذاری نقشه تعاملی مشهد...
     </div>
   ),
 });
@@ -34,15 +34,15 @@ export function LocationSection() {
   const [isExpanded, setIsExpanded] = useState<boolean>(true);
 
   return (
-    <section id="location" className="py-20 md:py-28 bg-[#faf8f5] border-t border-[#e8e4db] overflow-hidden">
+    <section id="location" className="py-20 md:py-28 bg-[#faf6e8] border-t border-[#e9ddca] overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
           <div className={`max-w-2xl ${isEn ? "text-left" : "text-right"}`}>
-            <h2 className="text-[30px] sm:text-[40px] lg:text-[44px] font-bold leading-tight text-[#172554] tracking-tight mb-3">
+            <h2 className="text-[30px] sm:text-[40px] lg:text-[44px] font-bold leading-tight text-[#563820] tracking-tight mb-3">
               {t.location.heading}
             </h2>
-            <p className="text-sm sm:text-base text-[#555f6d] leading-relaxed font-light">
+            <p className="text-sm sm:text-base text-[#6b5948] leading-relaxed font-light">
               {t.location.desc}
             </p>
           </div>
@@ -53,34 +53,34 @@ export function LocationSection() {
               href="https://maps.google.com/?q=29.6112,52.5442"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-[#dfd9cc] bg-white hover:bg-[#faf8f5] text-xs font-semibold text-[#172554] shadow-2xs transition-all hover:scale-105"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-[#e3d5bf] bg-white hover:bg-[#faf6e8] text-xs font-semibold text-[#563820] shadow-2xs transition-all hover:scale-105"
             >
-              <Navigation className="w-3.5 h-3.5 text-[#c59b27]" />
+              <Navigation className="w-3.5 h-3.5 text-[#cf9f2d]" />
               <span>{t.location.googleMaps}</span>
             </a>
             <a
               href="https://neshan.org/maps/@29.6112,52.5442,16z"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-[#dfd9cc] bg-white hover:bg-[#faf8f5] text-xs font-semibold text-[#172554] shadow-2xs transition-all hover:scale-105"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-[#e3d5bf] bg-white hover:bg-[#faf6e8] text-xs font-semibold text-[#563820] shadow-2xs transition-all hover:scale-105"
             >
-              <ExternalLink className="w-3.5 h-3.5 text-[#8c7b64]" />
+              <ExternalLink className="w-3.5 h-3.5 text-[#927344]" />
               <span>{t.location.neshan}</span>
             </a>
             <a
               href="https://balad.ir/location?latitude=29.6112&longitude=52.5442"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-[#dfd9cc] bg-white hover:bg-[#faf8f5] text-xs font-semibold text-[#172554] shadow-2xs transition-all hover:scale-105"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-[#e3d5bf] bg-white hover:bg-[#faf6e8] text-xs font-semibold text-[#563820] shadow-2xs transition-all hover:scale-105"
             >
-              <ExternalLink className="w-3.5 h-3.5 text-[#8c7b64]" />
+              <ExternalLink className="w-3.5 h-3.5 text-[#927344]" />
               <span>{t.location.balad}</span>
             </a>
           </div>
         </div>
 
         {/* Main Full Map Container with Expandable Floating Landmark Selector */}
-        <div className="relative w-full h-[540px] sm:h-[620px] lg:h-[680px] rounded-[28px] sm:rounded-[32px] overflow-hidden border border-[#dfd9cc] shadow-xl bg-white">
+        <div className="relative w-full h-[540px] sm:h-[620px] lg:h-[680px] rounded-[28px] sm:rounded-[32px] overflow-hidden border border-[#e3d5bf] shadow-xl bg-white">
           {/* Interactive Leaflet Map */}
           <div className="absolute inset-0 w-full h-full">
             <HotelMap
@@ -94,16 +94,16 @@ export function LocationSection() {
             <button
               type="button"
               onClick={() => setIsExpanded(true)}
-              className={`hidden lg:flex absolute top-5 z-[400] items-center gap-2.5 px-4 py-2.5 rounded-full bg-white/95 backdrop-blur-md border border-[#dfd9cc] text-[#172554] shadow-xl hover:scale-105 transition-all cursor-pointer font-bold text-xs animate-in fade-in duration-200 ${
+              className={`hidden lg:flex absolute top-5 z-[400] items-center gap-2.5 px-4 py-2.5 rounded-full bg-white/95 backdrop-blur-md border border-[#e3d5bf] text-[#563820] shadow-xl hover:scale-105 transition-all cursor-pointer font-bold text-xs animate-in fade-in duration-200 ${
                 isEn ? "left-5" : "right-5"
               }`}
             >
-              <span className="w-2.5 h-2.5 rounded-full bg-[#c59b27] animate-ping" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#cf9f2d] animate-ping" />
               <span>{t.location.attractionsHeading}</span>
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#faf8f5] border border-[#dfd9cc] text-[#8c7b64]">
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#faf6e8] border border-[#e3d5bf] text-[#927344]">
                 {t.location.landmarksCount}
               </span>
-              <ChevronDown className="w-4 h-4 text-[#8c7b64]" />
+              <ChevronDown className="w-4 h-4 text-[#927344]" />
             </button>
           )}
 
@@ -112,14 +112,14 @@ export function LocationSection() {
             <div
               className={`hidden lg:flex absolute top-5 bottom-5 ${
                 isEn ? "left-5" : "right-5"
-              } w-[380px] xl:w-[410px] z-[400] flex-col justify-between bg-white/95 backdrop-blur-md rounded-[24px] border border-[#dfd9cc]/90 shadow-2xl p-5 overflow-hidden transition-all duration-300 animate-in fade-in zoom-in-95`}
+              } w-[380px] xl:w-[410px] z-[400] flex-col justify-between bg-white/95 backdrop-blur-md rounded-[24px] border border-[#e3d5bf]/90 shadow-2xl p-5 overflow-hidden transition-all duration-300 animate-in fade-in zoom-in-95`}
             >
               {/* Panel Header */}
               <div>
-                <div className="flex items-center justify-between pb-3 border-b border-[#dfd9cc]">
+                <div className="flex items-center justify-between pb-3 border-b border-[#e3d5bf]">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#c59b27] animate-ping" />
-                    <span className="text-xs font-bold text-[#172554]">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#cf9f2d] animate-ping" />
+                    <span className="text-xs font-bold text-[#563820]">
                       {t.location.attractionsHeading}
                     </span>
                   </div>
@@ -128,7 +128,7 @@ export function LocationSection() {
                     {activeAttractionIndex !== null && (
                       <button
                         onClick={() => setActiveAttractionIndex(null)}
-                        className="inline-flex items-center gap-1 text-[11px] text-[#8c7b64] hover:text-[#172554] font-medium transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1 text-[11px] text-[#927344] hover:text-[#563820] font-medium transition-colors cursor-pointer"
                         title={t.location.resetView}
                       >
                         <RotateCcw className="w-3 h-3" />
@@ -140,7 +140,7 @@ export function LocationSection() {
                     <button
                       type="button"
                       onClick={() => setIsExpanded(false)}
-                      className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#8c7b64] hover:text-[#172554] px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#927344] hover:text-[#563820] px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
                       title={t.location.collapseBtn}
                     >
                       <ChevronUp className="w-3.5 h-3.5" />
@@ -150,7 +150,7 @@ export function LocationSection() {
                 </div>
 
                 {/* Interactive Helper Hint */}
-                <p className="text-[11px] text-[#8c7b64] pt-2 pb-1 font-light leading-relaxed">
+                <p className="text-[11px] text-[#927344] pt-2 pb-1 font-light leading-relaxed">
                   {t.location.traceHint}
                 </p>
               </div>
@@ -171,8 +171,8 @@ export function LocationSection() {
                       }
                       className={`group w-full text-right p-3 rounded-[16px] border transition-all duration-200 cursor-pointer flex items-center justify-between gap-2.5 ${
                         isActive
-                          ? "bg-[#172554] border-[#172554] text-white shadow-md scale-[1.02]"
-                          : "bg-white/80 hover:bg-[#faf8f5] border-[#dfd9cc] text-[#172554] hover:border-[#c59b27]/60"
+                          ? "bg-[#563820] border-[#563820] text-white shadow-md scale-[1.02]"
+                          : "bg-white/80 hover:bg-[#faf6e8] border-[#e3d5bf] text-[#563820] hover:border-[#cf9f2d]/60"
                       }`}
                     >
                       <div className="flex items-center gap-2.5 min-w-0">
@@ -180,14 +180,14 @@ export function LocationSection() {
                         <div className={`min-w-0 ${isEn ? "text-left" : "text-right"}`}>
                           <span
                             className={`block text-xs sm:text-[13px] font-bold truncate ${
-                              isActive ? "text-white" : "text-[#172554]"
+                              isActive ? "text-white" : "text-[#563820]"
                             }`}
                           >
                             {name}
                           </span>
                           <span
                             className={`block text-[10px] truncate ${
-                              isActive ? "text-white/80" : "text-[#8c7b64]"
+                              isActive ? "text-white/80" : "text-[#927344]"
                             }`}
                           >
                             {time}
@@ -199,8 +199,8 @@ export function LocationSection() {
                         <span
                           className={`text-[11px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap ${
                             isActive
-                              ? "bg-[#c59b27] text-white"
-                              : "bg-[#faf8f5] text-[#172554] border border-[#dfd9cc]"
+                              ? "bg-[#cf9f2d] text-white"
+                              : "bg-[#faf6e8] text-[#563820] border border-[#e3d5bf]"
                           }`}
                         >
                           {dist}
@@ -208,8 +208,8 @@ export function LocationSection() {
                         <ArrowUpRight
                           className={`w-4 h-4 transition-transform ${
                             isActive
-                              ? "text-[#c59b27] translate-x-0.5 -translate-y-0.5 scale-110"
-                              : "text-[#8c7b64]/50 group-hover:text-[#172554]"
+                              ? "text-[#cf9f2d] translate-x-0.5 -translate-y-0.5 scale-110"
+                              : "text-[#927344]/50 group-hover:text-[#563820]"
                           }`}
                         />
                       </div>
@@ -218,15 +218,15 @@ export function LocationSection() {
                 })}
               </div>
 
-              {/* Mansion Address Footer */}
-              <div className="pt-3 border-t border-[#dfd9cc] bg-white/40 rounded-xl p-2.5">
+              {/* Hotel Address Footer */}
+              <div className="pt-3 border-t border-[#e3d5bf] bg-white/40 rounded-xl p-2.5">
                 <div className="flex items-start gap-2">
-                  <MapPin className="w-4 h-4 text-[#c59b27] flex-shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#cf9f2d] flex-shrink-0 mt-0.5" />
                   <div className={`text-[11px] ${isEn ? "text-left" : "text-right"}`}>
-                    <strong className="block font-bold text-[#172554] mb-0.5">
+                    <strong className="block font-bold text-[#563820] mb-0.5">
                       {t.location.addressLabel}
                     </strong>
-                    <p className="text-[#555f6d] leading-normal font-light line-clamp-2">
+                    <p className="text-[#6b5948] leading-normal font-light line-clamp-2">
                       {t.location.address}
                     </p>
                   </div>
@@ -242,20 +242,20 @@ export function LocationSection() {
           <button
             type="button"
             onClick={() => setIsExpanded(!isExpanded)}
-            className="w-full p-3.5 sm:p-4 rounded-2xl bg-white border border-[#dfd9cc] shadow-2xs flex items-center justify-between transition-all cursor-pointer active:scale-[0.99]"
+            className="w-full p-3.5 sm:p-4 rounded-2xl bg-white border border-[#e3d5bf] shadow-2xs flex items-center justify-between transition-all cursor-pointer active:scale-[0.99]"
             aria-expanded={isExpanded}
           >
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#c59b27]" />
-              <span className="text-xs sm:text-sm font-bold text-[#172554]">
+              <span className="w-2 h-2 rounded-full bg-[#cf9f2d]" />
+              <span className="text-xs sm:text-sm font-bold text-[#563820]">
                 {t.location.attractionsHeading}
               </span>
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#faf8f5] border border-[#dfd9cc] text-[#8c7b64]">
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#faf6e8] border border-[#e3d5bf] text-[#927344]">
                 {t.location.landmarksCount}
               </span>
             </div>
 
-            <div className="flex items-center gap-1.5 text-xs text-[#8c7b64] font-medium">
+            <div className="flex items-center gap-1.5 text-xs text-[#927344] font-medium">
               <span>{isExpanded ? t.location.collapseBtn : t.location.expandBtn}</span>
               <ChevronDown
                 className={`w-4 h-4 transition-transform duration-300 ${
@@ -268,7 +268,7 @@ export function LocationSection() {
           {/* Accordion Content */}
           {isExpanded && (
             <div className="flex flex-col gap-3 animate-in fade-in duration-200">
-              <p className="text-[11px] text-[#8c7b64] px-1">
+              <p className="text-[11px] text-[#927344] px-1">
                 {t.location.traceHint}
               </p>
 
@@ -287,8 +287,8 @@ export function LocationSection() {
                       }
                       className={`p-3 rounded-[16px] border transition-all text-right flex items-center justify-between gap-2 cursor-pointer ${
                         isActive
-                          ? "bg-[#172554] border-[#172554] text-white shadow-md"
-                          : "bg-white border-[#dfd9cc] text-[#172554]"
+                          ? "bg-[#563820] border-[#563820] text-white shadow-md"
+                          : "bg-white border-[#e3d5bf] text-[#563820]"
                       }`}
                     >
                       <div className="flex items-center gap-2.5 min-w-0">
@@ -299,7 +299,7 @@ export function LocationSection() {
                           </span>
                           <span
                             className={`block text-[10px] truncate ${
-                              isActive ? "text-white/80" : "text-[#8c7b64]"
+                              isActive ? "text-white/80" : "text-[#927344]"
                             }`}
                           >
                             {time}
@@ -309,8 +309,8 @@ export function LocationSection() {
                       <span
                         className={`text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap ${
                           isActive
-                            ? "bg-[#c59b27] text-white"
-                            : "bg-[#faf8f5] text-[#172554] border border-[#dfd9cc]"
+                            ? "bg-[#cf9f2d] text-white"
+                            : "bg-[#faf6e8] text-[#563820] border border-[#e3d5bf]"
                         }`}
                       >
                         {dist}
@@ -323,9 +323,9 @@ export function LocationSection() {
               {activeAttractionIndex !== null && (
                 <button
                   onClick={() => setActiveAttractionIndex(null)}
-                  className="mt-1 py-2 rounded-full border border-[#dfd9cc] bg-white text-xs font-semibold text-[#172554] flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
+                  className="mt-1 py-2 rounded-full border border-[#e3d5bf] bg-white text-xs font-semibold text-[#563820] flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
                 >
-                  <RotateCcw className="w-3.5 h-3.5 text-[#8c7b64]" />
+                  <RotateCcw className="w-3.5 h-3.5 text-[#927344]" />
                   <span>{t.location.resetView}</span>
                 </button>
               )}
@@ -336,3 +336,4 @@ export function LocationSection() {
     </section>
   );
 }
+

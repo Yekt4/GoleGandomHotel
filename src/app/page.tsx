@@ -12,7 +12,7 @@ import { FloatingCTA } from "@/components/FloatingCTA";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#172554] font-sans antialiased selection:bg-[#f0ece1] selection:text-[#172554]">
+    <div className="min-h-screen flex flex-col bg-white text-[#563820] font-sans antialiased selection:bg-[#f1e8cd] selection:text-[#563820]">
       {/* Navigation Header */}
       <Navbar />
 

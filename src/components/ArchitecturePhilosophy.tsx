@@ -41,9 +41,9 @@ export function ArchitecturePhilosophy() {
     <section
       ref={sectionRef}
       id="story"
-      className="relative py-24 md:py-36 bg-[#faf8f5] text-[#172554] border-b border-[#e8e4db] overflow-hidden"
+      className="relative py-24 md:py-36 bg-[#faf6e8] text-[#563820] border-b border-[#e9ddca] overflow-hidden"
     >
-      {/* Persian Geometric Gereh-Chini Vector Pattern */}
+      {/* Eight-point rosettes and arabesques inspired by shrine tilework. */}
       <div
         className="absolute inset-0 pointer-events-none z-0 transition-transform duration-75 ease-out"
         style={{
@@ -51,39 +51,39 @@ export function ArchitecturePhilosophy() {
         }}
       >
         <svg
-          className="absolute inset-0 w-full h-[140%] opacity-[0.04] text-[#172554]"
+          className="absolute inset-0 w-full h-[140%] opacity-[0.14]"
+          aria-hidden="true"
+          focusable="false"
           xmlns="http://www.w3.org/2000/svg"
           width="100%"
           height="100%"
         >
           <defs>
-            <pattern id="persian-tile-pattern" width="80" height="80" patternUnits="userSpaceOnUse">
-              <path
-                d="M 24 0 L 56 0 L 80 24 L 80 56 L 56 80 L 24 80 L 0 56 L 0 24 Z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.2"
-              />
-              <polygon
-                points="40,16 46,34 64,40 46,46 40,64 34,46 16,40 34,34"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.2"
-              />
-              <circle cx="40" cy="40" r="7" fill="none" stroke="currentColor" strokeWidth="1" />
+            <pattern id="shrine-tile-pattern" width="160" height="160" patternUnits="userSpaceOnUse">
+              <g fill="none" stroke="#cf9f2d" strokeWidth="1" strokeLinejoin="round">
+                <path d="M80 24 96 42 120 40 118 64 136 80 118 96 120 120 96 118 80 136 64 118 40 120 42 96 24 80 42 64 40 40 64 42Z" />
+                <rect x="55" y="55" width="50" height="50" />
+                <rect x="55" y="55" width="50" height="50" transform="rotate(45 80 80)" />
+                <path d="M0 0Q40 0 40 40Q0 40 0 0ZM160 0Q120 0 120 40Q160 40 160 0ZM0 160Q40 160 40 120Q0 120 0 160ZM160 160Q120 160 120 120Q160 120 160 160Z" />
+              </g>
+              <g fill="none" stroke="#cf9f2d" strokeWidth="1.3" strokeLinecap="round">
+                <path d="M80 0Q58 12 80 24Q102 12 80 0ZM160 80Q148 58 136 80Q148 102 160 80ZM80 160Q58 148 80 136Q102 148 80 160ZM0 80Q12 58 24 80Q12 102 0 80Z" />
+                <path d="M80 65Q96 80 80 95Q64 80 80 65Z" />
+              </g>
+              <circle cx="80" cy="80" r="3" fill="#cf9f2d" />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#persian-tile-pattern)" />
+          <rect width="100%" height="100%" fill="url(#shrine-tile-pattern)" />
         </svg>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Heading - Dignified & Natural */}
         <div className={`max-w-2xl mb-20 sm:mb-28 ${isEn ? "text-left" : "text-right"}`}>
-          <h2 className="text-[32px] sm:text-[44px] lg:text-[48px] font-bold leading-[44px] sm:leading-[58px] tracking-tight text-[#172554] mb-4">
+          <h2 className="text-[32px] sm:text-[44px] lg:text-[48px] font-bold leading-[44px] sm:leading-[58px] tracking-tight text-[#563820] mb-4">
             {t.story.heading}
           </h2>
-          <p className="text-base sm:text-lg text-[#555f6d] leading-relaxed font-light">
+          <p className="text-base sm:text-lg text-[#6b5948] leading-relaxed font-light">
             {t.story.desc}
           </p>
         </div>
@@ -106,7 +106,7 @@ export function ArchitecturePhilosophy() {
                   }`}
                 >
                   <div
-                    className="relative h-[360px] sm:h-[460px] lg:h-[500px] rounded-[24px] overflow-hidden border border-[#dfd9cc] shadow-lg group"
+                    className="relative h-[360px] sm:h-[460px] lg:h-[500px] rounded-[24px] overflow-hidden border border-[#e3d5bf] shadow-lg group"
                     style={{
                       transform: `translate3d(0, ${scrollY * imgParallaxFactor}px, 0)`,
                       transition: "transform 100ms ease-out",
@@ -128,11 +128,11 @@ export function ArchitecturePhilosophy() {
                     isEn ? "text-left" : "text-right"
                   } ${isEven ? "lg:order-2" : "lg:order-1"}`}
                 >
-                  <h3 className="text-2xl sm:text-3xl font-bold text-[#172554] tracking-tight leading-snug">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-[#563820] tracking-tight leading-snug">
                     {scene.title}
                   </h3>
 
-                  <p className="text-base sm:text-lg leading-8 text-[#555f6d] font-light">
+                  <p className="text-base sm:text-lg leading-8 text-[#6b5948] font-light">
                     {scene.caption}
                   </p>
                 </div>

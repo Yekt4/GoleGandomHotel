@@ -7,29 +7,29 @@
 
 @theme inline {
   --color-background: #ffffff;
-  --color-foreground: #0f172a;
+  --color-foreground: #382619;
   --font-sans: 'Estedad', system-ui, -apple-system, sans-serif;
   --font-heading: 'Estedad', system-ui, -apple-system, sans-serif;
   
-  /* Primary Navy Color */
-  --color-primary: #172554;
+  /* Warm brown primary and wheat-gold accents */
+  --color-primary: #563820;
   --color-primary-foreground: #ffffff;
   
-  --color-secondary: #f8fafc;
-  --color-secondary-foreground: #172554;
+  --color-secondary: #faf6e8;
+  --color-secondary-foreground: #563820;
   
-  --color-muted: #f1f5f9;
-  --color-muted-foreground: #475569;
+  --color-muted: #f5eed8;
+  --color-muted-foreground: #6b5948;
   
-  --color-accent: #eff6ff;
-  --color-accent-foreground: #172554;
+  --color-accent: #faf0d9;
+  --color-accent-foreground: #563820;
   
   --color-destructive: #dc2626;
   --color-destructive-foreground: #ffffff;
   
-  --color-border: #e2e8f0;
-  --color-input: #cbd5e1;
-  --color-ring: #172554;
+  --color-border: #e5d8c5;
+  --color-input: #d6c5ad;
+  --color-ring: #563820;
   
   --radius-lg: 12px;
   --radius-md: 10px;
@@ -38,24 +38,24 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0f172a;
+  --foreground: #382619;
   --card: #ffffff;
-  --card-foreground: #0f172a;
+  --card-foreground: #382619;
   --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #172554;
+  --popover-foreground: #382619;
+  --primary: #563820;
   --primary-foreground: #ffffff;
-  --secondary: #f8fafc;
-  --secondary-foreground: #172554;
-  --muted: #f1f5f9;
-  --muted-foreground: #475569;
-  --accent: #eff6ff;
-  --accent-foreground: #172554;
+  --secondary: #faf6e8;
+  --secondary-foreground: #563820;
+  --muted: #f5eed8;
+  --muted-foreground: #6b5948;
+  --accent: #faf0d9;
+  --accent-foreground: #563820;
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #cbd5e1;
-  --ring: #172554;
+  --border: #e5d8c5;
+  --input: #d6c5ad;
+  --ring: #563820;
   --radius: 12px;
 
   /* Emil Kowalski custom animation curves */
@@ -89,7 +89,7 @@
   
   body {
     background-color: #ffffff;
-    color: #0f172a;
+    color: #382619;
     font-family: 'Estedad', system-ui, -apple-system, sans-serif;
     font-size: 18px;
     line-height: 32px;
@@ -177,7 +177,7 @@
 .animated-diagonal-path {
   stroke-dasharray: 8 8;
   animation: diagonal-dash-flow 1.2s linear infinite;
-  filter: drop-shadow(0 2px 6px rgba(197, 155, 39, 0.6));
+  filter: drop-shadow(0 2px 6px rgba(207, 159, 45, 0.6));
 }
 
 .leaflet-container {

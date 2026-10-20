@@ -31,7 +31,7 @@ export function FloatingCTA() {
             location: "floating_cta",
           });
         }}
-        className="w-11 h-11 rounded-full bg-white/95 hover:bg-white text-[#25D366] flex items-center justify-center shadow-lg border border-[#dfd9cc] backdrop-blur-md transition-colors"
+        className="w-11 h-11 rounded-full bg-white/95 hover:bg-white text-[#25D366] flex items-center justify-center shadow-lg border border-[#e3d5bf] backdrop-blur-md transition-colors"
         aria-label={t.floatingCTA.whatsappAria}
         title={t.floatingCTA.whatsappAria}
       >
@@ -42,7 +42,7 @@ export function FloatingCTA() {
       <BookingDialog
         location="floating_cta"
         trigger={
-          <button className="h-11 px-4 sm:px-5 rounded-full bg-[#172554] hover:bg-[#0f172a] text-white font-medium text-xs sm:text-sm flex items-center gap-2 shadow-xl transition-all cursor-pointer border border-white/10 hover:scale-105">
+          <button className="h-11 px-4 sm:px-5 rounded-full bg-[#563820] hover:bg-[#382619] text-white font-medium text-xs sm:text-sm flex items-center gap-2 shadow-xl transition-all cursor-pointer border border-white/10 hover:scale-105">
             <Phone className="w-4 h-4 text-white/80" />
             <span>{t.floatingCTA.receptionBtn}</span>
             {hotelConfig.features.snappPay.enabled && (

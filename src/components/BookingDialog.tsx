@@ -68,34 +68,34 @@ export function BookingDialog({
     <>
       {renderedTrigger}
       <Dialog open={openState} onOpenChange={setOpen}>
-        <DialogContent className={`sm:max-w-[440px] p-6 sm:p-8 bg-white rounded-[24px] border border-[#dfd9cc] shadow-xl ${isEn ? "text-left" : "text-right"}`}>
-          <DialogHeader className={`pb-3 border-b border-[#dfd9cc] ${isEn ? "text-left" : "text-right"}`}>
-            <DialogTitle className="text-xl sm:text-2xl font-bold text-[#172554]">
+        <DialogContent className={`sm:max-w-[440px] p-6 sm:p-8 bg-white rounded-[24px] border border-[#e3d5bf] shadow-xl ${isEn ? "text-left" : "text-right"}`}>
+          <DialogHeader className={`pb-3 border-b border-[#e3d5bf] ${isEn ? "text-left" : "text-right"}`}>
+            <DialogTitle className="text-xl sm:text-2xl font-bold text-[#563820]">
               {t.booking.title}
             </DialogTitle>
             {initialRoom && initialRoom !== defaultRoomName && (
-              <p className="text-xs sm:text-sm text-[#8c7b64] font-medium mt-1">
+              <p className="text-xs sm:text-sm text-[#927344] font-medium mt-1">
                 {t.booking.selectedRoomPrefix} {initialRoom}
               </p>
             )}
           </DialogHeader>
 
           {/* Minimal Harmonious Snapp Pay Note in Dialog */}
-          <div className="mt-4 py-2 px-3.5 rounded-xl bg-[#faf8f5] border border-[#e8e4db] flex items-center justify-between gap-2 text-xs">
+          <div className="mt-4 py-2 px-3.5 rounded-xl bg-[#faf6e8] border border-[#e9ddca] flex items-center justify-between gap-2 text-xs">
             <div className="flex items-center gap-2.5">
               <div className="w-7 h-4 relative flex-shrink-0">
                 <Image src="/images/snapp-pay.png" alt="اسنپ پی Snapp Pay" fill className="object-contain" />
               </div>
-              <span className="font-semibold text-[#172554]">
+              <span className="font-semibold text-[#563820]">
                 {isEn ? "Pay in 4 installments with Snapp! Pay" : "امکان پرداخت در ۴ قسط ماهانه با اسنپ‌پی"}
               </span>
             </div>
-            <span className="text-[11px] text-[#8c7b64] font-light whitespace-nowrap">
+            <span className="text-[11px] text-[#927344] font-light whitespace-nowrap">
               {isEn ? "0% fee · No check" : "بدون کارمزد و ضامن"}
             </span>
           </div>
 
-          <p className="text-xs sm:text-sm leading-6 text-[#555f6d] mt-3 mb-5 font-light">
+          <p className="text-xs sm:text-sm leading-6 text-[#6b5948] mt-3 mb-5 font-light">
             {t.booking.desc}
           </p>
 
@@ -133,10 +133,10 @@ export function BookingDialog({
                   location: location || "booking_dialog",
                 });
               }}
-              className="flex items-center justify-between p-4 rounded-[16px] bg-[#faf8f5] hover:bg-[#f3efe6] border border-[#dfd9cc] text-[#172554] transition-colors cursor-pointer"
+              className="flex items-center justify-between p-4 rounded-[16px] bg-[#faf6e8] hover:bg-[#f5efdd] border border-[#e3d5bf] text-[#563820] transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-[#8c7b64]" />
+                <Phone className="w-5 h-5 text-[#927344]" />
                 <span className="text-sm font-semibold">{t.booking.landlineText}</span>
               </div>
               <span className="text-base font-bold tabular-nums tracking-wide" dir="ltr">{t.nav.phone}</span>
@@ -153,10 +153,10 @@ export function BookingDialog({
                   location: location || "booking_dialog",
                 });
               }}
-              className="flex items-center justify-between p-4 rounded-[16px] bg-[#faf8f5] hover:bg-[#f3efe6] border border-[#dfd9cc] text-[#172554] transition-colors cursor-pointer"
+              className="flex items-center justify-between p-4 rounded-[16px] bg-[#faf6e8] hover:bg-[#f5efdd] border border-[#e3d5bf] text-[#563820] transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-[#8c7b64]" />
+                <Phone className="w-5 h-5 text-[#927344]" />
                 <span className="text-sm font-semibold">{t.booking.mobileText}</span>
               </div>
               <span className="text-base font-bold tabular-nums tracking-wide" dir="ltr">{t.nav.mobile}</span>
