@@ -106,11 +106,10 @@ export function ArchitecturePhilosophy() {
                   }`}
                 >
                   <div
-                    className="relative h-[360px] sm:h-[460px] lg:h-[500px] rounded-[24px] overflow-hidden border border-[#e3d5bf] shadow-lg group"
+                    className="relative h-[360px] sm:h-[460px] lg:h-[500px] rounded-[24px] overflow-hidden border border-[#e3d5bf] shadow-lg group lg:translate-y-[var(--story-image-offset)] lg:transition-transform lg:duration-100 lg:ease-out"
                     style={{
-                      transform: `translate3d(0, ${scrollY * imgParallaxFactor}px, 0)`,
-                      transition: "transform 100ms ease-out",
-                    }}
+                      "--story-image-offset": `${scrollY * imgParallaxFactor}px`,
+                    } as React.CSSProperties}
                   >
                     <Image
                       src={scene.image}
