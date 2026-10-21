@@ -9,6 +9,7 @@ import {
   Sparkles,
   Shirt,
   ShieldCheck,
+  Baby,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -24,6 +25,7 @@ const AMENITY_ICONS = [
   Shirt,       // روم سرویس و لباسشویی
   BusFront,    // سرویس رفت به حرم و کارت بی‌آرتی
   ShieldCheck, // امکانات ایمنی و کمک‌های اولیه
+  Baby,        // اقامت رایگان یک کودک زیر ۳ سال
 ];
 
 export function AmenitiesSection() {

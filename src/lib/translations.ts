@@ -293,7 +293,8 @@ export const translations = {
         { title: "خدمات خانه‌داری روزانه", desc: "خانه‌داری روزانه برای حفظ تمیزی و آرامش اتاق‌ها.", detail: "هر روز" },
         { title: "روم سرویس و لباسشویی", desc: "روم سرویس و خدمات لباسشویی برای اقامت راحت‌تر.", detail: "با هماهنگی پذیرش" },
         { title: "سرویس رفت به حرم و کارت بی‌آرتی", desc: "در طول روز دو نوبت سرویس رفت به حرم مطهر امام رضا در اختیار مهمانان قرار می‌گیرد و کارت بی‌آرتی نیز به امانت داده می‌شود.", detail: "دو نوبت در روز" },
-        { title: "امکانات ایمنی و کمک‌های اولیه", desc: "اعلام حریق، کپسول آتش‌نشانی، اطفای حریق، جعبه کمک‌های اولیه و رمپ در بخش‌های عمومی.", detail: "ایمنی مهمانان" }
+        { title: "امکانات ایمنی و کمک‌های اولیه", desc: "اعلام حریق، کپسول آتش‌نشانی، اطفای حریق، جعبه کمک‌های اولیه و رمپ در بخش‌های عمومی.", detail: "ایمنی مهمانان" },
+        { title: "اقامت رایگان کودک زیر ۳ سال", desc: "هزینه اقامت یک کودک زیر ۳ سال در صورتحساب محاسبه نمی‌شود.", detail: "برای خانواده‌ها" }
       ],
     },
     location: {
@@ -379,11 +380,8 @@ export const translations = {
       checkInOutDesc: "تحویل اتاق: از ساعت ۱۴:۰۰ | تخلیه اتاق: تا ساعت ۱۲:۰۰ ظهر",
       rulesTitle: "قوانین و مدارک اقامت:",
       rules: [
-        "ورود حیوان خانگی، برگزاری مراسم و استعمال دخانیات مجاز نیست.",
-        "استفاده از حیاط و باغ مجاز نیست و تردد با کفش داخل ساختمان آزاد است.",
         "ارائه مدرک محرمیت برای پذیرش زوجین الزامی است.",
         "فرد یا جمع مجردی پذیرفته نمی‌شود.",
-        "هزینه اقامت یک کودک زیر ۳ سال در صورتحساب محاسبه نمی‌شود.",
         "ارائه شناسنامه و کارت ملی معتبر همه مهمانان هنگام ورود الزامی است.",
         "برای زوجین با عقدنامه موقت، شناسنامه و کارت ملی معتبر هر دو نفر و عقدنامه با مهر برجسته محضر لازم است؛ پذیرش اتباع خارجی همراه با شهروند ایرانی و خانم مجرد با عقدنامه انجام نمی‌شود."
       ],
@@ -662,7 +660,8 @@ export const translations = {
         { title: "Daily Housekeeping", desc: "Daily housekeeping keeps guestrooms clean and comfortable.", detail: "Daily service" },
         { title: "Room Service & Laundry", desc: "Room service and laundry support for a more comfortable stay.", detail: "On request" },
         { title: "Shrine Shuttle & BRT Cards", desc: "Two daily shuttle departures to the Imam Reza Shrine are available, and BRT cards can be borrowed by guests.", detail: "Two departures daily" },
-        { title: "Safety & First Aid", desc: "Fire alarms, extinguishers, fire response equipment, first-aid kits, and ramps in public areas.", detail: "Guest safety" }
+        { title: "Safety & First Aid", desc: "Fire alarms, extinguishers, fire response equipment, first-aid kits, and ramps in public areas.", detail: "Guest safety" },
+        { title: "Free Stay for One Child Under 3", desc: "One child under 3 years old stays free of charge.", detail: "For families" }
       ],
     },
     location: {
@@ -748,11 +747,8 @@ export const translations = {
       checkInOutDesc: "Check-in: from 14:00 | Check-out: by 12:00 noon",
       rulesTitle: "Stay Rules & Required Documents:",
       rules: [
-        "Pets, events, and smoking are not permitted.",
-        "Use of the courtyard and garden is not permitted; wearing shoes inside the building is allowed.",
         "Proof of marital status is required for couples.",
         "Single guests or groups are not accepted.",
-        "One child under 3 years old is not included in the invoice.",
         "All guests must present valid national ID and birth certificate documents at check-in.",
         "For couples with a temporary marriage certificate, both guests must present valid ID documents and a certificate bearing the notary's embossed seal; foreign guests accompanied by an Iranian citizen and single women with a temporary certificate are not accepted."
       ],
