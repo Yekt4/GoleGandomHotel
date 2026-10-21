@@ -31,54 +31,16 @@ export const translations = {
       scrollHint: "رفتن به بخش داستان هتل",
       snappPayHeroBadge: hotelConfig.features.snappPay.heroDescFa,
       images: [
-        {
-          src: "/images/hero/shrine-night.jpg",
-          alt: "گنبد طلایی و گلدسته‌های حرم مطهر امام رضا در شب",
-        },
-        {
-          src: "/images/hero/mellat-park-aerial.jpg",
-          alt: "نمای هوایی پارک ملت و چشم‌انداز شهر مشهد",
-        },
-        {
-          src: "/images/hero/mellat-park-city.webp",
-          alt: "پارک ملت مشهد و چرخ‌وفلک در میان فضای سبز شهر",
-        },
-        {
-          src: "/images/hero/shrine-courtyard.jpg",
-          alt: "صحن و معماری نورانی حرم امام رضا در شب",
-        },
-        {
-          src: "/images/hero/shrine-golden-dome.jpg",
-          alt: "گنبد طلایی حرم امام رضا در آسمان شب",
-        },
-        {
-          src: "/images/hero/koohsangi-aerial.jpeg",
-          alt: "نمای هوایی بوستان کوهسنگی و شهر مشهد",
-        },
-        {
-          src: "/images/hero/koohsangi-lake.jpeg",
-          alt: "دریاچه و فضای سبز بوستان کوهسنگی",
-        },
-        {
-          src: "/images/hero/koohsangi-night.jpeg",
-          alt: "نمای شبانه و نورپردازی صخره‌های کوهسنگی",
-        },
-        {
-          src: "/images/hero/koohsangi-lights.jpeg",
-          alt: "انعکاس نورهای رنگی کوهسنگی در آب",
-        },
-        {
-          src: "/images/hero/koohsangi-spring.jpeg",
-          alt: "طبیعت بهاری و شکوفه‌های بوستان کوهسنگی",
-        },
-        {
-          src: "/images/hero/koohsangi-mountains.jpeg",
-          alt: "چشم‌انداز کوهستان و دریاچه بوستان کوهسنگی",
-        },
-        {
-          src: "/images/hero/mellat-park-ferris-wheel.webp",
-          alt: "چرخ‌وفلک نورانی شهربازی پارک ملت در شب",
-        },
+        { src: "/images/hero/shrine-dome-night.jpg", alt: "گنبد طلایی حرم امام رضا در شب" },
+        { src: "/images/hero/mellat-park-3.jpg", alt: "چرخ‌وفلک پارک ملت مشهد" },
+        { src: "/images/hero/diamond-east.jpg", alt: "مجتمع تجاری الماس شرق در شب" },
+        { src: "/images/hero/sholeh.jpg", alt: "شله مشهدی، غذای سنتی شهر" },
+        { src: "/images/hero/shrine-5.jpg", alt: "گنبد و گلدسته‌های حرم امام رضا" },
+        { src: "/images/hero/ferdowsi.jpg", alt: "آرامگاه فردوسی در توس" },
+        { src: "/images/hero/goharshad-2.jpg", alt: "گنبد فیروزه‌ای مسجد گوهرشاد" },
+        { src: "/images/hero/koohsangi-8.jpg", alt: "نورپردازی شبانه بوستان کوهسنگی" },
+        { src: "/images/hero/shopping-center.jpg", alt: "مرکز خرید و فضای سبز مشهد" },
+        { src: "/images/hero/nader-shah.jpg", alt: "آرامگاه نادرشاه افشار در مشهد" },
       ],
     },
     story: {
@@ -440,54 +402,16 @@ export const translations = {
       scrollHint: "Scroll down to hotel story",
       snappPayHeroBadge: hotelConfig.features.snappPay.heroDescEn,
       images: [
-        {
-          src: "/images/hero/shrine-night.jpg",
-          alt: "Golden dome and minarets of Imam Reza Shrine at night",
-        },
-        {
-          src: "/images/hero/mellat-park-aerial.jpg",
-          alt: "Aerial view of Mellat Park and Mashhad skyline",
-        },
-        {
-          src: "/images/hero/mellat-park-city.webp",
-          alt: "Mellat Park and Ferris wheel among Mashhad's green spaces",
-        },
-        {
-          src: "/images/hero/shrine-courtyard.jpg",
-          alt: "Illuminated courtyard and architecture of Imam Reza Shrine",
-        },
-        {
-          src: "/images/hero/shrine-golden-dome.jpg",
-          alt: "The golden dome of Imam Reza Shrine beneath the night sky",
-        },
-        {
-          src: "/images/hero/koohsangi-aerial.jpeg",
-          alt: "Aerial view of Koohsangi Park and Mashhad",
-        },
-        {
-          src: "/images/hero/koohsangi-lake.jpeg",
-          alt: "Lake and green landscape at Koohsangi Park",
-        },
-        {
-          src: "/images/hero/koohsangi-night.jpeg",
-          alt: "Night view and illuminated rocks at Koohsangi Park",
-        },
-        {
-          src: "/images/hero/koohsangi-lights.jpeg",
-          alt: "Colorful lights reflected in the Koohsangi lake",
-        },
-        {
-          src: "/images/hero/koohsangi-spring.jpeg",
-          alt: "Spring blossoms and gardens at Koohsangi Park",
-        },
-        {
-          src: "/images/hero/koohsangi-mountains.jpeg",
-          alt: "Mountain and lake panorama at Koohsangi Park",
-        },
-        {
-          src: "/images/hero/mellat-park-ferris-wheel.webp",
-          alt: "Illuminated Ferris wheel at Mellat Park amusement park",
-        },
+        { src: "/images/hero/shrine-dome-night.jpg", alt: "Golden dome of Imam Reza Shrine at night" },
+        { src: "/images/hero/mellat-park-3.jpg", alt: "Mellat Park Ferris wheel in Mashhad" },
+        { src: "/images/hero/diamond-east.jpg", alt: "Almas Sharq shopping complex at night" },
+        { src: "/images/hero/sholeh.jpg", alt: "Sholeh Mashhadi, a traditional local dish" },
+        { src: "/images/hero/shrine-5.jpg", alt: "Domes and minarets of Imam Reza Shrine" },
+        { src: "/images/hero/ferdowsi.jpg", alt: "Ferdowsi Mausoleum in Tus" },
+        { src: "/images/hero/goharshad-2.jpg", alt: "Turquoise dome of Goharshad Mosque" },
+        { src: "/images/hero/koohsangi-8.jpg", alt: "Koohsangi Park illuminated at night" },
+        { src: "/images/hero/shopping-center.jpg", alt: "Shopping center and green spaces in Mashhad" },
+        { src: "/images/hero/nader-shah.jpg", alt: "Nader Shah Afshar Mausoleum in Mashhad" },
       ],
     },
     story: {
