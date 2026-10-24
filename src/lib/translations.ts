@@ -33,7 +33,6 @@ export const translations = {
       images: [
         { src: "/images/hero/shrine-dome-night.jpg", alt: "گنبد طلایی حرم امام رضا در شب" },
         { src: "/images/hero/mellat-park-3.jpg", alt: "چرخ‌وفلک پارک ملت مشهد" },
-        { src: "/images/hero/diamond-east.jpg", alt: "مجتمع تجاری الماس شرق در شب" },
         { src: "/images/hero/sholeh.jpg", alt: "شله مشهدی، غذای سنتی شهر" },
         { src: "/images/hero/shrine-5.jpg", alt: "گنبد و گلدسته‌های حرم امام رضا" },
         { src: "/images/hero/ferdowsi.jpg", alt: "آرامگاه فردوسی در توس" },
@@ -342,8 +341,8 @@ export const translations = {
       checkInOutDesc: "تحویل اتاق: از ساعت ۱۴:۰۰ | تخلیه اتاق: تا ساعت ۱۲:۰۰ ظهر",
       rulesTitle: "قوانین و مدارک اقامت:",
       rules: [
+      "جمع مجردی پذیرفته نمی‌شود.",
         "ارائه مدرک محرمیت برای پذیرش زوجین الزامی است.",
-        "فرد یا جمع مجردی پذیرفته نمی‌شود.",
         "ارائه شناسنامه و کارت ملی معتبر همه مهمانان هنگام ورود الزامی است.",
         "برای زوجین با عقدنامه موقت، شناسنامه و کارت ملی معتبر هر دو نفر و عقدنامه با مهر برجسته محضر لازم است؛ پذیرش اتباع خارجی همراه با شهروند ایرانی و خانم مجرد با عقدنامه انجام نمی‌شود."
       ],
@@ -404,7 +403,6 @@ export const translations = {
       images: [
         { src: "/images/hero/shrine-dome-night.jpg", alt: "Golden dome of Imam Reza Shrine at night" },
         { src: "/images/hero/mellat-park-3.jpg", alt: "Mellat Park Ferris wheel in Mashhad" },
-        { src: "/images/hero/diamond-east.jpg", alt: "Almas Sharq shopping complex at night" },
         { src: "/images/hero/sholeh.jpg", alt: "Sholeh Mashhadi, a traditional local dish" },
         { src: "/images/hero/shrine-5.jpg", alt: "Domes and minarets of Imam Reza Shrine" },
         { src: "/images/hero/ferdowsi.jpg", alt: "Ferdowsi Mausoleum in Tus" },
