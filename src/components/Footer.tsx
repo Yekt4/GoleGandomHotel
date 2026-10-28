@@ -61,7 +61,7 @@ export function Footer() {
             <div className="relative mb-3 flex items-center justify-center">
               <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border border-[#e3d5bf] bg-white transition-all duration-300 group-hover:scale-105 group-hover:border-[#927344]">
                 <Image
-                  src="/images/gol-gandom-logo.png"
+                  src="/images/gol-gandom-logo.jpg"
                   alt={t.brand.name}
                   fill
                   sizes="(max-width: 640px) 64px, 80px"

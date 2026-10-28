@@ -5,10 +5,11 @@ import { Phone, MessageCircle } from "lucide-react";
 import { BookingDialog } from "./BookingDialog";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
-import { trackEvent, buildAttributedWhatsAppUrl } from "@/lib/tracker";
+import { trackEvent, useWhatsAppUrlBuilder } from "@/lib/tracker";
 import { hotelConfig } from "@/config/hotel.config";
 
 export function FloatingCTA() {
+  const buildAttributedWhatsAppUrl = useWhatsAppUrlBuilder();
   const { language } = useLanguage();
   const t = translations[language];
   const hotelName = language === "en" ? hotelConfig.meta.nameEn : hotelConfig.meta.fullNameFa;

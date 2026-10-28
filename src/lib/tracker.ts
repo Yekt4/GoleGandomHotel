@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import { hotelConfig } from "@/config/hotel.config";
 
 export interface UtmParams {
@@ -169,9 +171,9 @@ export function trackEvent(
 export function buildAttributedWhatsAppUrl(
   phone: string = hotelConfig.contact.whatsapp.number,
   roomTitle?: string,
-  lang: string = "fa"
+  lang: string = "fa",
+  utm: UtmParams = { utm_source: "direct" }
 ): string {
-  const utm = getStoredUtm();
   let refTag = "";
   if (utm.utm_source && utm.utm_source !== "direct") {
     refTag = ` [کد ارجاع: ${utm.utm_source}${utm.utm_campaign ? ` / ${utm.utm_campaign}` : ""}]`;
@@ -192,4 +194,14 @@ export function buildAttributedWhatsAppUrl(
 
   const targetPhone = phone || hotelConfig.contact.whatsapp.number;
   return `https://wa.me/${targetPhone}?text=${encodeURIComponent(message)}`;
+}
+
+/** Read browser attribution only after the initial hydration render. */
+export function useWhatsAppUrlBuilder() {
+  const [utm, setUtm] = useState<UtmParams>({ utm_source: "direct" });
+  useEffect(() => {
+    setUtm(getStoredUtm());
+  }, []);
+  return (phone?: string, roomTitle?: string, lang: string = "fa") =>
+    buildAttributedWhatsAppUrl(phone, roomTitle, lang, utm);
 }

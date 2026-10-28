@@ -7,7 +7,6 @@ import {
   Wifi,
   Luggage,
   Sparkles,
-  Shirt,
   ShieldCheck,
   Baby,
   ChevronLeft,
@@ -22,10 +21,9 @@ const AMENITY_ICONS = [
   Wifi,        // اینترنت رایگان محدود
   Luggage,     // صندوق امانات و اتاق چمدان
   Sparkles,    // خدمات خانه‌داری روزانه
-  Shirt,       // روم سرویس و لباسشویی
   BusFront,    // سرویس رفت به حرم و کارت بی‌آرتی
   ShieldCheck, // امکانات ایمنی و کمک‌های اولیه
-  Baby,        // اقامت رایگان یک کودک زیر ۳ سال
+  Baby,
 ];
 
 export function AmenitiesSection() {

@@ -19,9 +19,10 @@ import { BookingDialog } from "./BookingDialog";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 import { hotelConfig } from "@/config/hotel.config";
-import { trackEvent, buildAttributedWhatsAppUrl } from "@/lib/tracker";
+import { trackEvent, useWhatsAppUrlBuilder } from "@/lib/tracker";
 
 export function Navbar() {
+  const buildAttributedWhatsAppUrl = useWhatsAppUrlBuilder();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, toggleLanguage, isEn } = useLanguage();
@@ -122,7 +123,7 @@ export function Navbar() {
               }`}
             >
               <Image
-                src="/images/gol-gandom-logo.png"
+                src="/images/gol-gandom-logo.jpg"
                 alt={t.brand.title}
                 fill
                 sizes="44px"
@@ -218,7 +219,7 @@ export function Navbar() {
             <div className="flex items-center gap-2.5">
               <div className="relative w-9 h-9 rounded-full overflow-hidden border border-[#e3d5bf] bg-white flex items-center justify-center flex-shrink-0">
                 <Image
-                  src="/images/gol-gandom-logo.png"
+                  src="/images/gol-gandom-logo.jpg"
                   alt={t.brand.title}
                   fill
                   sizes="36px"

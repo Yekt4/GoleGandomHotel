@@ -12,7 +12,7 @@ import { Phone, MessageCircle } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 
-import { trackEvent, buildAttributedWhatsAppUrl } from "@/lib/tracker";
+import { trackEvent, useWhatsAppUrlBuilder } from "@/lib/tracker";
 import { hotelConfig } from "@/config/hotel.config";
 
 interface BookingDialogProps {
@@ -30,6 +30,7 @@ export function BookingDialog({
   onOpenChange,
   location,
 }: BookingDialogProps) {
+  const buildAttributedWhatsAppUrl = useWhatsAppUrlBuilder();
   const { language } = useLanguage();
   const t = translations[language];
   const isEn = language === "en";

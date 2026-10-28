@@ -20,9 +20,11 @@ export function GallerySection() {
 
   const filteredItems = useMemo(() => {
     return filter === "all"
-      ? t.gallery.items
+      ? t.gallery.categories
+          .filter((category) => category.id !== "all")
+          .flatMap((category) => t.gallery.items.filter((item) => item.category === category.id))
       : t.gallery.items.filter((item) => item.category === filter);
-  }, [filter, t.gallery.items]);
+  }, [filter, t.gallery.items, t.gallery.categories]);
 
   const gridContainerClass = useMemo(() => {
     if (filteredItems.length === 1) {
