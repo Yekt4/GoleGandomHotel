@@ -123,7 +123,7 @@ export function Navbar() {
               }`}
             >
               <Image
-                src="/images/gol-gandom-logo.jpg"
+                src="/images/gol-gandom-logo-new.jpg"
                 alt={t.brand.title}
                 fill
                 sizes="44px"
@@ -219,7 +219,7 @@ export function Navbar() {
             <div className="flex items-center gap-2.5">
               <div className="relative w-9 h-9 rounded-full overflow-hidden border border-[#e3d5bf] bg-white flex items-center justify-center flex-shrink-0">
                 <Image
-                  src="/images/gol-gandom-logo.jpg"
+                  src="/images/gol-gandom-logo-new.jpg"
                   alt={t.brand.title}
                   fill
                   sizes="36px"
