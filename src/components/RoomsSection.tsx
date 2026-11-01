@@ -391,7 +391,7 @@ export function RoomsSection() {
                     </div>
 
                     {/* Highlights */}
-                    <ul className="space-y-2 mb-5 text-xs sm:text-sm text-[#6b5948] font-light">
+                    <ul className="grid grid-cols-2 gap-x-4 gap-y-2 mb-5 text-xs sm:text-sm text-[#6b5948] font-light">
                       {room.highlights.map((item, hIdx) => (
                         <li key={hIdx} className="flex items-start gap-2.5">
                           <span className="text-[#927344] font-bold select-none">—</span>
