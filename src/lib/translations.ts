@@ -124,7 +124,7 @@ export const translations = {
         },
 {
           id: "twin", title: "اتاق دو تخته تویین", subtitle: "۱۵ متر؛ ساده و کاربردی برای اقامتی راحت",
-          image: "/images/rooms/twin-placeholder.svg", images: ["/images/rooms/twin-placeholder.svg"], capacity: "۲ نفر", size: "۱۵ مترمربع",
+          image: "/images/rooms/twin-new.png", images: ["/images/rooms/twin-new.png"], capacity: "۲ نفر", size: "۱۵ مترمربع",
           architectureFeature: "دو تخت مجزا",
           category: "twin", categoryLabel: "دو تخته تویین",
           highlights: ["یخچال", "اسپیلت", "تلویزیون LED", "گرمایش از کف", "سرویس فرنگی", "حمام (دوش)", "سشوار", "مینی بار با هزینه", "صابون، شامپو", "پنجره", "فلاسک", "میز و دو عدد صندلی"],
@@ -181,7 +181,8 @@ export const translations = {
   { "id": 5, "category": "dining", "src": "/images/areas/restaurant-buffet-2.webp", "title": "سالن رستوران و میز سلف‌سرویس", "categoryName": "رستوران و کافی‌شاپ" },
   { "id": 6, "category": "dining", "src": "/images/areas/cafe-terrace.webp", "title": "کافی‌شاپ و فضای پذیرایی هتل", "categoryName": "رستوران و کافی‌شاپ" },
   { "id": 7, "category": "rooms", "src": "/images/rooms/single-double-new.jpg", "title": "اتاق یک‌تخته", "categoryName": "اتاق‌ها" },
-  { "id": 8, "category": "rooms", "src": "/images/rooms/single-double-new.jpg", "title": "اتاق دو تخته دابل با پنجره و کرکره", "categoryName": "اتاق‌ها" },
+  { "id": 8, "category": "rooms", "src": "/images/rooms/single-double-new.jpg", "title": "اتاق دو تخته دابل", "categoryName": "اتاق‌ها" },
+  { "id": 10, "category": "rooms", "src": "/images/rooms/twin-new.png", "title": "اتاق دو تخته تویین", "categoryName": "اتاق‌ها" },
   { "id": 11, "category": "rooms", "src": "/images/rooms/triple-new-1.jpg", "title": "اتاق سه‌تخته", "categoryName": "اتاق‌ها" },
   { "id": 12, "category": "rooms", "src": "/images/rooms/triple-new-2.jpg", "title": "اتاق سه‌تخته با چیدمان تخت‌ها", "categoryName": "اتاق‌ها" },
   { "id": 14, "category": "rooms", "src": "/images/rooms/quad-new.jpg", "title": "اتاق چهار‌تخته", "categoryName": "اتاق‌ها" },
@@ -485,7 +486,7 @@ export const translations = {
       items: [
         { id: "single", title: "Single Room", subtitle: "15 m²; flat layout without a separate room", image: "/images/rooms/single-double-new.jpg", images: ["/images/rooms/single-double-new.jpg"], capacity: "1 guest", size: "15 m²", architectureFeature: "", category: "single", categoryLabel: "Single", highlights: ["Refrigerator", "Split AC", "LED TV", "Underfloor heating", "Western toilet", "Bathroom (shower)", "Hair dryer", "Minibar (paid)", "Soap, shampoo", "Window", "Thermos", "Table and two chairs"], description: "This 15 m² room has two beds and is offered for single occupancy. It has a flat layout without a separate room, with a Western toilet and shower." },
         { id: "double", title: "Double Room", subtitle: "15 m²; flat layout without a separate room", image: "/images/rooms/single-double-new.jpg", images: ["/images/rooms/single-double-new.jpg"], capacity: "2 guests", size: "15 m²", architectureFeature: "One double bed", category: "double", categoryLabel: "Double", highlights: ["Refrigerator", "Split AC", "LED TV", "Underfloor heating", "Western toilet", "Bathroom (shower)", "Hair dryer", "Minibar (paid)", "Soap, shampoo", "Window", "Thermos", "Table and two chairs"], description: "A 15 m² flat-style double room without a separate room, with one double bed and a Western bathroom with shower." },
-        { id: "twin", title: "Twin Room", subtitle: "15 m²; simple and practical for a comfortable stay", image: "/images/rooms/twin-placeholder.svg", images: ["/images/rooms/twin-placeholder.svg"], capacity: "2 guests", size: "15 m²", architectureFeature: "Two separate beds", category: "twin", categoryLabel: "Twin", highlights: ["Refrigerator", "Split AC", "LED TV", "Underfloor heating", "Western toilet", "Bathroom (shower)", "Hair dryer", "Minibar (paid)", "Soap, shampoo", "Window", "Thermos", "Table and two chairs"], description: "A 15 m² twin room with two separate beds, suitable for friends or colleagues." },
+        { id: "twin", title: "Twin Room", subtitle: "15 m²; simple and practical for a comfortable stay", image: "/images/rooms/twin-new.png", images: ["/images/rooms/twin-new.png"], capacity: "2 guests", size: "15 m²", architectureFeature: "Two separate beds", category: "twin", categoryLabel: "Twin", highlights: ["Refrigerator", "Split AC", "LED TV", "Underfloor heating", "Western toilet", "Bathroom (shower)", "Hair dryer", "Minibar (paid)", "Soap, shampoo", "Window", "Thermos", "Table and two chairs"], description: "A 15 m² twin room with two separate beds, suitable for friends or colleagues." },
         { id: "triple", title: "Triple Room", subtitle: "25 m²; flat layout without a separate room", image: "/images/rooms/triple-new-1.jpg", images: ["/images/rooms/triple-new-1.jpg", "/images/rooms/triple-new-2.jpg"], capacity: "3 guests", size: "25 m²", architectureFeature: "One double bed and one single bed", category: "triple", categoryLabel: "Triple", highlights: ["Refrigerator", "Split AC", "LED TV", "Underfloor heating", "Western toilet", "Bathroom (shower)", "Hair dryer", "Minibar (paid)", "Soap, shampoo", "Window", "Thermos", "Table and two chairs"], description: "A 25 m² flat-style room without a separate bedroom for three guests." },
         { id: "quad", title: "Quadruple Room", subtitle: "25 m²; flat layout without a separate room", image: "/images/rooms/quad-new.jpg", images: ["/images/rooms/quad-new.jpg"], capacity: "4 guests", size: "25 m²", architectureFeature: "One double bed and two single beds", category: "quad", categoryLabel: "Quadruple", highlights: ["Refrigerator", "Split AC", "LED TV", "Underfloor heating", "Western toilet", "Bathroom (shower)", "Hair dryer", "Minibar (paid)", "Soap, shampoo", "Window", "Thermos", "Table and two chairs"], description: "A 25 m² flat-style room without a separate room, with one double bed and two single beds on the third floor." },
         { id: "five", title: "Five-bed Room", subtitle: "Five-bed; simple and practical for a comfortable stay", image: "/images/rooms/five-new.jpg", images: ["/images/rooms/five-new.jpg"], capacity: "5 guests", size: "", architectureFeature: "1 double bed and 3 single beds", category: "five", categoryLabel: "Five-bed", highlights: ["Refrigerator", "Split AC", "LED TV", "Underfloor heating", "Western toilet", "Bathroom (shower)", "Hair dryer", "Minibar (paid)", "Soap, shampoo", "Window", "Thermos", "Table and two chairs"], description: "A five-bed room for larger families and groups." }
@@ -516,7 +517,8 @@ export const translations = {
   { "id": 5, "category": "dining", "src": "/images/areas/restaurant-buffet-2.webp", "title": "Dining hall and self-service buffet", "categoryName": "Restaurant & Cafe" },
   { "id": 6, "category": "dining", "src": "/images/areas/cafe-terrace.webp", "title": "Hotel cafe and dining area", "categoryName": "Restaurant & Cafe" },
   { "id": 7, "category": "rooms", "src": "/images/rooms/single-double-new.jpg", "title": "Single room", "categoryName": "Rooms" },
-  { "id": 8, "category": "rooms", "src": "/images/rooms/single-double-new.jpg", "title": "Double room with window and blinds", "categoryName": "Rooms" },
+  { "id": 8, "category": "rooms", "src": "/images/rooms/single-double-new.jpg", "title": "Double room", "categoryName": "Rooms" },
+  { "id": 10, "category": "rooms", "src": "/images/rooms/twin-new.png", "title": "Twin room", "categoryName": "Rooms" },
   { "id": 11, "category": "rooms", "src": "/images/rooms/triple-new-1.jpg", "title": "Triple room", "categoryName": "Rooms" },
   { "id": 12, "category": "rooms", "src": "/images/rooms/triple-new-2.jpg", "title": "Triple room bed layout", "categoryName": "Rooms" },
   { "id": 14, "category": "rooms", "src": "/images/rooms/quad-new.jpg", "title": "Quadruple room", "categoryName": "Rooms" },
@@ -714,6 +716,3 @@ export const translations = {
     },
   },
 };
-
-
-

@@ -167,7 +167,7 @@ export function GallerySection() {
     <section id="gallery" className="py-20 sm:py-28 bg-[#faf6e8] border-t border-[#e9ddca] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Editorial Section Header - Dignified & Restrained */}
-        <div className={`flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-14 ${isEn ? "text-left" : "text-right"}`}>
+        <div className={`flex flex-col gap-6 mb-12 sm:mb-14 ${isEn ? "text-left" : "text-right"}`}>
           <div className="max-w-2xl">
             <h2 className="text-[30px] sm:text-[42px] font-bold text-[#563820] tracking-tight leading-tight mb-3">
               {t.gallery.heading}
@@ -181,7 +181,7 @@ export function GallerySection() {
           <div
             role="tablist"
             aria-label="Gallery Categories"
-            className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 scrollbar-none [scrollbar-width:none] flex-shrink-0"
+            className={`w-full flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 scrollbar-none [scrollbar-width:none] flex-shrink-0 ${isEn ? "justify-start" : "justify-end"}`}
           >
             {t.gallery.categories.map((tab) => {
               const isActive = filter === tab.id;
@@ -240,7 +240,7 @@ export function GallerySection() {
                 {/* Mobile Scrim with Permanent Readability */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent flex flex-col justify-end p-4 text-white z-10">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-[10px] font-semibold text-white/90 bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/20">
+                    <span className="text-[10px] font-semibold text-white/90 bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/20 whitespace-nowrap max-w-full overflow-hidden text-ellipsis">
                       {item.categoryName}
                     </span>
                   </div>
@@ -320,7 +320,7 @@ export function GallerySection() {
               {/* Quiet Editorial Scrim on Hover */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white pointer-events-none z-10">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <span className="text-[11px] font-medium text-white/90 bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/20">
+                  <span className="text-[11px] font-medium text-white/90 bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/20 whitespace-nowrap max-w-full overflow-hidden text-ellipsis">
                     {item.categoryName}
                   </span>
                 </div>
